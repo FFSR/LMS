@@ -32,24 +32,27 @@
 			</props>
 		</property>
 	</bean>
-	
-	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
 	<!-- Simple implementation of the standard JDBC DataSource interface, configuring 
 		the plain old JDBC DriverManager via bean properties -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" /> <property 
-		name="url" value="jdbc:mysql://localhost/lmsdb" /> <property name="username" 
-		value="root" /> <property name="password" value="root" /> </bean>
-		
-		
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/lmsdb" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean>
+
+
 	<!-- JNDI DataSource Live -->
 	<!-- <jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/MySqlDS"/> -->
-	
-<!-- 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-    <property name="jndiName" value="java:jboss/testDS" />
-</bean> -->
-	
+
+	<!-- <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName" value="java:jboss/testDS" /> </bean> -->
+
 
 	<!-- This transaction manager is appropriate for applications that use a 
 		single JPA EntityManagerFactory for transactional data access. JTA (usually 
@@ -83,12 +86,12 @@
 	</bean>
 
 
-<!-- File Upload Configuration -->
+	<!-- File Upload Configuration -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- setting maximum upload size -->
 		<property name="maxUploadSize" value="10485760" /> <!-- Size in byte (Currently 10MB) -->
-		<property name="defaultEncoding" value="utf-8"/>
+		<property name="defaultEncoding" value="utf-8" />
 	</bean>
-		
+
 </beans>

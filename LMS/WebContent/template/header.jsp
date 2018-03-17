@@ -1,3 +1,1 @@
-<div align="center" style="font-weight: bold;">
-	Demo Project
-</div>
+<div align="center" style="font-weight: bold;">Demo Project</div>
