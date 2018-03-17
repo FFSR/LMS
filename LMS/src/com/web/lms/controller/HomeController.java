@@ -13,5 +13,17 @@ public class HomeController {
 		return "index";
 	}
 	
+
+	@RequestMapping("/registration")
+	public String registration(Model model) {
+		
+		return "registration";
+	}
 	
+	@RequestMapping("/leaveapplication")
+	public String  leaveapplication(Model model) {
+		
+		return " leaveapplication";
+	}
+
 }
