@@ -13,14 +13,10 @@
 		<put-attribute name="footer" value="/template/footer.jsp" />
 	</definition>
 
-
-
 	<definition name="index" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 	</definition>
-
-
 
 	<definition name="registration" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
