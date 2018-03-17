@@ -12,14 +12,28 @@
 		<put-attribute name="body" value="/template/body.jsp" />
 		<put-attribute name="footer" value="/template/footer.jsp" />
 	</definition>
-	
-	
-	
+
+
+
 	<definition name="index" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 	</definition>
-	
+
+
+
+	<definition name="registration" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/security/registration.jsp" />
+	</definition>
+
+	<definition name="leaveapplication" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/leaveapplication.jsp" />
+	</definition>
+
 </tiles-definitions>
 
 
