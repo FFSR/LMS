@@ -94,10 +94,10 @@
 			<br>
 			
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Supervisor Email </div>
+				<div class="col-sm-3" style="background-color: white;">Status </div>
 				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
-				<div class="col-sm-3" style="background-color: white;">Address</div>
-				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
 			
 			<br>
@@ -112,7 +112,7 @@
 			<br>
 			
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;"><input type="submit" class="btn btn-info" value="Submit"> </div>
+				<div class="col-sm-3" style="background-color: white;"><input type="submit" class="btn btn-info" value="Update"> </div>
 				<div class="col-sm-3" style="background-color: white;"></div>
 				<div class="col-sm-3" style="background-color: white;"><input type="button" class="btn btn-info" value="Cancel"></div>
 				<div class="col-sm-3" style="background-color: white;"></div>
