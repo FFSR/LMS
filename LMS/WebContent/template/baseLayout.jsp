@@ -21,8 +21,7 @@
 <script type="text/javascript" src="resources/js/app.js/app.js"></script>
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini" style="zoom: 0.8;"
-	ng-app="myApp">
+<body class="hold-transition skin-blue sidebar-mini" style="zoom: 0.8;" ng-app="myApp">
 	<tiles:insertAttribute name="menu" />
 	<tiles:insertAttribute name="body" />
 </body>
