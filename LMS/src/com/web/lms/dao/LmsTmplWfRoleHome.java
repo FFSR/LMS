@@ -1,31 +1,27 @@
 package com.web.lms.dao;
-// Generated Mar 17, 2018 12:06:37 PM by Hibernate Tools 5.2.8.Final
+// com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.web.lms.model.Myguests;
 
 /**
- * Home object for domain model class Myguests.
- * @see GEN.Myguests
+ * Home object for domain model class LmsTmplWfRole.
+ * @see com.web.lms.dao.LmsTmplWfRole
  * @author Hibernate Tools
  */
-@Repository
-@Transactional
-public class MyguestsHome {
+@Stateless
+public class LmsTmplWfRoleHome {
 
-	private static final Log log = LogFactory.getLog(MyguestsHome.class);
+	private static final Log log = LogFactory.getLog(LmsTmplWfRoleHome.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(Myguests transientInstance) {
-		log.debug("persisting Myguests instance");
+	public void persist(LmsTmplWfRole transientInstance) {
+		log.debug("persisting LmsTmplWfRole instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -35,8 +31,8 @@ public class MyguestsHome {
 		}
 	}
 
-	public void remove(Myguests persistentInstance) {
-		log.debug("removing Myguests instance");
+	public void remove(LmsTmplWfRole persistentInstance) {
+		log.debug("removing LmsTmplWfRole instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -46,10 +42,10 @@ public class MyguestsHome {
 		}
 	}
 
-	public Myguests merge(Myguests detachedInstance) {
-		log.debug("merging Myguests instance");
+	public LmsTmplWfRole merge(LmsTmplWfRole detachedInstance) {
+		log.debug("merging LmsTmplWfRole instance");
 		try {
-			Myguests result = entityManager.merge(detachedInstance);
+			LmsTmplWfRole result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -58,10 +54,10 @@ public class MyguestsHome {
 		}
 	}
 
-	public Myguests findById(Integer id) {
-		log.debug("getting Myguests instance with id: " + id);
+	public LmsTmplWfRole findById(Integer id) {
+		log.debug("getting LmsTmplWfRole instance with id: " + id);
 		try {
-			Myguests instance = entityManager.find(Myguests.class, id);
+			LmsTmplWfRole instance = entityManager.find(LmsTmplWfRole.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
