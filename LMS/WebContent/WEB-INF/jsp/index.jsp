@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<script type="text/javascript"
+	src="resources/js/app.js/service/testService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/testController.js"></script>
 
@@ -38,6 +40,28 @@
 				<div class="col-sm-3" style="background-color: lavenderblush;">.col-sm-3</div>
 			</div>
 		</div>
+		
+		<div class="form-group">
+										<label>Network ID:</label>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+											<input type="text" ng-model="networkId" class="form-control" placeholder="Network ID">
+										</div>
+									</div>
+										
+		<div class="form-group">
+										<label for="pwd">Password:</label>
+										<div class="input-group">
+											<span class="input-group-addon"></span>
+											<input type="password" ng-model="password" class="form-control" placeholder="Login Password">
+										</div>
+									</div>
+									
+		<button type="submit" class="form-control btn btn-primary" id="login"
+										ng-click="login(networkId,password)">Login</button>
+										
+		<div>Response: {{testMsg}}</div>
+		
 	</div>
 </body>
 </html>

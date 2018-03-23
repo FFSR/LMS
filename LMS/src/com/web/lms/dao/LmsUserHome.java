@@ -4,6 +4,8 @@ package com.web.lms.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
@@ -69,5 +71,14 @@ public class LmsUserHome {
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+	
+	public LmsUser findByUnameandPassword(String uName, String password) {
+		
+		Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.name=:uName AND e.password=:password").setParameter("uName", uName).setParameter("password", password);
+		
+		LmsUser lmsUser = (LmsUser) query.getSingleResult();
+		
+		return lmsUser;
 	}
 }
