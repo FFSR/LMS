@@ -1,18 +1,23 @@
 package com.web.lms.dao;
 // com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
 
-import javax.ejb.Stateless;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.web.lms.model.LmsTmplWfHops;
 
 /**
  * Home object for domain model class LmsTmplWfHops.
  * @see com.web.lms.dao.LmsTmplWfHops
  * @author Hibernate Tools
  */
-@Stateless
+@Repository
+@Transactional
 public class LmsTmplWfHopsHome {
 
 	private static final Log log = LogFactory.getLog(LmsTmplWfHopsHome.class);
