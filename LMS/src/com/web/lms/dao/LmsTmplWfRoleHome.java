@@ -9,6 +9,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.lms.model.LmsTmplWfRole;
+
 /**
  * Home object for domain model class LmsTmplWfRole.
  * @see com.web.lms.dao.LmsTmplWfRole
