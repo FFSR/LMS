@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 23, 2018 6:28:47 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 23, 2018 7:42:13 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -54,7 +54,7 @@ public class LmsPageRoleMap implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ROLE_ID")
 	public LmsRole getLmsRole() {
 		return this.lmsRole;
