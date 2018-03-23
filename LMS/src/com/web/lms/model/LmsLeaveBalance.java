@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.com.web.lms.modeleratedValue;
-import static javax.persistence.com.web.lms.modelerationType.IDENTITY;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -54,7 +54,7 @@ public class LmsLeaveBalance implements java.io.Serializable {
 	}
 
 	@Id
-	@com.web.lms.modeleratedValue(strategy = IDENTITY)
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID", unique = true, nullable = false)
 	public Integer getId() {
