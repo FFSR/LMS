@@ -22,6 +22,41 @@ public class HomeController {
 	@RequestMapping("/leaveapplication")
 	public String  leaveapplication(Model model) {
 		
-		return " leaveapplication";
+		return "leaveapplication";
 	}
+	
+	@RequestMapping("/forgetpasswd")
+	public String forgetpasswd(Model model) {
+		
+		return "forgetpasswd";
+	}
+	
+	@RequestMapping("/employeehomepage")
+	public String employeehomepage(Model model) {
+		
+		return "employeehomepage";
+	}
+	@RequestMapping("/leavemanagementhead")
+	public String leavemanagementhead(Model model) {
+		
+		return "leavemanagementhead";
+	}
+	@RequestMapping("/leavemanagementdetails")
+	public String leavemanagementdetails(Model model) {
+		
+		return "leavemanagementdetails";
+	}
+	@RequestMapping("/holidaymanagement")
+	public String holidaymanagement(Model model) {
+		
+		return "holidaymanagement";
+	}
+	@RequestMapping("/rptleavestatus")
+	public String rptleavestatus(Model model) {
+		
+		return "rptleavestatus";
+	}
+	
+	
+	
 }

@@ -30,6 +30,45 @@
 			value="/WEB-INF/jsp/leavemanagement/leaveapplication.jsp" />
 	</definition>
 
+	<definition name="forgetpasswd" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/security/forgetpasswd.jsp" />
+	</definition>
+
+	<definition name="employeehomepage" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/employeehomepage.jsp" />
+	</definition>
+
+	<definition name="leavemanagementhead" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/leavemanagementhead.jsp" />
+	</definition>
+
+	<definition name="leavemanagementdetails" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/leavemanagementdetails.jsp" />
+
+	</definition>
+	
+	<definition name="holidaymanagement" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/holidaymanagement.jsp" />
+
+	</definition>
+	
+	<definition name="rptleavestatus" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/rptleavestatus.jsp" />
+
+	</definition>
+
 </tiles-definitions>
 
 
