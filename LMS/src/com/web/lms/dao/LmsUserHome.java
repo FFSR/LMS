@@ -112,20 +112,4 @@ public class LmsUserHome {
 		}
 	}
 		
-		public LmsUser findByEmailID(String emailid) {
-			
-			try {
-				Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.email=:emailid").setParameter("emailid", emailid);
-			
-				LmsUser lmsUser = (LmsUser) query.getSingleResult();
-			
-				return lmsUser;
-			
-			}
-			catch(Exception ex) {
-				
-				return null;
-				
-			}
-		
 }
