@@ -1,7 +1,6 @@
 package com.web.lms.dao;
 // com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,6 +14,7 @@ import com.web.lms.model.LmsUser;
 
 /**
  * Home object for domain model class LmsUser.
+ * 
  * @see com.web.lms.dao.LmsUser
  * @author Hibernate Tools
  */
@@ -75,11 +75,30 @@ public class LmsUserHome {
 			throw re;
 		}
 	}
-	
+
 	public LmsUser findByUnameandPassword(String uName, String password) {
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsUser e WHERE e.name=:uName AND e.password=:password")
+					.setParameter("uName", uName).setParameter("password", password);
+
+			LmsUser lmsUser = (LmsUser) query.getSingleResult();
+
+			return lmsUser;
+
+		} catch (Exception ex) {
+
+			return null;
+
+		}
+
+	}
+
+	public LmsUser findByEmailID(String emailid) {
 		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.name=:uName AND e.password=:password").setParameter("uName", uName).setParameter("password", password);
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.email=:emailid").setParameter("emailid", emailid);
 		
 			LmsUser lmsUser = (LmsUser) query.getSingleResult();
 		
@@ -109,6 +128,4 @@ public class LmsUserHome {
 				
 			}
 		
-		
-	}
 }
