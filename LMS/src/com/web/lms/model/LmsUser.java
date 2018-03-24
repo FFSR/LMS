@@ -331,7 +331,7 @@ public class LmsUser implements java.io.Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "INSERT_DATE", nullable = false, length = 19)
+	@Column(name = "INSERT_DATE", length = 19)
 	public Date getInsertDate() {
 		return this.insertDate;
 	}
