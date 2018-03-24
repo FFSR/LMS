@@ -38,4 +38,19 @@ public class Login {
 		
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/user/{userName}/{password}", method=RequestMethod.GET)
+	
+	public ResponseEntity<LmsUser> getuser(@PathVariable("userName") String uName, @PathVariable("password") String password){
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		LmsUser lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
+		
+		if(lmsUser != null) {
+			responseWrapper.setMessage("Success. UserName: "+uName+" Password: "+password);
+			
+		}
+		
+		return new ResponseEntity<LmsUser>(lmsUser, HttpStatus.OK);
+	}
 }
