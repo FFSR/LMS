@@ -56,19 +56,28 @@ public class User {
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
 	
-	@RequestMapping(value = "/registration/{username}/{nid}", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> doRegistration(@PathVariable("username") String username,
-			@PathVariable("nid") String nid) {
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> doRegistration(@RequestBody LmsUser lmsUser) {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
 		try {
-			LmsUser user = new LmsUser();
+			//LmsUser user = new LmsUser();
 
-			user.setName(username);
-			user.setNid(nid);
+			String userName = lmsUser.getName();
+			String nid = lmsUser.getNid();
+			String email = lmsUser.getEmail();
+			String gender = lmsUser.getGender();
+			
 
-			lmsUserHome.persist(user);
+			try {
+			int lmsuserid = lmsUserHome.persist(lmsUser);
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("Failed to create User.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
 			
 			responseWrapper.setMessage("Success. User has created");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);

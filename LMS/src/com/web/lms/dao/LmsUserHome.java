@@ -27,11 +27,14 @@ public class LmsUserHome {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsUser transientInstance) {
+	public int persist(LmsUser transientInstance) {
 		log.debug("persisting LmsUser instance");
 		try {
 			entityManager.persist(transientInstance);
+			entityManager.flush();
+			int lmsuserId = transientInstance.getId();
 			log.debug("persist successful");
+			return lmsuserId;
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;
@@ -88,7 +91,23 @@ public class LmsUserHome {
 			return null;
 			
 		}
+	}
 		
+		public LmsUser findByEmailID(String emailid) {
+			
+			try {
+				Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.email=:emailid").setParameter("emailid", emailid);
+			
+				LmsUser lmsUser = (LmsUser) query.getSingleResult();
+			
+				return lmsUser;
+			
+			}
+			catch(Exception ex) {
+				
+				return null;
+				
+			}
 		
 		
 	}
