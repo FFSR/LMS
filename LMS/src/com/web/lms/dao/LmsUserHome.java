@@ -75,10 +75,21 @@ public class LmsUserHome {
 	
 	public LmsUser findByUnameandPassword(String uName, String password) {
 		
-		Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.name=:uName AND e.password=:password").setParameter("uName", uName).setParameter("password", password);
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.name=:uName AND e.password=:password").setParameter("uName", uName).setParameter("password", password);
 		
-		LmsUser lmsUser = (LmsUser) query.getSingleResult();
+			LmsUser lmsUser = (LmsUser) query.getSingleResult();
 		
-		return lmsUser;
+			return lmsUser;
+		
+		}
+		catch(Exception ex) {
+			
+			return null;
+			
+		}
+		
+		
+		
 	}
 }
