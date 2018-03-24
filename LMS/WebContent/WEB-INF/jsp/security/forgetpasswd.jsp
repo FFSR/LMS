@@ -15,29 +15,37 @@
 
 <!-- End bootstrap stuff -->
 
+<script type="text/javascript" src="resources/js/app.js/service/forgetpasswordservice.js"></script>
+<script type="text/javascript" src="resources/js/app.js/controller/forgetpassword.js"></script>
+
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid" ng-controller="ForgetPasswordController">
 		Forget Password
-		<div class="row">
-			<div class="col-sm-3" style="background-color: lavender;">User
-				ID</div>
-			<div class="col-sm-3" style="background-color: lavenderblush;">
-				<input type="text">
-			</div>
-		</div>
-		<div class="row">
-			<br>
-		</div>
-		<div class="row">
-			<div class="col-sm-1" style="background-color: none;">
-				<input type="submit" class="btn btn-info" value="Submit">
-			</div>
+		<div id="forgotModal">
+					<div class="dialog">
 
-			<div class="col-sm-1" style="background-color: none;">
-				<input type="submit" class="btn btn-info" value="Cancel">
-			</div>
-		</div>
+						<!-- Modal content-->
+						<div class="content">
+							<div class="header">
+								<h4 class="modal-title">Forgot Password...</h4>
+							</div>
+							<div class="modal-body">
+								<form role="form">
+									<div class="form-group">
+										<label for="email">Email ID:</label> <input type="email"
+											ng-model="emailid" class="form-control" id="email">
+									</div>
+									<button type="submit" class="btn btn-default"
+										ng-click="forgetpassword(emailid)">Submit</button>
+								</form>
+								<div style="color: blue">{{testMsg}}</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				
 
 
 	</div>
