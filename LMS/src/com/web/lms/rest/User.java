@@ -13,7 +13,6 @@ import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.model.LmsUser;
 
-
 @RestController
 public class User {
 
@@ -22,41 +21,46 @@ public class User {
 	@Autowired
 	private HttpSession httpSession;
 
-	
-	@RequestMapping(value="/log/{userName}/{password}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> getlog(@PathVariable("userName") String uName, @PathVariable("password") String password){
-		
+	@RequestMapping(value = "/log/{userName}/{password}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> getlog(@PathVariable("userName") String uName,
+			@PathVariable("password") String password) {
+
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsUser lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
-		
-		if(lmsUser != null) {
-			responseWrapper.setMessage("Success. UserName: "+uName+" Password: "+password);
-			
+
+		if (lmsUser != null) {
+			responseWrapper.setMessage("Success. UserName: " + uName + " Password: " + password);
+
 			httpSession.setAttribute("userName", uName);
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-		
+
 		responseWrapper.setMessage("Fail. User Name or Password not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
-	
-	
-	
-	
-	/*@RequestMapping(value="/registration/{userName}/{password}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> doRegistration(@PathVariable("userName") String uName, @PathVariable("password") String password){
-		
+
+	@RequestMapping(value = "/registration/{username}/{nid}", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> doRegistration(@PathVariable("username") String username,
+			@PathVariable("nid") String nid) {
+
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		LmsUser lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
-		
-		if(lmsUser != null) {
-			responseWrapper.setMessage("Success. UserName: "+uName+" Password: "+password);
+
+		try {
+			LmsUser user = new LmsUser();
+
+			user.setName(username);
+			user.setNid(nid);
+
+			lmsUserHome.persist(user);
 			
-			httpSession.setAttribute("userName", uName);
+			responseWrapper.setMessage("Success. User has created");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+
+			responseWrapper.setMessage("Fail."+ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
-		
-		responseWrapper.setMessage("Fail. User Name or Password not matched.");
-		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-	}*/
+
+	}
 }
