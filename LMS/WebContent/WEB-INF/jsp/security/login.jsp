@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 
 
+<script type="text/javascript"
+	src="resources/js/app.js/service/loginService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/controller/loginController.js"></script>
+	
+	
+
 <link rel="stylesheet"
 	href="resources/css/bootstrap.min.css">
 <script
@@ -20,29 +27,38 @@
 
 <body>
 
-
+<div ng-controller="loginController">
 <div class="container-fluid"> <br>
 
 	<div class="row">		
   		<div class="col-sm-1" style="background-color: white;">User Name</div> 
-		<div class="col-sm-1" style="background-color: white;"><input type="text"></div>
+		<div class="col-sm-3" style="background-color: white;">
+			<input type="text" ng-model="username" class="form-control" placeholder="User Name">
+			{{username}}
+		</div>
 	</div><br>	
 	
 	
 	<div class="row">
 		<div class="col-sm-1" style="background-color: white;">Password</div>
-		<div class="col-sm-1" style="background-color: white;"><input type="password" id = "inputPassword"></div> 	
+		<div class="col-sm-3" style="background-color: white;">
+			<input type="password" ng-model="password" class="form-control" placeholder="Login Password">
+			{{password}}
+		</div> 	
 	</div>
 
       
     <br><br>
-		<button type="button" class="btn">Login</button>
+    <button type="submit" class="btn" id="login"
+										ng-click="login(username,password)">Login</button> 
+		
 		<button type="button" class="btn">Cancel</button>
 		<br>
 		<a href="#" class="btn btn-default" >Forget Password?</a>		
 		<a href="http://localhost:8080/LMS/changepassword" class="btn btn-default" >Change Password</a> <br>
 		<a href="http://localhost:8080/LMS/registration" class="btn btn-default" >Registration</a>
 
+<div>Response: {{testMsg}}</div>
 
 </div>
 
