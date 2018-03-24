@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,11 +39,27 @@ public class User {
 		responseWrapper.setMessage("Fail. User Name or Password not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
-
+	
+	@RequestMapping(value="/forgetpassword", method=RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> forgetpassword(@RequestBody String emailid){
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		LmsUser lmsUser = lmsUserHome.findByEmailID(emailid);
+		
+		if(lmsUser != null) {
+			responseWrapper.setMessage("Success. UserName: "+lmsUser.getName()+" Password: "+lmsUser.getPassword());
+			
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+		
+		responseWrapper.setMessage("Fail. User Name or Password not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+	}
+	
 	@RequestMapping(value = "/registration/{username}/{nid}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> doRegistration(@PathVariable("username") String username,
 			@PathVariable("nid") String nid) {
-
+		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
 		try {
