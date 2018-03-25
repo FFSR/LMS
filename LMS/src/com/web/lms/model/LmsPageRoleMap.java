@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 23, 2018 7:42:13 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
 public class LmsPageRoleMap implements java.io.Serializable {
 
 	private Integer id;
+	private LmsPages lmsPages;
 	private LmsRole lmsRole;
-	private String pageName;
 	private Date insertDate;
 	private Integer insertBy;
 	private Date updateDate;
@@ -32,10 +32,10 @@ public class LmsPageRoleMap implements java.io.Serializable {
 	public LmsPageRoleMap() {
 	}
 
-	public LmsPageRoleMap(LmsRole lmsRole, String pageName, Date insertDate, Integer insertBy, Date updateDate,
+	public LmsPageRoleMap(LmsPages lmsPages, LmsRole lmsRole, Date insertDate, Integer insertBy, Date updateDate,
 			Integer updateBy) {
+		this.lmsPages = lmsPages;
 		this.lmsRole = lmsRole;
-		this.pageName = pageName;
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
@@ -55,6 +55,16 @@ public class LmsPageRoleMap implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "PAGE_ID")
+	public LmsPages getLmsPages() {
+		return this.lmsPages;
+	}
+
+	public void setLmsPages(LmsPages lmsPages) {
+		this.lmsPages = lmsPages;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ROLE_ID")
 	public LmsRole getLmsRole() {
 		return this.lmsRole;
@@ -62,15 +72,6 @@ public class LmsPageRoleMap implements java.io.Serializable {
 
 	public void setLmsRole(LmsRole lmsRole) {
 		this.lmsRole = lmsRole;
-	}
-
-	@Column(name = "PAGE_NAME", length = 50)
-	public String getPageName() {
-		return this.pageName;
-	}
-
-	public void setPageName(String pageName) {
-		this.pageName = pageName;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

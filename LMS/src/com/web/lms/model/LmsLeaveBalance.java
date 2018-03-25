@@ -1,10 +1,12 @@
 package com.web.lms.model;
-// Generated Mar 23, 2018 7:42:13 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,51 +21,47 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_leave_balance", catalog = "lmsdb")
 public class LmsLeaveBalance implements java.io.Serializable {
 
-	private int id;
+	private Integer id;
 	private LmsLeaveType lmsLeaveType;
-	private LmsUser lmsUserByInsertBy;
-	private LmsUser lmsUserByUserId;
-	private LmsUser lmsUserByUpdateBy;
+	private LmsUser lmsUser;
 	private Date year;
 	private Integer leaveTotal;
 	private Integer leaveTaken;
 	private Integer leaveBalance;
 	private String eligibility;
 	private Date insertDate;
+	private Integer insertBy;
 	private Date updateDate;
+	private Integer updateBy;
 
 	public LmsLeaveBalance() {
 	}
 
-	public LmsLeaveBalance(int id) {
-		this.id = id;
-	}
-
-	public LmsLeaveBalance(int id, LmsLeaveType lmsLeaveType, LmsUser lmsUserByInsertBy, LmsUser lmsUserByUserId,
-			LmsUser lmsUserByUpdateBy, Date year, Integer leaveTotal, Integer leaveTaken, Integer leaveBalance,
-			String eligibility, Date insertDate, Date updateDate) {
-		this.id = id;
+	public LmsLeaveBalance(LmsLeaveType lmsLeaveType, LmsUser lmsUser, Date year, Integer leaveTotal,
+			Integer leaveTaken, Integer leaveBalance, String eligibility, Date insertDate, Integer insertBy,
+			Date updateDate, Integer updateBy) {
 		this.lmsLeaveType = lmsLeaveType;
-		this.lmsUserByInsertBy = lmsUserByInsertBy;
-		this.lmsUserByUserId = lmsUserByUserId;
-		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
+		this.lmsUser = lmsUser;
 		this.year = year;
 		this.leaveTotal = leaveTotal;
 		this.leaveTaken = leaveTaken;
 		this.leaveBalance = leaveBalance;
 		this.eligibility = eligibility;
 		this.insertDate = insertDate;
+		this.insertBy = insertBy;
 		this.updateDate = updateDate;
+		this.updateBy = updateBy;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ID", unique = true, nullable = false)
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -78,33 +76,13 @@ public class LmsLeaveBalance implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "INSERT_BY")
-	public LmsUser getLmsUserByInsertBy() {
-		return this.lmsUserByInsertBy;
-	}
-
-	public void setLmsUserByInsertBy(LmsUser lmsUserByInsertBy) {
-		this.lmsUserByInsertBy = lmsUserByInsertBy;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
-	public LmsUser getLmsUserByUserId() {
-		return this.lmsUserByUserId;
+	public LmsUser getLmsUser() {
+		return this.lmsUser;
 	}
 
-	public void setLmsUserByUserId(LmsUser lmsUserByUserId) {
-		this.lmsUserByUserId = lmsUserByUserId;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "UPDATE_BY")
-	public LmsUser getLmsUserByUpdateBy() {
-		return this.lmsUserByUpdateBy;
-	}
-
-	public void setLmsUserByUpdateBy(LmsUser lmsUserByUpdateBy) {
-		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
+	public void setLmsUser(LmsUser lmsUser) {
+		this.lmsUser = lmsUser;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -163,6 +141,15 @@ public class LmsLeaveBalance implements java.io.Serializable {
 		this.insertDate = insertDate;
 	}
 
+	@Column(name = "INSERT_BY")
+	public Integer getInsertBy() {
+		return this.insertBy;
+	}
+
+	public void setInsertBy(Integer insertBy) {
+		this.insertBy = insertBy;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "UPDATE_DATE", length = 19)
 	public Date getUpdateDate() {
@@ -171,6 +158,15 @@ public class LmsLeaveBalance implements java.io.Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	@Column(name = "UPDATE_BY")
+	public Integer getUpdateBy() {
+		return this.updateBy;
+	}
+
+	public void setUpdateBy(Integer updateBy) {
+		this.updateBy = updateBy;
 	}
 
 }

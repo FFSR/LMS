@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 23, 2018 7:42:13 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -60,7 +60,7 @@ public class LmsAttachment implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "LEAVE_APPLICATION_ID")
 	public LmsLeaveApplication getLmsLeaveApplication() {
 		return this.lmsLeaveApplication;
@@ -70,7 +70,7 @@ public class LmsAttachment implements java.io.Serializable {
 		this.lmsLeaveApplication = lmsLeaveApplication;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID")
 	public LmsUser getLmsUser() {
 		return this.lmsUser;

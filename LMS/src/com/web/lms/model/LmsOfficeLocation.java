@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 23, 2018 7:42:13 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;

@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 23, 2018 7:42:13 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -30,8 +30,6 @@ public class LmsLeaveApplication implements java.io.Serializable {
 	private LmsLeaveType lmsLeaveType;
 	private LmsUser lmsUserByReliverEmailAddressUserId;
 	private LmsUser lmsUserByUserId;
-	private LmsUser lmsUserByInsertBy;
-	private LmsUser lmsUserByUpdateBy;
 	private Date year;
 	private Integer leaveAvailable;
 	private Integer leaveTaken;
@@ -44,22 +42,22 @@ public class LmsLeaveApplication implements java.io.Serializable {
 	private String reasonForLeave;
 	private String taskNeedToPerformed;
 	private Date insertDate;
+	private Integer insertBy;
 	private Date updateDate;
+	private Integer updateBy;
 	private Set<LmsAttachment> lmsAttachments = new HashSet<LmsAttachment>(0);
 
 	public LmsLeaveApplication() {
 	}
 
 	public LmsLeaveApplication(LmsLeaveType lmsLeaveType, LmsUser lmsUserByReliverEmailAddressUserId,
-			LmsUser lmsUserByUserId, LmsUser lmsUserByInsertBy, LmsUser lmsUserByUpdateBy, Date year,
-			Integer leaveAvailable, Integer leaveTaken, Integer leaveBalance, String eligibility, Date fromDate,
-			Date toDate, Integer totalDayCount, String totalDayText, String reasonForLeave, String taskNeedToPerformed,
-			Date insertDate, Date updateDate, Set<LmsAttachment> lmsAttachments) {
+			LmsUser lmsUserByUserId, Date year, Integer leaveAvailable, Integer leaveTaken, Integer leaveBalance,
+			String eligibility, Date fromDate, Date toDate, Integer totalDayCount, String totalDayText,
+			String reasonForLeave, String taskNeedToPerformed, Date insertDate, Integer insertBy, Date updateDate,
+			Integer updateBy, Set<LmsAttachment> lmsAttachments) {
 		this.lmsLeaveType = lmsLeaveType;
 		this.lmsUserByReliverEmailAddressUserId = lmsUserByReliverEmailAddressUserId;
 		this.lmsUserByUserId = lmsUserByUserId;
-		this.lmsUserByInsertBy = lmsUserByInsertBy;
-		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
 		this.year = year;
 		this.leaveAvailable = leaveAvailable;
 		this.leaveTaken = leaveTaken;
@@ -72,7 +70,9 @@ public class LmsLeaveApplication implements java.io.Serializable {
 		this.reasonForLeave = reasonForLeave;
 		this.taskNeedToPerformed = taskNeedToPerformed;
 		this.insertDate = insertDate;
+		this.insertBy = insertBy;
 		this.updateDate = updateDate;
+		this.updateBy = updateBy;
 		this.lmsAttachments = lmsAttachments;
 	}
 
@@ -116,26 +116,6 @@ public class LmsLeaveApplication implements java.io.Serializable {
 
 	public void setLmsUserByUserId(LmsUser lmsUserByUserId) {
 		this.lmsUserByUserId = lmsUserByUserId;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "INSERT_BY")
-	public LmsUser getLmsUserByInsertBy() {
-		return this.lmsUserByInsertBy;
-	}
-
-	public void setLmsUserByInsertBy(LmsUser lmsUserByInsertBy) {
-		this.lmsUserByInsertBy = lmsUserByInsertBy;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "UPDATE_BY")
-	public LmsUser getLmsUserByUpdateBy() {
-		return this.lmsUserByUpdateBy;
-	}
-
-	public void setLmsUserByUpdateBy(LmsUser lmsUserByUpdateBy) {
-		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -250,6 +230,15 @@ public class LmsLeaveApplication implements java.io.Serializable {
 		this.insertDate = insertDate;
 	}
 
+	@Column(name = "INSERT_BY")
+	public Integer getInsertBy() {
+		return this.insertBy;
+	}
+
+	public void setInsertBy(Integer insertBy) {
+		this.insertBy = insertBy;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "UPDATE_DATE", length = 19)
 	public Date getUpdateDate() {
@@ -258,6 +247,15 @@ public class LmsLeaveApplication implements java.io.Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	@Column(name = "UPDATE_BY")
+	public Integer getUpdateBy() {
+		return this.updateBy;
+	}
+
+	public void setUpdateBy(Integer updateBy) {
+		this.updateBy = updateBy;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveApplication")
