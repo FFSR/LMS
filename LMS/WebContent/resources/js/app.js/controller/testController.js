@@ -25,5 +25,5 @@ App
 								console
 										.error('Error while fetching Currencies');
 							});
-				}
+				};
 			} ]);
