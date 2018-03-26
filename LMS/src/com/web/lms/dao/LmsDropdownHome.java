@@ -1,14 +1,19 @@
 package com.web.lms.dao;
 // com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsDropdown;
+
 
 /**
  * Home object for domain model class LmsDropdown.
@@ -67,6 +72,19 @@ public class LmsDropdownHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsDropdown> findByDropdownName(String dropdownName) {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsDropdown e WHERE e.dropdown=:dropdownName and LOWER(e.status)='active' order by e.slno").setParameter("dropdownName", dropdownName);
+			
+			return (List<LmsDropdown>) query.getResultList();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
 		}
 	}
 }

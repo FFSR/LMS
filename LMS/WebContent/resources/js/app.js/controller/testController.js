@@ -5,11 +5,12 @@ App
 			'$scope',
 			'$http',
 			'testService',
+			'DropDownService',
 			'$timeout',
 			'$filter',
 			'$location',
 
-			function($scope, $http, testService,
+			function($scope, $http, testService,DropDownService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Test Message";
@@ -26,4 +27,14 @@ App
 										.error('Error while fetching Currencies');
 							});
 				};
+				
+				$scope.loadDownDown = function(dropDownName){
+					$scope.dDName = dropDownName;
+					DropDownService.populateDropDown($scope.dDName).then(function(d) {
+						$scope.dropdownData = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				};
+				
 			} ]);
