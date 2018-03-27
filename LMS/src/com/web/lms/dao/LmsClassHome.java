@@ -1,5 +1,5 @@
 package com.web.lms.dao;
-// com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,24 +8,24 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.web.lms.model.LmsTmplWfFlowControl;
+import com.web.lms.model.LmsClass;
 
 /**
- * Home object for domain model class LmsTmplWfFlowControl.
- * @see com.web.lms.dao.LmsTmplWfFlowControl
+ * Home object for domain model class LmsClass.
+ * @see GEN.LmsClass
  * @author Hibernate Tools
  */
 @Repository
 @Transactional
-public class LmsTmplWfFlowControlHome {
+public class LmsClassHome {
 
-	private static final Log log = LogFactory.getLog(LmsTmplWfFlowControlHome.class);
+	private static final Log log = LogFactory.getLog(LmsClassHome.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsTmplWfFlowControl transientInstance) {
-		log.debug("persisting LmsTmplWfFlowControl instance");
+	public void persist(LmsClass transientInstance) {
+		log.debug("persisting LmsClass instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -35,8 +35,8 @@ public class LmsTmplWfFlowControlHome {
 		}
 	}
 
-	public void remove(LmsTmplWfFlowControl persistentInstance) {
-		log.debug("removing LmsTmplWfFlowControl instance");
+	public void remove(LmsClass persistentInstance) {
+		log.debug("removing LmsClass instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -46,10 +46,10 @@ public class LmsTmplWfFlowControlHome {
 		}
 	}
 
-	public LmsTmplWfFlowControl merge(LmsTmplWfFlowControl detachedInstance) {
-		log.debug("merging LmsTmplWfFlowControl instance");
+	public LmsClass merge(LmsClass detachedInstance) {
+		log.debug("merging LmsClass instance");
 		try {
-			LmsTmplWfFlowControl result = entityManager.merge(detachedInstance);
+			LmsClass result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -58,10 +58,10 @@ public class LmsTmplWfFlowControlHome {
 		}
 	}
 
-	public LmsTmplWfFlowControl findById(Integer id) {
-		log.debug("getting LmsTmplWfFlowControl instance with id: " + id);
+	public LmsClass findById(Integer id) {
+		log.debug("getting LmsClass instance with id: " + id);
 		try {
-			LmsTmplWfFlowControl instance = entityManager.find(LmsTmplWfFlowControl.class, id);
+			LmsClass instance = entityManager.find(LmsClass.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

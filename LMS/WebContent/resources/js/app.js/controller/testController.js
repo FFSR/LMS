@@ -37,4 +37,10 @@ App
 					});
 				};
 				
+				$scope.uploadFile = function() {
+					console.log("Inside the dropbox");
+					$scope.processDropzone();
+					$scope.resetDropzone();
+				};
+				
 			} ]);

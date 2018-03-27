@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -18,6 +18,10 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_holiday_record", catalog = "lmsdb")
 public class LmsHolidayRecord implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String leaveSubject;
 	private Date leaveDate;

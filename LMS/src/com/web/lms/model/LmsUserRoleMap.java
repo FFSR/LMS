@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_user_role_map", catalog = "lmsdb")
 public class LmsUserRoleMap implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private LmsRole lmsRole;
 	private LmsUser lmsUser;
@@ -56,7 +60,7 @@ public class LmsUserRoleMap implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ROLE_ID")
 	public LmsRole getLmsRole() {
 		return this.lmsRole;

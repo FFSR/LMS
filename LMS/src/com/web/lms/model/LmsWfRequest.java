@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -26,9 +26,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_wf_request", catalog = "lmsdb")
 public class LmsWfRequest implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private LmsTmplWfRequestType lmsTmplWfRequestType;
 	private LmsUser lmsUser;
+	private LmsWftRequestType lmsWftRequestType;
 	private Date startDate;
 	private Date endDate;
 	private String status;
@@ -36,16 +40,16 @@ public class LmsWfRequest implements java.io.Serializable {
 	private Integer insertBy;
 	private Date updateDate;
 	private Integer updateBy;
-	private Set<LmsWfRequestHops> lmsWfRequestHopses = new HashSet<LmsWfRequestHops>(0);
+	private Set<LmsWfRequestHop> lmsWfRequestHops = new HashSet<LmsWfRequestHop>(0);
 
 	public LmsWfRequest() {
 	}
 
-	public LmsWfRequest(LmsTmplWfRequestType lmsTmplWfRequestType, LmsUser lmsUser, Date startDate, Date endDate,
+	public LmsWfRequest(LmsUser lmsUser, LmsWftRequestType lmsWftRequestType, Date startDate, Date endDate,
 			String status, Date insertDate, Integer insertBy, Date updateDate, Integer updateBy,
-			Set<LmsWfRequestHops> lmsWfRequestHopses) {
-		this.lmsTmplWfRequestType = lmsTmplWfRequestType;
+			Set<LmsWfRequestHop> lmsWfRequestHops) {
 		this.lmsUser = lmsUser;
+		this.lmsWftRequestType = lmsWftRequestType;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.status = status;
@@ -53,7 +57,7 @@ public class LmsWfRequest implements java.io.Serializable {
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
-		this.lmsWfRequestHopses = lmsWfRequestHopses;
+		this.lmsWfRequestHops = lmsWfRequestHops;
 	}
 
 	@Id
@@ -69,16 +73,6 @@ public class LmsWfRequest implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "TMPL_WF_REQUEST_TYPE_ID")
-	public LmsTmplWfRequestType getLmsTmplWfRequestType() {
-		return this.lmsTmplWfRequestType;
-	}
-
-	public void setLmsTmplWfRequestType(LmsTmplWfRequestType lmsTmplWfRequestType) {
-		this.lmsTmplWfRequestType = lmsTmplWfRequestType;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "USER_ID")
 	public LmsUser getLmsUser() {
 		return this.lmsUser;
@@ -86,6 +80,16 @@ public class LmsWfRequest implements java.io.Serializable {
 
 	public void setLmsUser(LmsUser lmsUser) {
 		this.lmsUser = lmsUser;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "WFT_REQUEST_TYPE_ID")
+	public LmsWftRequestType getLmsWftRequestType() {
+		return this.lmsWftRequestType;
+	}
+
+	public void setLmsWftRequestType(LmsWftRequestType lmsWftRequestType) {
+		this.lmsWftRequestType = lmsWftRequestType;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -157,12 +161,12 @@ public class LmsWfRequest implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWfRequest")
 	@JsonIgnore
-	public Set<LmsWfRequestHops> getLmsWfRequestHopses() {
-		return this.lmsWfRequestHopses;
+	public Set<LmsWfRequestHop> getLmsWfRequestHops() {
+		return this.lmsWfRequestHops;
 	}
 
-	public void setLmsWfRequestHopses(Set<LmsWfRequestHops> lmsWfRequestHopses) {
-		this.lmsWfRequestHopses = lmsWfRequestHopses;
+	public void setLmsWfRequestHops(Set<LmsWfRequestHop> lmsWfRequestHops) {
+		this.lmsWfRequestHops = lmsWfRequestHops;
 	}
 
 }

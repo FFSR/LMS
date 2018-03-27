@@ -1,5 +1,5 @@
 package com.web.lms.dao;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

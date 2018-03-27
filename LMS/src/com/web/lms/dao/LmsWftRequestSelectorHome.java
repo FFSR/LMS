@@ -1,6 +1,5 @@
 package com.web.lms.dao;
-// com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
-
+// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,24 +8,24 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.web.lms.model.LmsTmplWfRole;
+import com.web.lms.model.LmsWftRequestSelector;
 
 /**
- * Home object for domain model class LmsTmplWfRole.
- * @see com.web.lms.dao.LmsTmplWfRole
+ * Home object for domain model class LmsWftRequestSelector.
+ * @see GEN.LmsWftRequestSelector
  * @author Hibernate Tools
  */
 @Repository
 @Transactional
-public class LmsTmplWfRoleHome {
+public class LmsWftRequestSelectorHome {
 
-	private static final Log log = LogFactory.getLog(LmsTmplWfRoleHome.class);
+	private static final Log log = LogFactory.getLog(LmsWftRequestSelectorHome.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsTmplWfRole transientInstance) {
-		log.debug("persisting LmsTmplWfRole instance");
+	public void persist(LmsWftRequestSelector transientInstance) {
+		log.debug("persisting LmsWftRequestSelector instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -36,8 +35,8 @@ public class LmsTmplWfRoleHome {
 		}
 	}
 
-	public void remove(LmsTmplWfRole persistentInstance) {
-		log.debug("removing LmsTmplWfRole instance");
+	public void remove(LmsWftRequestSelector persistentInstance) {
+		log.debug("removing LmsWftRequestSelector instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -47,10 +46,10 @@ public class LmsTmplWfRoleHome {
 		}
 	}
 
-	public LmsTmplWfRole merge(LmsTmplWfRole detachedInstance) {
-		log.debug("merging LmsTmplWfRole instance");
+	public LmsWftRequestSelector merge(LmsWftRequestSelector detachedInstance) {
+		log.debug("merging LmsWftRequestSelector instance");
 		try {
-			LmsTmplWfRole result = entityManager.merge(detachedInstance);
+			LmsWftRequestSelector result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -59,10 +58,10 @@ public class LmsTmplWfRoleHome {
 		}
 	}
 
-	public LmsTmplWfRole findById(Integer id) {
-		log.debug("getting LmsTmplWfRole instance with id: " + id);
+	public LmsWftRequestSelector findById(Integer id) {
+		log.debug("getting LmsWftRequestSelector instance with id: " + id);
 		try {
-			LmsTmplWfRole instance = entityManager.find(LmsTmplWfRole.class, id);
+			LmsWftRequestSelector instance = entityManager.find(LmsWftRequestSelector.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

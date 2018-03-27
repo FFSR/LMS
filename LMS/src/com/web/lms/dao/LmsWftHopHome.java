@@ -1,5 +1,5 @@
 package com.web.lms.dao;
-// com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,24 +8,24 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.web.lms.model.LmsTmplRequestHopsRoleMap;
+import com.web.lms.model.LmsWftHop;
 
 /**
- * Home object for domain model class LmsTmplRequestHopsRoleMap.
- * @see com.web.lms.dao.LmsTmplRequestHopsRoleMap
+ * Home object for domain model class LmsWftHop.
+ * @see GEN.LmsWftHop
  * @author Hibernate Tools
  */
 @Repository
 @Transactional
-public class LmsTmplRequestHopsRoleMapHome {
+public class LmsWftHopHome {
 
-	private static final Log log = LogFactory.getLog(LmsTmplRequestHopsRoleMapHome.class);
+	private static final Log log = LogFactory.getLog(LmsWftHopHome.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsTmplRequestHopsRoleMap transientInstance) {
-		log.debug("persisting LmsTmplRequestHopsRoleMap instance");
+	public void persist(LmsWftHop transientInstance) {
+		log.debug("persisting LmsWftHop instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -35,8 +35,8 @@ public class LmsTmplRequestHopsRoleMapHome {
 		}
 	}
 
-	public void remove(LmsTmplRequestHopsRoleMap persistentInstance) {
-		log.debug("removing LmsTmplRequestHopsRoleMap instance");
+	public void remove(LmsWftHop persistentInstance) {
+		log.debug("removing LmsWftHop instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -46,10 +46,10 @@ public class LmsTmplRequestHopsRoleMapHome {
 		}
 	}
 
-	public LmsTmplRequestHopsRoleMap merge(LmsTmplRequestHopsRoleMap detachedInstance) {
-		log.debug("merging LmsTmplRequestHopsRoleMap instance");
+	public LmsWftHop merge(LmsWftHop detachedInstance) {
+		log.debug("merging LmsWftHop instance");
 		try {
-			LmsTmplRequestHopsRoleMap result = entityManager.merge(detachedInstance);
+			LmsWftHop result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -58,10 +58,10 @@ public class LmsTmplRequestHopsRoleMapHome {
 		}
 	}
 
-	public LmsTmplRequestHopsRoleMap findById(Integer id) {
-		log.debug("getting LmsTmplRequestHopsRoleMap instance with id: " + id);
+	public LmsWftHop findById(Integer id) {
+		log.debug("getting LmsWftHop instance with id: " + id);
 		try {
-			LmsTmplRequestHopsRoleMap instance = entityManager.find(LmsTmplRequestHopsRoleMap.class, id);
+			LmsWftHop instance = entityManager.find(LmsWftHop.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {

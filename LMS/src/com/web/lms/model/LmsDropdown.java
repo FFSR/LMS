@@ -18,6 +18,10 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_dropdown", catalog = "lmsdb")
 public class LmsDropdown implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String dropdown;
 	private String name;

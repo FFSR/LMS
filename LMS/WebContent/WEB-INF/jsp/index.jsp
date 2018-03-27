@@ -25,7 +25,6 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	src="resources/js/bootstrap.min.js"></script>
 
 <!-- End bootstrap stuff -->
-<link href="resources/file-upload/css/dropzone/phase2_dropzone.css" rel="stylesheet" />
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript" src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
 <script type="text/javascript" src="resources/js/app.js/controller/FIleUploadController.js"></script>
@@ -503,6 +502,7 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 								</div>
 							</div>
 						</div>
+						<button class="btn-primary" ng-click="uploadFile()">Upload</button>
 					</div>
 		
 		

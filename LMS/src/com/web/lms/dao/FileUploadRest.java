@@ -1,6 +1,5 @@
 package com.web.lms.dao;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -13,11 +12,9 @@ import java.util.Iterator;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -51,11 +48,14 @@ public class FileUploadRest {
 		 */ return new ResponseEntity<String>("Success", HttpStatus.OK);
 	}
 
+	@SuppressWarnings("unused")
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ResponseEntity<Void> uploadFile(MultipartHttpServletRequest request) {
 
 		try {
 			Iterator<String> itr = request.getFileNames();
+			String contextPath = request.getContextPath();
+			String requestURL = request.getRequestURI();
 			String ticketFolderName = "";
 			String userName=null;
 			String fileUploadPath = "";

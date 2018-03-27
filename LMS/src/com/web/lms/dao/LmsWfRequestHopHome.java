@@ -1,6 +1,5 @@
 package com.web.lms.dao;
-// com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
-
+// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,24 +8,24 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.web.lms.model.LmsTmplWfRequestType;
+import com.web.lms.model.LmsWfRequestHop;
 
 /**
- * Home object for domain model class LmsTmplWfRequestType.
- * @see com.web.lms.dao.LmsTmplWfRequestType
+ * Home object for domain model class LmsWfRequestHop.
+ * @see GEN.LmsWfRequestHop
  * @author Hibernate Tools
  */
 @Repository
 @Transactional
-public class LmsTmplWfRequestTypeHome {
+public class LmsWfRequestHopHome {
 
-	private static final Log log = LogFactory.getLog(LmsTmplWfRequestTypeHome.class);
+	private static final Log log = LogFactory.getLog(LmsWfRequestHopHome.class);
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsTmplWfRequestType transientInstance) {
-		log.debug("persisting LmsTmplWfRequestType instance");
+	public void persist(LmsWfRequestHop transientInstance) {
+		log.debug("persisting LmsWfRequestHop instance");
 		try {
 			entityManager.persist(transientInstance);
 			log.debug("persist successful");
@@ -36,8 +35,8 @@ public class LmsTmplWfRequestTypeHome {
 		}
 	}
 
-	public void remove(LmsTmplWfRequestType persistentInstance) {
-		log.debug("removing LmsTmplWfRequestType instance");
+	public void remove(LmsWfRequestHop persistentInstance) {
+		log.debug("removing LmsWfRequestHop instance");
 		try {
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
@@ -47,10 +46,10 @@ public class LmsTmplWfRequestTypeHome {
 		}
 	}
 
-	public LmsTmplWfRequestType merge(LmsTmplWfRequestType detachedInstance) {
-		log.debug("merging LmsTmplWfRequestType instance");
+	public LmsWfRequestHop merge(LmsWfRequestHop detachedInstance) {
+		log.debug("merging LmsWfRequestHop instance");
 		try {
-			LmsTmplWfRequestType result = entityManager.merge(detachedInstance);
+			LmsWfRequestHop result = entityManager.merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -59,10 +58,10 @@ public class LmsTmplWfRequestTypeHome {
 		}
 	}
 
-	public LmsTmplWfRequestType findById(Integer id) {
-		log.debug("getting LmsTmplWfRequestType instance with id: " + id);
+	public LmsWfRequestHop findById(Integer id) {
+		log.debug("getting LmsWfRequestHop instance with id: " + id);
 		try {
-			LmsTmplWfRequestType instance = entityManager.find(LmsTmplWfRequestType.class, id);
+			LmsWfRequestHop instance = entityManager.find(LmsWfRequestHop.class, id);
 			log.debug("get successful");
 			return instance;
 		} catch (RuntimeException re) {
