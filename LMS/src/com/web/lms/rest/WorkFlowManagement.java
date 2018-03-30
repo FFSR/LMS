@@ -1,24 +1,132 @@
-package com.web.lms.wfengine;
+package com.web.lms.rest;
 
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.web.lms.dao.LmsLeaveTypeHome;
+import com.web.lms.dao.LmsUserHome;
 import com.web.lms.dao.LmsWfRequestHome;
 import com.web.lms.dao.LmsWfRequestHopHome;
+import com.web.lms.dao.LmsWftFlowControlHome;
 import com.web.lms.dao.LmsWftRequestHopRolePageMapHome;
+import com.web.lms.dao.LmsWftRequestSelectorHome;
 import com.web.lms.enumcollection.WFSTATUS;
+import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsWfRequest;
 import com.web.lms.model.LmsWfRequestHop;
+import com.web.lms.model.LmsWftFlowControl;
 import com.web.lms.model.LmsWftRequestHopRolePageMap;
 import com.web.lms.model.LmsWftRequestSelector;
+import com.web.lms.wfengine.WorkFlowEngine;
+import com.web.lms.wrapper.ResponseWrapper;
 
-public class WorkFlowEngine {
+@RestController
+public class WorkFlowManagement {
 	
-	LmsWftRequestHopRolePageMapHome lmsWftRequestHopRolePageMapHome = new LmsWftRequestHopRolePageMapHome();
-	LmsWfRequestHome lmsWfRequestHome = new  LmsWfRequestHome();
-	LmsWfRequestHopHome lmsWfRequestHopHome = new LmsWfRequestHopHome();
+	@Autowired
+	private LmsWftRequestSelectorHome LmsWftRequestSelectorHome;	
+	@Autowired
+	private LmsWfRequestHopHome lmsWfRequestHopHome;	
+	@Autowired
+	private LmsUserHome lmsUserHome;	
+	@Autowired
+	private LmsLeaveTypeHome lmsLeaveTypeHome;	
+	@Autowired
+	private LmsWftRequestHopRolePageMapHome lmsWftRequestHopRolePageMapHome;
+	@Autowired
+	private LmsWfRequestHome lmsWfRequestHome ;
+	@Autowired
+	private LmsWftFlowControlHome lmsWftFlowControlHome;
 
+	
+	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid,
+			@PathVariable("leavetypeid") Integer leavetypeid) {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+		try {
+
+			// Validate User
+			LmsUser user = lmsUserHome.findById(userid);
+			if (user == null) {
+				responseWrapper.setMessage("This userid is not available in database.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
+			// Validate Leave Type
+			LmsLeaveType leaveType = lmsLeaveTypeHome.findById(leavetypeid);
+
+			if (leaveType == null) {
+				responseWrapper.setMessage("This Leave Type is not available in database.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
+			// Find request type
+			LmsWftRequestSelector lmsWftRequestSelector = LmsWftRequestSelectorHome
+					.findRequestTypeByClassSectorLeaveType(user.getLmsDesignation().getLmsClass().getId(),
+							user.getLmsSection().getId(), leaveType.getId());
+
+			if (lmsWftRequestSelector == null) {
+
+				responseWrapper.setMessage("This is no Request Type matched from Request Selector table.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
+			generateWorkRequest(lmsWftRequestSelector, user);
+
+			responseWrapper.setMessage("Success. Your request is successfully generated.");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+
+	@RequestMapping(value = "/updaterequesthope/{userid}/{WfRequestHopid}/{hopStatus}", method = RequestMethod.PUT)
+	public ResponseEntity<ResponseWrapper> updateRequestHope(@PathVariable("userid") Integer userid,
+			@PathVariable("WfRequestHopid") Integer WfRequestHopid, @PathVariable("hopStatus") String hopStatus) {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+		try {
+
+			// Validate User
+			LmsUser user = lmsUserHome.findById(userid);
+			if (user == null) {
+				responseWrapper.setMessage("This userid is not available in database.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
+			// Validate Leave Type
+			LmsWfRequestHop lmsWfRequestHop = lmsWfRequestHopHome.findById(WfRequestHopid);
+
+			if (lmsWfRequestHop == null) {
+				responseWrapper.setMessage("This Request Hop id is not available in database.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
+			WorkFlowEngine workFlowEngine = new WorkFlowEngine();
+
+			workFlowEngine.updateHopDoneStatus(lmsWfRequestHop, hopStatus, user);
+
+			responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
 	public void generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user) {
 
 		// Insert Request
@@ -115,7 +223,7 @@ public class WorkFlowEngine {
 			return;
 		}
 
-		/*for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
+		for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
 			
 			if (lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())|| lmsWfRequestHop.getStatus() == null) {
 
@@ -152,7 +260,7 @@ public class WorkFlowEngine {
 					}
 				}
 			}
-		}*/
+		}
 	}
 
 	protected boolean updateRequestStatus(LmsWfRequest lmsWfRequest) {
@@ -160,7 +268,7 @@ public class WorkFlowEngine {
 		String requestStatus="";
 		boolean requestComplete = false;
 
-		/*for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
+		for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
 			if (lmsWfRequestHop.getStatus().contains(WFSTATUS.DONE.toString())) {
 				requestStatus = WFSTATUS.APPROVED.toString();
 				requestComplete = true;				
@@ -174,7 +282,7 @@ public class WorkFlowEngine {
 				requestStatus = WFSTATUS.REJECTED.toString();
 				requestComplete = true;
 			}
-		}*/
+		}
 
 		lmsWfRequest.setStatus(requestStatus);
 		lmsWfRequest.setEndDate(new Date());
@@ -188,7 +296,7 @@ public class WorkFlowEngine {
 		
 		LmsWfRequestHop wfRequestFirstHop = new LmsWfRequestHop();
 		
-		/*for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
+		for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
 			
 			if (lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())|| lmsWfRequestHop.getStatus() == null) {
 
@@ -200,8 +308,9 @@ public class WorkFlowEngine {
 					break;
 				}
 			}
-		}*/
+		}
 		return wfRequestFirstHop;
 		
 	}
+
 }
