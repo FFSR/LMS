@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,6 +24,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_role", catalog = "lmsdb")
 public class LmsRole implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private Date insertDate;

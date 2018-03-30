@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_leave_type", catalog = "lmsdb")
 public class LmsLeaveType implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String type;
 	private String status;
@@ -37,13 +41,14 @@ public class LmsLeaveType implements java.io.Serializable {
 	private Integer updateBy;
 	private Set<LmsLeaveBalance> lmsLeaveBalances = new HashSet<LmsLeaveBalance>(0);
 	private Set<LmsLeaveApplication> lmsLeaveApplications = new HashSet<LmsLeaveApplication>(0);
+	private Set<LmsWftRequestSelector> lmsWftRequestSelectors = new HashSet<LmsWftRequestSelector>(0);
 
 	public LmsLeaveType() {
 	}
 
 	public LmsLeaveType(String type, String status, BigDecimal maximumDays, String incremental, String yearlyAllocated,
 			Date insertDate, Integer insertBy, Date updateDate, Integer updateBy, Set<LmsLeaveBalance> lmsLeaveBalances,
-			Set<LmsLeaveApplication> lmsLeaveApplications) {
+			Set<LmsLeaveApplication> lmsLeaveApplications, Set<LmsWftRequestSelector> lmsWftRequestSelectors) {
 		this.type = type;
 		this.status = status;
 		this.maximumDays = maximumDays;
@@ -55,6 +60,7 @@ public class LmsLeaveType implements java.io.Serializable {
 		this.updateBy = updateBy;
 		this.lmsLeaveBalances = lmsLeaveBalances;
 		this.lmsLeaveApplications = lmsLeaveApplications;
+		this.lmsWftRequestSelectors = lmsWftRequestSelectors;
 	}
 
 	@Id
@@ -170,6 +176,16 @@ public class LmsLeaveType implements java.io.Serializable {
 
 	public void setLmsLeaveApplications(Set<LmsLeaveApplication> lmsLeaveApplications) {
 		this.lmsLeaveApplications = lmsLeaveApplications;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveType")
+	@JsonIgnore
+	public Set<LmsWftRequestSelector> getLmsWftRequestSelectors() {
+		return this.lmsWftRequestSelectors;
+	}
+
+	public void setLmsWftRequestSelectors(Set<LmsWftRequestSelector> lmsWftRequestSelectors) {
+		this.lmsWftRequestSelectors = lmsWftRequestSelectors;
 	}
 
 }

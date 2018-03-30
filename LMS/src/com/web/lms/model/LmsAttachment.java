@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_attachment", catalog = "lmsdb")
 public class LmsAttachment implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private LmsLeaveApplication lmsLeaveApplication;
 	private LmsUser lmsUser;

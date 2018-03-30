@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -10,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,7 +26,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_division", catalog = "lmsdb")
 public class LmsDivision implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
+	private LmsDepartment lmsDepartment;
 	private String name;
 	private Date insertDate;
 	private Integer insertBy;
@@ -35,8 +42,9 @@ public class LmsDivision implements java.io.Serializable {
 	public LmsDivision() {
 	}
 
-	public LmsDivision(String name, Date insertDate, Integer insertBy, Date updateDate, Integer updateBy,
-			Set<LmsUser> lmsUsers) {
+	public LmsDivision(LmsDepartment lmsDepartment, String name, Date insertDate, Integer insertBy, Date updateDate,
+			Integer updateBy, Set<LmsUser> lmsUsers) {
+		this.lmsDepartment = lmsDepartment;
 		this.name = name;
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
@@ -55,6 +63,16 @@ public class LmsDivision implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "DEPARTMENT_ID")
+	public LmsDepartment getLmsDepartment() {
+		return this.lmsDepartment;
+	}
+
+	public void setLmsDepartment(LmsDepartment lmsDepartment) {
+		this.lmsDepartment = lmsDepartment;
 	}
 
 	@Column(name = "NAME", length = 50)

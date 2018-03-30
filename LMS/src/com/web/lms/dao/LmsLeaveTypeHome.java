@@ -1,6 +1,5 @@
 package com.web.lms.dao;
-// com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
-
+// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -13,7 +12,7 @@ import com.web.lms.model.LmsLeaveType;
 
 /**
  * Home object for domain model class LmsLeaveType.
- * @see com.web.lms.dao.LmsLeaveType
+ * @see GEN.LmsLeaveType
  * @author Hibernate Tools
  */
 @Repository

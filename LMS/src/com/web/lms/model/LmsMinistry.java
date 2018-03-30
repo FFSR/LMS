@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 26, 2018 12:32:28 AM by Hibernate Tools 5.2.8.Final
+// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,6 +24,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_ministry", catalog = "lmsdb")
 public class LmsMinistry implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private Date insertDate;
@@ -31,18 +35,20 @@ public class LmsMinistry implements java.io.Serializable {
 	private Date updateDate;
 	private Integer updateBy;
 	private Set<LmsUser> lmsUsers = new HashSet<LmsUser>(0);
+	private Set<LmsDepartment> lmsDepartments = new HashSet<LmsDepartment>(0);
 
 	public LmsMinistry() {
 	}
 
 	public LmsMinistry(String name, Date insertDate, Integer insertBy, Date updateDate, Integer updateBy,
-			Set<LmsUser> lmsUsers) {
+			Set<LmsUser> lmsUsers, Set<LmsDepartment> lmsDepartments) {
 		this.name = name;
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 		this.lmsUsers = lmsUsers;
+		this.lmsDepartments = lmsDepartments;
 	}
 
 	@Id
@@ -112,6 +118,16 @@ public class LmsMinistry implements java.io.Serializable {
 
 	public void setLmsUsers(Set<LmsUser> lmsUsers) {
 		this.lmsUsers = lmsUsers;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsMinistry")
+	@JsonIgnore
+	public Set<LmsDepartment> getLmsDepartments() {
+		return this.lmsDepartments;
+	}
+
+	public void setLmsDepartments(Set<LmsDepartment> lmsDepartments) {
+		this.lmsDepartments = lmsDepartments;
 	}
 
 }
