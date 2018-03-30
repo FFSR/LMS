@@ -22,7 +22,18 @@ App.factory('leaveapplicationservice', [
 								.reject(errResponse);
 					});
 				},
-				
+				getleaveapp: function(leaveapplicationid){
+					return $http.get(url+'getleaveapplication/'+ leaveapplicationid)
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching user info list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
 				
 			}
 		} ]);

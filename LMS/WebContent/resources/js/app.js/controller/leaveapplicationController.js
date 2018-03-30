@@ -4,18 +4,32 @@ App
 		[
 			'$scope',
 			'$http',
-			'applicationforleaveService',
+			'leaveapplicationservice',
+			'leavetypeService',
 			'$timeout',
 			'$filter',
 			'$location',
 
-			function($scope, $http, applicationforleaveService,
+			function($scope, $http,leaveapplicationservice,leavetypeService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
 				
 				$scope.leaveapplication = {
 						"year" : "",
+						"lmsLeaveType" : {
+							"id":0,
+							"type":"",
+							"status":"",
+							"maximumDays":"",
+							"incremental":"",
+							"yearlyAllocated":"",
+							"insertDate":"",
+							"insertBy":"",
+							"updateDate":"",
+							"updateBy":""
+							
+						},
 						"leaveAvailable" : "",
 						"leaveTaken" : "",
 						"leaveBalance" : "",
@@ -36,9 +50,12 @@ App
 				
 				$scope.applicationforleave = function(){
 					
+					
+					
 					$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
 					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
-					//$scope.leaveapplication.lmsLeaveType = $scope.lmsLeaveType;
+					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
+					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
 					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.lmsUserByReliverEmailAddressUserId;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
@@ -54,7 +71,7 @@ App
 					//$scope.leaveapplication.updateBy = $scope.update_by;
 						
 					
-					applicationforleaveService.applicationforleave($scope.leaveapplication).then(
+					leaveapplicationservice.applicationforleave($scope.leaveapplication).then(
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
@@ -63,5 +80,31 @@ App
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
 							});
-				}
+				};
+				
+				$scope.loadLeaveTypeDownDown = function(){
+					$scope.dDName = "";
+					leavetypeService.getLeaveType().then(function(d) {
+						$scope.dropdownData = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				};
+				
+				$scope.getleaveapplication = function(leaveapplicationid){
+					console.log("From Get Method");
+					leaveapplicationservice.getleaveapp(leaveapplicationid).then(
+					function(d){
+						$scope.leaveData = d;
+						$scope.leavetype = $scope.leaveData.lmsLeaveType;
+						$scope.reasonForLeave = $scope.leaveData.reasonForLeave;
+						
+					},
+					function(errResponse){
+						console.log(errResponse.data);
+					}
+					);
+				};
+				
+				$scope.getleaveapplication(4);
 			} ]);

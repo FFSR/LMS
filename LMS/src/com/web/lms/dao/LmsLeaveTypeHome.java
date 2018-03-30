@@ -1,8 +1,12 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
@@ -67,6 +71,33 @@ public class LmsLeaveTypeHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	public LmsLeaveType findByType(String leavetype) {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveType e WHERE e.type=:leavetype").setParameter("leavetype", leavetype);
+			
+			return (LmsLeaveType) query.getSingleResult();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			
+			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsLeaveType> findAllLeaveType() {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveType e");
+			
+			return (List<LmsLeaveType>) query.getResultList();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			
+			return null;
 		}
 	}
 }

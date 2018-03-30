@@ -78,7 +78,31 @@ public class LeaveApplication {
 
 	}
 	
-	
+	@RequestMapping(value = "/getleaveapplication/{id}", method = RequestMethod.GET)
+	public ResponseEntity<LmsLeaveApplication> getLeaveApplication(@PathVariable Integer id) {
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		LmsLeaveApplication lmsLeaveApplication = new LmsLeaveApplication();
+			try {
+			lmsLeaveApplication= lmsLeaveApplicationHome.findById(id);
+			
+			if (lmsLeaveApplication!=null) {
+			
+				return new ResponseEntity<LmsLeaveApplication>(lmsLeaveApplication, HttpStatus.OK);
+			}
+			else {
+				return new ResponseEntity<LmsLeaveApplication>(lmsLeaveApplication, HttpStatus.EXPECTATION_FAILED);
+			}
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("Failed to create User.");
+				return new ResponseEntity<LmsLeaveApplication>(lmsLeaveApplication, HttpStatus.EXPECTATION_FAILED);
+			}
+
+		
+
+	}
 	@RequestMapping(value="/generaterequest/{userid}/{leavetypeid}", method=RequestMethod.POST)
 	
 	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid, @PathVariable("leavetypeid") Integer leavetypeid){
