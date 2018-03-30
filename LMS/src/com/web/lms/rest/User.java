@@ -177,22 +177,7 @@ public class User {
 	}
 
 	
-/*	@RequestMapping(value="/leavehistory", method=RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> leavehistory(@RequestBody String emailid){
-		
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		LmsUser lmsUser = lmsUserHome.findByEmailID(emailid);
-		
-		if(lmsUser != null) {
-			responseWrapper.setMessage("Success. UserName: "+lmsUser.getName()+"Passport: "+lmsUser.getPassport()+"Gender: "+lmsUser.getGender()+" Password: "+lmsUser.getPassword());
-			
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-		}
-		
-		responseWrapper.setMessage("Fail. User Name or Password not matched.");
-		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-	}
-	*/
+
 	
 }
 
