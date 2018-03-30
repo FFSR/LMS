@@ -96,10 +96,10 @@ public class HomeController {
 		
 		return "leavemanagementhead";
 	}
-	@RequestMapping("/leavemanagementdetails")
-	public String leavemanagementdetails(Model model) {
+	@RequestMapping("/leaveapplicationdetails")
+	public String leaveapplicationdetails(Model model) {
 		
-		return "leavemanagementdetails";
+		return "leaveapplicationdetails";
 	}
 	@RequestMapping("/holidaymanagement")
 	public String holidaymanagement(Model model) {
@@ -112,6 +112,20 @@ public class HomeController {
 		return "rptleavestatus";
 	}
 	
-	
+	@RequestMapping("/leavesearchresult")
+	public String leavesearchresult(Model model) {
+		
+		return "leavesearchresult";
+	}
+	@RequestMapping("/ministryinfo")
+	public String ministryinfo(Model model) {
+		
+		return "ministryinfo";
+	}
+	@RequestMapping("/applicationforleave")
+	public String applicationforleave(Model model) {
+		
+		return "applicationforleave";
+	}
 	
 }

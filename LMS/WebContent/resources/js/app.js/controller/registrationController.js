@@ -15,18 +15,31 @@ App
 				$scope.testMsg = "Testing Message";
 				
 				$scope.user = {
+						"office" : "",
 						"name" : "",
-						"email" : "",
-						"phone" : "",
-						"passport" : "",
-						"fax" : "",
-						"mobilePersonal" : "",
-						"mobileOffice" : "",
-						"gender" : "",
-						"address" : "",
+						//"lmsDivision" : "",
+						//"lmsDesignation" : "",
+						//"lmsMinistry" : "",
+						//"lmsSection" : "",
 						"nid" : "",
 						"nationality" : "",
-						"joiningDate" : "",						
+						"passport" : "",
+						"mobilePersonal" : "",						
+						"phone" : "",
+						"email" : "",						
+						"fax" : "",
+						"joiningDate" : "",
+						"gender" : "",
+						"supervisor_id" : "",						
+						"address" : "",
+						"insertDate" : "",
+						"insertBy" : "",
+						"updateDate" : "",
+						"updateBy" : "",
+						
+						
+						
+						"mobileOffice" : "",	
 						"status" : "",
 						"password" : "",
 						"designation_id" : "",
@@ -35,11 +48,8 @@ App
 						"division_id" : "",
 						"ministry_id" : "",
 						"office_location_id" : "",
-						"supervisor_id" : "",							
-						"insertDate" : "",
-						"insertBy" : "",
-						"updateDate" : "",
-						"updateBy" : "",
+													
+						
 					};
 
 				

@@ -24,11 +24,14 @@ public class LmsLeaveApplicationHome {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsLeaveApplication transientInstance) {
+	public int persist(LmsLeaveApplication transientInstance) {
 		log.debug("persisting LmsLeaveApplication instance");
 		try {
 			entityManager.persist(transientInstance);
+			entityManager.flush();
+			int lmsleaveapplicationId = transientInstance.getId();
 			log.debug("persist successful");
+			return lmsleaveapplicationId;
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;
