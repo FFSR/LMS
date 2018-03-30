@@ -12,10 +12,7 @@
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 
-<!-- NG-Table -->
-<link rel="stylesheet" ; href="resources/css/ng-table.min.css">
-<script src="resources/js/ng-table.min.js"></script>
-<!-- End of NG-Table -->
+
 
 <script type="text/javascript"
 	src="resources/js/app.js/service/leavehistoryService.js"></script>
@@ -24,7 +21,10 @@
 
 </head>
 <body>
-	<div ng-controller="leavehistoryController">
+	<div ng-controller="leavehistoryController as lhc">
+			
+
+			
 			
 		<div class="container-fluid">
 			<div id="forgotModal">
@@ -38,36 +38,37 @@
 							<form role="form">
 								<div class="form-group">
 									<label for="user_id">User ID:</label> <input type="text"
-										ng-model="user_id" class="form-control" id="user_id">
+										ng-model="lhc.user_id" class="form-control" id="user_id">
 								</div>
 
 								<button type="submit" class="btn btn-default" id="search"
-									ng-click="leavehistory(user_id)">Leave History</button>								
+									ng-click="lhc.leavehistory(lhc.user_id)">Leave History</button>								
 							</form>
-							<div style="color: blue">{{user_id}}{{testMsg}}</div>
+							<div style="color: blue">{{lhc.user_id}}{{lhc.testMsg}}</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	
 	
 	<div>
 		<table class="table table-bordered">
-				<div class="container-fluid" ng-controller="leavehistoryController as lhc">
-				Test Message: {{lhgc.testMsg}}
+				
+				
 					<div>
+					Test Message: {{lhc.testMsg1}}
 						<table ng-table="lhc.tableParams" class="table" show-filter="true">
 							<tr ng-repeat="user in $data">
-								<td title="'Name'" filter="{ lmsClass.name: 'text'}"
+								<td title="'Name'" filter="{ name: 'text'}"
 									sortable="'name'">{{user.lmsUser.name}}</td>
 								<td title="'Eligibility'" filter="{ eligibility: 'text'}"
 									sortable="'eligibility'">{{user.eligibility}}</td>
 								<td title="'LeaveTotal'" filter="{ leaveTotal: 'text'}"
 									sortable="'leaveTotal'">{{user.leaveTotal}}</td>
-								<td title="'Leave Type'" filter="{ lmsLeaveType.type: 'text'}"
+								<td title="'Leave Type'" filter="{ type: 'text'}"
 									sortable="'lmsLeaveType.type'">{{user.lmsLeaveType.type}}</td>
-								<td title="'Class'" filter="{ lmsClass.name: 'text'}"
+								<td title="'Class'" filter="{ name: 'text'}"
 									sortable="'name'">{{user.lmsUser.lmsDesignation.lmsClass.name}}</td>
 							</tr>
 						</table>
@@ -75,6 +76,6 @@
 				</div>
 			</table>
 	</div>
-	
+	</div>
 </body>
 </html>

@@ -83,23 +83,27 @@ public class User {
 		//	String supervisoremail = lmsUser.
 			String address = lmsUser.getAddress();
 
-			try {
-			int lmsuserid = lmsUserHome.persist(lmsUser);
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
-				responseWrapper.setMessage("Failed to create User.");
+				//LmsUser user = new LmsUser();
+
+				
+
+				try {
+				int lmsuserid = lmsUserHome.persist(lmsUser);
+				}
+				catch(Exception ex) {
+					ex.printStackTrace();
+					responseWrapper.setMessage("Failed to create User.");
+					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				}
+				
+				responseWrapper.setMessage("Success. User has created");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+			} catch (Exception ex) {
+
+				responseWrapper.setMessage("Fail."+ex.getMessage());
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
-			
-			responseWrapper.setMessage("Success. User has created");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
-		} catch (Exception ex) {
-
-			responseWrapper.setMessage("Fail."+ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}
 
 	}
 	
@@ -174,11 +178,7 @@ public class User {
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 
-	}
-
-	
-
-	
+	}	
 }
 
 

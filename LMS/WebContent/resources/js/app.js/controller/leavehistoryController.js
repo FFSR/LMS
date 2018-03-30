@@ -12,8 +12,8 @@ App
 
 			function($scope, $http, leavehistoryService,
 				$timeout, $filter,NgTableParams,$location) {
-				
-				$scope.testMsg = "Test Message New";
+				var self = this;
+				self.testMsg = "Test Message New";
 				/*$scope.leavehistory = function(user_id){
 					$scope.user_id;
 					leavehistoryService.leavehistory($scope.user_id).then(
@@ -31,12 +31,11 @@ App
 							});
 				};*/
 				
-				var self = this;
+				
 				self.leavehistory = function(user_id){
-					$scope.user_id;
-					leavehistoryService.leavehistory($scope.user_id).then(
+					leavehistoryService.leavehistory(user_id).then(
 							function(d) {
-								$scope.testMsg = d.message;
+								self.testMsg1 = "Test";
 								console.log("Success.",d.message);
 								var data = d.listLmsLeaveBalance;
 								self.tableParams = new NgTableParams({}, { dataset: data});
@@ -49,7 +48,7 @@ App
 							});
 				};
 				
-				self.leavehistory(2);
 				
-				//$scope.leavehistory(2);
+				
+				//self.leavehistory(2);
 			} ]);
