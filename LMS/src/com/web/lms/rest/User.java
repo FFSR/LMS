@@ -19,6 +19,7 @@ public class User {
 
 	@Autowired
 	private LmsUserHome lmsUserHome;
+	
 	@Autowired
 	private HttpSession httpSession;
 
@@ -63,12 +64,24 @@ public class User {
 
 		try {
 			//LmsUser user = new LmsUser();
-
-			String userName = lmsUser.getName();
-			String nid = lmsUser.getNid();
-			String email = lmsUser.getEmail();
-			String gender = lmsUser.getGender();
 			
+			//String office = lmsUser.getLmsOfficeLocation();
+			String userName = lmsUser.getName();
+			//String division = lmsUser.getLmsDivision();
+			//String designation = lmsUser.getLmsDesignation();
+			//String ministry = lmsUser.getLmsMinistry();
+			//String Section = lmsUser.getLmsSection();
+			String nid = lmsUser.getNid();
+			String nationality = lmsUser.getNationality();
+			String passport = lmsUser.getPassport();
+			String mobile = lmsUser.getMobilePersonal();
+			String telephone = lmsUser.getPhone();
+			String email = lmsUser.getEmail();
+			String fax = lmsUser.getFax();
+			//String joiningdate = lmsUser.getJoiningDate();
+			String gender = lmsUser.getGender();
+		//	String supervisoremail = lmsUser.
+			String address = lmsUser.getAddress();
 
 			try {
 			int lmsuserid = lmsUserHome.persist(lmsUser);
@@ -89,4 +102,103 @@ public class User {
 		}
 
 	}
+	
+	
+	@RequestMapping(value = "/changepassword", method = RequestMethod.PUT)
+	public ResponseEntity<ResponseWrapper> doChangepassword(@RequestBody LmsUser lmsUser) {
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		
+
+		try {
+			
+			String newpassword = lmsUser.getPassword();
+			String email = lmsUser.getEmail();
+			
+
+			try {
+				lmsUser = lmsUserHome.findByEmailID(email);				
+				lmsUser.setPassword(newpassword);
+				lmsUserHome.merge(lmsUser);
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("Failed to change password.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+			
+			responseWrapper.setMessage("Success. Password changed");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+
+			responseWrapper.setMessage("Fail."+ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+	}
+
+	
+	
+	
+	
+	@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
+	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		
+
+		try {
+			
+			String fax = lmsUser.getFax();
+			String email = lmsUser.getEmail();
+			
+
+			try {
+				lmsUser = lmsUserHome.findByEmailID(email);				
+				lmsUser.setFax(fax);;
+				lmsUserHome.merge(lmsUser);
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("Failed to change password.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+			
+			responseWrapper.setMessage("Success. Password changed");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+
+			responseWrapper.setMessage("Fail."+ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+	}
+
+	
+/*	@RequestMapping(value="/leavehistory", method=RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> leavehistory(@RequestBody String emailid){
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		LmsUser lmsUser = lmsUserHome.findByEmailID(emailid);
+		
+		if(lmsUser != null) {
+			responseWrapper.setMessage("Success. UserName: "+lmsUser.getName()+"Passport: "+lmsUser.getPassport()+"Gender: "+lmsUser.getGender()+" Password: "+lmsUser.getPassword());
+			
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+		
+		responseWrapper.setMessage("Fail. User Name or Password not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+	}
+	*/
+	
 }
+
+
+
+	
+	
+
+
