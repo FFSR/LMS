@@ -56,37 +56,38 @@ public class User {
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
 	
-	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> doRegistration(@RequestBody LmsUser lmsUser) {
-		
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-
-		try {
-			//LmsUser user = new LmsUser();
-
-			String userName = lmsUser.getName();
-			String nid = lmsUser.getNid();
-			String email = lmsUser.getEmail();
-			String gender = lmsUser.getGender();
+	
+		@RequestMapping(value = "/registration", method = RequestMethod.POST)
+		public ResponseEntity<ResponseWrapper> doRegistration(@RequestBody LmsUser lmsUser) {
 			
+			ResponseWrapper responseWrapper = new ResponseWrapper();
 
 			try {
-			int lmsuserid = lmsUserHome.persist(lmsUser);
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
-				responseWrapper.setMessage("Failed to create User.");
+				//LmsUser user = new LmsUser();
+
+				String userName = lmsUser.getName();
+				String nid = lmsUser.getNid();
+				String email = lmsUser.getEmail();
+				String gender = lmsUser.getGender();
+				
+
+				try {
+				int lmsuserid = lmsUserHome.persist(lmsUser);
+				}
+				catch(Exception ex) {
+					ex.printStackTrace();
+					responseWrapper.setMessage("Failed to create User.");
+					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				}
+				
+				responseWrapper.setMessage("Success. User has created");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+			} catch (Exception ex) {
+
+				responseWrapper.setMessage("Fail."+ex.getMessage());
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
-			
-			responseWrapper.setMessage("Success. User has created");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
-		} catch (Exception ex) {
-
-			responseWrapper.setMessage("Fail."+ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}
 
 	}
 }
