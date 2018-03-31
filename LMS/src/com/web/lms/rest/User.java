@@ -67,6 +67,7 @@ public class User {
 
 		try {
 			//LmsUser user = new LmsUser();
+<<<<<<< HEAD
 			
 			//String office = lmsUser.getLmsOfficeLocation();
 			String userName = lmsUser.getName();
@@ -175,6 +176,87 @@ public class User {
 			catch(Exception ex) {
 				ex.printStackTrace();
 				responseWrapper.setMessage("Failed to change password.");
+=======
+			
+			//String office = lmsUser.getLmsOfficeLocation();
+			String userName = lmsUser.getName();
+			//String division = lmsUser.getLmsDivision();
+			//String designation = lmsUser.getLmsDesignation();
+			//String ministry = lmsUser.getLmsMinistry();
+			//String Section = lmsUser.getLmsSection();
+			String nid = lmsUser.getNid();
+			String nationality = lmsUser.getNationality();
+			String passport = lmsUser.getPassport();
+			String mobile = lmsUser.getMobilePersonal();
+			String telephone = lmsUser.getPhone();
+			String email = lmsUser.getEmail();
+			String fax = lmsUser.getFax();
+			//String joiningdate = lmsUser.getJoiningDate();
+			String gender = lmsUser.getGender();
+		//	String supervisoremail = lmsUser.
+			String address = lmsUser.getAddress();
+
+				//LmsUser user = new LmsUser();
+
+				
+
+				try {
+				int lmsuserid = lmsUserHome.persist(lmsUser);
+				}
+				catch(Exception ex) {
+					ex.printStackTrace();
+					responseWrapper.setMessage("Failed to create User.");
+					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				}
+				
+				responseWrapper.setMessage("Success. User has created");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+			} catch (Exception ex) {
+
+				responseWrapper.setMessage("Fail."+ex.getMessage());
+>>>>>>> e3eae446a69a66540732f6ec34029e0cf68f87af
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+			
+			responseWrapper.setMessage("Success. Password changed");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+
+			responseWrapper.setMessage("Fail."+ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+	}
+<<<<<<< HEAD
+
+	
+
+	
+=======
+	
+	
+	@RequestMapping(value = "/changepassword", method = RequestMethod.PUT)
+	public ResponseEntity<ResponseWrapper> doChangepassword(@RequestBody LmsUser lmsUser) {
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		
+
+		try {
+			
+			String newpassword = lmsUser.getPassword();
+			String email = lmsUser.getEmail();
+			
+
+			try {
+				lmsUser = lmsUserHome.findByEmailID(email);				
+				lmsUser.setPassword(newpassword);
+				lmsUserHome.merge(lmsUser);
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("Failed to change password.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 			
@@ -190,8 +272,43 @@ public class User {
 	}
 
 	
-
 	
+	
+	
+	@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
+	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		
+
+		try {
+			
+			String fax = lmsUser.getFax();
+			String email = lmsUser.getEmail();
+			
+
+			try {
+				lmsUser = lmsUserHome.findByEmailID(email);				
+				lmsUser.setFax(fax);;
+				lmsUserHome.merge(lmsUser);
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("Failed to change password.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+			
+			responseWrapper.setMessage("Success. Password changed");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+
+			responseWrapper.setMessage("Fail."+ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+	}	
+>>>>>>> e3eae446a69a66540732f6ec34029e0cf68f87af
 }
 
 
