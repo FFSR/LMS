@@ -173,8 +173,6 @@ public class WorkFlowManagement {
 
 	private void saveHops(LmsWfRequest lmsWfRequest, LmsUser user) {
 		
-		
-		
 		List<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps = lmsWftRequestHopRolePageMapHome
 				.findRequestHopMapByRequestType(lmsWfRequest.getLmsWftRequestType().getId());
 
