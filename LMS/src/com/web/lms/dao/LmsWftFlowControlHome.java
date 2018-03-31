@@ -1,14 +1,19 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsWftFlowControl;
+import com.web.lms.model.LmsWftRequestHopRolePageMap;
 
 /**
  * Home object for domain model class LmsWftFlowControl.
@@ -67,6 +72,25 @@ public class LmsWftFlowControlHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	public List<LmsWftFlowControl> findWftFlowControlByWftHopid(Integer wtHopid) {
+		
+		try {			
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftFlowControl e WHERE e.lmsWftRequestHopRolePageMapByTrhmHopsId.id=:wtHopid")
+					.setParameter("wtHopid", wtHopid);
+		
+			List<LmsWftFlowControl> lmsWftFlowControls =  query.getResultList();
+		
+			return lmsWftFlowControls;
+		
+		}
+		catch(Exception ex) {
+			
+			return null;
+			
 		}
 	}
 }

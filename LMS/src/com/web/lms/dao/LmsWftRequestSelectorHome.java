@@ -3,11 +3,14 @@ package com.web.lms.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsWftRequestSelector;
 
 /**
@@ -67,6 +70,29 @@ public class LmsWftRequestSelectorHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	public LmsWftRequestSelector findRequestTypeByClassSectorLeaveType(Integer classid, Integer sectionid, Integer leaveTypeid) {
+		
+		try {
+			
+			// SELECT t.* FROM lms_wft_request_selector t WHERE t.CLASS_ID=2 AND t.SECTION_ID=3 AND t.LEAVE_TYPE_ID=1;
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRequestSelector e WHERE e.lmsClass.id=:classid AND e.lmsSection.id=:sectionid AND e.lmsLeaveType.id=:leaveTypeid")
+					.setParameter("classid", classid)
+					.setParameter("sectionid", sectionid)
+					.setParameter("leaveTypeid", leaveTypeid);
+		
+			LmsWftRequestSelector lmsWftRequestSelector = (LmsWftRequestSelector) query.getSingleResult();
+		
+			return lmsWftRequestSelector;
+		
+		}
+		catch(Exception ex) {
+			
+			return null;
+			
 		}
 	}
 }

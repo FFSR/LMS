@@ -1,14 +1,19 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsWftRequestHopRolePageMap;
+import com.web.lms.model.LmsWftRequestSelector;
 
 /**
  * Home object for domain model class LmsWftRequestHopRolePageMap.
@@ -67,6 +72,27 @@ public class LmsWftRequestHopRolePageMapHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	public List<LmsWftRequestHopRolePageMap> findRequestHopMapByRequestType(Integer wfRequestTypeId) {
+		
+		try {
+			
+			// SELECT t.* FROM lms_wft_request_selector t WHERE t.CLASS_ID=2 AND t.SECTION_ID=3 AND t.LEAVE_TYPE_ID=1;
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRequestHopRolePageMap e WHERE e.lmsWftRequestType.id=:wfRequestTypeId")
+					.setParameter("wfRequestTypeId", wfRequestTypeId);
+		
+			List<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps =  query.getResultList();
+		
+			return lmsWftRequestHopRolePageMaps;
+		
+		}
+		catch(Exception ex) {
+			
+			return null;
+			
 		}
 	}
 }
