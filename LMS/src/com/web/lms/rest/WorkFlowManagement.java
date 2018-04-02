@@ -115,9 +115,7 @@ public class WorkFlowManagement {
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
-			WorkFlowEngine workFlowEngine = new WorkFlowEngine();
-
-			workFlowEngine.updateHopDoneStatus(lmsWfRequestHop, hopStatus, user);
+			updateHopDoneStatus(lmsWfRequestHop, hopStatus, user);
 
 			responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
@@ -134,11 +132,17 @@ public class WorkFlowManagement {
 
 		// Insert Request Hop
 		saveHops(lmsWfRequest, user);
-		
-		//Find First Hop of this WorkRequest
+
+		// Find First Hop of this WorkRequest
 		LmsWfRequestHop lmsWfRequestHop = findFirstHopForRequest(lmsWfRequest);
 		// UpdateHopStatus for First Hop
-		updateHopDoneStatus(lmsWfRequestHop, WFSTATUS.DONE.toString(), user);
+		if (lmsWfRequestHop != null) {
+			
+			// Only for first Hop
+			lmsWfRequestHop.setStartDate(new Date());
+			
+			updateHopDoneStatus(lmsWfRequestHop, WFSTATUS.DONE.toString(), user);
+		}
 		
 	}
 
@@ -147,11 +151,8 @@ public class WorkFlowManagement {
 			LmsWfRequest lmsWfRequest = new LmsWfRequest();
 			Date currentDate = new Date();
 
-			lmsWfRequest.setLmsWftRequestType(
-					lmsWftRequestSelector.getLmsWftRequestHopRolePageMap().getLmsWftRequestType());
+			lmsWfRequest.setLmsWftRequestType(lmsWftRequestSelector.getLmsWftRequestHopRolePageMap().getLmsWftRequestType());
 			lmsWfRequest.setStartDate(currentDate);
-			lmsWfRequest.setEndDate(new Date());
-			lmsWfRequest.setStatus("");
 			lmsWfRequest.setStatus(WFSTATUS.APPLIED.toString());
 			lmsWfRequest.setLmsUser(user);
 			lmsWfRequest.setInsertDate(currentDate);
@@ -172,143 +173,187 @@ public class WorkFlowManagement {
 	}
 
 	private void saveHops(LmsWfRequest lmsWfRequest, LmsUser user) {
-		
-		List<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps = lmsWftRequestHopRolePageMapHome
-				.findRequestHopMapByRequestType(lmsWfRequest.getLmsWftRequestType().getId());
+		try {
+			List<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps = lmsWftRequestHopRolePageMapHome
+					.findRequestHopMapByRequestType(lmsWfRequest.getLmsWftRequestType().getId());
 
-		for (LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap : lmsWftRequestHopRolePageMaps) {
+			for (LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap : lmsWftRequestHopRolePageMaps) {
 
-			saveHop(lmsWftRequestHopRolePageMap, lmsWfRequest, user);
+				saveHop(lmsWftRequestHopRolePageMap, lmsWfRequest, user);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 
 	private void saveHop(LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap, LmsWfRequest lmsWfRequest,
 			LmsUser user) {
-		LmsWfRequestHop lmsWfRequestHop = new LmsWfRequestHop();
 
-		lmsWfRequestHop.setLmsWfRequest(lmsWfRequest);
+		try {
+			LmsWfRequestHop lmsWfRequestHop = new LmsWfRequestHop();
 
-		lmsWfRequestHop.setLmsWftRequestHopRolePageMap(lmsWftRequestHopRolePageMap);
-		lmsWfRequestHop.setWftRoleId(lmsWftRequestHopRolePageMap.getLmsWftRole().getId());
-		lmsWfRequestHop.setStatus(WFSTATUS.UPCOMING.toString());
-		lmsWfRequestHop.setUserId(user.getId());
-		lmsWfRequestHop.setInsertDate(new Date());
-		lmsWfRequestHop.setInsertBy(user.getId());
-		lmsWfRequestHop.setPageId(lmsWftRequestHopRolePageMap.getLmsPages().getId());
+			lmsWfRequestHop.setLmsWfRequest(lmsWfRequest);
 
-		lmsWfRequestHopHome.persist(lmsWfRequestHop);
+			lmsWfRequestHop.setLmsWftRequestHopRolePageMap(lmsWftRequestHopRolePageMap);
+			lmsWfRequestHop.setWftRoleId(lmsWftRequestHopRolePageMap.getLmsWftRole().getId());
+			lmsWfRequestHop.setStatus(WFSTATUS.UPCOMING.toString());
+			lmsWfRequestHop.setUserId(user.getId());
+			lmsWfRequestHop.setInsertDate(new Date());
+			lmsWfRequestHop.setInsertBy(user.getId());
+			lmsWfRequestHop.setPageId(lmsWftRequestHopRolePageMap.getLmsPages().getId());
+
+			lmsWfRequestHopHome.persist(lmsWfRequestHop);
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
 
 	}
 	
 	public void updateHopDoneStatus(LmsWfRequestHop lmsWfRequestHop, String hopStatus, LmsUser user) {
-		
-		if(hopStatus.contains(WFSTATUS.REJECTED.toString())) {
-			lmsWfRequestHop.setStatus(WFSTATUS.REJECTED.toString());
-		}else {
-			lmsWfRequestHop.setStatus(WFSTATUS.DONE.toString());
+
+		try {
+
+			if (hopStatus.contains(WFSTATUS.REJECTED.toString())) {
+				lmsWfRequestHop.setStatus(WFSTATUS.REJECTED.toString());
+			} else {
+				lmsWfRequestHop.setStatus(WFSTATUS.DONE.toString());
+			}
+			
+			lmsWfRequestHop.setEndDate(new Date());			
+			lmsWfRequestHop.setUpdateDate(new Date());
+			lmsWfRequestHop.setUpdateBy(user.getId());
+
+			lmsWfRequestHopHome.merge(lmsWfRequestHop);
+
+			updateHopCurrentStatus(lmsWfRequestHop.getLmsWfRequest());
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
-		lmsWfRequestHop.setUpdateDate(new Date());
-		lmsWfRequestHop.setUpdateBy(user.getId());
-
-		lmsWfRequestHopHome.merge(lmsWfRequestHop);
-
-		updateHopCurrentStatus(lmsWfRequestHop.getLmsWfRequest());
 	}
 
 	protected void updateHopCurrentStatus(LmsWfRequest lmsWfRequest) {
 
-		if (updateRequestStatus(lmsWfRequest)) {
-			return;
-		}
+		try {
 
-		for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
+			if (updateRequestStatus(lmsWfRequest)) {
+				return;
+			}
 			
-			if (lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())|| lmsWfRequestHop.getStatus() == null) {
+			List<LmsWfRequestHop> lmsWfRequestHops = lmsWfRequestHopHome.findWfRequestHopByRequestId(lmsWfRequest.getId());
 
-				List<LmsWftFlowControl> flows = lmsWftFlowControlHome.findWftFlowControlByWftHopid(lmsWfRequestHop.getLmsWftRequestHopRolePageMap().getId());
+			for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequestHops) {
 
-				if (flows.size() < 1) {
-					
-					lmsWfRequestHop.setStartDate(new Date());
-					lmsWfRequestHop.setStatus(WFSTATUS.CURRENT.toString());
+				if (lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())
+						|| lmsWfRequestHop.getStatus() == null) {
 
-					lmsWfRequestHopHome.persist(lmsWfRequestHop);
-				} else {
-					
-					boolean parentDone = true;
-					
-					for (LmsWftFlowControl lmsWftFlowControl : flows) {
+					List<LmsWftFlowControl> flows = lmsWftFlowControlHome
+							.findWftFlowControlByWftHopid(lmsWfRequestHop.getLmsWftRequestHopRolePageMap().getId());
 
-						for (LmsWfRequestHop parentHop : lmsWfRequestHopHome.findWfRequestHopByRequestIdAndRequestHopId(
-								lmsWfRequest.getId(),
-								lmsWftFlowControl.getLmsWftRequestHopRolePageMapByTrhmDependedHopsId().getId())) {
-							
-							if (!parentHop.getStatus().contains(WFSTATUS.DONE.toString())) {
-								
-								parentDone = false;
-							}
-						}
-					}
-					if (parentDone) {
-						
+					if (flows.size() < 1) {
+
 						lmsWfRequestHop.setStartDate(new Date());
 						lmsWfRequestHop.setStatus(WFSTATUS.CURRENT.toString());
 
-						lmsWfRequestHopHome.persist(lmsWfRequestHop);
+						lmsWfRequestHopHome.merge(lmsWfRequestHop);
+					} else {
+
+						boolean parentDone = true;
+
+						for (LmsWftFlowControl lmsWftFlowControl : flows) {
+
+							for (LmsWfRequestHop parentHop : lmsWfRequestHopHome
+									.findWfRequestHopByRequestIdAndRequestHopId(lmsWfRequest.getId(), lmsWftFlowControl
+											.getLmsWftRequestHopRolePageMapByTrhmDependedHopsId().getId())) {
+
+								if (!parentHop.getStatus().contains(WFSTATUS.DONE.toString())) {
+
+									parentDone = false;
+								}
+							}
+						}
+						if (parentDone) {
+
+							lmsWfRequestHop.setStartDate(new Date());
+							lmsWfRequestHop.setStatus(WFSTATUS.CURRENT.toString());
+
+							lmsWfRequestHopHome.merge(lmsWfRequestHop);
+						}
 					}
 				}
 			}
+		} catch (Exception ex) {
+
+			ex.printStackTrace();
+
 		}
 	}
 
 	protected boolean updateRequestStatus(LmsWfRequest lmsWfRequest) {
 		
-		String requestStatus="";
+		String requestStatus = "";
 		boolean requestComplete = false;
+		
+		try {
+			
+			List<LmsWfRequestHop> lmsWfRequestHops = lmsWfRequestHopHome.findWfRequestHopByRequestId(lmsWfRequest.getId());
 
-		for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
-			if (lmsWfRequestHop.getStatus().contains(WFSTATUS.DONE.toString())) {
-				requestStatus = WFSTATUS.APPROVED.toString();
-				requestComplete = true;				
-			}else if(lmsWfRequestHop.getStatus().contains(WFSTATUS.CURRENT.toString())){
-				requestStatus = WFSTATUS.INPROGRESS.toString();
-				requestComplete = false;
-			}else if(lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())) {
-				requestStatus = WFSTATUS.INPROGRESS.toString();
-				requestComplete = false;
-			}else if(lmsWfRequestHop.getStatus().contains(WFSTATUS.REJECTED.toString())) {
-				requestStatus = WFSTATUS.REJECTED.toString();
-				requestComplete = true;
+			for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequestHops) {
+				if (lmsWfRequestHop.getStatus().contains(WFSTATUS.DONE.toString())) {
+					requestStatus = WFSTATUS.APPROVED.toString();
+					requestComplete = true;
+				} else if (lmsWfRequestHop.getStatus().contains(WFSTATUS.CURRENT.toString())) {
+					requestStatus = WFSTATUS.INPROGRESS.toString();
+					requestComplete = false;
+				} else if (lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())) {
+					requestStatus = WFSTATUS.INPROGRESS.toString();
+					requestComplete = false;
+				} else if (lmsWfRequestHop.getStatus().contains(WFSTATUS.REJECTED.toString())) {
+					requestStatus = WFSTATUS.REJECTED.toString();
+					requestComplete = true;
+					break;
+				}
 			}
-		}
+			lmsWfRequest.setStatus(requestStatus);
+			
+			if (requestStatus.equals(WFSTATUS.APPROVED.toString())
+					|| requestStatus.equals(WFSTATUS.REJECTED.toString())) {
 
-		lmsWfRequest.setStatus(requestStatus);
-		lmsWfRequest.setEndDate(new Date());
+				lmsWfRequest.setEndDate(new Date());
+			}
 
-		lmsWfRequestHome.merge(lmsWfRequest);
-
+			lmsWfRequestHome.merge(lmsWfRequest);
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}		
 		return requestComplete;
 	}
 	
 	protected LmsWfRequestHop findFirstHopForRequest(LmsWfRequest lmsWfRequest) {
-		
+
 		LmsWfRequestHop wfRequestFirstHop = new LmsWfRequestHop();
 		
-		for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequest.getLmsWfRequestHops()) {
-			
-			if (lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())|| lmsWfRequestHop.getStatus() == null) {
+		try {
+			List<LmsWfRequestHop> lmsWfRequestHops = lmsWfRequestHopHome.findWfRequestHopByRequestId(lmsWfRequest.getId());
 
-				List<LmsWftFlowControl> flows = lmsWftFlowControlHome.findWftFlowControlByWftHopid(lmsWfRequestHop.getLmsWftRequestHopRolePageMap().getId());
+			for (LmsWfRequestHop lmsWfRequestHop : lmsWfRequestHops) {
 
-				if (flows.size() < 1) {
-					
-					wfRequestFirstHop = lmsWfRequestHop;
-					break;
+				if (lmsWfRequestHop.getStatus().contains(WFSTATUS.UPCOMING.toString())|| lmsWfRequestHop.getStatus() == null) {
+
+					List<LmsWftFlowControl> flows = lmsWftFlowControlHome.findWftFlowControlByWftHopid(lmsWfRequestHop.getLmsWftRequestHopRolePageMap().getId());
+
+					if (flows.size() < 1) {
+
+						wfRequestFirstHop = lmsWfRequestHop;
+						break;
+					}
 				}
 			}
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 		return wfRequestFirstHop;
-		
 	}
-
 }

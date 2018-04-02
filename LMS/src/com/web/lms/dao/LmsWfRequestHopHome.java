@@ -77,10 +77,24 @@ public class LmsWfRequestHopHome {
 	
 	public List<LmsWfRequestHop> findWfRequestHopByRequestIdAndRequestHopId(Integer wfRequestId, Integer wftRequestHopRolePageMapid) {
 		
-		try {			
-			
-			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.lmsWftRequestHopRolePageMap.id=:wftRequestHopRolePageMapid AND e.lmsWfRequest.id:=wfRequestId")
-					.setParameter("wftRequestHopRolePageMapid", wftRequestHopRolePageMapid)
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.lmsWfRequest.id=:wfRequestId AND e.lmsWftRequestHopRolePageMap.id=:wftRequestHopRolePageMapid")
+					.setParameter("wfRequestId", wfRequestId)
+					.setParameter("wftRequestHopRolePageMapid", wftRequestHopRolePageMapid);
+		
+			List<LmsWfRequestHop> lmsWfRequestHops =  query.getResultList();
+		
+			return lmsWfRequestHops;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public List<LmsWfRequestHop> findWfRequestHopByRequestId(Integer wfRequestId) {
+		
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.lmsWfRequest.id=:wfRequestId")
 					.setParameter("wfRequestId", wfRequestId);
 		
 			List<LmsWfRequestHop> lmsWfRequestHops =  query.getResultList();
@@ -88,10 +102,8 @@ public class LmsWfRequestHopHome {
 			return lmsWfRequestHops;
 		
 		}
-		catch(Exception ex) {
-			
-			return null;
-			
+		catch(Exception ex) {			
+			return null;			
 		}
 	}
 }
