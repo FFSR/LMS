@@ -6,12 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ministry Information</title>
 <script type="text/javascript" src="resources/js/app.js/service/leavetypeService.js"></script>
+<script type="text/javascript" src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/service/applicationforleaveService.js"></script>
-<script type="text/javascript"
 	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
+
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
 
@@ -31,8 +31,9 @@
 	<br>
 	<div ng-controller="leaveapplicationController">
 	<div ng-init="loadLeaveTypeDownDown();"></div>
+	
+		
 		<div class="container-fluid">
-
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">User ID</div>
 				<div class="col-sm-3" style="background-color: white;">
@@ -58,7 +59,8 @@
 						<option value="">Select</option>
 					</select>
 			</div>
-				
+			</div>
+				<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Reason For Leave</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="reasonForLeave" class="form-control"
@@ -118,10 +120,13 @@
 				<br>
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Reliever</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="lmsUserByReliverEmailAddressUserId" class="form-control"
-						placeholder="Reliever"> 
-				</div>
+				<div class="col-md-3">
+					<!-- Drop Down list from table -->
+					<select class="form-control" id="ddleavetype" ng-model="leavetype"
+						ng-options="x as x.type for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+			</div>
 				<div class="col-sm-3" style="background-color: white;">In Station</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="instation" class="form-control"

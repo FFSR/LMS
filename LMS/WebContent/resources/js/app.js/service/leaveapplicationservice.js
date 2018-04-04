@@ -10,8 +10,8 @@ App.factory('leaveapplicationservice', [
 		function($http, $q, url) {
 			return {
 				
-				applicationforleave: function(leaveapplication){
-					return $http.post(url+'applicationforleave', leaveapplication)
+				testleave: function(leaveapplication){
+					return $http.post(url+'testleave', leaveapplication)
 					.then(function(response) {
 						return response.data;
 					},
@@ -30,6 +30,19 @@ App.factory('leaveapplicationservice', [
 					function(errResponse) {
 						console
 								.error("Error while fetching user info list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
+				
+				getAllUser: function(){
+					return $http.get(url+'getUserlist/')
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error('Error while fetching leave type list.');
 						return $q
 								.reject(errResponse);
 					});

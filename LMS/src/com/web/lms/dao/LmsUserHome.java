@@ -1,6 +1,8 @@
 package com.web.lms.dao;
 // com.web.lms.daoerated Mar 23, 2018 5:44:36 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -10,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
 
 /**
@@ -109,6 +112,20 @@ public class LmsUserHome {
 			
 			return null;
 			
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsUser> findAllUser() {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e");
+			
+			return (List<LmsUser>) query.getResultList();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			
+			return null;
 		}
 	}
 		

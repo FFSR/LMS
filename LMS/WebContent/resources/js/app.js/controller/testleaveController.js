@@ -1,17 +1,15 @@
 App
 	.controller(
-		'leaveapplicationController',
+		'testleaveController',
 		[
 			'$scope',
 			'$http',
-			'leaveapplicationservice',
-			'leavetypeService',
-			'userlistService',
+			'applicationforleaveService',
 			'$timeout',
 			'$filter',
 			'$location',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,
+			function($scope, $http,applicationforleaveService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
@@ -28,15 +26,13 @@ App
 						"totalDayText" : "",					
 						"reasonForLeave" : "",
 						"taskNeedToPerformed" : "",
-						"lmsUserByReliverEmailAddressUserId":"",
 						"insertDate" : "",
 						"insertBy" : "",
 						"updatDate" : "",						
 						"updateBy" : "",
 					};
 	
-				$scope.testleave = function(){				
-					
+				$scope.testleave = function(){					
 					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
 					//$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					//$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
@@ -56,7 +52,7 @@ App
 					//$scope.leaveapplication.updateBy = $scope.update_by;
 						
 					
-					leaveapplicationservice.testleave($scope.leaveapplication).then(
+					applicationforleaveService.testleave($scope.leaveapplication).then(
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
@@ -66,44 +62,6 @@ App
 								console.error(e.data.message);
 							});
 				}
-				
-			$scope.loadLeaveTypeDownDown = function(){
-					$scope.dDName = "";
-					leavetypeService.getLeaveType().then(function(d) {
-				    //leavetypeService.getAllUser().then(function(d) {
-					//userlistService.getAllUser().then(function(d) {
-						$scope.dropdownData = d;
-					}, function(errResponse) {
-						console.log("Failed to get Drop Down.");
-					});
-				};
-				
-			$scope.loadUserListDropDown = function(){
-					$scope.dDName = "";
-					userlistService.getAllUser().then(function(d) {
-						$scope.dropdownData = d;
-					}, function(errResponse) {
-						console.log("Failed to get Drop Down.");
-					});
-				};
-				
-			/*	$scope.getleaveapplication = function(leaveapplicationid){
-					console.log("From Get Method");
-					leaveapplicationservice.getleaveapp(leaveapplicationid).then(
-					function(d){
-						$scope.leaveData = d;
-						$scope.leavetype = $scope.leaveData.lmsLeaveType;
-						$scope.reasonForLeave = $scope.leaveData.reasonForLeave;
-						
-					},
-					function(errResponse){
-						console.log(errResponse.data);
-					}
-					);
-				};
-				
-				$scope.getleaveapplication(4);*/
-			} 
-			]);
+			} ]);
 				
 				
