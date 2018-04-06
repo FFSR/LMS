@@ -453,6 +453,7 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 										<div class="input-group">
 											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
 											<input type="text" ng-model="networkId" class="form-control" placeholder="Network ID">
+											{{networkId}}
 										</div>
 									</div>
 										

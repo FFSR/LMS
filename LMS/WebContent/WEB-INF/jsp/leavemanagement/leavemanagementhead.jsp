@@ -10,50 +10,48 @@
 <script src="resources/js/jquery-3.2.1.slim.min.js"></script>
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/DropDownService.js"></script>
 </head>
 <body>
 
 	<div class="container-fluid">
 
 		<div class="row">
-			<div class="col-sm-3" style="background-color: lavender;">User
+			<div class="col-sm-3" style="background-color: white;">User
 				ID</div>
-			<div class="col-sm-3" style="background-color: lavenderblush;">
+			<div class="col-sm-3" style="background-color: white;">
 				<input type="text">
 			</div>
-			<div class="col-sm-3" style="background-color: lavender;">Name</div>
-			<div class="col-sm-3" style="background-color: lavenderblush;">
+			<div class="col-sm-3" style="background-color: white;">Name</div>
+			<div class="col-sm-3" style="background-color: white;">
 				<input type="text">
 			</div>
 		</div>
-
+<br>
 		<div class="row">
-			<div class="col-sm-3" style="background-color: lavender;">Leave
+			<div class="col-sm-3" style="background-color: white;">Leave
 				Type</div>
-			<div class="col-sm-3" style="background-color: lavenderblush;">
+				<div class="col-sm-3">
+					<!-- Drop Down list from table -->
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+						<option value="">Hospital</option>
+						<option value="">Casual</option>
+					</select>
+			</div>
+			<div class="col-sm-3" style="background-color: white;">Email</div>
+			<div class="col-sm-3" style="background-color: white;">
 				<input type="text">
 			</div>
-			<div class="col-sm-3" style="background-color: lavender;">Reason
-				For Leave</div>
-			<div class="col-sm-3" style="background-color: lavenderblush;">
-				<input type="text">
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-3" style="background-color: lavender;">
-				<input type="submit" class="btn btn-info" value="Search">
-			</div>
-			<div class="col-sm-3" style="background-color: lavenderblush;"></div>
-			<div class="col-sm-3" style="background-color: lavender;">
-				<input type="button" class="btn btn-info" value="Clear">
-			</div>
-			<div class="col-sm-3" style="background-color: lavenderblush;"></div>
 		</div>
 
 	</div>
 
-
+<br>
+<a href="http://localhost:8080/LMS/leavesearchresult" class="btn btn-info" role="button">Search</a>
+		<button type="button" class="btn">Clear</button>
 
 </body>
 </html>

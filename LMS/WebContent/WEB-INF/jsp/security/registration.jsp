@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Registration</title>
 
-
+<script type="text/javascript"
+	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/registrationService.js"></script>
 <script type="text/javascript"
@@ -33,8 +34,10 @@
 
 				<div class="col-sm-3" style="background-color: white;">Office</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="office" class="form-control"
-						placeholder="Office">
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
 				</div>
 			</div>
 
@@ -50,8 +53,10 @@
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Division</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="division" class="form-control"
-						placeholder="Division">
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
 				</div>
 			</div>
 
@@ -60,13 +65,17 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Designation</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="designation" class="form-control"
-						placeholder="Designation">
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Ministry</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="ministry" class="form-control"
-						placeholder="Ministry">
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
 				</div>
 			</div>
 
@@ -75,8 +84,10 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Section</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="section" class="form-control"
-						placeholder="Section">
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">NID</div>
 				<div class="col-sm-3" style="background-color: white;">
@@ -90,8 +101,10 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Nationality</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="nationality" class="form-control"
-						placeholder="Nationality">
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Passport
 					No</div>
@@ -142,8 +155,10 @@
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Gender</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="gender" class="form-control"
-						placeholder="Gender">
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
 				</div>
 			</div>
 

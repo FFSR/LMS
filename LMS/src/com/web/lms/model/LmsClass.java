@@ -62,6 +62,7 @@ public class LmsClass implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsClass")
+	@JsonIgnore
 	public Set<LmsDesignation> getLmsDesignations() {
 		return this.lmsDesignations;
 	}

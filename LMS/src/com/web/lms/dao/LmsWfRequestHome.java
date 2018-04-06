@@ -1,8 +1,12 @@
 package com.web.lms.dao;
-// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
+// Generated Mar 30, 2018 1:16:28 PM by Hibernate Tools 5.2.8.Final
+
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
@@ -67,6 +71,25 @@ public class LmsWfRequestHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	public LmsWfRequest findRequestByUserAndDate(Integer userid, Date date) {
+		
+		try {			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate=:date")
+					.setParameter("userid", userid)
+					.setParameter("date", date);
+		
+			LmsWfRequest lmsWfRequest = (LmsWfRequest) query.getSingleResult();
+		
+			return lmsWfRequest;
+		
+		}
+		catch(Exception ex) {
+			
+			return null;
+			
 		}
 	}
 }

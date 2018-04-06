@@ -19,7 +19,10 @@
 
 <script type="text/javascript" src="resources/js/angular.min.js"></script>
 <script type="text/javascript" src="resources/js/app.js/app.js"></script>
-
+<!-- NG-Table -->
+<link rel="stylesheet" ; href="resources/css/ng-table.min.css">
+<script src="resources/js/ng-table.min.js"></script>
+<!-- End of NG-Table -->
 </head>
 <body class="hold-transition skin-blue sidebar-mini" style="zoom: 0.8;" ng-app="myApp">
 	<tiles:insertAttribute name="menu" />

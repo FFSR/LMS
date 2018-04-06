@@ -103,10 +103,10 @@
 			value="/WEB-INF/jsp/leavemanagement/leavemanagementhead.jsp" />
 	</definition>
 
-	<definition name="leavemanagementdetails" extends="baseLayout">
+	<definition name="leaveapplicationdetails" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/leavemanagement/leavemanagementdetails.jsp" />
+			value="/WEB-INF/jsp/leavemanagement/leaveapplicationdetails.jsp" />
 
 	</definition>
 	
@@ -121,6 +121,27 @@
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/rptleavestatus.jsp" />
+
+	</definition>
+	
+	<definition name="leavesearchresult" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/leavesearchresult.jsp" />
+
+	</definition>
+	
+	<definition name="ministryinfo" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/ministryinfo.jsp" />
+
+	</definition>
+	
+	<definition name="applicationforleave" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/applicationforleave.jsp" />
 
 	</definition>
 
