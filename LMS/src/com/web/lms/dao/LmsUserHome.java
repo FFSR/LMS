@@ -118,7 +118,7 @@ public class LmsUserHome {
 	@SuppressWarnings("unchecked")
 	public List<LmsUser> findAllUser() {
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsUser e");
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE LOWER(e.status)='active'");
 			
 			return (List<LmsUser>) query.getResultList();
 		}

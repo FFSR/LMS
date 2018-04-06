@@ -28,17 +28,6 @@ private LmsUserHome lmsUserHome;
 @Autowired
 private HttpSession httpSession;
 
-@RequestMapping(value = "/getUserlist/", method = RequestMethod.GET)
-public ResponseEntity<List<LmsUser>> getlog() {
 
-	List<LmsUser> listLmsUser = lmsUserHome.findAllUser();
-	
-	if(listLmsUser == null) {
-		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
-	}
-	
-	return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
-	
-}
 
 }

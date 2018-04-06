@@ -1,5 +1,6 @@
 package com.web.lms.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -94,6 +95,23 @@ public class User {
 
 	}
 		
-		
+		@RequestMapping(value = "/getUserlist/", method = RequestMethod.GET)
+		public ResponseEntity<List<LmsUser>> getlog() {
+
+			List<LmsUser> listLmsUser = new ArrayList<>();
+			try {
+				listLmsUser = lmsUserHome.findAllUser();
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
+			}
+			if(listLmsUser == null) {
+				return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
+			}
+			
+			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
+			
+		}	
 		
 }

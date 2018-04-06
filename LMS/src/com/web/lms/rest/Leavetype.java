@@ -26,17 +26,17 @@ public class Leavetype {
 	
 	@RequestMapping(value = "/getLeavetype/", method = RequestMethod.GET)
 	//public ResponseEntity<List<LmsLeaveType>> getlog() {
-	 public ResponseEntity<List<LmsUser>> getlog() {
-		//List<LmsLeaveType> listLmsLeaveType = lmsLeaveTypeHome.findAllLeaveType();
-		List<LmsUser> listLmsUser = lmsUserHome.findAllUser();
+	 public ResponseEntity<List<LmsLeaveType>> getlog() {
+		List<LmsLeaveType> listLmsLeaveType = lmsLeaveTypeHome.findAllLeaveType();
+		//List<LmsUser> listLmsUser = lmsUserHome.findAllUser();
 		
-		if(listLmsUser == null) {
-			//return new ResponseEntity<List<LmsLeaveType>>(listLmsLeaveType, HttpStatus.EXPECTATION_FAILED);
-			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
+		if(listLmsLeaveType == null) {
+			return new ResponseEntity<List<LmsLeaveType>>(listLmsLeaveType, HttpStatus.EXPECTATION_FAILED);
+			//return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
 		}
 		
-		//return new ResponseEntity<List<LmsLeaveType>>(listLmsLeaveType, HttpStatus.OK);
-		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
+		return new ResponseEntity<List<LmsLeaveType>>(listLmsLeaveType, HttpStatus.OK);
+		//return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
 		
 	}
 

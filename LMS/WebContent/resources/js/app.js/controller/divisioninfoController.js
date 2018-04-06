@@ -4,7 +4,7 @@ App
 		[
 			'$scope',
 			'$http',
-			'divisoninfoService',
+			'divisioninfoService',
 			'$timeout',
 			'$filter',
 			'$location',
@@ -38,7 +38,8 @@ App
 					
 					
 					
-					divisioninfoService.divisioninfo($scope.division).then(
+					divisioninfoService.divisioninfo($scope.division)
+					.then(
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);

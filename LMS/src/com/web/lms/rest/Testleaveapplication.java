@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.dao.LmsLeaveApplicationHome;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.wrapper.ResponseWrapper;
+import com.web.lms.wrapper.LeaveApplicationWrapper;
 
+@RestController
 public class Testleaveapplication {
 	@Autowired
 	private HttpSession httpSession;
@@ -22,12 +24,13 @@ public class Testleaveapplication {
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
 	
 	@RequestMapping(value = "/testleave", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> doLeaveSubmission(@RequestBody LmsLeaveApplication lmsLeaveApplication) {
+	public ResponseEntity<ResponseWrapper> doLeaveSubmission(@RequestBody LmsLeaveApplication leaveApplication) {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-						
+		
+		
 			try {
-			int lmsleaveapplicationid = lmsLeaveApplicationHome.persist(lmsLeaveApplication);
+			int lmsleaveapplicationid = lmsLeaveApplicationHome.persist(leaveApplication);
 			//lmsLeaveApplicationHome.persist(lmsLeaveApplication);
 			}
 			catch(Exception ex) {

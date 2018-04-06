@@ -53,9 +53,11 @@
 				ng-click="login(username,password)">Login</button>
 
 			<button type="button" class="btn">Cancel</button>
-			<br> <a href="#" class="btn btn-default">Forget Password?</a> <a
+			<br> <a href="http://localhost:8080/LMS/forgetpasswd" class="btn btn-default">Forget Password?</a> <a
+				
 				href="http://localhost:8080/LMS/changepassword"
 				class="btn btn-default">Change Password</a> <br> <a
+				
 				href="http://localhost:8080/LMS/registration"
 				class="btn btn-default">Registration</a>
 

@@ -30,7 +30,7 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-	<div ng-init="loadLeaveTypeDownDown();"></div>
+	<div ng-init="loadLeaveTypeDownDown();loadUserListDropDown();"></div>
 	
 		
 		<div class="container-fluid">
@@ -122,10 +122,11 @@
 				<div class="col-sm-3" style="background-color: white;">Reliever</div>
 				<div class="col-md-3">
 					<!-- Drop Down list from table -->
-					<select class="form-control" id="ddleavetype" ng-model="leavetype"
-						ng-options="x as x.type for x in dropdownData track by x.id">
+					<select class="form-control" id="ddReliever" ng-model="ddReliever"
+						ng-options="x as x.name for x in userData track by x.id">
 						<option value="">Select</option>
 					</select>
+					
 			</div>
 				<div class="col-sm-3" style="background-color: white;">In Station</div>
 				<div class="col-sm-3" style="background-color: white;">
@@ -160,6 +161,7 @@
 				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
 		</div>
+	</div>
 </body>
 <script>
 $('#fromDate').datetimepicker(
