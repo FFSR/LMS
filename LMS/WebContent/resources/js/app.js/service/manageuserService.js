@@ -3,16 +3,15 @@
  */
 'use strict';
 
-App.factory('updateuserprofileService', [
+App.factory('manageuserService', [
 		'$http',
 		'$q',
 		'url',
 		function($http, $q, url) {
 			return {
 				
-				updateuserprofile: function(user){
-					console.log(user);
-					return $http.put(url+'updateuserprofile',user)
+				manageuser: function(user_id){
+					return $http.get(url+'manageuser/'+user_id)
 					.then(function(response) {
 						return response.data;
 					},

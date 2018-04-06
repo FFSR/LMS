@@ -1,22 +1,22 @@
 App
 	.controller(
-		'leavehistoryController',
+		'leaveController',
 		[
 			'$scope',
 			'$http',
-			'leavehistoryService',
+			'leaveService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http, leavehistoryService,
+			function($scope, $http, leaveService,
 				$timeout, $filter,NgTableParams,$location) {
 				var self = this;
 				self.testMsg = "Test Message New";
 				
-				self.leavehistory = function(user_id){
-					leavehistoryService.leavehistory(user_id).then(
+				self.leave = function(user_id){
+					leaveService.leave(user_id).then(
 							function(d) {
 								self.testMsg1 = "Test";
 								console.log("Success.",d.message);

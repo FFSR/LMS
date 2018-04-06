@@ -3,16 +3,15 @@
  */
 'use strict';
 
-App.factory('updateuserprofileService', [
+App.factory('leaveService', [
 		'$http',
 		'$q',
 		'url',
 		function($http, $q, url) {
 			return {
 				
-				updateuserprofile: function(user){
-					console.log(user);
-					return $http.put(url+'updateuserprofile',user)
+				leave: function(user_id){
+					return $http.get(url+'leave/'+user_id)
 					.then(function(response) {
 						return response.data;
 					},

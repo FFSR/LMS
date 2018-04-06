@@ -2,7 +2,9 @@ package com.web.lms.wrapper;
 
 import java.util.List;
 
+import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveBalance;
+import com.web.lms.model.LmsUser;
 
 public class ResponseWrapper {
 	String message;
@@ -10,6 +12,15 @@ public class ResponseWrapper {
 	LmsLeaveBalance lmsLeaveBalance;
 	
 	List<LmsLeaveBalance> listLmsLeaveBalance;
+	
+	LmsUser lmsuser;
+	
+	List<LmsUser> listLmsuser;
+	
+	LmsLeaveApplication lmsLeaveApplication;
+	
+	List<LmsLeaveApplication> listLmsLeaveApplication;
+
 
 	public String getMessage() {
 		return message;
@@ -35,4 +46,29 @@ public class ResponseWrapper {
 		this.listLmsLeaveBalance = listLmsLeaveBalance;
 	}
 	
+	public LmsUser getLmsuser() {
+		return lmsuser;
+	}
+
+	public void setLmsuser(LmsUser lmsuser) {
+		this.lmsuser = lmsuser;
+	}
+
+	
+	public List<LmsUser> getListLmsuser() {
+		return listLmsuser;
+	}
+
+	public void setListLmsuser(List<LmsUser> listLmsuser) {
+		this.listLmsuser = listLmsuser;
+	}
+
+	public void setListLmsLeaveApplication(List<LmsLeaveApplication> LmsLeaveApplication) {
+		this.listLmsLeaveApplication = listLmsLeaveApplication;
+	}
+	
 }
+
+
+
+
