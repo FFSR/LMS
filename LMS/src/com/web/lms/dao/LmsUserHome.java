@@ -11,8 +11,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.web.lms.model.LmsLeaveType;
+import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
 
 /**
@@ -114,6 +114,7 @@ public class LmsUserHome {
 			
 		}
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<LmsUser> findAllUsers() {
 		try {
@@ -125,6 +126,22 @@ public class LmsUserHome {
 			ex.printStackTrace();
 			
 			return null;
+
+	
+public List<LmsUser> findUserByUserID(Integer userid) {
+		
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.id=:userid").setParameter("userid", userid);
+		
+			List<LmsUser> lmsUser = query.getResultList();
+		
+			return lmsUser;
+		
+		}
+		catch(Exception ex) {
+			
+			return null;
+			
 		}
 	}
 		
