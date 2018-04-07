@@ -16,8 +16,8 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
-
-<script type="text/javascript" src="resources/js/angular.min.js"></script>
+<script type="text/javascript" src="resources/js/angular-messages.js"></script>
+<script type="text/javascript" src="resources/js/angular.js"></script>
 <script type="text/javascript" src="resources/js/app.js/app.js"></script>
 <!-- NG-Table -->
 <link rel="stylesheet" ; href="resources/css/ng-table.min.css">
