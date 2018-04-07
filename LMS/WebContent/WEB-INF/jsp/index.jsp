@@ -492,7 +492,7 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 				<button ng-click="getDate()">Get Date</button>
 			</div>
 		</div>
-		<div><button class="btn btn-primary" ng-click="gotoRegistrationPage()">Go to Another Page</button></div>
+		<div><button class="btn btn-primary" ng-click="gotoRegistrationPage()">Go to Registration Page</button></div>
 		<div class="row">
 						<div class="col-md-12 form-group">
 							<label class="col-md-2 control-label" >Attach
