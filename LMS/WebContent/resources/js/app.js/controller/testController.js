@@ -42,5 +42,6 @@ App
 					$scope.processDropzone();
 					$scope.resetDropzone();
 				};
+								
 				
 			} ]);
