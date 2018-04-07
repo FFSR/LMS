@@ -1,4 +1,4 @@
-var App = angular.module('myApp',["ngTable","ngMessages"]);
+var App = angular.module('myApp',["ngTable"]);
 
 
 //Basae URL and Port for Application
