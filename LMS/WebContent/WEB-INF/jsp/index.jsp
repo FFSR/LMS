@@ -469,7 +469,7 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 										ng-click="login(networkId,password)">Login</button>
 										
 		<div>Response: {{testMsg}}</div>
-		
+		<div>User Name: <input type="text" value="<%= session.getAttribute("userName") %>" /></div>
 		<div>Drop Down Sample</div>
 		<div class="row">
 			<div class="col-md-6 form-group">
@@ -489,9 +489,11 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 				<div class="col-md-8">
 					<input type="text" id="eventDate" class="form-control" />
 				</div>
+				
+				<button ng-click="getDate()">Get Date</button>
 			</div>
 		</div>
-		
+		<div><button class="btn btn-primary" ng-click="gotoRegistrationPage()">Go to Registration Page</button></div>
 		<div class="row">
 						<div class="col-md-12 form-group">
 							<label class="col-md-2 control-label" >Attach
@@ -511,6 +513,19 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 		<div>
 			
 		</div>
+		<div><button class="btn btn-primary" ng-click="getSuccessMessage()">Get Success Message</button></div>
+		<div><button class="btn btn-danger" ng-click="getErrorMessage()">Get Error Message</button></div>
+		<div class="row">
+			<div class="col-md-12">
+				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+					
+					data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+			</div>
+		</div>
+		
+		
 	</div>
 	
 </body>

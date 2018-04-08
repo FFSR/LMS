@@ -11,10 +11,6 @@
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 
-<!-- NG-Table -->
-<link rel="stylesheet" href="resources/css/ng-table.min.css">
-<script src="resources/js/ng-table.min.js"></script>
-<!-- End of NG-Table -->
 
 
 <script type="text/javascript"
