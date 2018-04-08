@@ -1,5 +1,6 @@
 package com.web.lms.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.web.lms.wrapper.ResponseWrapper;
+import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsUserHome;
+import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
 import com.web.lms.wrapper.ResponseWrapper;
 
@@ -142,9 +145,9 @@ public class User {
 	}
 
 	@RequestMapping(value = "/getUserList/", method = RequestMethod.GET)
-	public ResponseEntity<List<LmsUser>> getlog() {
+	public ResponseEntity<List<LmsUser>> getUserList() {
 
-		List<LmsUser> listLmsUser = lmsUserHome.findAllUsers();
+		List<LmsUser> listLmsUser = lmsUserHome.findAllUser();
 		
 		if(listLmsUser == null) {
 			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
@@ -226,6 +229,26 @@ public class User {
 
 		}
 
+	
+		
+		@RequestMapping(value = "/getUserlist/", method = RequestMethod.GET)
+		public ResponseEntity<List<LmsUser>> getlog() {
+
+			List<LmsUser> listLmsUser = new ArrayList<>();
+			try {
+				listLmsUser = lmsUserHome.findAllUser();
+			}
+			catch(Exception ex) {
+				ex.printStackTrace();
+				return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
+			}
+			if(listLmsUser == null) {
+				return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
+			}
+			
+			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
+			
+		}		
 }
 
 

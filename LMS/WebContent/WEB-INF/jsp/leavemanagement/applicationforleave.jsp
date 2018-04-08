@@ -9,8 +9,6 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/service/applicationforleaveService.js"></script>
-<script type="text/javascript"
 	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
@@ -32,7 +30,6 @@
 	<div ng-controller="leaveapplicationController">
 	<div ng-init="loadLeaveTypeDownDown();"></div>
 		<div class="container-fluid">
-
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">User ID</div>
 				<div class="col-sm-3" style="background-color: white;">
@@ -58,7 +55,6 @@
 						<option value="">Select</option>
 					</select>
 			</div>
-				
 				<div class="col-sm-3" style="background-color: white;">Reason For Leave</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="reasonForLeave" class="form-control"
@@ -155,6 +151,7 @@
 				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
 		</div>
+	</div>
 </body>
 <script>
 $('#fromDate').datetimepicker(

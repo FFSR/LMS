@@ -17,14 +17,18 @@
 	src="resources/js/bootstrap.min.js"></script>
 	
 
-
 <script type="text/javascript"
 	src="resources/js/app.js/service/manageuserService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/manageuserController.js"></script>
 	
 </head>
-<body>
+<body ng-controller="manageuserController">
+
+	<div >
+
+		<div class="container-fluid">
+			<br>
 
 	<div ng-controller="manageuserController as muc">
 

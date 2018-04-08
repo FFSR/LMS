@@ -10,8 +10,8 @@ App.factory('applicationforleaveService', [
 		function($http, $q, url) {
 			return {
 				
-				applicationforleave: function(leaveapplication){
-					return $http.post(url+'applicationforleave', leaveapplication)
+				testleave: function(leaveapplication){
+					return $http.post(url+'testleave', leaveapplication)
 					.then(function(response) {
 						return response.data;
 					},

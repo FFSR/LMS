@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsLeaveApplication;
-import com.web.lms.model.LmsLeaveBalance;
+import com.web.lms.model.LmsUser;
 
 /**
  * Home object for domain model class LmsLeaveApplication.
@@ -79,15 +79,14 @@ public class LmsLeaveApplicationHome {
 	}
 	
 	
-	
-public List<LmsLeaveApplication> findLeaveBalanceByUserID(Integer userid) {
+public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
 		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUser.id=:userid").setParameter("userid", userid);
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid", userid);
 		
-			List<LmsLeaveApplication> LmsLeaveApplication = query.getResultList();
+			List<LmsLeaveApplication> lmsLeaveApplication = query.getResultList();
 		
-			return LmsLeaveApplication;
+			return lmsLeaveApplication;
 		
 		}
 		catch(Exception ex) {

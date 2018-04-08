@@ -24,11 +24,14 @@ public class LmsDivisionHome {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsDivision transientInstance) {
-		log.debug("persisting LmsDivision instance");
+	public int persist(LmsDivision transientInstance) {
+		log.debug("persisting LmsUser instance");
 		try {
 			entityManager.persist(transientInstance);
+			entityManager.flush();
+			int lmsuserId = transientInstance.getId();
 			log.debug("persist successful");
+			return lmsuserId;
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;

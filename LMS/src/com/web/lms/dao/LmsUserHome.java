@@ -114,11 +114,11 @@ public class LmsUserHome {
 			
 		}
 	}
-
+	
 	@SuppressWarnings("unchecked")
-	public List<LmsUser> findAllUsers() {
+	public List<LmsUser> findAllUser() {
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsUser e");
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE LOWER(e.status)='active'");
 			
 			return (List<LmsUser>) query.getResultList();
 		}
@@ -129,7 +129,7 @@ public class LmsUserHome {
 		}
 	}
 	
-public List<LmsUser> findUserByUserID(Integer userid) {
+    public List<LmsUser> findUserByUserID(Integer userid) {
 		
 		try {
 			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.id=:userid").setParameter("userid", userid);

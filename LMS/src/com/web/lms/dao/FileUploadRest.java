@@ -24,6 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.web.lms.model.LmsAttachment;
+import com.web.lms.model.LmsLeaveApplication;
+import com.web.lms.model.LmsUser;
 import com.web.lms.utility.FileUploadUtility;
 
 @RestController
@@ -31,6 +34,10 @@ public class FileUploadRest {
 
 	@Autowired
 	private HttpSession httpSession;
+	@Autowired
+	private LmsAttachmentHome lmsAttachmentHome;
+	@Autowired
+	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
 
 	@RequestMapping(value = "/fileupload/", method = RequestMethod.POST)
 	public ResponseEntity<String> uploadFile(@RequestBody MultipartFile file, UriComponentsBuilder ucBuilder) {
@@ -106,9 +113,17 @@ public class FileUploadRest {
 
 				if (!fileUploadPath.equalsIgnoreCase("")) {
 					// Save To DB
+					LmsAttachment lmsAttachment = new LmsAttachment();
+					LmsLeaveApplication lmsLeaveApplication = lmsLeaveApplicationHome.findById(1);
+					LmsUser lmsUser = lmsLeaveApplication.getLmsUserByUserId();
+					
+					lmsAttachment.setLmsLeaveApplication(lmsLeaveApplication);
+					lmsAttachment.setLmsUser(lmsUser);
+					lmsAttachment.setFilename(filename);
 
 					try {
 						// Save To DB
+						lmsAttachmentHome.persist(lmsAttachment);
 					} catch (Exception ex) {
 						ex.printStackTrace();
 					}

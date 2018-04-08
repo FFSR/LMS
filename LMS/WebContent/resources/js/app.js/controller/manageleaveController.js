@@ -1,29 +1,29 @@
 App
 	.controller(
-		'manageuserController',
+		'manageleaveController',
 		[
 			'$scope',
 			'$http',
-			'updateuserprofileService',
-			'manageuserService',
+			'updateuserleaveService',
+			'manageleaveService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http, updateuserprofileService, manageuserService,
+			function($scope, $http, updateuserleaveService, manageleaveService,
 				$timeout, $filter,NgTableParams,$location) {
 				$scope.testMsg = "Test Message New";
-				$scope.user = {};
-				$scope.showUserDetails = false;
+				$scope.leaveapplication = {};
+				$scope.showLeaveDetails = false;
 				
-				$scope.manageuser = function(user_id){
+				$scope.manageleave = function(user_id){
 					$scope.testMessage = "Test Message";
-					manageuserService.manageuser(user_id).then(
+					manageleaveService.manageleave(user_id).then(
 							function(d) {
 								$scope.testMsg1 = "Test";
 								console.log("Success.",d.message);
-								var data = d.listLmsuser;
+								var data = d.listLmsLeaveApplication;
 								$scope.tableParams = new NgTableParams({}, { dataset: data});
 								
 							},
@@ -34,20 +34,20 @@ App
 							});
 				};
 				
-				$scope.showEmpDetails = function(user){
+				$scope.showLeaveApplicationDetails = function(leaveapplication){
 					
-					console.log("User", user );
-					$scope.showUserDetails = true;
+					console.log("LeaveApplication", leaveapplication );
+					$scope.showLeaveDetails = true;
 					
-					$scope.user = user;
+					$scope.leaveapplication = leaveapplication;
 				};
 				
 				
 				
-				
-				$scope.userprofile = function(){
+				// Used for updating specific leave application
+				$scope.userleave = function(){ 
 					
-					updateuserprofileService.updateuserprofile($scope.user).then(
+					updateuserleaveService.updateuserleave($scope.leaveapplication).then(
 						function(d){
 							console.log(d.message);
 						},
