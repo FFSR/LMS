@@ -38,16 +38,19 @@
 				<div class="col-sm-3" style="background-color: white;">Name</div>
 				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
 				
-			</div>
-			
+			</div>			
 			<br>
 			
 			<div class="row">
 				
 				<div class="col-sm-3" style="background-color: white;">NID</div>
-				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="nid" class="form-control" placeholder="nid">
+				</div> 
 				<div class="col-sm-3" style="background-color: white;">Passport No</div>
-				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="passport" class="form-control" placeholder="passport">
+				</div> 
 			</div>
 			<br>
 			
@@ -62,7 +65,9 @@
 			<div class="row">
 				
 				<div class="col-sm-3" style="background-color: white;">Email</div>
-				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="email" class="form-control" placeholder="Email">
+				</div> 
 				<div class="col-sm-3" style="background-color: white;">Fax</div>
 				<div class="col-sm-3" style="background-color: white;">
 				<input type="text" ng-model="fax" class="form-control" placeholder="Fax">
@@ -75,7 +80,7 @@
 				<div class="col-sm-3" style="background-color: white;">Joining Date</div>
 				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
 			</div>
-			<br> <br><br>
+			<br><br>
 			<div class="row">
 			
 				<div class="col-sm-3" style="background-color: white;">Office</div>
@@ -180,8 +185,8 @@
 				<div class="col-sm-3" style="background-color: white;"></div>
 				<div class="col-sm-3" style="background-color: white;"><input type="button" class="btn btn-info" value="Cancel"></div>
 				<div class="col-sm-3" style="background-color: white;"></div>
-				<button type="submit" class="btn" id="fax" 
-										ng-click="fax()">Submit</button>
+				<button type="submit" class="btn" id="submit"
+					ng-click="userprofile()">Update</button>
 			</div>
 </div>
 		

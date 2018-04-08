@@ -19,6 +19,8 @@
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 
+
+
 </head>
 <body>
 	<br>
@@ -34,15 +36,18 @@
 
 				<div class="col-sm-3" style="background-color: white;">Office</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+					<select class="form-control" id="ddAppStatus" ng-model="appStatus" 
 						ng-options="x as x.name for x in dropdownData track by x.id">
 						<option value="">Select</option>
+						<option value="">Hospital</option>
+						<option value="">Casual</option>												
 					</select>
-				</div>
+										
+				</div>				
+				
 			</div>
 
 			<br>
-
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Name</div>
 
@@ -56,6 +61,8 @@
 					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
 						ng-options="x as x.name for x in dropdownData track by x.id">
 						<option value="">Select</option>
+						<option value="">Hospital</option>
+						<option value="">Casual</option>	
 					</select>
 				</div>
 			</div>
@@ -68,6 +75,8 @@
 					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
 						ng-options="x as x.name for x in dropdownData track by x.id">
 						<option value="">Select</option>
+						<option value="">Hospital</option>
+						<option value="">Casual</option>	
 					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Ministry</div>
@@ -75,6 +84,8 @@
 					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
 						ng-options="x as x.name for x in dropdownData track by x.id">
 						<option value="">Select</option>
+						<option value="">Hospital</option>
+						<option value="">Casual</option>	
 					</select>
 				</div>
 			</div>
@@ -87,6 +98,8 @@
 					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
 						ng-options="x as x.name for x in dropdownData track by x.id">
 						<option value="">Select</option>
+						<option value="">Hospital</option>
+						<option value="">Casual</option>	
 					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">NID</div>
@@ -158,6 +171,8 @@
 					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
 						ng-options="x as x.name for x in dropdownData track by x.id">
 						<option value="">Select</option>
+						<option value="">Male</option>
+						<option value="">Female</option>	
 					</select>
 				</div>
 			</div>
@@ -173,8 +188,8 @@
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Address</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="address" class="form-control"
-						placeholder="Address">
+					<textarea rows="2" type="textarea" ng-model="address" class="form-control"
+						placeholder="Address"></textarea>
 				</div>
 			</div>
 

@@ -126,7 +126,8 @@ public class LmsUserHome {
 			ex.printStackTrace();
 			
 			return null;
-
+		}
+	}
 	
 public List<LmsUser> findUserByUserID(Integer userid) {
 		

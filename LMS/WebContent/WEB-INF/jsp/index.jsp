@@ -479,6 +479,7 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
 						ng-options="x as x.name for x in dropdownData track by x.id">
 						<option value="">Select</option>
+						<option value="">Select</option>
 					</select>
 	
 				</div>

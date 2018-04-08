@@ -51,18 +51,38 @@ App
 						
 					};
 				
-				
-				$scope.updateuserprofile = function(){					
-					$scope.user.fax = $scope.fax;
+				$scope.userprofile = function(){
+					
+					$scope.user.name = $scope.username;
+					$scope.user.nid = $scope.nid;
+					$scope.user.office = $scope.office;
+					$scope.user.division = $scope.division;
+					$scope.user.designation = $scope.designation;
+					$scope.user.ministry = $scope.ministry;
+					$scope.user.section = $scope.section;
+					$scope.user.nationality = $scope.nationality;
+					$scope.user.passport = $scope.passport;
+					$scope.user.mobile = $scope.mobile;
+					$scope.user.telephone = $scope.telephone;
+				//	$scope.user.email = $scope.email;
 					$scope.user.email = 's@sd.com';
+					$scope.user.fax = $scope.fax;
+					$scope.user.joiningdate = $scope.joiningdate;
+					$scope.user.gender = $scope.gender;
+					$scope.user.supervisoremail = $scope.supervisoremail;
+					$scope.user.address = $scope.address;
+					
+				
+				
+									
 					updateuserprofileService.updateuserprofile($scope.user).then(
-						function(d) {
-							$scope.testMsg = d.message;
-							console.log("Success.",d.message);
-						},
-						function(e) {
-							$scope.testMsg = e.data.message;								
-							console.error(e.data.message);
-						});
+							function(d) {
+								$scope.testMsg = d.message;
+								console.log("Success.",d.message);
+							},
+							function(e) {
+								$scope.testMsg = e.data.message;								
+								console.error(e.data.message);
+							});
 			}
 			} ]);

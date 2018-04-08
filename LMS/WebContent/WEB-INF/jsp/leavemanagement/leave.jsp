@@ -6,26 +6,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
+
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <script src="resources/js/jquery-3.2.1.slim.min.js"></script>
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 
-<!-- NG-Table -->
-<link rel="stylesheet" href="resources/css/ng-table.min.css">
-<script src="resources/js/ng-table.min.js"></script>
-<!-- End of NG-Table -->
 
 
 <script type="text/javascript"
-	src="resources/js/app.js/service/leavehistoryService.js"></script>
+	src="resources/js/app.js/service/leaveService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/leavehistoryController.js"></script>
+	src="resources/js/app.js/controller/leaveController.js"></script>
 
 </head>
 <body>
 	<div ng-controller="leavehistoryController as lhc">
+			
 
+			
+			
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
@@ -42,7 +42,7 @@
 								</div>
 
 								<button type="submit" class="btn btn-default" id="search"
-									ng-click="lhc.leavehistory(lhc.user_id)">Leave History</button>
+									ng-click="lhc.leave(lhc.user_id)">Leave History</button>								
 							</form>
 							<div style="color: blue">{{lhc.user_id}}{{lhc.testMsg}}</div>
 						</div>
@@ -50,34 +50,40 @@
 				</div>
 			</div>
 		</div>
-		<div>
-			<table class="table table-sm">
-				<div>
+	
+	
+	<div>
+		<table class="table table-sm">
+				
+				
+					<div>
 					Test Message: {{lhc.testMsg1}}
-					<table ng-table="lhc.tableParams" class="table" show-filter="true">
-						<tr ng-repeat="user in $data">
-							<td title="'Employee Name'" filter="{ name: 'text'}"
-								sortable="'name'">{{user.lmsUser.name}}</td>
-
-							<td title="'Leave Type'" filter="{ type: 'text'}"
-								sortable="'lmsLeaveType.type'">{{user.lmsLeaveType.type}}</td>
-
-							<td title="'Total Leave'" filter="{ leaveTotal: 'text'}"
-								sortable="'totalleave'">{{user.leaveTotal}}</td>
-
-							<td title="'Taken Leave'" filter="{ leavetaken: 'text'}"
-								sortable="'takenleave'">{{user.leaveTaken}}</td>
-
-							<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
-								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
-
-							<td title="'Eligibility'" filter="{ eligibility: 'text'}"
-								sortable="'eligibility'">{{user.eligibility}}</td>
-						</tr>
-					</table>
+						<table ng-table="lhc.tableParams" class="table" show-filter="true">
+							<tr ng-repeat="user in $data">
+								<td title="'Employee Name'" filter="{ name: 'text'}"
+									sortable="'name'">{{user.lmsUser.name}}</td>
+								
+								<td title="'Leave Type'" filter="{ type: 'text'}"
+									sortable="'lmsLeaveType.type'">{{user.lmsLeaveType.type}}</td>	
+								
+								<td title="'Total Leave'" filter="{ leaveTotal: 'text'}"
+									sortable="'totalleave'">{{user.leaveTotal}}</td>
+									
+								<td title="'Taken Leave'" filter="{ leavetaken: 'text'}"
+									sortable="'takenleave'">{{user.leaveTaken}}</td>
+								
+								<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
+									sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+								
+								<td title="'Eligibility'" filter="{ eligibility: 'text'}"
+									sortable="'eligibility'">{{user.eligibility}}</td>
+								
+							</tr>
+						</table>
+					</div>
 				</div>
 			</table>
-		</div>
+	</div>
 	</div>
 </body>
 </html>

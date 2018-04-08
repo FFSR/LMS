@@ -28,7 +28,7 @@ import com.web.lms.wrapper.ResponseWrapper;
 
 
 @RestController
-public class LeaveApplication {
+public class Leaveapplication {
 	
 	@Autowired
 	private HttpSession httpSession;
@@ -74,49 +74,5 @@ public class LeaveApplication {
 			responseWrapper.setMessage("Success. User has created");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 
-		
-
-	}
-	
-	
-	@RequestMapping(value="/generaterequest/{userid}/{leavetypeid}", method=RequestMethod.POST)
-	
-	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid, @PathVariable("leavetypeid") Integer leavetypeid){
-		
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		
-		try {
-			
-			// Validate User
-			LmsUser user = lmsUserHome.findById(userid);
-			if(user == null) {
-				responseWrapper.setMessage("This userid is not available in database.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);				
-			}
-
-			// Validate Leave Type
-			LmsLeaveType leaveType = lmsLeaveTypeHome.findById(leavetypeid);
-			
-			if(leaveType == null) {
-				responseWrapper.setMessage("This Leave Type is not available in database.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);				
-			}
-			
-			// Find 
-			/*if(leaveType.getType().equals(LEAVETYPE.EARN)) {
-				
-				
-			}*/
-			
-			
-			
-			responseWrapper.setMessage("Success. Your request is successfully generated.");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-		}
-		catch(Exception ex) {		
-			responseWrapper.setMessage("Fail."+ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);			
-		}		
-	}
-	
+	}	
 }

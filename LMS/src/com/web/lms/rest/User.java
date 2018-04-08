@@ -3,6 +3,7 @@ package com.web.lms.rest;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.web.lms.wrapper.ResponseWrapper;
 
 import com.web.lms.dao.LmsUserHome;
-import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
+import com.web.lms.wrapper.ResponseWrapper;
 
 @RestController
 public class User {
@@ -67,7 +67,6 @@ public class User {
 
 		try {
 			//LmsUser user = new LmsUser();
-<<<<<<< HEAD
 			
 			//String office = lmsUser.getLmsOfficeLocation();
 			String userName = lmsUser.getName();
@@ -109,7 +108,7 @@ public class User {
 	
 	
 	@RequestMapping(value = "/changepassword", method = RequestMethod.PUT)
-	public ResponseEntity<ResponseWrapper> doChangepassword(@RequestBody LmsUser lmsUser) {
+	public ResponseEntity<ResponseWrapper> doChangePassword(@RequestBody LmsUser lmsUser) {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		
@@ -155,28 +154,31 @@ public class User {
 		
 	}
 	
+	@RequestMapping(value="/manageuser/{userid}", method=RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable Integer userid){
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(userid);
+		
+		if(lmsUser.size()>0) {
+			
+			responseWrapper.setListLmsuser(lmsUser);
+			
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+		
+		responseWrapper.setMessage("Fail. Data not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+	}
+	
 	
 	@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		
 
 		try {
-			
-			String fax = lmsUser.getFax();
-			String email = lmsUser.getEmail();
-			
-
-			try {
-				lmsUser = lmsUserHome.findByEmailID(email);				
-				lmsUser.setFax(fax);;
-				lmsUserHome.merge(lmsUser);
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
-				responseWrapper.setMessage("Failed to change password.");
-=======
+			//LmsUser user = new LmsUser();
 			
 			//String office = lmsUser.getLmsOfficeLocation();
 			String userName = lmsUser.getName();
@@ -200,9 +202,12 @@ public class User {
 
 				
 
-				try {
+				try  {	
+					
 				int lmsuserid = lmsUserHome.persist(lmsUser);
+				
 				}
+				
 				catch(Exception ex) {
 					ex.printStackTrace();
 					responseWrapper.setMessage("Failed to create User.");
@@ -215,100 +220,12 @@ public class User {
 			} catch (Exception ex) {
 
 				responseWrapper.setMessage("Fail."+ex.getMessage());
->>>>>>> e3eae446a69a66540732f6ec34029e0cf68f87af
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
-			
-			responseWrapper.setMessage("Success. Password changed");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+				
 
-		} catch (Exception ex) {
-
-			responseWrapper.setMessage("Fail."+ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 
-	}
-<<<<<<< HEAD
-
-	
-
-	
-=======
-	
-	
-	@RequestMapping(value = "/changepassword", method = RequestMethod.PUT)
-	public ResponseEntity<ResponseWrapper> doChangepassword(@RequestBody LmsUser lmsUser) {
-		
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		
-
-		try {
-			
-			String newpassword = lmsUser.getPassword();
-			String email = lmsUser.getEmail();
-			
-
-			try {
-				lmsUser = lmsUserHome.findByEmailID(email);				
-				lmsUser.setPassword(newpassword);
-				lmsUserHome.merge(lmsUser);
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
-				responseWrapper.setMessage("Failed to change password.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-			}
-			
-			responseWrapper.setMessage("Success. Password changed");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
-		} catch (Exception ex) {
-
-			responseWrapper.setMessage("Fail."+ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}
-
-	}
-
-	
-	
-	
-	
-	@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
-	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
-		
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-		
-
-		try {
-			
-			String fax = lmsUser.getFax();
-			String email = lmsUser.getEmail();
-			
-
-			try {
-				lmsUser = lmsUserHome.findByEmailID(email);				
-				lmsUser.setFax(fax);;
-				lmsUserHome.merge(lmsUser);
-			}
-			catch(Exception ex) {
-				ex.printStackTrace();
-				responseWrapper.setMessage("Failed to change password.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-			}
-			
-			responseWrapper.setMessage("Success. Password changed");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
-		} catch (Exception ex) {
-
-			responseWrapper.setMessage("Fail."+ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}
-
-	}	
->>>>>>> e3eae446a69a66540732f6ec34029e0cf68f87af
 }
 
 
