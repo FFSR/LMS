@@ -16,31 +16,282 @@
 <script
 	src="resources/js/bootstrap.min.js"></script>
 	
-</head>
-<body>
 
-<div class="container-fluid">
-<br>
-			
+<script type="text/javascript"
+	src="resources/js/app.js/service/updateuserprofileService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/manageuserService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/controller/manageuserController.js"></script>
+	
+</head>
+<body ng-controller="manageuserController">
+
+	<div >
+
+		<div class="container-fluid">
+			<br>
+
 			<div class="row">
-				<div class="col-sm-1" style="background-color: white;">User ID</div>
-				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-1" style="background-color: white;">Employee
+					ID</div>
+				<div class="col-sm-3" style="background-color: white;">
+					<input type="text">
+				</div>
 				<div class="col-sm-1" style="background-color: white;">Mobile</div>
-				<div class="col-sm-1" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-1" style="background-color: white;">
+					<input type="text">
+				</div>
 			</div>
 			<br>
 			<div class="row">
 				<div class="col-sm-1" style="background-color: white;">Name</div>
-				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-3" style="background-color: white;">
+					<input type="text">
+				</div>
 				<div class="col-sm-1" style="background-color: white;">Email</div>
-				<div class="col-sm-1" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-1" style="background-color: white;">
+					<input type="text">
+				</div>
 			</div>
-						
-</div>
 
-<br>
-		<a href="http://localhost:8080/LMS/manageusersearch" class="btn btn-info" role="button">Search</a>
+		</div>
+
+		<br>
+		<div class="modal-body">
+			<form role="form">
+				<div class="form-group">
+					<label for="user_id">Employee ID:</label> <input type="text"
+						ng-model="user_id" class="form-control" id="user_id">
+				</div>
+
+				<button type="submit" class="btn btn-default" id="search"
+					ng-click="manageuser(user_id)">Search</button>
+			</form>
+			<div style="color: blue">{{user_id}}{{testMsg}}</div>
+		</div>
+
+
+
+		<a href="http://localhost:8080/LMS/manageusersearch"
+			class="btn btn-info" role="button">Search</a>
 		<button type="button" class="btn">Clear</button>
+
+
+		<br>
+
+		<div>
+			<table class="table table-sm">
+				<div>
+					Test Message: {{testMessage}}
+					<table ng-table="tableParams" class="table" show-filter="true">
+						<tr ng-repeat="user in $data">
+							<td title="'Employee ID'" filter="{ name: 'text'}"
+								sortable="'name'">{{user.id}}</td>
+							<td title="'Employee name'" filter="{ name: 'text'}"
+								sortable="'name'">{{user.name}}</td>
+
+							<td title="'Division'" filter="{ type: 'text'}"
+								sortable="'lmsLeaveType.type'">{{user.lmsUser.passport}}</td>
+
+							<td title="'Section'" filter="{ leaveTotal: 'text'}"
+								sortable="'totalleave'">{{user.leaveTotal}}</td>
+
+							<td title="'mobile'" filter="{ leavetaken: 'text'}"
+								sortable="'takenleave'">{{user.leaveTaken}}</td>
+
+							<td title="'Status'" filter="{ Remainingleave: 'text'}"
+								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+								
+							<td title="'Action'"><button class="btn-primary" ng-click="showEmpDetails(user)">Details</button></td>
+					</table>
+				</div>
+			</table>
+		</div>
 		
+Show: {{test}}	
+		<br>
+<div class="container-fluid">
+	<div ng-if="showUserDetails">
+			<div class="row">
+				<div class="col-sm-3" style="background-color: white;">User ID</div>
+				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-3" style="background-color: white;">Name</div>
+				<div class="col-sm-3" style="background-color: white;"><input type="text" ng-model="user.name"></div>
+				
+			</div>			
+			<br>
+			
+			<div class="row">
+				
+				<div class="col-sm-3" style="background-color: white;">NID</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="user.nid" class="form-control" placeholder="nid">
+				</div> 
+				<div class="col-sm-3" style="background-color: white;">Passport No</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="user.passport" class="form-control" placeholder="passport">
+				</div> 
+			</div>
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-3" style="background-color: white;">Mobile</div>
+				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+				<div class="col-sm-3" style="background-color: white;">Telephone</div>
+				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+			</div>
+			<br>
+			
+			<div class="row">
+				
+				<div class="col-sm-3" style="background-color: white;">Email</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="email" class="form-control" placeholder="Email">
+				</div> 
+				<div class="col-sm-3" style="background-color: white;">Fax</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="fax" class="form-control" placeholder="Fax">
+				</div> 
+				
+			</div>
+			<br>
+			<div class="row">				
+				
+				<div class="col-sm-3" style="background-color: white;">Joining Date</div>
+				<div class="col-sm-3" style="background-color: white;"><input type="text"></div>
+			</div>
+			<br><br>
+			<div class="row">
+			
+				<div class="col-sm-3" style="background-color: white;">Office</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+				
+				<div class="col-sm-3" style="background-color: white;">Division</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-3" style="background-color: white;">Designation</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+				<div class="col-sm-3" style="background-color: white;">Ministry</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			
+			<br>			
+			
+			<div class="row">
+			
+				<div class="col-sm-3" style="background-color: white;">Section</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+				<div class="col-sm-3" style="background-color: white;">Nationality</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+				
+			</div>
+			
+			<br>
+			
+			<div class="row">
+				
+				<div class="col-sm-3" style="background-color: white;">Gender</div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+				
+				<div class="col-sm-3" style="background-color: white;">Status </div>
+				<div class="col-sm-3" style="background-color: white;">
+				<select class="form-control" id="ddAppStatus" ng-model="appStatus"
+						ng-options="x as x.name for x in dropdownData track by x.id">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			
+			<br>
+			
+			<div class="row">
+				
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+			</div>
+			
+			<br>
+			
+			<div class="row"><br>
+				<div class="col-sm-3" style="background-color: white;"> </div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+			</div>
+			
+			<br>
+			
+			<div class="row">
+				<div class="col-sm-3" style="background-color: white;"><input type="submit" class="btn btn-info" value="Update"> </div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<div class="col-sm-3" style="background-color: white;"><input type="button" class="btn btn-info" value="Cancel"></div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<button type="submit" class="btn" id="submit"
+					ng-click="userprofile()">Update</button>
+			</div>
+	</div>
+</div>
+		
+		<div>Response: {{testMsg}}</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
 </body>
 </html>

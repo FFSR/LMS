@@ -59,8 +59,6 @@
 						<option value="">Select</option>
 					</select>
 			</div>
-			</div>
-				<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Reason For Leave</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="reasonForLeave" class="form-control"

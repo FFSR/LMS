@@ -16,6 +16,11 @@ App
 				
 				$scope.testMsg = "Testing Message";
 				
+				$scope.uploadFile = function(){
+					$scope.processDropzone();
+					//$scope.restDropzone();
+				}
+				
 				$scope.leaveapplication = {
 						"year" : "",
 						"leaveAvailable" : "",
@@ -157,7 +162,7 @@ App
 						"totalDayText" : "",					
 						"reasonForLeave" : "",
 						"taskNeedToPerformed" : "",
-						"lmsUserByReliverEmailAddressUserId":"",
+						//"lmsUserByReliverEmailAddressUserId":"",
 						"insertDate" : "",
 						"insertBy" : "",
 						"updatDate" : "",						
@@ -167,21 +172,20 @@ App
 				$scope.applicationforleave = function(){				
 					
 					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
-					//$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
+					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
-					//$scope.leaveapplication.lmsLeaveType = $scope.ddReliever;
 					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId=$scope.ddReliever
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
-					//$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
+					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
 					//$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.lmsUserByReliverEmailAddressUserId;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
-					//$scope.leaveapplication.fromDate = $scope.fromDate;
-					//$scope.leaveapplication.toDate = $scope.toDate;
-					//$scope.leaveapplication.totalDayCount = $scope.totalDayCount;
-					//$scope.leaveapplication.totalDayText = $scope.totalDayText;
-					//$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
-					//$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
-					//$scope.leaveapplication.insertDate = 
+					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
+					$scope.leaveapplication.toDate = new Date($('#toDate').val());
+					$scope.leaveapplication.totalDayCount = $scope.totalDayCount;
+					$scope.leaveapplication.totalDayText = $scope.totalDayText;
+					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
+					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
+				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
 					//$scope.leaveapplication.updateBy = $scope.update_by;
@@ -191,6 +195,7 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
+								$scope.uploadFile();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
@@ -216,7 +221,7 @@ App
 					});
 				};
 				
-			$scope.getleaveapplication = function(leaveapplicationid){
+		/* $scope.getleaveapplication = function(leaveapplicationid){
 					console.log("From Get Method");
 					leaveapplicationservice.getleaveapp(leaveapplicationid).then(
 					function(d){
@@ -231,7 +236,7 @@ App
 					);
 				};
 				
-				$scope.getleaveapplication(4);
+				$scope.getleaveapplication(4);*/
 			} 
 			]);
 				

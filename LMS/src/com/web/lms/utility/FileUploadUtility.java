@@ -19,6 +19,7 @@ public class FileUploadUtility {
 	public static String uploadSingleFile(MultipartFile file, String name, String ticketFolderName) {
 
 		String fileUploadPath = "";
+		ticketFolderName = "Test_Folder";
 		BufferedOutputStream stream = null;
 
 		try {
