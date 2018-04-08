@@ -145,9 +145,10 @@ public class User {
 	}
 
 	@RequestMapping(value = "/getUserList/", method = RequestMethod.GET)
-	public ResponseEntity<List<LmsUser>> getlog() {
+	public ResponseEntity<List<LmsUser>> getUserList() {
 
-		List<LmsUser> listLmsUser = lmsUserHome.findAllUsers();
+		List<LmsUser> listLmsUser = lmsUserHome.findAllUser();
+		
 		
 		if(listLmsUser == null) {
 			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
@@ -228,9 +229,7 @@ public class User {
 				
 
 		}
-
-	}
-		
+	
 		@RequestMapping(value = "/getUserlist/", method = RequestMethod.GET)
 		public ResponseEntity<List<LmsUser>> getlog() {
 
@@ -249,46 +248,7 @@ public class User {
 			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
 			
 		}	
-		
-		@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
-		public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
-			
-			ResponseWrapper responseWrapper = new ResponseWrapper();
-
-					try  {	
-						
-						lmsUserHome.merge(lmsUser); // For Update
-					
-					}
-					
-					catch(Exception ex) {
-						ex.printStackTrace();
-						responseWrapper.setMessage("Failed to create User.");
-						return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-					}
-					
-					responseWrapper.setMessage("Success. User has created");
-					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
-			}
-		
-		@RequestMapping(value="/manageuser/{userid}", method=RequestMethod.GET)
-		public ResponseEntity<ResponseWrapper> manageuser(@PathVariable Integer userid){
-			
-			ResponseWrapper responseWrapper = new ResponseWrapper();
-			List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(userid);
-			
-			if(lmsUser.size()>0) {
 				
-		   responseWrapper.setListLmsuser(lmsUser);
-				
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-			}
-			
-			responseWrapper.setMessage("Fail. Data not matched.");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}
-		
 }
 
 
