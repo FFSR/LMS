@@ -1,6 +1,7 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -78,11 +79,29 @@ public class LmsLeaveApplicationHome {
 		}
 	}
 	
+@SuppressWarnings("unchecked")	
+public List<LmsLeaveApplication> findLeaveApplicationByUserID(String user_name, Integer userid) {
 	
-public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
+	String userName = "";
+	String userID = "";
+	
+	if(user_name != null) {
+		userName = "AND lmsuser.NAME = '"+user_name+"'";
+	}
+	else {
+		userName = " ";
+	}
+	if(userid != 0) {
+		userID = "lapp.USER_ID = " + userid;
+	}
+	else {
+		userID = " ";
+	}
 		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid", userid);
+			Query query = entityManager.createNativeQuery("SELECT * FROM lms_leave_application lapp " + 
+					"LEFT JOIN lms_user lmsuser ON lmsuser.ID = lapp.USER_ID " + 
+					"WHERE "+userID+ " " + userName);
 		
 			List<LmsLeaveApplication> lmsLeaveApplication = query.getResultList();
 		
@@ -95,4 +114,32 @@ public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
 			
 		}
 	}
+
+@SuppressWarnings("unchecked")
+public List<LmsLeaveApplication> findAllLeaveApplications() {
+	try {
+		Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e");
+		
+		return (List<LmsLeaveApplication>) query.getResultList();
+	}
+	catch(Exception ex) {
+		ex.printStackTrace();
+		
+		return null;
+	}
+}
+
+@SuppressWarnings("unchecked")
+public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate() {
+	try {
+		Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.toDate >=CURDATE()");
+		
+		return (List<LmsLeaveApplication>) query.getResultList();
+	}
+	catch(Exception ex) {
+		ex.printStackTrace();
+		
+		return null;
+	}
+}
 }

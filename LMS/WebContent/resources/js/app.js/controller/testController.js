@@ -1,46 +1,59 @@
 App
 	.controller(
-		'TestController',
+		'testController',
 		[
 			'$scope',
 			'$http',
-			'testService',
-			'DropDownService',
+			'holidaygridshowService',
 			'$timeout',
 			'$filter',
+			'NgTableParams',
 			'$location',
 
-			function($scope, $http, testService,DropDownService,
-				$timeout, $filter,$location) {
+			function($scope, $http,holidaygridshowService,
+				$timeout, $filter,NgTableParams,$location) {
+				$scope.testMsg = "Test Message New";
+				$scope.holidaygridcontrol = {};
+				$scope.showLeaveDetails = false;
 				
-				$scope.testMsg = "Test Message";
-				
-				$scope.login = function(networkId,password){
-					testService.login(networkId,password).then(
+				$scope.holidaygridshow = function(){
+					$scope.testMessage = "Test Message";
+					holidaygridshowService.holidaygridshow().then(
 							function(d) {
-								$scope.testMsg = d.message;
+								$scope.testMsg1 = "Test";
 								console.log("Success.",d.message);
+								var data = d.listLmsHolidayRecord;
+								$scope.tableParams = new NgTableParams({}, { dataset: data});
+								
 							},
 							function(errResponse) {
 								
 								console
-										.error('Error while fetching Currencies');
+										.error("Error while fetching Currencies");
 							});
 				};
 				
-				$scope.loadDownDown = function(dropDownName){
-					$scope.dDName = dropDownName;
-					DropDownService.populateDropDown($scope.dDName).then(function(d) {
-						$scope.dropdownData = d;
-					}, function(errResponse) {
-						console.log("Failed to get Drop Down.");
-					});
+				$scope.showLeaveApplicationDetails = function(leaveapplication){
+					
+					console.log("LeaveApplication", leaveapplication );
+					$scope.showLeaveDetails = true;
+					
+					$scope.leaveapplication = leaveapplication;
 				};
 				
-				$scope.uploadFile = function() {
-					console.log("Inside the dropbox");
-					$scope.processDropzone();
-					$scope.resetDropzone();
-				};
+				
+				
+				// Used for updating specific leave application
+				$scope.userleave = function(){ 
+					
+					updateuserleaveService.updateuserleave($scope.leaveapplication).then(
+						function(d){
+							console.log(d.message);
+						},
+						function(errResponse){
+							console.log("Failed to Update User Profile.");
+						}
+					);
+				}
 				
 			} ]);

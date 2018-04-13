@@ -47,7 +47,7 @@
 			<div class="row">
 				<div class="col-sm-1" style="background-color: white;">Name</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text">
+					<input type="text" ng-model="search.user_name">
 				</div>
 				<div class="col-sm-1" style="background-color: white;">Email</div>
 				<div class="col-sm-1" style="background-color: white;">
@@ -62,7 +62,7 @@
 			<form role="form">
 				<div class="form-group">
 					<label for="user_id">User ID:</label> <input type="text"
-						ng-model="user_id" class="form-control" id="user_id">
+						ng-model="search.user_id" class="form-control" id="user_id">
 				</div>
 
 				<button type="submit" class="btn btn-default" id="search"

@@ -3,15 +3,15 @@
  */
 'use strict';
 
-App.factory('manageleaveService', [
+App.factory('homepagegridshowService', [
 		'$http',
 		'$q',
 		'url',
 		function($http, $q, url) {
 			return {
 				
-				manageleave: function(search){
-					return $http.post(url+'manageleave/',search)
+				homepagegridshow: function(){
+					return $http.get(url+'homepagegridshow/')
 					.then(function(response) {
 						return response.data;
 					},

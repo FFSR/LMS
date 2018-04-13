@@ -1,5 +1,6 @@
 package com.web.lms.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsUser;
 import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.wrapper.LeaveApplicationWrapper;
+import com.web.lms.wrapper.ManageLeaveSearchWrapper;
 
 @RestController
 public class Testleaveapplication {
@@ -50,12 +52,20 @@ public class Testleaveapplication {
 
 	}
 	
-	@RequestMapping(value="/manageleave/{userid}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable Integer userid){
+	@RequestMapping(value="/manageleave/", method=RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> manageuser(@RequestBody ManageLeaveSearchWrapper manageLeaveSearchWrapper){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		responseWrapper.setMessage("Test Message");
-		List<LmsLeaveApplication> lmsLeaveApplication = lmsLeaveApplicationHome.findLeaveApplicationByUserID(userid);
+		
+		System.out.println(manageLeaveSearchWrapper);
+		List<LmsLeaveApplication> lmsLeaveApplication = new ArrayList<>();
+		
+		if(manageLeaveSearchWrapper.getUser_name() != null && manageLeaveSearchWrapper.getUser_id() != 0) {
+			lmsLeaveApplication = lmsLeaveApplicationHome.findLeaveApplicationByUserID(manageLeaveSearchWrapper.getUser_name(),manageLeaveSearchWrapper.getUser_id());
+		}
+		
+		
 		
 		if(lmsLeaveApplication.size()>0) {
 			
@@ -67,6 +77,26 @@ public class Testleaveapplication {
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
+	
+	@RequestMapping(value = "/homepagegridshow/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> getlog() {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		responseWrapper.setMessage("Test Message");
+		
+		List<LmsLeaveApplication> lmsLeaveApplication = lmsLeaveApplicationHome.findAllLeaveApplicationsGeaterThanCurrentDate();// used for showing leave info in homepage
+			//listLmsLeaveApplication = lmsLeaveApplicationHome.findAllLeaveApplications();
+			
+		if(lmsLeaveApplication.size()>0) {
+			   responseWrapper.setListLmsLeaveApplication(lmsLeaveApplication);
+					
+					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+				}
+		
+		responseWrapper.setMessage("Fail. Data not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		
+	}	
 	
 	@RequestMapping(value = "/updateuserleave", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseWrapper> updateuserleave(@RequestBody LmsLeaveApplication lmsLeaveApplication) {

@@ -16,10 +16,18 @@ App
 				$scope.testMsg = "Test Message New";
 				$scope.leaveapplication = {};
 				$scope.showLeaveDetails = false;
+				$scope.search = {
+						'user_name' : '',
+						'user_id' : 0
+				}
 				
 				$scope.manageleave = function(user_id){
 					$scope.testMessage = "Test Message";
-					manageleaveService.manageleave(user_id).then(
+					if($scope.search.name != "" && $scope.search.user_id != 0){
+						console.log("Test message");
+					}
+					
+					manageleaveService.manageleave($scope.search).then(
 							function(d) {
 								$scope.testMsg1 = "Test";
 								console.log("Success.",d.message);

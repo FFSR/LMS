@@ -3,15 +3,15 @@
  */
 'use strict';
 
-App.factory('manageleaveService', [
+App.factory('holidaygridshowService', [
 		'$http',
 		'$q',
 		'url',
 		function($http, $q, url) {
 			return {
 				
-				manageleave: function(search){
-					return $http.post(url+'manageleave/',search)
+				holidaygridshow: function(){
+					return $http.get(url+'holidaygridshow/')
 					.then(function(response) {
 						return response.data;
 					},
@@ -22,7 +22,5 @@ App.factory('manageleaveService', [
 								.reject(errResponse);
 					});
 				},
-				
-				
 			}
 		} ]);
