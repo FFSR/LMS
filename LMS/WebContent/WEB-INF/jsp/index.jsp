@@ -26,6 +26,7 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 
 <!-- End bootstrap stuff -->
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
+<script type="text/javascript" src="resources/js/app.js/directives/RestrictInput.js"></script>
 <script type="text/javascript" src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
 <script type="text/javascript" src="resources/js/app.js/controller/FIleUploadController.js"></script>
 <script type="text/javascript" src="resources/js/DatePicker/jquery.js"></script>
@@ -524,9 +525,24 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 			</div>
 		</div>
+		<!-- Email Address Validator -->
+		<div id="email-address-validator">
+			<form name="myForm">
+				<div>
+					Email-Address: <input type="email" name="input" ng-model="text" required/>
+					<span class="error" ng-show="myForm.input.$error.email">
+	    				Not valid email!</span>
+				</div>
+			</form>
+		</div>
 		
+		<!-- Only AlphaNumeric input -->
+		<div>
+			digitsOnly: <input ng-model="val1" restrict-input="{type: 'digitsOnly'}"/> {{val1}}<br/>
+			lettersAndDigitsOnly: <input ng-model="val5" restrict-input="{type: 'lettersAndDigitsOnly'}"/> {{val5}}<br/>
+		</div>
 		
-	</div>
+	</div> <!-- End of Controller -->
 	
 </body>
 <script>
