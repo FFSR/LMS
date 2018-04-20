@@ -12,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.lms.model.LmsDivision;
 import com.web.lms.model.LmsDropdown;
 
 
@@ -75,12 +76,27 @@ public class LmsDropdownHome {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
+/*	@SuppressWarnings("unchecked")
 	public List<LmsDropdown> findByDropdownName(String dropdownName) {
 		try {
 			Query query = entityManager.createQuery("SELECT e FROM LmsDropdown e WHERE e.dropdown=:dropdownName and LOWER(e.status)='active' order by e.slno").setParameter("dropdownName", dropdownName);
 			
 			return (List<LmsDropdown>) query.getResultList();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	} */
+	
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsDropdown> getAllDropdown(){
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsDropdown e");
+			
+			return (List<LmsDropdown>) query.getResultList(); 
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();

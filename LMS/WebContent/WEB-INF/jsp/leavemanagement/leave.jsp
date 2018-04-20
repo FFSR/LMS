@@ -7,12 +7,14 @@
 <title>Insert title here</title>
 
 
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script src="resources/js/popper.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-
-
+<link rel="stylesheet"
+	href="resources/css/bootstrap.min.css">
+<script
+	src="resources/js/jquery-3.2.1.slim.min.js"></script>
+<script
+	src="resources/js/popper.min.js"></script>
+<script
+	src="resources/js/bootstrap.min.js"></script>
 
 <script type="text/javascript"
 	src="resources/js/app.js/service/leaveService.js"></script>
@@ -21,10 +23,7 @@
 
 </head>
 <body>
-	<div ng-controller="leavehistoryController as lhc">
-			
-
-			
+	<div ng-controller="leaveController as lc">			
 			
 		<div class="container-fluid">
 			<div id="forgotModal">
@@ -32,19 +31,19 @@
 					<!-- Modal content-->
 					<div class="content">
 						<div class="header">
-							<h4 class="modal-title">Leave History Report...</h4>
+							<h4 class="modal-title">Leave History ...</h4>
 						</div>
 						<div class="modal-body">
 							<form role="form">
 								<div class="form-group">
 									<label for="user_id">Employee ID:</label> <input type="text"
-										ng-model="lhc.user_id" class="form-control" id="user_id">
+										ng-model="lc.user_id" class="form-control" id="user_id">
 								</div>
 
 								<button type="submit" class="btn btn-default" id="search"
-									ng-click="lhc.leave(lhc.user_id)">Leave History</button>								
+									ng-click="lc.leave(lc.user_id)">Leave History</button>								
 							</form>
-							<div style="color: blue">{{lhc.user_id}}{{lhc.testMsg}}</div>
+							<div style="color: blue">{{lc.user_id}}{{lc.testMsg}}</div>
 						</div>
 					</div>
 				</div>
@@ -57,8 +56,8 @@
 				
 				
 					<div>
-					Test Message: {{lhc.testMsg1}}
-						<table ng-table="lhc.tableParams" class="table" show-filter="true">
+					Test Message: {{lc.testMsg1}}
+						<table ng-table="lc.tableParams" class="table" show-filter="true">
 							<tr ng-repeat="user in $data">
 								<td title="'Employee Name'" filter="{ name: 'text'}"
 									sortable="'name'">{{user.lmsUser.name}}</td>
@@ -66,24 +65,23 @@
 								<td title="'Leave Type'" filter="{ type: 'text'}"
 									sortable="'lmsLeaveType.type'">{{user.lmsLeaveType.type}}</td>	
 								
-								<td title="'Total Leave'" filter="{ leaveTotal: 'text'}"
-									sortable="'totalleave'">{{user.leaveTotal}}</td>
+								<td title="'From Date'" filter="{ From Date: 'text'}"
+									sortable="'fromdate'">{{user.lmsLeaveApplication.leaveTaken}}</td>
 									
 								<td title="'Taken Leave'" filter="{ leavetaken: 'text'}"
-									sortable="'takenleave'">{{user.leaveTaken}}</td>
+									sortable="'takenleave'">{{user.lmsLeaveApplication.leaveAvailable}}</td>
 								
 								<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
-									sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+									sortable="'remainingTotal'">{{user.lmsLeaveApplication.leaveBalance}}</td>
 								
 								<td title="'Eligibility'" filter="{ eligibility: 'text'}"
-									sortable="'eligibility'">{{user.eligibility}}</td>
+									sortable="'eligibility'">{{user.lmsLeaveApplication.eligibility}}</td>
 								
 							</tr>
 						</table>
-					</div>
-				</div>
+					</div>				
 			</table>
-	</div>
+		</div>
 	</div>
 </body>
 </html>

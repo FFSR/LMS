@@ -79,14 +79,15 @@ public class LmsLeaveApplicationHome {
 	}
 	
 	
+	
 public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
 		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid", userid);
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid",userid);
 		
-			List<LmsLeaveApplication> lmsLeaveApplication = query.getResultList();
+			List<LmsLeaveApplication> lmsLeaveApplications = query.getResultList();
 		
-			return lmsLeaveApplication;
+			return lmsLeaveApplications;
 		
 		}
 		catch(Exception ex) {

@@ -1,8 +1,12 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
@@ -69,4 +73,20 @@ public class LmsSectionHome {
 			throw re;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsSection> getAllsection(){
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsSection e");
+			
+			return (List<LmsSection>) query.getResultList(); 
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 }
