@@ -1,10 +1,10 @@
 /* Service Code */
 'use strict';
  
-App.factory('DropDownService', ['$http', '$q', 'url',function($http, $q, url){
+App.factory('MinistryService', ['$http', '$q', 'url',function($http, $q, url){
     return {
-    	getAllDropdown: function(){
-    		return $http.get(url+'getDropdownData/')
+    	getAllMinistry: function(){
+    		return $http.get(url+'getAllMinistryData/')
     				.then(
     						function(response){
     							return response.data;

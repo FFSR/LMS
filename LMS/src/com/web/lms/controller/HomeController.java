@@ -127,5 +127,10 @@ public class HomeController {
 		
 		return "applicationforleave";
 	}
+	@RequestMapping("/leave")
+	public String leave(Model model) {
+		
+		return "leave";
+	}
 	
 }

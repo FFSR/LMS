@@ -63,8 +63,12 @@ public class ResponseWrapper {
 		this.listLmsuser = listLmsuser;
 	}
 
-	public void setListLmsLeaveApplication(List<LmsLeaveApplication> LmsLeaveApplication) {
-		this.listLmsLeaveApplication = listLmsLeaveApplication;
+	public void setListLmsLeaveApplication(List<LmsLeaveApplication> lmsLeaveApplication) {
+		this.listLmsLeaveApplication = lmsLeaveApplication;
+	}
+	
+	public List<LmsLeaveApplication> getListLmsLeaveApplication() {
+		return listLmsLeaveApplication;
 	}
 	
 }

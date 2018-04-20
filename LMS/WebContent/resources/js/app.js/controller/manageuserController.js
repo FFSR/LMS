@@ -4,25 +4,27 @@ App
 		[
 			'$scope',
 			'$http',
+			'updateuserprofileService',
 			'manageuserService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http, manageuserService,
+			function($scope, $http, updateuserprofileService, manageuserService,
 				$timeout, $filter,NgTableParams,$location) {
-				var self = this;
-				self.testMsg = "Test Message New";
+				$scope.testMsg = "Test Message New";
+				$scope.user = {};
+				$scope.showUserDetails = false;
 				
-				self.manageuser = function(user_id){
-					self.testMessage = "Test Message";
+				$scope.manageuser = function(user_id){
+					$scope.testMessage = "Test Message";
 					manageuserService.manageuser(user_id).then(
 							function(d) {
-								self.testMsg1 = "Test";
+								$scope.testMsg1 = "Test";
 								console.log("Success.",d.message);
 								var data = d.listLmsuser;
-								self.tableParams = new NgTableParams({}, { dataset: data});
+								$scope.tableParams = new NgTableParams({}, { dataset: data});
 								
 							},
 							function(errResponse) {
@@ -32,7 +34,27 @@ App
 							});
 				};
 				
+				$scope.showEmpDetails = function(user){
+					
+					console.log("User", user );
+					$scope.showUserDetails = true;
+					
+					$scope.user = user;
+				};
 				
 				
-				//self.leavehistory(2);
+				
+				
+				$scope.userprofile = function(){
+					
+					updateuserprofileService.updateuserprofile($scope.user).then(
+						function(d){
+							console.log(d.message);
+						},
+						function(errResponse){
+							console.log("Failed to Update User Profile.");
+						}
+					);
+				}
+				
 			} ]);
