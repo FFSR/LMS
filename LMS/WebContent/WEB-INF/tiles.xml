@@ -152,6 +152,20 @@
 
 	</definition>
 
+	<definition name="testleave" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/testleave.jsp" />
+
+	</definition>
+	
+	<definition name="divisioninfo" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/divisioninfo.jsp" />
+			
+	</definition>
+
 </tiles-definitions>
 
 

@@ -12,6 +12,7 @@ import com.web.lms.wrapper.ResponseWrapper;
 
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.model.LmsUser;
+import com.web.lms.utility.ProtectedConfigFile;
 
 
 @RestController
@@ -28,8 +29,21 @@ public class Login {
 	public ResponseEntity<ResponseWrapper> getlogin(@PathVariable("userName") String uName, @PathVariable("password") String password){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		LmsUser lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
-		
+		LmsUser lmsUser = new LmsUser();
+		try {
+			password = ProtectedConfigFile.encrypt(password);
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		try {
+			lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
+			httpSession.setAttribute("user", lmsUser);
+			httpSession.setAttribute("userName", lmsUser.getName());
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		if(lmsUser != null) {
 			responseWrapper.setMessage("Success. UserName: "+uName+" Password: "+password);
 			

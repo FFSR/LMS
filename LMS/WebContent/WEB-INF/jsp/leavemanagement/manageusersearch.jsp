@@ -24,7 +24,7 @@
 <div class="container-fluid">
 
 	
-  <h2>Leave History</h2>
+  <h2>User List</h2>
              
   <table class="table table-bordered">
     <thead>

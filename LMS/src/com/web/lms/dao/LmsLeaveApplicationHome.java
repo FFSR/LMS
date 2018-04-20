@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsLeaveApplication;
-import com.web.lms.model.LmsLeaveBalance;
+import com.web.lms.model.LmsUser;
 
 /**
  * Home object for domain model class LmsLeaveApplication.

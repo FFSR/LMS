@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
-
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <script src="resources/js/jquery-3.2.1.slim.min.js"></script>
 <script src="resources/js/popper.min.js"></script>
@@ -47,7 +46,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div>
 			<table class="table table-sm">
 				<div>

@@ -132,5 +132,15 @@ public class HomeController {
 		
 		return "leave";
 	}
+	@RequestMapping("/testleave")
+	public String testleave(Model model) {
+		
+		return "testleave";
+	}
+	@RequestMapping("/divisioninfo")
+	public String divisioninfo(Model model) {
+		
+		return "divisioninfo";
+	}
 	
 }

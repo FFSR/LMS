@@ -5,10 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ministry Information</title>
-
-
+<script type="text/javascript" src="resources/js/app.js/service/leavetypeService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/service/applicationforleaveService.js"></script>
+	src="resources/js/app.js/service/DropDownService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
 
@@ -27,8 +28,8 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
+	<div ng-init="loadLeaveTypeDownDown();"></div>
 		<div class="container-fluid">
-
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">User ID</div>
 				<div class="col-sm-3" style="background-color: white;">
@@ -49,14 +50,11 @@
 				Type</div>
 				<div class="col-md-3">
 					<!-- Drop Down list from table -->
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
+					<select class="form-control" id="ddleavetype" ng-model="leavetype"
+						ng-options="x as x.type for x in dropdownData track by x.id">
 						<option value="">Select</option>
-						<option value="">Hospital</option>
-						<option value="">Casual</option>
 					</select>
 			</div>
-				
 				<div class="col-sm-3" style="background-color: white;">Reason For Leave</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="reasonForLeave" class="form-control"
@@ -117,8 +115,8 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Reliever</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="lmsUserByReliverEmailAddressUserId" class="form-control"
-						placeholder="Reliever"> 
+					<input type="text" ng-model="Reliever" class="form-control"
+						placeholder="Reliever">
 				</div>
 				<div class="col-sm-3" style="background-color: white;">In Station</div>
 				<div class="col-sm-3" style="background-color: white;">
@@ -153,6 +151,7 @@
 				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
 		</div>
+	</div>
 </body>
 <script>
 $('#fromDate').datetimepicker(

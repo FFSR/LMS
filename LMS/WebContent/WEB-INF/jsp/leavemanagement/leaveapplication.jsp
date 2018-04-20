@@ -10,9 +10,9 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
+	src="resources/js/app.js/service/applicationforleaveService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
+	src="resources/js/app.js/controller/testleaveController.js"></script>
 <!-- End bootstrap stuff -->
 
 <link href="resources/file-upload/css/dropzone/phase2_dropzone.css" rel="stylesheet" />
@@ -428,7 +428,7 @@
 </head>
 <body>
 <br>
-<div ng-controller="leaveapplicationController">
+<div ng-controller="testleaveController">
 	<div class="container-fluid">
 
 		<div class="row">

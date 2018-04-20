@@ -10,8 +10,8 @@ App.factory('applicationforleaveService', [
 		function($http, $q, url) {
 			return {
 				
-				applicationforleave: function(leaveapplication){
-					return $http.post(url+'applicationforleave', leaveapplication)
+				testleave: function(leaveapplication){
+					return $http.post(url+'testleave', leaveapplication)
 					.then(function(response) {
 						return response.data;
 					},
@@ -23,6 +23,17 @@ App.factory('applicationforleaveService', [
 					});
 				},
 				
-				
+				getleaveapp: function(leaveapplicationid){
+					return $http.get(url+'getleaveapplication/'+ leaveapplicationid)
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching user info list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
 			}
 		} ]);
