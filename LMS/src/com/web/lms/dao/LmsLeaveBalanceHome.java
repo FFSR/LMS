@@ -1,6 +1,8 @@
 package com.web.lms.dao;
-// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
+// Generated Apr 24, 2018 4:15:02 PM by Hibernate Tools 5.2.8.Final
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsLeaveBalance;
-import com.web.lms.model.LmsUser;
 
 /**
  * Home object for domain model class LmsLeaveBalance.
@@ -75,20 +76,64 @@ public class LmsLeaveBalanceHome {
 		}
 	}
 	
-public List<LmsLeaveBalance> findLeaveBalanceByUserID(Integer userid) {
-		
+	public List<LmsLeaveBalance> findLeaveBalanceByUserID(Integer userid) {		
 		try {
 			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid").setParameter("userid", userid);
 		
 			List<LmsLeaveBalance> lmsLeaveBalances = query.getResultList();
 		
-			return lmsLeaveBalances;
-		
+			return lmsLeaveBalances;		
 		}
-		catch(Exception ex) {
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public LmsLeaveBalance findLeaveCountbyUserAndLeaveType(Integer userid, Integer leaveTypeId) {		
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.id=:leaveTypeId")
+					.setParameter("userid", userid)
+					.setParameter("leaveTypeId", leaveTypeId);
+		
+			LmsLeaveBalance lmsLeaveBalances = (LmsLeaveBalance) query.getSingleResult();
+		
+			return lmsLeaveBalances;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public LmsLeaveBalance findLeaveCountbyUserAndLeaveTypeAndYear(Integer userid, Integer leaveTypeId, String year) {		
+		try {
 			
-			return null;
+/*			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String frmDate = format.parse(startDate);
+			String enDate = format.parse(endDate);
+			sessionfactory.getCurrentSession()
+			.createQuery("FROM Customer AS c WHERE c.dateAdded BETWEEN :stDate AND :edDate ")
+			.setParameter("stDate", frmDate)
+			.setParameter("edDate", enDate)
+			.list();*/			
 			
+			String sDate= year +"-01-01 00:00:00";
+			String eDate= year +"-12-31 23:59:59"; 
+			
+		    Date sdate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate); 
+		    Date edate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(eDate);			
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND e.year BETWEEN :stDate AND :edDate ")
+					.setParameter("userid", userid)
+					.setParameter("leaveTypeId", leaveTypeId)
+					.setParameter("stDate", sdate)
+					.setParameter("edDate", edate);
+		
+			LmsLeaveBalance lmsLeaveBalance = (LmsLeaveBalance) query.getSingleResult();
+		
+			return lmsLeaveBalance;		
+		}
+		catch(Exception ex) {			
+			return null;			
 		}
 	}
 }
