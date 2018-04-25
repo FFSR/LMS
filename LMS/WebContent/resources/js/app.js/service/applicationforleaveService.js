@@ -23,7 +23,7 @@ App.factory('applicationforleaveService', [
 					});
 				},
 				
-				/*getleaveapp: function(leaveapplicationid){
+				getleaveapp: function(leaveapplicationid){
 					return $http.get(url+'getleaveapplication/'+ leaveapplicationid)
 					.then(function(response) {
 						return response.data;
@@ -34,6 +34,6 @@ App.factory('applicationforleaveService', [
 						return $q
 								.reject(errResponse);
 					});
-				},*/
+				},
 			}
 		} ]);

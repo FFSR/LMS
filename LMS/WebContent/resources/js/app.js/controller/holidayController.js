@@ -6,16 +6,17 @@ App
 			'$http',
 			'holidayService',
 			'holidaygridshowService',
+			'updateholidayrecordService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http,holidayService,holidaygridshowService,
+			function($scope, $http,holidayService,holidaygridshowService,updateholidayrecordService,
 				$timeout, $filter,NgTableParams,$location) {
 				$scope.testMsg = "Test Message New";
 				$scope.holidaygridcontrol = {};
-				$scope.showLeaveDetails = false;
+				$scope.showHolidayDetails = false;
 				
 				$scope.holidaygridshow = function(){
 					$scope.testMessage = "Test Message";
@@ -53,6 +54,8 @@ App
 					$scope.holidayrecord.leaveDate = new Date($('#fromDate').val());
 					$scope.holidayrecord.optional = $scope.optional;
 					$scope.holidayrecord.subjectToMoon = $scope.subjectToMoon;
+					//$scope.holidayrecord.optional = $scope.SelectedOption.options;
+					//$scope.holidayrecord.subjectToMoon = $scope.SelectedOption.options;
 					
 						
 					
@@ -67,7 +70,25 @@ App
 							});
 				}
 				
-									
+                    $scope.showHolidayRecordDetails = function(holidayrecord){	
+					console.log("HolidayRecord", holidayrecord );
+					$scope.showHolidayDetails = true;	
+					$scope.holidayrecord = holidayrecord;
+				};
+				
+				
+				// Used for updating specific holiday record
+				$scope.holidayRecord = function(){ 
+					
+					updateholidayrecordService.updateholidayrecord($scope.holidayrecord).then(
+						function(d){
+							console.log(d.message);
+						},
+						function(errResponse){
+							console.log("Failed to Update User Profile.");
+						}
+					);
+				}
 			} 
 			]);
 				

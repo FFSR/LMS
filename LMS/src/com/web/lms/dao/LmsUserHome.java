@@ -11,8 +11,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.web.lms.model.LmsLeaveType;
+import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
 
 /**

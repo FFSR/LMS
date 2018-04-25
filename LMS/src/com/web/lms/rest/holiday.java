@@ -25,7 +25,7 @@ public class holiday {
 	private LmsHolidayRecordHome lmsHolidayRecordHome;
 	
 	
-	@RequestMapping(value = "/holidaymanagement", method = RequestMethod.POST)
+	@RequestMapping(value = "/holidaymanagement", method = RequestMethod.POST)//  Create new holiday information
 	public ResponseEntity<ResponseWrapper> doAddition(@RequestBody LmsHolidayRecord lmsHolidayRecord) {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
@@ -40,7 +40,7 @@ public class holiday {
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 			
-			responseWrapper.setMessage("Success. User has created");
+			responseWrapper.setMessage("Success. Holiday information is created");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 
 		} catch (Exception ex) {
@@ -50,6 +50,28 @@ public class holiday {
 		}
 
 	}
+	
+	@RequestMapping(value = "/updateholidayrecord", method = RequestMethod.PUT) // Update holiday record.
+	public ResponseEntity<ResponseWrapper> updateholidayrecord(@RequestBody LmsHolidayRecord lmsHolidayRecord) {
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+				try  {	
+					
+					lmsHolidayRecordHome.merge(lmsHolidayRecord); // For Update
+				
+				}
+				
+				catch(Exception ex) {
+					ex.printStackTrace();
+					responseWrapper.setMessage("Failed to create User.");
+					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				}
+				
+				responseWrapper.setMessage("Success. Request is updated");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+		}
 	
 
 

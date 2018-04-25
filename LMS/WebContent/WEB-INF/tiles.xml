@@ -30,55 +30,54 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/leaveapplication.jsp" />
 	</definition>
-	
+
 	<definition name="login" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/security/login.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/security/login.jsp" />
 	</definition>
-	
+
 	<definition name="changepassword" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/security/changepassword.jsp" />
 	</definition>
-	
+
 	<definition name="adminpanel" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/security/adminpanel.jsp" />
 	</definition>
-	
+
 	<definition name="leavehistory" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/leavehistory.jsp" />
 	</definition>
-	
+
 	<definition name="manageuser" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/manageuser.jsp" />
 	</definition>
-	
+
 	<definition name="manageusersearch" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/manageusersearch.jsp" />
 	</definition>
-	
+
 	<definition name="userprofile" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/userprofile.jsp" />
 	</definition>
-	
+
 	<definition name="leavehistorysearch" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/leavehistorysearch.jsp" />
 	</definition>
-	
+
 	<definition name="leavehistoryresult" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
@@ -109,57 +108,57 @@
 			value="/WEB-INF/jsp/leavemanagement/leaveapplicationdetails.jsp" />
 
 	</definition>
-	
+
 	<definition name="holidaymanagement" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/holidaymanagement.jsp" />
 
 	</definition>
-	
+
 	<definition name="rptleavestatus" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/rptleavestatus.jsp" />
 
 	</definition>
-	
+
 	<definition name="leavesearchresult" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/leavesearchresult.jsp" />
 
 	</definition>
-	
+
 	<definition name="ministryinfo" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/ministryinfo.jsp" />
 
 	</definition>
-	
+
 	<definition name="applicationforleave" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/applicationforleave.jsp" />
 
 	</definition>
-	
+
 	<definition name="testleave" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/testleave.jsp" />
 
 	</definition>
-	
+
 	<definition name="divisioninfo" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/divisioninfo.jsp" />
 
 	</definition>
-	
-	
+
+
 
 </tiles-definitions>
 

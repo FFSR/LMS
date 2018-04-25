@@ -38,6 +38,8 @@ public class FileUploadRest {
 	private LmsAttachmentHome lmsAttachmentHome;
 	@Autowired
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
+	@Autowired
+	private LmsUserHome lmsUserHome;
 
 	@RequestMapping(value = "/fileupload/", method = RequestMethod.POST)
 	public ResponseEntity<String> uploadFile(@RequestBody MultipartFile file, UriComponentsBuilder ucBuilder) {
@@ -71,6 +73,9 @@ public class FileUploadRest {
 			try{
 				userName=httpSession.getAttribute("networkid").toString();
 				userGroup = httpSession.getAttribute("groupName").toString();
+				
+				userName = "reaz";
+				userGroup = "Test";
 
 			}catch(Exception e){
 				// log error
@@ -78,6 +83,8 @@ public class FileUploadRest {
 
 			if (httpSession.getAttribute("ticketNumberToCreateFolder") != null)
 				ticketFolderName = httpSession.getAttribute("ticketNumberToCreateFolder").toString();
+			
+			ticketFolderName = "1";
 
 			while (itr.hasNext()) {
 				// Current Date and Time
@@ -113,6 +120,7 @@ public class FileUploadRest {
 
 				if (!fileUploadPath.equalsIgnoreCase("")) {
 					// Save To DB
+					
 					LmsAttachment lmsAttachment = new LmsAttachment();
 					LmsLeaveApplication lmsLeaveApplication = lmsLeaveApplicationHome.findById(1);
 					LmsUser lmsUser = lmsLeaveApplication.getLmsUserByUserId();

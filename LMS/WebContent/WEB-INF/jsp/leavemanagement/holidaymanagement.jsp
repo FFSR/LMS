@@ -13,46 +13,58 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/holidaygridshowService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/holidayController.js"></script>	
+	src="resources/js/app.js/controller/holidayController.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/updateholidayrecordService.js"></script>
 
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <script src="resources/js/jquery-3.2.1.slim.min.js"></script>
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 
-<script type="text/javascript" src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
-<link rel="stylesheet" href="resources/css/datetimepicker/jquery.datetimepicker.css"/>
+<script type="text/javascript"
+	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet"
+	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+
 </head>
-<body>
-	<br>
-	<div ng-controller="holidayController">
+<body ng-controller="holidayController">
+	>
+
+	<div>
+		<div ng-init="holidaygridshow()"></div>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Holiday Description</div>
+				<div class="col-sm-3" style="background-color: white;">Holiday
+					Description</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="leaveSubject" class="form-control"
 						placeholder="Holiday Description">
+						<span ng-show="myForm.myName.$touched && myForm.myName.$invalid">The name is required.</span>
 				</div>
 				<label class="col-sm-3 control-label">Holiday Date</label>
 				<div class="col-sm-3">
 					<input type="text" id="fromDate" class="form-control" />
 				</div>
-				
-			</div>		
+
+			</div>
 			<br>
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Optional</div>
-				<div class="col-sm-3">
-					<input type="text" id="fromDate" class="form-control" />
+				<div class="col-sm-3" style="background-color: white;">
+					<input type="text" ng-model="optional" class="form-control"
+						placeholder="Optional">
 				</div>
-				
-				<div class="col-sm-3" style="background-color: white;">Subject to Moon</div>
-				<div class="col-sm-3">
-					<input type="text" id="fromDate" class="form-control" />
+
+				<div class="col-sm-3" style="background-color: white;">Subject
+					to Moon</div>
+				<div class="col-sm-3" style="background-color: white;">
+					<input type="text" ng-model="subjectToMoon" class="form-control"
+						placeholder="Subject to Moon">
 				</div>
-				
-			</div>			
-			
+
+			</div>
+
 			<div class="row">
 				<button type="submit" class="btn" id="submit"
 					ng-click="holidaymanagement()">Submit</button>
@@ -60,43 +72,60 @@
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="button" class="btn btn-info" value="Cancel">
 				</div>
-				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
+			<div>Response: {{testMsg}}</div>
 		</div>
-			
-		<br>
-		<div class="modal-body">
-			<form role="form">
 
-				<button type="submit" class="btn btn-default" id="search"
-					ng-click="holidaygridshow()">Search</button>
-			</form>
-			<div style="color: blue">{{user_id}}{{testMsg}}</div>
-		</div>
-	
-		<br>
-
+		<br> <br>
 		<div>
 			<table class="table table-sm">
 				<div>
 					Test Message: {{testMessage}}
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="holidayrecord in $data">
-							<td title="'Serial No'" filter="{name: 'text'}"
-								sortable="'name'">{{holidayrecord.id}}</td>
-
+							<td title="'Serial No'" filter="{name: 'text'}" sortable="'name'">{{holidayrecord.id}}</td>
 							<td title="'Holiday Name'" filter="{ type: 'text'}"
 								sortable="'lmsLeaveType.fromDate'">{{holidayrecord.leaveSubject}}</td>
-
 							<td title="'Holiday Date'" filter="{ leaveTotal: 'text'}"
-								sortable="'lmsLeaveType.toDate'">{{holidayrecord.leaveDate |date: YYYY-Mon-dd}}</td>
-
-							<td title="'Action'"><button class="btn-primary" ng-click="showHolidayDetails(holidayrecord)">Details</button></td>					
+								sortable="'lmsLeaveType.toDate'">{{holidayrecord.leaveDate|date:
+								Mon-dd}}</td>
+							<td title="'Action'"><button class="btn-primary"
+									ng-click="showHolidayRecordDetails(holidayrecord)">Details</button></td>
 					</table>
 				</div>
 			</table>
-		</div>		
-		
+		</div>
+
+		<br>
+		<div class="container-fluid">
+			<div ng-if="showHolidayDetails">
+				<div class="row">
+					<div class="col-sm-3" style="background-color: white;">Holiday
+						Description</div>
+					<div class="col-sm-3" style="background-color: white;">
+						<input type="text" ng-model="holidayrecord.leaveSubject">
+					</div>
+					<div class="col-sm-3" style="background-color: white;">Holiday
+						Date</div>
+					<div class="col-sm-3" style="background-color: white;">
+						{{holidayrecord.leaveDate |date: YYYY-Mon-dd}}
+					</div>
+
+				</div>
+
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-3" style="background-color: white;">
+					<input type="button" class="btn btn-info" value="Cancel">
+				</div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<button type="submit" class="btn" id="submit" ng-click="holidayRecord()">Update</button>
+			</div>
+			<div>Response: {{testMsg}}</div>
+
+		</div>
+	</div>
 	</div>
 </body>
 <script>

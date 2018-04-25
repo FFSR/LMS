@@ -34,15 +34,14 @@ App.factory('leaveapplicationservice', [
 								.reject(errResponse);
 					});
 				},
-				
-				getAllUser: function(){
-					return $http.get(url+'getUserlist/')
+				getleaveapp: function(leaveapplicationid){
+					return $http.get(url+'getleaveapplication/'+ leaveapplicationid)
 					.then(function(response) {
 						return response.data;
 					},
 					function(errResponse) {
 						console
-								.error('Error while fetching leave type list.');
+								.error("Error while fetching user info list.");
 						return $q
 								.reject(errResponse);
 					});

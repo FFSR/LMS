@@ -79,7 +79,7 @@ public class LmsLeaveApplicationHome {
 		}
 	}
 	
-@SuppressWarnings("unchecked")	
+/*@SuppressWarnings("unchecked")	
 public List<LmsLeaveApplication> findLeaveApplicationByUserID(String user_name, Integer userid) {
 	
 	String userName = "";
@@ -102,6 +102,24 @@ public List<LmsLeaveApplication> findLeaveApplicationByUserID(String user_name, 
 			Query query = entityManager.createNativeQuery("SELECT * FROM lms_leave_application lapp " + 
 					"LEFT JOIN lms_user lmsuser ON lmsuser.ID = lapp.USER_ID " + 
 					"WHERE "+userID+ " " + userName);
+		
+			List<LmsLeaveApplication> lmsLeaveApplication = query.getResultList();
+		
+			return lmsLeaveApplication;
+		
+		}
+		catch(Exception ex) {
+			
+			return null;
+			
+		}
+	}*/
+	
+	@SuppressWarnings("unchecked")	
+	public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
+		
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid", userid);
 		
 			List<LmsLeaveApplication> lmsLeaveApplication = query.getResultList();
 		

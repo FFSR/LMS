@@ -23,7 +23,8 @@ App
 				
 				$scope.manageleave = function(user_id){
 					$scope.testMessage = "Test Message";
-					if($scope.search.name != "" && $scope.search.user_id != 0){
+					//if($scope.search.name != "" && $scope.search.user_id != 0){
+					if($scope.search.user_id != 0){
 						console.log("Test message");
 					}
 					

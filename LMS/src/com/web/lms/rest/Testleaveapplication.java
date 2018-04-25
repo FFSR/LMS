@@ -43,16 +43,16 @@ public class Testleaveapplication {
 			}
 			catch(Exception ex) {
 				ex.printStackTrace();
-				//responseWrapper.setMessage("Failed to create User.");
+				responseWrapper.setMessage("Failed to create request.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 			
-			//responseWrapper.setMessage("Success. User has created");
+			responseWrapper.setMessage("Success. Leave request is submitted");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);	
 
 	}
 	
-	@RequestMapping(value="/manageleave/", method=RequestMethod.POST)
+	@RequestMapping(value="/manageleave/", method=RequestMethod.POST)// showing leave requests searching by name & id.
 	public ResponseEntity<ResponseWrapper> manageuser(@RequestBody ManageLeaveSearchWrapper manageLeaveSearchWrapper){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
@@ -61,10 +61,12 @@ public class Testleaveapplication {
 		System.out.println(manageLeaveSearchWrapper);
 		List<LmsLeaveApplication> lmsLeaveApplication = new ArrayList<>();
 		
-		if(manageLeaveSearchWrapper.getUser_name() != null && manageLeaveSearchWrapper.getUser_id() != 0) {
+		/*if(manageLeaveSearchWrapper.getUser_name() != null && manageLeaveSearchWrapper.getUser_id() != 0) {
 			lmsLeaveApplication = lmsLeaveApplicationHome.findLeaveApplicationByUserID(manageLeaveSearchWrapper.getUser_name(),manageLeaveSearchWrapper.getUser_id());
-		}
-		
+		}*/
+		if(manageLeaveSearchWrapper.getUser_id() != 0) {
+		lmsLeaveApplication = lmsLeaveApplicationHome.findLeaveApplicationByUserID(manageLeaveSearchWrapper.getUser_id());
+	   }
 		
 		
 		if(lmsLeaveApplication.size()>0) {
@@ -78,7 +80,7 @@ public class Testleaveapplication {
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
 	
-	@RequestMapping(value = "/homepagegridshow/", method = RequestMethod.GET)
+	@RequestMapping(value = "/homepagegridshow/", method = RequestMethod.GET)// showing all persons who are on leave.
 	public ResponseEntity<ResponseWrapper> getlog() {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
@@ -98,7 +100,7 @@ public class Testleaveapplication {
 		
 	}	
 	
-	@RequestMapping(value = "/updateuserleave", method = RequestMethod.PUT)
+	@RequestMapping(value = "/updateuserleave", method = RequestMethod.PUT) // Update a leave request.
 	public ResponseEntity<ResponseWrapper> updateuserleave(@RequestBody LmsLeaveApplication lmsLeaveApplication) {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
@@ -115,7 +117,7 @@ public class Testleaveapplication {
 					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 				}
 				
-				responseWrapper.setMessage("Success. User has created");
+				responseWrapper.setMessage("Success. Request is updated");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 
 		}

@@ -1,19 +1,18 @@
 App
 	.controller(
-		'registrationController',
+		'updateuserprofileController',
 		[
 			'$scope',
 			'$http',
-			'registrationService',
+			'updateuserprofileService',
 			'$timeout',
 			'$filter',
 			'$location',
 
-			function($scope, $http, registrationService,
+			function($scope, $http, updateuserprofileService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
-				
 				$scope.user = {
 						"office" : "",
 						"name" : "",
@@ -51,10 +50,9 @@ App
 													
 						
 					};
-
 				
-				$scope.registration = function(){
-										
+				$scope.userprofile = function(){
+					
 					$scope.user.name = $scope.username;
 					$scope.user.nid = $scope.nid;
 					$scope.user.office = $scope.office;
@@ -66,16 +64,18 @@ App
 					$scope.user.passport = $scope.passport;
 					$scope.user.mobile = $scope.mobile;
 					$scope.user.telephone = $scope.telephone;
-					$scope.user.email = $scope.email;
+				//	$scope.user.email = $scope.email;
+					$scope.user.email = 's@sd.com';
 					$scope.user.fax = $scope.fax;
 					$scope.user.joiningdate = $scope.joiningdate;
 					$scope.user.gender = $scope.gender;
 					$scope.user.supervisoremail = $scope.supervisoremail;
 					$scope.user.address = $scope.address;
-						
 					
-					
-					registrationService.registration($scope.user).then(
+				
+				
+									
+					updateuserprofileService.updateuserprofile($scope.user).then(
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
@@ -84,5 +84,5 @@ App
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
 							});
-				}
+			}
 			} ]);

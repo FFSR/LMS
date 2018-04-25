@@ -7,58 +7,64 @@
 <title>Insert title here</title>
 
 
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
+<script src="resources/js/popper.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+
 <link rel="stylesheet"
-	href="resources/css/bootstrap.min.css">
-<script
-	src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script
-	src="resources/js/popper.min.js"></script>
-<script
-	src="resources/js/bootstrap.min.js"></script>
-	
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
 </head>
 
 <body>
 
 
-<div class="container-fluid">
+	<div class="container-fluid">
+		<br>
 
-	<div class="row">		
-  		<button type="button" class="btn">Introductory Concepts</button> 	
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">Introductory
+					Concepts</a></li>
+			<li><a data-toggle="tab" href="#menu1">Leave Rules</a></li>
+			<li><a data-toggle="tab" href="#menu2">My Profile</a></li>
+
+			<li><a data-toggle="tab" href="#menu3">Apply For Leave</a></li>
+			<li><a data-toggle="tab" href="#menu4">Leave History</a></li>
+			<li><a data-toggle="tab" href="#menu5">Approve Leave</a></li>
+
+			<li><a data-toggle="tab" href="#menu6">Create User</a></li>
+			<li><a data-toggle="tab" href="#menu7">Manage User</a></li>
+			<li><a data-toggle="tab" href="#menu8">Holiday Management</a></li>
+		</ul>
+
+
+
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<h3>Introductory Concepts</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			</div>
+			<div id="menu1" class="tab-pane fade">
+				<h3>Leave Rules</h3>
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
+					laboris nisi ut aliquip ex ea commodo consequat.</p>
+			</div>
+			<div id="menu2" class="tab-pane fade">
+				<h3>My Profile</h3>
+				<p>Sed ut perspiciatis unde omnis iste natus error sit
+					voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+			</div>
+			<div id="menu3" class="tab-pane fade">
+				<h3>Apply For Leave</h3>
+				<p>Eaque ipsa quae ab illo inventore veritatis et quasi
+					architecto beatae vitae dicta sunt explicabo.</p>
+			</div>
+		</div>
+
 	</div>
-	
-	<div class="row">		
-  		<button type="button" class="btn">Leave Rules</button> 	
-	</div>
-	
-	<div class="row">		
-  		<button type="button" class="btn">My Profile</button> 	
-	</div>
-      
- 	<div class="row">		
-  		<button type="button" class="btn">Apply For Leave</button> 	
-	</div>
-	
-	<div class="row">		
-  		<button type="button" class="btn">Leave History</button> 	
-	</div>
-	
-	<div class="row">		
-  		<button type="button" class="btn">Approve Leave</button> 	
-	</div>
-	
-	<div class="row">		
-  		<button type="button" class="btn">Create User</button> 	
-	</div>
-	
-	<div class="row">		
-  		<button type="button" class="btn">Manage User</button> 	
-	</div>
-	
-	<div class="row">		
-  		<button type="button" class="btn">Holiday Management</button> 	
-	</div>	
-</div>
 
 
 </body>

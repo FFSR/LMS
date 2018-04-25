@@ -1,4 +1,4 @@
-+App
+App
 	.controller(
 		'ForgetPasswordController',
 		[
@@ -20,10 +20,9 @@
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
 							},
-							function(errResponse) {
-								
-								console
-										.error('Error while fetching Currencies');
+							function(e) {
+								$scope.testMsg = e.data.message;								
+								console.error(e.data.message);
 							});
 				}
 			} ]);

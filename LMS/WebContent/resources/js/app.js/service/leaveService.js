@@ -3,21 +3,21 @@
  */
 'use strict';
 
-App.factory('userlistService', [
+App.factory('leaveService', [
 		'$http',
 		'$q',
 		'url',
 		function($http, $q, url) {
 			return {
 				
-				getUserList: function(){
-					return $http.get(url+'getUserList/')
+				leave: function(user_id){
+					return $http.get(url+'leave/'+user_id)
 					.then(function(response) {
 						return response.data;
 					},
 					function(errResponse) {
 						console
-								.error('Error while fetching leave type list.');
+								.error("Error while fetching user info list.");
 						return $q
 								.reject(errResponse);
 					});
