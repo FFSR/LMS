@@ -1,6 +1,8 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsLeaveApplication;
+import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
 
 /**
@@ -78,22 +81,40 @@ public class LmsLeaveApplicationHome {
 		}
 	}
 	
-	
-	
-public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
-		
+	public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {		
 		try {
 			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid",userid);
 		
 			List<LmsLeaveApplication> lmsLeaveApplications = query.getResultList();
-		
-			return lmsLeaveApplications;
-		
+			
+			return lmsLeaveApplications;		
 		}
-		catch(Exception ex) {
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public List<LmsLeaveApplication> findLeaveApplicationByUserandLeaveTypeandYear(Integer userid, Integer leaveTypeId, String year) {		
+		try {
+			String sDate= year +"-01-01 00:00:00";
+			String eDate= year +"-12-31 23:59:59"; 
 			
-			return null;
+		    Date sdate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate); 
+		    Date edate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(eDate);
 			
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND (e.fromDate BETWEEN :stDate AND :edDate OR e.toDate BETWEEN :stDate AND :edDate)")
+					.setParameter("userid", userid)
+					.setParameter("leaveTypeId", leaveTypeId)
+					.setParameter("stDate", sdate)
+					.setParameter("edDate", edate);
+		
+			List<LmsLeaveApplication> leaveApplications = query.getResultList();
+		
+			return leaveApplications;		
+		}
+		catch(Exception ex) {			
+			return null;			
 		}
 	}
 }
