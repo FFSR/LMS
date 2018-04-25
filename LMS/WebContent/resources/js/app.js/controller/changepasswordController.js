@@ -55,6 +55,7 @@ App
 				$scope.changepassword = function(newpassword){					
 					$scope.user.password = newpassword;
 					$scope.user.email = 's@sd.com';
+					
 				changepasswordService.changepassword($scope.user).then(
 						function(d) {
 							$scope.testMsg = d.message;
@@ -64,5 +65,7 @@ App
 							$scope.testMsg = e.data.message;								
 							console.error(e.data.message);
 						});
-			}
+			};
+			
+			
 			} ]);

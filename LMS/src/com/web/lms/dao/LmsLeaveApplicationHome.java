@@ -1,6 +1,7 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsLeaveApplication;
+import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
 
 /**
@@ -79,57 +81,40 @@ public class LmsLeaveApplicationHome {
 		}
 	}
 	
-/*@SuppressWarnings("unchecked")	
-public List<LmsLeaveApplication> findLeaveApplicationByUserID(String user_name, Integer userid) {
-	
-	String userName = "";
-	String userID = "";
-	
-	if(user_name != null) {
-		userName = "AND lmsuser.NAME = '"+user_name+"'";
-	}
-	else {
-		userName = " ";
-	}
-	if(userid != 0) {
-		userID = "lapp.USER_ID = " + userid;
-	}
-	else {
-		userID = " ";
-	}
-		
+	public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {		
 		try {
-			Query query = entityManager.createNativeQuery("SELECT * FROM lms_leave_application lapp " + 
-					"LEFT JOIN lms_user lmsuser ON lmsuser.ID = lapp.USER_ID " + 
-					"WHERE "+userID+ " " + userName);
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid",userid);
 		
-			List<LmsLeaveApplication> lmsLeaveApplication = query.getResultList();
-		
-			return lmsLeaveApplication;
-		
-		}
-		catch(Exception ex) {
+			List<LmsLeaveApplication> lmsLeaveApplications = query.getResultList();
 			
-			return null;
-			
+			return lmsLeaveApplications;		
 		}
-	}*/
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
 	
-	@SuppressWarnings("unchecked")	
-	public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
-		
+	public List<LmsLeaveApplication> findLeaveApplicationByUserandLeaveTypeandYear(Integer userid, Integer leaveTypeId, String year) {		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid", userid);
+			String sDate= year +"-01-01 00:00:00";
+			String eDate= year +"-12-31 23:59:59"; 
+			
+		    Date sdate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate); 
+		    Date edate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(eDate);
+			
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND (e.fromDate BETWEEN :stDate AND :edDate OR e.toDate BETWEEN :stDate AND :edDate)")
+					.setParameter("userid", userid)
+					.setParameter("leaveTypeId", leaveTypeId)
+					.setParameter("stDate", sdate)
+					.setParameter("edDate", edate);
 		
-			List<LmsLeaveApplication> lmsLeaveApplication = query.getResultList();
+			List<LmsLeaveApplication> leaveApplications = query.getResultList();
 		
-			return lmsLeaveApplication;
-		
+			return leaveApplications;		
 		}
-		catch(Exception ex) {
-			
-			return null;
-			
+		catch(Exception ex) {			
+			return null;			
 		}
 	}
 

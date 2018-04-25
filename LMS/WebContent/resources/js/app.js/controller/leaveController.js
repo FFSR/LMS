@@ -20,7 +20,7 @@ App
 							function(d) {
 								self.testMsg1 = "Test";
 								console.log("Success.",d.message);
-								var data = d.listLmsLeaveBalance;
+								var data = d.listLmsLeaveApplication;
 								self.tableParams = new NgTableParams({}, { dataset: data});
 								
 							},

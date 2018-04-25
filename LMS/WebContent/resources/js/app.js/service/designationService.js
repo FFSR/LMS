@@ -1,10 +1,10 @@
 /* Service Code */
 'use strict';
  
-App.factory('DropDownService', ['$http', '$q', 'url',function($http, $q, url){
+App.factory('DesignationService', ['$http', '$q', 'url',function($http, $q, url){
     return {
-    	getAllDropdown: function(){
-    		return $http.get(url+'getDropdownData/')
+    	getAllDesignation: function(){
+    		return $http.get(url+'getAllDesignationData/')
     				.then(
     						function(response){
     							return response.data;

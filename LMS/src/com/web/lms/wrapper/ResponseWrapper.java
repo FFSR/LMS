@@ -77,22 +77,13 @@ public class ResponseWrapper {
 		this.listLmsLeaveApplication = listLmsLeaveApplication;
 	}
 	
-	/*public LmsHolidayRecord getLmsHolidayRecord() {
-		return lmsHolidayRecord;
-	}
-
-	public void setLmsHolidayRecord(LmsHolidayRecord lmsHolidayRecord) {
-		this.lmsHolidayRecord = lmsHolidayRecord;
-	}*/
 	public List<LmsHolidayRecord> getListLmsHolidayRecord() {
 		return listLmsHolidayRecord;
 	}
 	
 	public void setListLmsHolidayRecord(List<LmsHolidayRecord> listLmsHolidayRecord) {
 		this.listLmsHolidayRecord = listLmsHolidayRecord;
-	}
-
-	
+	}	
 }
 
 

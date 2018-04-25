@@ -1,10 +1,10 @@
 /* Service Code */
 'use strict';
  
-App.factory('DropDownService', ['$http', '$q', 'url',function($http, $q, url){
+App.factory('DivisionService', ['$http', '$q', 'url',function($http, $q, url){
     return {
-    	getAllDropdown: function(){
-    		return $http.get(url+'getDropdownData/')
+    	getAllDivision: function(){
+    		return $http.get(url+'getAllDivisionData/')
     				.then(
     						function(response){
     							return response.data;

@@ -7,6 +7,16 @@
 <title>Registration</title>
 
 <script type="text/javascript"
+	src="resources/js/app.js/service/divisionService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/designationService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/ministryService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/sectionService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/officeService.js"></script>
+<script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/registrationService.js"></script>
@@ -25,44 +35,40 @@
 <body>
 	<br>
 	<div ng-controller="registrationController">
+	<div ng-init="getDivisionData()"></div>
+	<div ng-init="getDesignationData()"></div>
+	<div ng-init="getMinistryData()"></div>
+	<div ng-init="getSectionData()"></div>
+	<div ng-init="getOfficeData()"></div>
+	<div ng-init="getDropdownData()"></div>
 		<div class="container-fluid">
 
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">User ID</div>
+		<!--		<div class="col-sm-3" style="background-color: white;">User ID</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="userid" class="form-control"
-						placeholder="User ID">
+						placeholder="User ID">-->
 				</div>
 
-				<div class="col-sm-3" style="background-color: white;">Office</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
-						<option value="">Select</option>
-						<option value="">Hospital</option>
-						<option value="">Casual</option>
-					</select>
-
-				</div>
-
+							
+				
 			</div>
 
 			<br>
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Name</div>
-
-
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="username" class="form-control"
+					<input type="text" ng-model="user.name" class="form-control"
 						placeholder="User Name">
 				</div>
+				
 				<div class="col-sm-3" style="background-color: white;">Division</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
+					<select class="form-control" id="ddAppStatus" ng-model="user.lmsDivision" 
+						ng-options="x as x.name for x in divisionNames track by x.id">
 						<option value="">Select</option>
-						<option value="">Hospital</option>
-						<option value="">Casual</option>
+						<!-- <option value="">Hospital</option>
+						<option value="">Casual</option> -->												
 					</select>
 				</div>
 			</div>
@@ -72,20 +78,16 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Designation</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
-						<option value="">Select</option>
-						<option value="">Hospital</option>
-						<option value="">Casual</option>
+					<select class="form-control" id="ddAppStatus" ng-model="user.lmsDesignation"
+						ng-options="x as x.name for x in designationNames track by x.id">
+						<option value="">Select</option>							
 					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Ministry</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
-						<option value="">Select</option>
-						<option value="">Hospital</option>
-						<option value="">Casual</option>
+					<select class="form-control" id="ddAppStatus" ng-model="user.lmsMinistry"
+						ng-options="x as x.name for x in ministryNames track by x.id">
+						<option value="">Select</option>							
 					</select>
 				</div>
 			</div>
@@ -95,16 +97,14 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Section</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
-						<option value="">Select</option>
-						<option value="">Hospital</option>
-						<option value="">Casual</option>
+					<select class="form-control" id="ddAppStatus" ng-model="user.lmsSection"
+						ng-options="x as x.name for x in sectionNames track by x.id">
+						<option value="">Select</option>							
 					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">NID</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="nid" class="form-control"
+					<input type="text" ng-model="user.nid" class="form-control"
 						placeholder="NID">
 				</div>
 			</div>
@@ -114,15 +114,15 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Nationality</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
+					<select class="form-control" id="ddAppStatus" ng-model="user.LmsDropdown"
+						ng-options="x as x.name for x in dropdownNames track by x.id">
 						<option value="">Select</option>
 					</select>
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Passport
 					No</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="passport" class="form-control"
+					<input type="text" ng-model="user.passport" class="form-control"
 						placeholder="Passport No">
 				</div>
 			</div>
@@ -132,12 +132,12 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Mobile</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="mobile" class="form-control"
+					<input type="text" ng-model="user.mobile_personal" class="form-control"
 						placeholder="Mobile">
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Telephone</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="telephone" class="form-control"
+					<input type="text" ng-model="user.mobile_office" class="form-control"
 						placeholder="Telephone">
 				</div>
 			</div>
@@ -147,12 +147,12 @@
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Email</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="email" class="form-control"
+					<input type="text" ng-model="user.email" class="form-control"
 						placeholder="Email">
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Fax</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="fax" class="form-control"
+					<input type="text" ng-model="user.fax" class="form-control"
 						placeholder="Fax">
 				</div>
 			</div>
@@ -163,16 +163,14 @@
 				<div class="col-sm-3" style="background-color: white;">Joining
 					Date</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="joiningdate" class="form-control"
+					<input type="text" ng-model="user.joining_date" class="form-control"
 						placeholder="Joining Date">
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Gender</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<select class="form-control" id="ddAppStatus" ng-model="appStatus"
-						ng-options="x as x.name for x in dropdownData track by x.id">
+					<select class="form-control" id="ddAppStatus" ng-model="user.lmsDropdown"
+						ng-options="x as x.name for x in dropdownNames track by x.id">
 						<option value="">Select</option>
-						<option value="">Male</option>
-						<option value="">Female</option>
 					</select>
 				</div>
 			</div>
@@ -188,9 +186,23 @@
 				</div>
 				<div class="col-sm-3" style="background-color: white;">Address</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<textarea rows="2" type="textarea" ng-model="address"
-						class="form-control" placeholder="Address"></textarea>
+					<textarea rows="3" type="textarea" ng-model="user.address" class="form-control"
+						placeholder="Address"></textarea>
 				</div>
+				
+				
+				
+				<div class="col-sm-3" style="background-color: white;">Office</div>
+				<div class="col-sm-3" style="background-color: white;">
+					<select class="form-control" id="ddAppStatus" ng-model="user.lmsOfficeLocation" 
+						ng-options="x as x.name for x in officeNames track by x.id">
+						<option value="">Select</option>
+						<!-- <option value="">Hospital</option>
+						<option value="">Casual</option> -->												
+					</select>
+						Status: {{appStatus}}				
+				</div>	
+	
 			</div>
 
 			<br>

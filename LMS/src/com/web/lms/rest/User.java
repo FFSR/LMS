@@ -71,7 +71,7 @@ public class User {
 		try {
 			//LmsUser user = new LmsUser();
 			
-			//String office = lmsUser.getLmsOfficeLocation();
+			/*String office = lmsUser.getLmsOfficeLocation().getName();
 			String userName = lmsUser.getName();
 			//String division = lmsUser.getLmsDivision();
 			//String designation = lmsUser.getLmsDesignation();
@@ -87,7 +87,7 @@ public class User {
 			//String joiningdate = lmsUser.getJoiningDate();
 			String gender = lmsUser.getGender();
 		//	String supervisoremail = lmsUser.
-			String address = lmsUser.getAddress();
+			String address = lmsUser.getAddress();*/
 
 			try {
 			int lmsuserid = lmsUserHome.persist(lmsUser);
@@ -173,42 +173,16 @@ public class User {
 		
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-	}
-	
+	}		
 	
 	@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
-		try {
-			//LmsUser user = new LmsUser();
-			
-			//String office = lmsUser.getLmsOfficeLocation();
-			String userName = lmsUser.getName();
-			//String division = lmsUser.getLmsDivision();
-			//String designation = lmsUser.getLmsDesignation();
-			//String ministry = lmsUser.getLmsMinistry();
-			//String Section = lmsUser.getLmsSection();
-			String nid = lmsUser.getNid();
-			String nationality = lmsUser.getNationality();
-			String passport = lmsUser.getPassport();
-			String mobile = lmsUser.getMobilePersonal();
-			String telephone = lmsUser.getPhone();
-			String email = lmsUser.getEmail();
-			String fax = lmsUser.getFax();
-			//String joiningdate = lmsUser.getJoiningDate();
-			String gender = lmsUser.getGender();
-		//	String supervisoremail = lmsUser.
-			String address = lmsUser.getAddress();
-
-				//LmsUser user = new LmsUser();
-
-				
-
 				try  {	
 					
-				int lmsuserid = lmsUserHome.persist(lmsUser);
+					lmsUserHome.merge(lmsUser); // For Update
 				
 				}
 				
@@ -220,13 +194,6 @@ public class User {
 				
 				responseWrapper.setMessage("Success. User has created");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
-			} catch (Exception ex) {
-
-				responseWrapper.setMessage("Fail."+ex.getMessage());
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-			}
-				
 
 		}
 	
