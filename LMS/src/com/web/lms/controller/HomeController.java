@@ -138,4 +138,10 @@ public class HomeController {
 		return "divisioninfo";
 	}
 	
+	@RequestMapping("/menu")
+	public String menu(Model model) {
+		
+		return "menu";
+	}
+	
 }

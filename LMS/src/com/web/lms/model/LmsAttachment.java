@@ -25,7 +25,7 @@ public class LmsAttachment implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
+	private Integer lms_attachment_id;
 	private LmsLeaveApplication lmsLeaveApplication;
 	private LmsUser lmsUser;
 	private String documentName;
@@ -55,13 +55,13 @@ public class LmsAttachment implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
-	@Column(name = "ID", unique = true, nullable = false)
+	@Column(name = "LMS_ATTACHMENT_ID", unique = true, nullable = false)
 	public Integer getId() {
-		return this.id;
+		return this.lms_attachment_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer lms_attachment_id) {
+		this.lms_attachment_id = lms_attachment_id;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
