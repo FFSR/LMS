@@ -7,10 +7,7 @@
 <tiles-definitions>
 	<definition name="baseLayout" template="/template/baseLayout.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/template/header.jsp" />
-		<put-attribute name="menu" value="/template/menu.jsp" />
-		<put-attribute name="body" value="/template/body.jsp" />
-		<put-attribute name="footer" value="/template/footer.jsp" />
+		<put-attribute name="body" value="" />
 	</definition>
 
 	<definition name="index" extends="baseLayout">
@@ -156,6 +153,13 @@
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/divisioninfo.jsp" />
+
+	</definition>
+	
+	<definition name="menu" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/Menu.jsp" />
 
 	</definition>
 
