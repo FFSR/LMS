@@ -4,17 +4,23 @@ App
 		[
 			'$scope',
 			'$http',
+			'DivisionService',
+			'DesignationService',
+			'MinistryService',
+			'SectionService',
+			'OfficeService',
+			'DropDownService',
 			'registrationService',
 			'$timeout',
 			'$filter',
 			'$location',
 
-			function($scope, $http, registrationService,
+			function($scope, $http, DivisionService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
-				
-				$scope.user = {
+				$scope.user={};
+				/*$scope.user = {
 						"office" : "",
 						"name" : "",
 						//"lmsDivision" : "",
@@ -50,12 +56,12 @@ App
 						"office_location_id" : "",
 													
 						
-					};
+					};*/
 
 				
 				$scope.registration = function(){
 										
-					$scope.user.name = $scope.username;
+					/*$scope.user.name = $scope.username;
 					$scope.user.nid = $scope.nid;
 					$scope.user.office = $scope.office;
 					$scope.user.division = $scope.division;
@@ -71,9 +77,9 @@ App
 					$scope.user.joiningdate = $scope.joiningdate;
 					$scope.user.gender = $scope.gender;
 					$scope.user.supervisoremail = $scope.supervisoremail;
-					$scope.user.address = $scope.address;
+					$scope.user.address = $scope.address;*/
 						
-					
+					console.log($scope.user.username);
 					
 					registrationService.registration($scope.user).then(
 							function(d) {
@@ -84,5 +90,59 @@ App
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
 							});
+				};
+				
+				$scope.getDivisionData = function(){
+					DivisionService.getAllDivision().then(function(d) {
+						$scope.divisionNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
 				}
+				
+				
+				$scope.getDesignationData = function(){
+					DesignationService.getAllDesignation().then(function(d) {
+						$scope.designationNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				
+				$scope.getMinistryData = function(){
+					MinistryService.getAllMinistry().then(function(d) {
+						$scope.ministryNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				
+				$scope.getSectionData = function(){
+					SectionService.getAllSection().then(function(d) {
+						$scope.sectionNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				
+				$scope.getOfficeData = function(){
+					OfficeService.getAllOffice().then(function(d) {
+						$scope.officeNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				
+				$scope.getDropdownData = function(){
+					DropDownService.getAllDropdown().then(function(d) {
+						$scope.dropdownNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
 			} ]);

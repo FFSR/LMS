@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
+// Generated Apr 24, 2018 4:15:01 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,10 +21,6 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_leave_balance", catalog = "lmsdb")
 public class LmsLeaveBalance implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private LmsLeaveType lmsLeaveType;
 	private LmsUser lmsUser;
@@ -37,13 +33,14 @@ public class LmsLeaveBalance implements java.io.Serializable {
 	private Integer insertBy;
 	private Date updateDate;
 	private Integer updateBy;
+	private Integer leaveApplied;
 
 	public LmsLeaveBalance() {
 	}
 
 	public LmsLeaveBalance(LmsLeaveType lmsLeaveType, LmsUser lmsUser, Date year, Integer leaveTotal,
 			Integer leaveTaken, Integer leaveBalance, String eligibility, Date insertDate, Integer insertBy,
-			Date updateDate, Integer updateBy) {
+			Date updateDate, Integer updateBy, Integer leaveApplied) {
 		this.lmsLeaveType = lmsLeaveType;
 		this.lmsUser = lmsUser;
 		this.year = year;
@@ -55,6 +52,7 @@ public class LmsLeaveBalance implements java.io.Serializable {
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
+		this.leaveApplied = leaveApplied;
 	}
 
 	@Id
@@ -69,7 +67,7 @@ public class LmsLeaveBalance implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "LEAVE_TYPE_ID")
 	public LmsLeaveType getLmsLeaveType() {
 		return this.lmsLeaveType;
@@ -79,7 +77,7 @@ public class LmsLeaveBalance implements java.io.Serializable {
 		this.lmsLeaveType = lmsLeaveType;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID")
 	public LmsUser getLmsUser() {
 		return this.lmsUser;
@@ -171,6 +169,15 @@ public class LmsLeaveBalance implements java.io.Serializable {
 
 	public void setUpdateBy(Integer updateBy) {
 		this.updateBy = updateBy;
+	}
+
+	@Column(name = "LEAVE_APPLIED")
+	public Integer getLeaveApplied() {
+		return this.leaveApplied;
+	}
+
+	public void setLeaveApplied(Integer leaveApplied) {
+		this.leaveApplied = leaveApplied;
 	}
 
 }

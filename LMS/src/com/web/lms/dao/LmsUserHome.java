@@ -89,13 +89,10 @@ public class LmsUserHome {
 			LmsUser lmsUser = (LmsUser) query.getSingleResult();
 
 			return lmsUser;
-
-		} catch (Exception ex) {
-
+		} 
+		catch (Exception ex) {
 			return null;
-
 		}
-
 	}
 
 	public LmsUser findByEmailID(String emailid) {
@@ -105,13 +102,10 @@ public class LmsUserHome {
 		
 			LmsUser lmsUser = (LmsUser) query.getSingleResult();
 		
-			return lmsUser;
-		
+			return lmsUser;		
 		}
-		catch(Exception ex) {
-			
-			return null;
-			
+		catch(Exception ex) {			
+			return null;			
 		}
 	}
 	
@@ -123,8 +117,7 @@ public class LmsUserHome {
 			return (List<LmsUser>) query.getResultList();
 		}
 		catch(Exception ex) {
-			ex.printStackTrace();
-			
+			ex.printStackTrace();			
 			return null;
 		}
 	}
@@ -136,13 +129,10 @@ public class LmsUserHome {
 		
 			List<LmsUser> lmsUser = query.getResultList();
 		
-			return lmsUser;
-		
+			return lmsUser;		
 		}
-		catch(Exception ex) {
-			
-			return null;
-			
+		catch(Exception ex) {			
+			return null;			
 		}
 	}
 		

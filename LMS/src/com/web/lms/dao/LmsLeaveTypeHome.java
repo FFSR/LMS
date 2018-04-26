@@ -1,5 +1,5 @@
 package com.web.lms.dao;
-// Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
+// Generated Apr 23, 2018 12:29:31 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.List;
 

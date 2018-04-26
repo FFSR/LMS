@@ -71,8 +71,6 @@ public class ResponseWrapper {
 		this.listLmsLeaveApplication = listLmsLeaveApplication;
 	}
 
-	
-	
 }
 
 

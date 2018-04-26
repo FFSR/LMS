@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.web.lms.dao.LmsDropdownHome;
+import com.web.lms.model.LmsDivision;
 import com.web.lms.model.LmsDropdown;
 
 @RestController
@@ -21,21 +22,23 @@ public class Dropdown {
 	private LmsDropdownHome lmsDropdownHome;
 
 	
-	@RequestMapping(value="/getDropdownData/{dropdownName}", method=RequestMethod.GET)
-	public ResponseEntity<List<LmsDropdown>> getDropdownData(@PathVariable("dropdownName") String dropdownName){
-		@SuppressWarnings({ "rawtypes", "unchecked" })
-		List<LmsDropdown> listLmsDropdown = new ArrayList(); 
+	@RequestMapping(value="/getDropdownData", method=RequestMethod.GET)
+	
+		public ResponseEntity<List<LmsDropdown>> getAllDropdown() {
+		
+		List<LmsDropdown> listLmsdropdown = new ArrayList<>();
+		
 		try {
-			listLmsDropdown = lmsDropdownHome.findByDropdownName(dropdownName);
-			if(listLmsDropdown.isEmpty()) {
-				return new ResponseEntity<List<LmsDropdown>>(listLmsDropdown, HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<List<LmsDropdown>>(listLmsDropdown, HttpStatus.OK);
+			listLmsdropdown = lmsDropdownHome.getAllDropdown();
+			
+			return new ResponseEntity<List<LmsDropdown>>(listLmsdropdown, HttpStatus.OK);
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
-			return new ResponseEntity<List<LmsDropdown>>(listLmsDropdown, HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<List<LmsDropdown>>(listLmsdropdown, HttpStatus.EXPECTATION_FAILED);
+			
 		}
+		
 		
 	}
 }
