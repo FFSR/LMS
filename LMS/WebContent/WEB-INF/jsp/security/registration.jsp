@@ -202,9 +202,7 @@
 					</select>
 						Status: {{appStatus}}				
 				</div>	
-				
-				
-				
+	
 			</div>
 
 			<br>

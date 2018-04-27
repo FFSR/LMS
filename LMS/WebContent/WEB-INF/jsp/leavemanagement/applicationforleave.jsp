@@ -5,11 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ministry Information</title>
-<script type="text/javascript" src="resources/js/app.js/service/leavetypeService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/leavetypeService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
+
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
 
@@ -18,17 +22,36 @@
 <script src="resources/js/jquery-3.2.1.slim.min.js"></script>
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
-<link href="resources/file-upload/css/dropzone/phase2_dropzone.css" rel="stylesheet" />
+<!-- <link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
+	rel="stylesheet" />
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
-<script type="text/javascript" src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
-<script type="text/javascript" src="resources/js/app.js/controller/FIleUploadController.js"></script>
-<script type="text/javascript" src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
-<link rel="stylesheet" href="resources/css/datetimepicker/jquery.datetimepicker.css"/>
+<script type="text/javascript"
+	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/controller/FIleUploadController.js"></script> -->
+<script type="text/javascript"
+	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet"
+	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
+<script type='text/javascript'>  
+        function CityDropdownCtrl($scope) {  
+            $scope.cities = ['Bangalre', 'Chennai', 'Delhi', 'Mumbai', 'Kolkata'];  
+            $scope.SelectedCity = {  
+                cities: $scope.cities[2]  
+            };  
+        }  
+    </script>
+
 </head>
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-	<div ng-init="loadLeaveTypeDownDown();"></div>
+		<div ng-init="loadLeaveTypeDownDown();loadUserListDropDown();"></div>
+
+
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">User ID</div>
@@ -36,26 +59,28 @@
 					<input type="text" ng-model="userid" class="form-control"
 						placeholder="User ID">
 				</div>
-				
-				<div class="col-sm-3" style="background-color: white;">User Name</div>
+
+				<div class="col-sm-3" style="background-color: white;">User
+					Name</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="username" class="form-control"
 						placeholder="User Name">
 				</div>
 
-			</div>		
+			</div>
 			<br>
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Leave
-				Type</div>
+					Type</div>
 				<div class="col-md-3">
 					<!-- Drop Down list from table -->
 					<select class="form-control" id="ddleavetype" ng-model="leavetype"
 						ng-options="x as x.type for x in dropdownData track by x.id">
 						<option value="">Select</option>
 					</select>
-			</div>
-				<div class="col-sm-3" style="background-color: white;">Reason For Leave</div>
+				</div>
+				<div class="col-sm-3" style="background-color: white;">Reason
+					For Leave</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="reasonForLeave" class="form-control"
 						placeholder="Reason For Leave">
@@ -64,13 +89,15 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Yearly Leave Eligibility</div>
+				<div class="col-sm-3" style="background-color: white;">Yearly
+					Leave Eligibility</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="eligibility" class="form-control"
 						placeholder="Yearly Leave Eligibility">
 				</div>
-				
-				<div class="col-sm-3" style="background-color: white;">Leave All ready Taken</div>
+
+				<div class="col-sm-3" style="background-color: white;">Leave
+					All ready Taken</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="leaveTaken" class="form-control"
 						placeholder="Leave All ready Taken">
@@ -79,68 +106,76 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Leave Remaining</div>
+				<div class="col-sm-3" style="background-color: white;">Leave
+					Remaining</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="leaveBalance" class="form-control"
 						placeholder="Leave Remaining">
 				</div>
 			</div>
 			<br>
-			
+
 			<div class="row">
-			<label class="col-sm-3 control-label">From Date</label>
+				<label class="col-sm-3 control-label">From Date</label>
 				<div class="col-sm-3">
 					<input type="text" id="fromDate" class="form-control" />
 				</div>
-			<label class="col-sm-3 control-label">To Date</label>
+				<label class="col-sm-3 control-label">To Date</label>
 				<div class="col-sm-3">
 					<input type="text" id="toDate" class="form-control" />
 				</div>
-		</div>
+			</div>
 			<br>
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Total Days Count</div>
+				<div class="col-sm-3" style="background-color: white;">Total
+					Days Count</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="totalDayCount" class="form-control"
 						placeholder="Total Days Count">
 				</div>
-				
-				<div class="col-sm-3" style="background-color: white;">Tasks need to be performed</div>
+
+				<div class="col-sm-3" style="background-color: white;">Tasks
+					need to be performed</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="taskNeedToPerformed" class="form-control"
-						placeholder="Tasks need to be performed">
+					<input type="text" ng-model="taskNeedToPerformed"
+						class="form-control" placeholder="Tasks need to be performed">
 				</div>
-				</div>
-				<br>
+			</div>
+			<br>
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">Reliever</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="Reliever" class="form-control"
-						placeholder="Reliever">
+				<div class="col-md-3">
+					<!-- Drop Down list from table -->
+					<select class="form-control" id="ddReliever" ng-model="ddReliever"
+						ng-options="x as x.name for x in userData track by x.id">
+						<option value="">Select</option>
+					</select>
+
 				</div>
-				<div class="col-sm-3" style="background-color: white;">In Station</div>
+				<div class="col-sm-3" style="background-color: white;">In
+					Station</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="instation" class="form-control"
 						placeholder="In Station">
 				</div>
 
-			</div>	
-			
+			</div>
+	
 			<br>
 			<div class="row">
-						<div class="col-md-12 form-group">
-							<label class="col-md-2 control-label" >Attach
-								Files:</label>
-							<div class="col-md-10 dropzone" dropzone="" id="my-awesome-dropzone">
-								<div class="dz-message" data-dz-message>
-									<span class="text-primary"> Drop Files Here to Upload <br />OR<br />
-										<button type="button" class="btn btn-info">Click Here</button>
-									</span>
-								</div>
-							</div>
+				<div class="col-md-12 form-group">
+					<label class="col-md-2 control-label">Attach Files:</label>
+					<div class="col-md-10 dropzone" dropzone=""
+						id="my-awesome-dropzone">
+						<div class="dz-message" data-dz-message>
+							<span class="text-primary"> Drop Files Here to Upload <br />OR<br />
+								<button type="button" class="btn btn-info">Click Here</button>
+							</span>
 						</div>
 					</div>
-			
+				</div>
+			</div>
+
 			<div class="row">
 				<button type="submit" class="btn" id="submit"
 					ng-click="applicationforleave()">Submit</button>
@@ -150,6 +185,8 @@
 				</div>
 				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
+			<div>Response: {{testMsg}}</div>
+
 		</div>
 	</div>
 </body>

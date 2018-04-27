@@ -23,8 +23,7 @@
 
 </head>
 <body>
-	<div ng-controller="leaveController as lc">			
-			
+	<div ng-controller="leavehistoryController as lhc">
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
@@ -41,7 +40,7 @@
 								</div>
 
 								<button type="submit" class="btn btn-default" id="search"
-									ng-click="lc.leave(lc.user_id)">Leave History</button>								
+									ng-click="lhc.leave(lhc.user_id)">Leave History</button>
 							</form>
 							<div style="color: blue">{{lc.user_id}}{{lc.testMsg}}</div>
 						</div>
@@ -49,37 +48,33 @@
 				</div>
 			</div>
 		</div>
-	
-	
-	<div>
-		<table class="table table-sm">
-				
-				
-					<div>
-					Test Message: {{lc.testMsg1}}
-						<table ng-table="lc.tableParams" class="table" show-filter="true">
-							<tr ng-repeat="user in $data">
-								<td title="'Employee Name'" filter="{ name: 'text'}"
-									sortable="'name'">{{user.lmsUser.name}}</td>
-								
-								<td title="'Leave Type'" filter="{ type: 'text'}"
-									sortable="'lmsLeaveType.type'">{{user.lmsLeaveType.type}}</td>	
-								
-								<td title="'From Date'" filter="{ From Date: 'text'}"
-									sortable="'fromdate'">{{user.lmsLeaveApplication.leaveTaken}}</td>
-									
-								<td title="'Taken Leave'" filter="{ leavetaken: 'text'}"
-									sortable="'takenleave'">{{user.lmsLeaveApplication.leaveAvailable}}</td>
-								
-								<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
-									sortable="'remainingTotal'">{{user.lmsLeaveApplication.leaveBalance}}</td>
-								
-								<td title="'Eligibility'" filter="{ eligibility: 'text'}"
-									sortable="'eligibility'">{{user.lmsLeaveApplication.eligibility}}</td>
-								
-							</tr>
-						</table>
-					</div>				
+		<div>
+			<table class="table table-sm">
+				<div>
+					Test Message: {{lhc.testMsg1}}
+					<table ng-table="lhc.tableParams" class="table" show-filter="true">
+						<tr ng-repeat="user in $data">
+							<td title="'Employee Name'" filter="{ name: 'text'}"
+								sortable="'name'">{{user.lmsUser.name}}</td>
+
+							<td title="'Leave Type'" filter="{ type: 'text'}"
+								sortable="'lmsLeaveType.type'">{{user.lmsLeaveType.type}}</td>
+
+							<td title="'Total Leave'" filter="{ leaveTotal: 'text'}"
+								sortable="'totalleave'">{{user.leaveTotal}}</td>
+
+							<td title="'Taken Leave'" filter="{ leavetaken: 'text'}"
+								sortable="'takenleave'">{{user.leaveTaken}}</td>
+
+							<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
+								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+
+							<td title="'Eligibility'" filter="{ eligibility: 'text'}"
+								sortable="'eligibility'">{{user.eligibility}}</td>
+						</tr>
+					</table>
+				</div>
+				</div>
 			</table>
 		</div>
 	</div>

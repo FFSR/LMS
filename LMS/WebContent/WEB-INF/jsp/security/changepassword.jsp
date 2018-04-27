@@ -13,50 +13,54 @@
 	src="resources/js/app.js/service/changepasswordService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/changepasswordController.js"></script>
-	
-	
 
-<link rel="stylesheet"
-	href="resources/css/bootstrap.min.css">
-<script
-	src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script
-	src="resources/js/popper.min.js"></script>
-<script
-	src="resources/js/bootstrap.min.js"></script>
-	
+
+
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
+<script src="resources/js/popper.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
 
-<div ng-controller="changepasswordController">
-<div class="container-fluid">
-<br>
+	<div ng-controller="changepasswordController">
+		<div class="container-fluid">
+			<br>
 
-	<div class="row">		
-  		<div class="col-sm-2" style="background-color: white;">Old Password</div> 
-		<div class="col-sm-2" style="background-color: white;">		
-		<input type="password" ng-model="oldpassword" class="form-control" placeholder="Old Password">		
-		</div> 	
-	</div><br>
-	
-	<div class="row">
-		<div class="col-sm-2" style="background-color: white;">New Password</div>
-		<div class="col-sm-2" style="background-color: white;">
-		<input type="password" ng-model="newpassword" class="form-control" placeholder="New Password">
-		</div>
-	</div><br>
-	
-	<div class="row">
-		<div class="col-sm-2" style="background-color: white;">Confirm Password</div>
-		<div class="col-sm-2" style="background-color: white;">
-		<input type="password" ng-model="confirmpassword" class="form-control" placeholder="Confirm Password">
-		</div> 
-	</div>
-	
-	<br><br>
+			<div class="row">
+				<div class="col-sm-2" style="background-color: white;">Old
+					Password</div>
+				<div class="col-sm-2" style="background-color: white;">
+					<input type="password" ng-model="oldpassword" class="form-control"
+						placeholder="Old Password">
+				</div>
+			</div>
+			<br>
 
-<script language="javascript">
+			<div class="row">
+				<div class="col-sm-2" style="background-color: white;">New
+					Password</div>
+				<div class="col-sm-2" style="background-color: white;">
+					<input type="password" ng-model="newpassword" class="form-control"
+						placeholder="New Password">
+				</div>
+			</div>
+			<br>
+
+			<div class="row">
+				<div class="col-sm-2" style="background-color: white;">Confirm
+					Password</div>
+				<div class="col-sm-2" style="background-color: white;">
+					<input type="password" ng-model="confirmpassword"
+						class="form-control" placeholder="Confirm Password">
+				</div>
+			</div>
+
+			<br> <br>
+
+			<script language="javascript">
 function fncSubmit()
 {
 
@@ -92,16 +96,14 @@ document.ChangePasswordForm.submit();
 }
 </script>
 
-		 
-										    
- 		<button type="submit" class="btn" id="changepassword" onclick="return fncSubmit()"
-										ng-click="changepassword(newpassword)">Submit</button>	
-		
-		<button type="button" class="btn">Cancel</button>
-		<div>Response: {{testMsg}}</div>
-		
-</div>
 
-	
+
+			<button type="submit" class="btn" id="changepassword"
+				onclick="return fncSubmit()" ng-click="changepassword(newpassword)">Submit</button>
+
+			<button type="button" class="btn">Cancel</button>
+			<div>Response: {{testMsg}}</div>
+
+		</div>
 </body>
 </html>

@@ -31,6 +31,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
+<<<<<<< HEAD
 
 <body>
     <!-- Preloader -->
@@ -353,6 +354,12 @@
     </script> -->
     <!--Style Switcher -->
     <script src="resources/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+=======
+<body class="hold-transition skin-blue sidebar-mini" style="zoom: 0.8;"
+	ng-app="myApp">
+	<tiles:insertAttribute name="menu" />
+	<tiles:insertAttribute name="body" />
+>>>>>>> Firoz
 </body>
 
 </html>

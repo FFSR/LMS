@@ -117,4 +117,32 @@ public class LmsLeaveApplicationHome {
 			return null;			
 		}
 	}
+
+@SuppressWarnings("unchecked")
+public List<LmsLeaveApplication> findAllLeaveApplications() {
+	try {
+		Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e");
+		
+		return (List<LmsLeaveApplication>) query.getResultList();
+	}
+	catch(Exception ex) {
+		ex.printStackTrace();
+		
+		return null;
+	}
+}
+
+@SuppressWarnings("unchecked")
+public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate() {
+	try {
+		Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.toDate >=CURDATE()");
+		
+		return (List<LmsLeaveApplication>) query.getResultList();
+	}
+	catch(Exception ex) {
+		ex.printStackTrace();
+		
+		return null;
+	}
+}
 }

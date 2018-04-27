@@ -51,7 +51,7 @@ App
 							"updateBy":""					
 						},
 						
-						"lmsUserByReliverEmailAddressUserId" :{
+						"lmsUserByUserId" :{
 							"id": 0,
 					        "lmsDepartment": {
 					            "id": 0,
@@ -174,7 +174,7 @@ App
 						"totalDayText" : "",					
 						"reasonForLeave" : "",
 						"taskNeedToPerformed" : "",
-						//"lmsUserByReliverEmailAddressUserId":"",
+						"lmsUserByReliverEmailAddressUserId":"",
 						"insertDate" : "",
 						"insertBy" : "",
 						"updatDate" : "",						
@@ -186,10 +186,10 @@ App
 					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
 					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
-					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId=$scope.ddReliever
+					$scope.leaveapplication.lmsUserByUserId=$scope.ddReliever
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					//$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.lmsUserByReliverEmailAddressUserId;
+					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.lmsUserByReliverEmailAddressUserId;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
@@ -226,7 +226,7 @@ App
 				
 			$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
-					userlistService.getAllUser().then(function(d) {
+					userlistService.getUserList().then(function(d) {
 						$scope.userData = d;
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");

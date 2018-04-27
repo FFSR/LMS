@@ -3,15 +3,16 @@
  */
 'use strict';
 
-App.factory('manageleaveService', [
+App.factory('updateholidayrecordService', [
 		'$http',
 		'$q',
 		'url',
 		function($http, $q, url) {
 			return {
 				
-				manageleave: function(search){
-					return $http.post(url+'manageleave/',search)
+				updateholidayrecord: function(holidayrecord){
+					console.log(holidayrecord);
+					return $http.put(url+'updateholidayrecord',holidayrecord)
 					.then(function(response) {
 						return response.data;
 					},

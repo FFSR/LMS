@@ -15,15 +15,16 @@
 	src="resources/js/app.js/controller/testleaveController.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/applicationforleaveService.js"></script>
-	
+
 </head>
 <body>
-	
+
 	<div ng-controller="testleaveController">
 		<div class="container-fluid">
 
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Yearly Leave Eligibility</div>
+				<div class="col-sm-3" style="background-color: white;">Yearly
+					Leave Eligibility</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="eligibility" class="form-control"
 						placeholder="Yearly Leave Eligibility">
@@ -32,8 +33,7 @@
 			</div>
 			<br>
 			<div class="row">
-				<button type="submit" class="btn" id="submit"
-					ng-click="testleave()">Submit</button>
+				<button type="submit" class="btn" id="submit" ng-click="testleave()">Submit</button>
 				<div class="col-sm-3" style="background-color: white;"></div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="button" class="btn btn-info" value="Cancel">
