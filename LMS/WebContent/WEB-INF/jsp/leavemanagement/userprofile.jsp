@@ -16,14 +16,6 @@
 	src="resources/js/app.js/controller/updateuserprofileController.js"></script>
 
 
-<link rel="stylesheet"
-	href="resources/css/bootstrap.min.css">
-<script
-	src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script
-	src="resources/js/popper.min.js"></script>
-<script
-	src="resources/js/bootstrap.min.js"></script>
 	
 </head>
 <body>
@@ -191,6 +183,7 @@
 </div>
 		
 		<div>Response: {{testMsg}}</div>
+		</div>
 	
 </body>
 </html>

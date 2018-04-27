@@ -11,10 +11,6 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/divisioninfoService.js"></script>
 
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script src="resources/js/popper.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
 
 
 

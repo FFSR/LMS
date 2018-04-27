@@ -46,7 +46,6 @@
 		</div> 
 	</div>
 	
-	<br><br>
 
 <script language="javascript">
 function fncSubmit()
@@ -94,6 +93,6 @@ document.ChangePasswordForm.submit();
 		
 </div>
 
-	
+	</div>
 </body>
 </html>
