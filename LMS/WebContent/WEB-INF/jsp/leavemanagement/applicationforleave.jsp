@@ -22,13 +22,13 @@
 <script src="resources/js/jquery-3.2.1.slim.min.js"></script>
 <script src="resources/js/popper.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
-<link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
+<!-- <link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
 	rel="stylesheet" />
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/FIleUploadController.js"></script>
+	src="resources/js/app.js/controller/FIleUploadController.js"></script> -->
 <script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
@@ -44,7 +44,7 @@
             };  
         }  
     </script>
-    
+
 </head>
 <body>
 	<br>
@@ -160,11 +160,7 @@
 				</div>
 
 			</div>
-			<div class="col-md-3" ng-app ng-controller="CityDropdownCtrl">
-				<select ng-model="SelectedCity.cities"
-					ng-options="c for c in cities">
-				</select>
-			</div>
+	
 			<br>
 			<div class="row">
 				<div class="col-md-12 form-group">
@@ -190,8 +186,7 @@
 				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
 			<div>Response: {{testMsg}}</div>
-			<script> alert({{testMsg}})</script>
-			
+
 		</div>
 	</div>
 </body>
