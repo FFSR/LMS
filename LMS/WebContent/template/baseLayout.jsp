@@ -1,3 +1,4 @@
+<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,7 @@
     <!-- toast CSS -->
     <link href="resources/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- morris CSS -->
-    <link href="resources/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- <link href="resources/bower_components/morrisjs/morris.css" rel="stylesheet"> -->
     <!-- animation CSS -->
     <link href="resources/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -30,10 +31,56 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+    <!-- jQuery -->
+    <script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="resources/bootstrap/dist/js/tether.min.js"></script>
+    <script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="resources/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="resources/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="resources/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="resources/js/waves.js"></script>
+    <!--Counter js -->
+    <script src="resources/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+    <script src="resources/bower_components/counterup/jquery.counterup.min.js"></script>
+    <!--Morris JavaScript -->
+    <script src="resources/bower_components/raphael/raphael-min.js"></script>
+    <!-- <script src="resources/bower_components/morrisjs/morris.js"></script> -->
+    <!-- Custom Theme JavaScript -->
+    <script src="resources/js/custom.min.js"></script>
+    <!-- <script src="resources/js/dashboard1.js"></script> -->
+    <!-- Sparkline chart JavaScript -->
+    <script src="resources/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="resources/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
+    <script src="resources/bower_components/toast-master/js/jquery.toast.js"></script>
+    <!-- <script type="text/javascript">
+    $(document).ready(function() {
+        $.toast({
+            heading: 'Welcome to Elite admin',
+            text: 'Use the predefined ones, or specify a custom position object.',
+            position: 'top-right',
+            loaderBg: '#ff6849',
+            icon: 'info',
+            hideAfter: 3500,
+            stack: 6
+        })
+    });
+    </script> -->
+    <!--Style Switcher -->
+    <script src="resources/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+<!-- Angular Stuff -->
+<!-- <script type="text/javascript" src="resources/js/ng-table.min.js"></script>
+<link href="resources/css/ng-table.min.css"> -->
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script type="text/javascript" src="resources/js/app.js/app.js"></script> -->
+<script type="text/javascript" src="resources/js/angular.min.js"></script>
+<script type="text/javascript" src="resources/js/app.js/app.js"></script>
 </head>
-<<<<<<< HEAD
 
-<body>
+<body ng-app="myApp">
     <!-- Preloader -->
     <div class="preloader">
         <div class="cssload-speeding-wheel"></div>
@@ -79,9 +126,9 @@
                         <!-- /input-group -->
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
-                    <li> <a href="index.html" class="waves-effect active"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span> <span class="label label-rouded label-custom pull-right">4</span></span></a>
+                    <li> <a href="index.html" class="waves-effect active"><i class="linea-icon linea-basic fa-fw" data-icon="v"></i> <span class="hide-menu"> Admin Dashboard <span class="fa arrow"></span> </span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="index.html">Minimalistic</a> </li>
+                            <li> <a href="adminpanel">Admin Panel</a> </li>
                             <li> <a href="index2.html">Demographical</a> </li>
                             <li> <a href="index3.html">Analitical</a> </li>
                             <li> <a href="index4.html">Simpler</a> </li>
@@ -296,6 +343,7 @@
                         </ol>
                     </div> -->
                     <!-- /.col-lg-12 -->
+                    <tiles:insertAttribute name="body" />
                 </div>
                 <!-- /.row -->
                 <!--row -->
@@ -314,52 +362,6 @@
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="resources/bootstrap/dist/js/tether.min.js"></script>
-    <script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="resources/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="resources/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-    <!--slimscroll JavaScript -->
-    <script src="resources/js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="resources/js/waves.js"></script>
-    <!--Counter js -->
-    <script src="resources/bower_components/waypoints/lib/jquery.waypoints.js"></script>
-    <script src="resources/bower_components/counterup/jquery.counterup.min.js"></script>
-    <!--Morris JavaScript -->
-    <script src="resources/bower_components/raphael/raphael-min.js"></script>
-    <script src="resources/bower_components/morrisjs/morris.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="resources/js/custom.min.js"></script>
-    <script src="resources/js/dashboard1.js"></script>
-    <!-- Sparkline chart JavaScript -->
-    <script src="resources/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
-    <script src="resources/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
-    <script src="resources/bower_components/toast-master/js/jquery.toast.js"></script>
-    <!-- <script type="text/javascript">
-    $(document).ready(function() {
-        $.toast({
-            heading: 'Welcome to Elite admin',
-            text: 'Use the predefined ones, or specify a custom position object.',
-            position: 'top-right',
-            loaderBg: '#ff6849',
-            icon: 'info',
-            hideAfter: 3500,
-            stack: 6
-        })
-    });
-    </script> -->
-    <!--Style Switcher -->
-    <script src="resources/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-=======
-<body class="hold-transition skin-blue sidebar-mini" style="zoom: 0.8;"
-	ng-app="myApp">
-	<tiles:insertAttribute name="menu" />
-	<tiles:insertAttribute name="body" />
->>>>>>> Firoz
 </body>
 
 </html>
