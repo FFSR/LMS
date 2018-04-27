@@ -4,8 +4,10 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+
+
+
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
@@ -13,23 +15,10 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 <script type="text/javascript"
 	src="resources/js/app.js/controller/testController.js"></script>
 
-<!--Start bootstrap stuff -->
-
-<link rel="stylesheet"
-	href="resources/css/bootstrap.min.css">
-<script
-	src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script
-	src="resources/js/popper.min.js"></script>
-<script
-	src="resources/js/bootstrap.min.js"></script>
-
-<!-- End bootstrap stuff -->
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript" src="resources/js/app.js/directives/RestrictInput.js"></script>
 <script type="text/javascript" src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
 <script type="text/javascript" src="resources/js/app.js/controller/FIleUploadController.js"></script>
-<script type="text/javascript" src="resources/js/DatePicker/jquery.js"></script>
 <script type="text/javascript" src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet" href="resources/css/datetimepicker/jquery.datetimepicker.css"/>
 <style>
@@ -541,7 +530,7 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 			digitsOnly: <input ng-model="val1" restrict-input="{type: 'digitsOnly'}"/> {{val1}}<br/>
 			lettersAndDigitsOnly: <input ng-model="val5" restrict-input="{type: 'lettersAndDigitsOnly'}"/> {{val5}}<br/>
 		</div>
-		
+		Test: {{t}}
 	</div> <!-- End of Controller -->
 	
 </body>

@@ -92,6 +92,8 @@ App
 				
 				$scope.getErrorMessage = function(){
 					$scope.showErrorMessage("Hello, This is Error Message.");
-				}
+				};
+				
+				$scope.t = "New Text";
 				
 			} ]);
