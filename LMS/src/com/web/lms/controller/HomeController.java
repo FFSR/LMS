@@ -16,7 +16,18 @@ public class HomeController {
 	@RequestMapping("/")
 	public String root(Model model) {
 		
-		return "index";
+		// httpSession.invalidate();
+		//String n = httpSession.getAttribute("userName").toString();
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "index";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 

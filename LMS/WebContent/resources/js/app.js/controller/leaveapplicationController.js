@@ -249,6 +249,14 @@ App
 				};
 				
 				$scope.getleaveapplication(4);*/
+				
+				$scope.getSessionUserDetails = function(userName,userID){
+					
+					$scope.username = userName;
+					$scope.userid = userID;
+					
+					console.log("User Group");
+				}
 			} 
 			]);
 				

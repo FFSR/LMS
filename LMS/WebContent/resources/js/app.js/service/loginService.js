@@ -11,7 +11,7 @@ App.factory('loginService', [
 			return {
 				
 				login: function(username,password){
-					return $http.get(url+'log/'+username+'/'+password+'/')
+					return $http.get(url+'login/'+username+'/'+password+'/')
 					.then(function(response) {
 						return response.data;
 					},
