@@ -36,14 +36,6 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
-<script type='text/javascript'>  
-        function CityDropdownCtrl($scope) {  
-            $scope.cities = ['Bangalre', 'Chennai', 'Delhi', 'Mumbai', 'Kolkata'];  
-            $scope.SelectedCity = {  
-                cities: $scope.cities[2]  
-            };  
-        }  
-    </script>
 
 </head>
 <body>

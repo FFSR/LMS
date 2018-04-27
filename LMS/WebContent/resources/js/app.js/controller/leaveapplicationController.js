@@ -226,7 +226,9 @@ App
 				
 			$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
-					userlistService.getUserList().then(function(d) {
+					userlistService.getUserList()
+					.then(
+						function(d) {
 						$scope.userData = d;
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");

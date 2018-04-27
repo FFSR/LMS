@@ -123,8 +123,7 @@ public class LmsUser implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "DEPARTMENT_ID")
 	public LmsDepartment getLmsDepartment() {
 		return this.lmsDepartment;
