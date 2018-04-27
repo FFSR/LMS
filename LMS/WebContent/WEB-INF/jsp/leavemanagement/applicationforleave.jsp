@@ -143,7 +143,7 @@
 				<div class="col-sm-3" style="background-color: white;">In
 					Station</div>
 				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="instation" class="form-control"
+					<input type="text" ng-model="inStation" class="form-control"
 						placeholder="In Station">
 				</div>
 

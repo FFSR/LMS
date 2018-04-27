@@ -51,7 +51,7 @@ App
 							"updateBy":""					
 						},
 						
-						"lmsUserByUserId" :{
+						"lmsUserByReliverEmailAddressUserId" :{
 							"id": 0,
 					        "lmsDepartment": {
 					            "id": 0,
@@ -179,6 +179,7 @@ App
 						"insertBy" : "",
 						"updatDate" : "",						
 						"updateBy" : "",
+						"inStation" :"",
 					};
 	
 				$scope.applicationforleave = function(){				
@@ -189,7 +190,7 @@ App
 					$scope.leaveapplication.lmsUserByUserId=$scope.ddReliever
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.lmsUserByReliverEmailAddressUserId;
+					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.ddReliever;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
@@ -197,6 +198,7 @@ App
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
+					$scope.leaveapplication.inStation = $scope.inStation;
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
