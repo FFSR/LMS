@@ -209,11 +209,13 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
+								$scope.showSuccessMessage("Insertion successful");
 								$scope.uploadFile();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
+								$scope.showErrorMessage("Insertion Fail");
 							});
 				}
 				
@@ -237,6 +239,25 @@ App
 					});
 				};
 				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
 		/* $scope.getleaveapplication = function(leaveapplicationid){
 					console.log("From Get Method");
 					leaveapplicationservice.getleaveapp(leaveapplicationid).then(
