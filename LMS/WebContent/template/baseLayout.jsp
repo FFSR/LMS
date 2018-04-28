@@ -25,6 +25,7 @@
     <link href="resources/css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="resources/css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <!-- <link href="resources/css/colors/blue.css" id="theme" rel="stylesheet"> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,19 +57,6 @@
     <script src="resources/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
     <script src="resources/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
     <script src="resources/bower_components/toast-master/js/jquery.toast.js"></script>
-    <!-- <script type="text/javascript">
-    $(document).ready(function() {
-        $.toast({
-            heading: 'Welcome to Elite admin',
-            text: 'Use the predefined ones, or specify a custom position object.',
-            position: 'top-right',
-            loaderBg: '#ff6849',
-            icon: 'info',
-            hideAfter: 3500,
-            stack: 6
-        })
-    });
-    </script> -->
     <!--Style Switcher -->
     <script src="resources/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 <!-- Angular Stuff -->
@@ -165,17 +153,12 @@
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
-                <div class="row bg-title">
-                    <!-- <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Dashboard 1</h4> </div> -->
-                    <!-- <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12"> <a href="#" target="_blank" class="btn btn-danger pull-right m-l-20 btn-rounded btn-outline hidden-xs hidden-sm waves-effect waves-light">Buy Now</a>
-                        <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li class="active">Dashboard 1</li>
-                        </ol>
-                    </div> -->
-                    <!-- /.col-lg-12 -->
-                    <tiles:insertAttribute name="body" />
+                <div class="row">
+                	<div class="col-md-12 col-lg-12 col-sm-12">
+                		<div class="white-box">
+                    		<tiles:insertAttribute name="body" />
+                    	</div>
+                    </div>
                 </div>
                 <!-- /.row -->
                 <!--row -->
@@ -189,7 +172,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Elite Admin brought to you by themedesigner.in </footer>
+            <footer class="footer text-center"> 2017 &copy; Elite Admin </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
