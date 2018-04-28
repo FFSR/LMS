@@ -30,8 +30,6 @@
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
 
 </head>
 <body>
