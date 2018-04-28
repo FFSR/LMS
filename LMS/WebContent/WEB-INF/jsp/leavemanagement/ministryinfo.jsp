@@ -13,11 +13,6 @@
 	src="resources/js/app.js/controller/ministryinfoController.js"></script>
 
 
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script src="resources/js/popper.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-
 </head>
 <body>
 	<br>
@@ -44,5 +39,6 @@
 				<div class="col-sm-3" style="background-color: white;"></div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

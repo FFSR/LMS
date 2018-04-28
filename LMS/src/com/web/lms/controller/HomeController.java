@@ -1,5 +1,8 @@
 package com.web.lms.controller;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,10 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
+	@Autowired
+	private HttpSession httpSession;
+	
 	@RequestMapping("/")
 	public String root(Model model) {
 		
-		return "index";
+		// httpSession.invalidate();
+		//String n = httpSession.getAttribute("userName").toString();
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "index";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 

@@ -29,7 +29,7 @@ public class Login {
 	public ResponseEntity<ResponseWrapper> getlogin(@PathVariable("userName") String uName, @PathVariable("password") String password){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		LmsUser lmsUser = new LmsUser();
+		LmsUser lmsUser = null;// = new LmsUser();
 		try {
 			password = ProtectedConfigFile.encrypt(password);
 		}
@@ -38,16 +38,20 @@ public class Login {
 		}
 		try {
 			lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
-			httpSession.setAttribute("user", lmsUser);
-			httpSession.setAttribute("userName", lmsUser.getName());
+			if(lmsUser != null) {
+				httpSession.setAttribute("user", lmsUser);
+				httpSession.setAttribute("userName", lmsUser.getName());
+				httpSession.setAttribute("userID", lmsUser.getId());
+				//httpSession.setAttribute("userRole", lmsUser.get);
+				responseWrapper.setMessage("Login Success.");
+			}
+			else {
+				responseWrapper.setMessage("Failed to Login. User Name or Password Wrong.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+			}
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
-		}
-		if(lmsUser != null) {
-			responseWrapper.setMessage("Success. UserName: "+uName+" Password: "+password);
-			
-			httpSession.setAttribute("userName", uName);
 		}
 		
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);

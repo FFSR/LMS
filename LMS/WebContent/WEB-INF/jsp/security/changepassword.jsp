@@ -21,6 +21,7 @@
 
 <body>
 
+<<<<<<< HEAD
 	<div ng-controller="changepasswordController">
 		<div class="container-fluid">
 			<br>
@@ -57,6 +58,35 @@
 			<br> <br>
 
 			<script language="javascript">
+=======
+<div ng-controller="changepasswordController">
+<div class="container-fluid">
+<br>
+
+	<div class="row">		
+  		<div class="col-sm-2" style="background-color: white;">Old Password</div> 
+		<div class="col-sm-2" style="background-color: white;">		
+		<input type="password" ng-model="oldpassword" class="form-control" placeholder="Old Password">		
+		</div> 	
+	</div><br>
+	
+	<div class="row">
+		<div class="col-sm-2" style="background-color: white;">New Password</div>
+		<div class="col-sm-2" style="background-color: white;">
+		<input type="password" ng-model="newpassword" class="form-control" placeholder="New Password">
+		</div>
+	</div><br>
+	
+	<div class="row">
+		<div class="col-sm-2" style="background-color: white;">Confirm Password</div>
+		<div class="col-sm-2" style="background-color: white;">
+		<input type="password" ng-model="confirmpassword" class="form-control" placeholder="Confirm Password">
+		</div> 
+	</div>
+	
+
+<script language="javascript">
+>>>>>>> Reazul
 function fncSubmit()
 {
 
@@ -93,6 +123,7 @@ document.ChangePasswordForm.submit();
 </script>
 
 
+<<<<<<< HEAD
 
 			<button type="submit" class="btn" id="changepassword"
 				onclick="return fncSubmit()" ng-click="changepassword(newpassword)">Submit</button>
@@ -101,5 +132,8 @@ document.ChangePasswordForm.submit();
 			<div>Response: {{testMsg}}</div>
 
 		</div>
+=======
+	</div>
+>>>>>>> Reazul
 </body>
 </html>

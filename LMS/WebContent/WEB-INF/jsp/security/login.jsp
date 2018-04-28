@@ -16,38 +16,38 @@
 </head>
 
 <body>
-	<div ng-controller="loginController">
-		<div class="container-fluid">
-			<br> <br>
-			<div class="row">
-				<div class="col-sm-1" style="background-color: white;">User
-					Name</div>
-				<div class="col-sm-2" style="background-color: white;">
-					<input type="text" ng-model="username" class="form-control"
-						placeholder="User Name"> {{username}}
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-sm-1" style="background-color: white;">Password</div>
-				<div class="col-sm-2" style="background-color: white;">
-					<input type="password" ng-model="password" class="form-control"
-						placeholder="Password"> {{password}}
-				</div>
-			</div>
-			<br> <br>
-			<button type="submit" class="btn" id="login"
-				ng-click="login(username,password)">Login</button>
-
-			<button type="button" class="btn">Cancel</button>
-			<br> <a href="http://localhost:8080/LMS/forgetpasswd"
-				class="btn btn-default">Forget Password?</a> <a
-				href="http://localhost:8080/LMS/changepassword"
-				class="btn btn-default">Change Password</a> <br> <a
-				href="http://localhost:8080/LMS/registration"
-				class="btn btn-default">Registration</a>
-
-			<div>Response: {{testMsg}}</div>
+	<div ng-controller="loginController">		
+		<div class="row">
+			<div class="col-md-6">
+                        <div class="white-box">
+                            <h3 class="box-title m-b-0">User Login</h3>
+                            <p class="text-muted m-b-30 font-13"> Please provide your details to login </p>
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="">User Name</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                                <input type="text" ng-model="username" class="form-control" id="" placeholder="Username"> </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputpwd1">Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-addon"><i class="ti-lock"></i></div>
+                                                <input type="password" ng-model="password" class="form-control" id="exampleInputpwd1" placeholder="Password"> </div>
+                                        </div>
+                                        <button type="submit" ng-click="login(username,password)" class="btn btn-success waves-effect waves-light m-r-10">Login</button>
+                                        <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
+                                    </form>
+                                    <br/>
+                                    <a href="http://localhost:8080/LMS/forgetpasswd">Forget Password</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="http://localhost:8080/LMS/registration">Registration</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
 		</div>
 	</div>
 </body>
