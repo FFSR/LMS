@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.wrapper.ResponseWrapper;
 
 import com.web.lms.dao.LmsUserHome;
+import com.web.lms.dao.LmsWftRoleUserMapHome;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsWftRoleUserMap;
 import com.web.lms.utility.ProtectedConfigFile;
 
 
@@ -22,6 +24,7 @@ public class Login {
 	private LmsUserHome lmsUserHome;
 	@Autowired
 	private HttpSession httpSession;
+	
 
 	
 	@RequestMapping(value="/login/{userName}/{password}", method=RequestMethod.GET)
@@ -30,6 +33,7 @@ public class Login {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsUser lmsUser = null;// = new LmsUser();
+		//LmsWftRoleUserMap lmsWftRoleUserMap = null;
 		try {
 			password = ProtectedConfigFile.encrypt(password);
 		}
@@ -39,6 +43,13 @@ public class Login {
 		try {
 			lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
 			if(lmsUser != null) {
+				
+				//lmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserID(lmsUser.getId());
+				
+				/*if(lmsWftRoleUserMap != null) {
+					httpSession.setAttribute("wftUserRole", lmsWftRoleUserMap);
+				}*/
+				
 				httpSession.setAttribute("user", lmsUser);
 				httpSession.setAttribute("userName", lmsUser.getName());
 				httpSession.setAttribute("userID", lmsUser.getId());

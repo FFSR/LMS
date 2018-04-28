@@ -1,8 +1,11 @@
 package com.web.lms.dao;
 // Generated Apr 28, 2018 3:31:02 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -69,5 +72,19 @@ public class LmsWftRoleUserMapHome {
 			log.error("get failed", re);
 			throw re;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsWftRoleUserMap> findByUserID(Integer userID ) {
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser.id=:userID").setParameter("userID", userID);
+			
+			return (List<LmsWftRoleUserMap>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
 	}
 }

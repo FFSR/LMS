@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsWftFlowControl;
 
+import freemarker.core.ReturnInstruction.Return;
+
 /**
  * Home object for domain model class LmsWfRequestHop.
  * @see GEN.LmsWfRequestHop
@@ -104,6 +106,21 @@ public class LmsWfRequestHopHome {
 		}
 		catch(Exception ex) {			
 			return null;			
+		}
+	}
+	
+	public List<LmsWfRequestHop> findByRoleMapAndStatus(String status, Integer wftRole){
+		Query query;
+		
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.wftRoleId=:wftRole AND e.status=:status");
+			query.setParameter("wftRole", wftRole);
+			query.setParameter("status", status);
+			
+			return (List<LmsWfRequestHop>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
 		}
 	}
 }

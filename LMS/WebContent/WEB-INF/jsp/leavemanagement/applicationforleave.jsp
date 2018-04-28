@@ -12,6 +12,8 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/wfManagementService.js"></script>
+<script type="text/javascript"
 	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
 <script type="text/javascript" src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
@@ -24,7 +26,7 @@
 <script type="text/javascript"
 	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/FIleUploadController.js"></script> -->
+	src="resources/js/app.js/controller/FIleUploadController.js"></script>
 <script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
@@ -35,7 +37,7 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.userName}','${sessionScope.userID}');"></div>
+	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');"></div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">User ID</div>

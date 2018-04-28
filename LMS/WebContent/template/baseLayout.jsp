@@ -60,11 +60,10 @@
     <!--Style Switcher -->
     <script src="resources/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 <!-- Angular Stuff -->
-<!-- <script type="text/javascript" src="resources/js/ng-table.min.js"></script>
-<link href="resources/css/ng-table.min.css"> -->
-<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-<script type="text/javascript" src="resources/js/app.js/app.js"></script> -->
 <script type="text/javascript" src="resources/js/angular.min.js"></script>
+<script type="text/javascript" src="resources/js/ng-table.min.js"></script>
+<link href="resources/css/ng-table.min.css">
+
 <script type="text/javascript" src="resources/js/app.js/app.js"></script>
 </head>
 
