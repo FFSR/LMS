@@ -120,14 +120,13 @@ public class Leaverule {
 		cal.set(Calendar.DAY_OF_YEAR, 1);    
 		Date firstDateOfCurrentYesr = cal.getTime();
 		
-		
-		
+	
 		long numberOfDays = calculateDateDifference(startdate,enddate);		
 		
 		// Validation 1: Maximum Leave limit exceed.
 		if (leaveType.getMaximumDays() != null || leaveType.getMaximumDays() != 0) {
 			
-			lmsLeaveBalance =	lmsLeaveBalanceHome.findLeaveCountbyUserAndLeaveType(user.getId(), leaveType.getId());
+			lmsLeaveBalance =	findLeaveBalanceCurrent(user, leaveType);
 			
 			if(lmsLeaveBalance == null) {
 				
@@ -221,7 +220,7 @@ public class Leaverule {
 		// Validation 7: Insufficient Leave Balance.
 		else if ((leaveType.getIncremental() != null || !leaveType.getIncremental().equals("")) && leaveType.getIncremental().toUpperCase().equals(DECISION.YES)) {
 			
-			lmsLeaveBalance =	lmsLeaveBalanceHome.findLeaveCountbyUserAndLeaveTypeAndYear(user.getId(), leaveType.getId(), strCurrentYear);
+			lmsLeaveBalance =	findLeaveBalanceCurrent(user, leaveType);
 			
 			if(lmsLeaveBalance==null) {
 				replayMessage = "Validation 7.1: Leave Balance for this leave type is not found.";
@@ -277,11 +276,23 @@ public class Leaverule {
 		return diff;
 	}
 	
-/*	private LmsLeaveBalance findLeaveBalanceConditionalSwitching(LmsUser user, LmsLeaveType leaveType) {
+	private LmsLeaveBalance findLeaveBalanceCurrent(LmsUser user, LmsLeaveType leaveType) {
 		
-		LmsLeaveBalance lmsLeaveBalance;
+		LmsLeaveBalance lmsLeaveBalance=null;
 		
-		lmsLeaveBalance =	lmsLeaveBalanceHome.findLeaveCountbyUserAndLeaveTypeAndYear(user.getId(), leaveType.getId(), strCurrentYear);
+		if(leaveType.getDependentLeaveAc()!=null || leaveType.getDependentLeaveAc() !=0) {
 			
-	}*/
+			// Validate Leave Type
+			LmsLeaveType leaveTypeDependentLeaveAc = lmsLeaveTypeHome.findById(leaveType.getDependentLeaveAc());
+
+			if (leaveTypeDependentLeaveAc == null) {
+
+				lmsLeaveBalance =	lmsLeaveBalanceHome.findLeavebalacebyUserAndLeaveTypeAndACStatus(user.getId(), leaveType.getId(), LEAVETYPE.CURRENT.toString());
+			}	
+			
+		}else {
+			lmsLeaveBalance =	lmsLeaveBalanceHome.findLeavebalacebyUserAndLeaveTypeAndACStatus(user.getId(), leaveType.getId(), LEAVETYPE.CURRENT.toString());			
+		}
+		return lmsLeaveBalance;
+	}
 }
