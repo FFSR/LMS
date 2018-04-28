@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
+// Generated Apr 28, 2018 3:31:02 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,28 +24,26 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_wft_role", catalog = "lmsdb")
 public class LmsWftRole implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String roleName;
 	private Date insertDate;
 	private Integer insertBy;
 	private Date updateDate;
 	private Integer updateBy;
+	private Set<LmsWftRoleUserMap> lmsWftRoleUserMaps = new HashSet<LmsWftRoleUserMap>(0);
 	private Set<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps = new HashSet<LmsWftRequestHopRolePageMap>(0);
 
 	public LmsWftRole() {
 	}
 
 	public LmsWftRole(String roleName, Date insertDate, Integer insertBy, Date updateDate, Integer updateBy,
-			Set<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps) {
+			Set<LmsWftRoleUserMap> lmsWftRoleUserMaps, Set<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps) {
 		this.roleName = roleName;
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
+		this.lmsWftRoleUserMaps = lmsWftRoleUserMaps;
 		this.lmsWftRequestHopRolePageMaps = lmsWftRequestHopRolePageMaps;
 	}
 
@@ -106,6 +104,16 @@ public class LmsWftRole implements java.io.Serializable {
 
 	public void setUpdateBy(Integer updateBy) {
 		this.updateBy = updateBy;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRole")
+	@JsonIgnore
+	public Set<LmsWftRoleUserMap> getLmsWftRoleUserMaps() {
+		return this.lmsWftRoleUserMaps;
+	}
+
+	public void setLmsWftRoleUserMaps(Set<LmsWftRoleUserMap> lmsWftRoleUserMaps) {
+		this.lmsWftRoleUserMaps = lmsWftRoleUserMaps;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRole")

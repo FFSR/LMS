@@ -136,4 +136,21 @@ public class LmsLeaveBalanceHome {
 			return null;			
 		}
 	}
+	
+	public LmsLeaveBalance findLeavebalacebyUserAndLeaveTypeAndACStatus(Integer userid, Integer leaveTypeId, String acStatus) {		
+		try {			
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND e.acstatus=:acStatus")
+					.setParameter("userid", userid)
+					.setParameter("leaveTypeId", leaveTypeId)
+					.setParameter("acStatus", acStatus);
+		
+			LmsLeaveBalance lmsLeaveBalance = (LmsLeaveBalance) query.getSingleResult();
+		
+			return lmsLeaveBalance;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
 }
