@@ -168,4 +168,18 @@ App
 					}, 6000);
 				};
 				
+				
+				$scope.clearAll = function(){
+					// for dropdown set to zero
+					//$scope.mobileNoDropDown = '0';
+					// for text filed set to empty
+					//$scope.mobileNoText = "";
+					// for check button set false;
+					//$scope.formSignVerified = false;
+					$scope.user.name = "";
+					$scope.user.lmsDivision = '0';
+					$scope.email = "";
+					
+				};
+				
 			} ]);

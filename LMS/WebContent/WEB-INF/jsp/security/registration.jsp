@@ -41,6 +41,7 @@
 		<div ng-init="getSectionData()"></div>
 		<div ng-init="getOfficeData()"></div>
 		<div ng-init="getDropdownData()"></div>
+		<form class="form-horizontal" name="registrationForm">
 		<div class="container-fluid">
 
 			<div class="row">
@@ -58,7 +59,7 @@
 		<div class="row">
 			<div class="col-sm-3" style="background-color: white;">Name</div>
 			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.name" class="form-control"
+				<input type="text" ng-model="user.name" ng-required="true" class="form-control"
 					placeholder="User Name">
 			</div>
 
@@ -137,7 +138,7 @@
 		<div class="row">
 			<div class="col-sm-3" style="background-color: white;">Mobile</div>
 			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.mobile_personal"
+				<input type="text" ng-model="user.mobile_personal" ng-required="true"
 					class="form-control" placeholder="Mobile">
 			</div>
 			<div class="col-sm-3" style="background-color: white;">Telephone</div>
@@ -152,7 +153,7 @@
 		<div class="row">
 			<div class="col-sm-3" style="background-color: white;">Email</div>
 			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.email" class="form-control"
+				<input type="text" ng-model="user.email" class="form-control" ng-required="true"
 					placeholder="Email">
 			</div>
 			<div class="col-sm-3" style="background-color: white;">Fax</div>
@@ -168,7 +169,7 @@
 			<div class="col-sm-3" style="background-color: white;">Joining
 				Date</div>
 			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.joining_date" class="form-control"
+				<input type="text" ng-model="user.joining_date" class="form-control" ng-required="true"
 					placeholder="Joining Date">
 			</div>
 			<div class="col-sm-3" style="background-color: white;">Gender</div>
@@ -187,7 +188,7 @@
 			<div class="col-sm-3" style="background-color: white;">Supervisor
 				Email</div>
 			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="supervisoremail" class="form-control"
+				<input type="text" ng-model="supervisoremail" class="form-control" ng-required="true"
 					placeholder="Supervisor Email">
 			</div>
 			<div class="col-sm-3" style="background-color: white;">Address</div>
@@ -230,13 +231,15 @@
 
 		<div class="row">
 			<button type="submit" class="btn" id="submit"
-				ng-click="registration()">Submit</button>
+				ng-click="registration()" ng-disabled="registrationForm.$invalid">Submit</button>
 			<div class="col-sm-3" style="background-color: white;"></div>
 			<div class="col-sm-3" style="background-color: white;">
 				<input type="button" class="btn btn-info" value="Cancel">
 			</div>
 			<div class="col-sm-3" style="background-color: white;"></div>
 		</div>
+		
+		</form>
 		
 		<div class="row">
 			<div class="col-md-12">
