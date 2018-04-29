@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Apr 24, 2018 8:42:43 PM by Hibernate Tools 5.2.8.Final
+// Generated Apr 29, 2018 2:50:56 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -55,11 +55,10 @@ public class LmsUser implements java.io.Serializable {
 	private Date dateofbirth;
 	private Date resigndate;
 	private Set<LmsLeaveBalance> lmsLeaveBalances = new HashSet<LmsLeaveBalance>(0);
-	private Set<LmsLeaveApplication> lmsLeaveApplicationsForReliverEmailAddressUserId = new HashSet<LmsLeaveApplication>(
-			0);
-	private Set<LmsLeaveApplication> lmsLeaveApplicationsForUserId = new HashSet<LmsLeaveApplication>(0);
+	private Set<LmsLeaveApplication> lmsLeaveApplications = new HashSet<LmsLeaveApplication>(0);
 	private Set<LmsAttachment> lmsAttachments = new HashSet<LmsAttachment>(0);
 	private Set<LmsUser> lmsUsers = new HashSet<LmsUser>(0);
+	private Set<LmsWftRoleUserMap> lmsWftRoleUserMaps = new HashSet<LmsWftRoleUserMap>(0);
 	private Set<LmsUserRoleMap> lmsUserRoleMaps = new HashSet<LmsUserRoleMap>(0);
 	private Set<LmsWfRequest> lmsWfRequests = new HashSet<LmsWfRequest>(0);
 
@@ -72,9 +71,9 @@ public class LmsUser implements java.io.Serializable {
 			String mobileOffice, String gender, String address, String nid, String nationality, Date joiningDate,
 			String status, String password, Date insertDate, Integer insertBy, Date updateDate, Integer updateBy,
 			Date dateofbirth, Date resigndate, Set<LmsLeaveBalance> lmsLeaveBalances,
-			Set<LmsLeaveApplication> lmsLeaveApplicationsForReliverEmailAddressUserId,
-			Set<LmsLeaveApplication> lmsLeaveApplicationsForUserId, Set<LmsAttachment> lmsAttachments,
-			Set<LmsUser> lmsUsers, Set<LmsUserRoleMap> lmsUserRoleMaps, Set<LmsWfRequest> lmsWfRequests) {
+			Set<LmsLeaveApplication> lmsLeaveApplications, Set<LmsAttachment> lmsAttachments, Set<LmsUser> lmsUsers,
+			Set<LmsWftRoleUserMap> lmsWftRoleUserMaps, Set<LmsUserRoleMap> lmsUserRoleMaps,
+			Set<LmsWfRequest> lmsWfRequests) {
 		this.lmsDepartment = lmsDepartment;
 		this.lmsDesignation = lmsDesignation;
 		this.lmsDivision = lmsDivision;
@@ -103,10 +102,10 @@ public class LmsUser implements java.io.Serializable {
 		this.dateofbirth = dateofbirth;
 		this.resigndate = resigndate;
 		this.lmsLeaveBalances = lmsLeaveBalances;
-		this.lmsLeaveApplicationsForReliverEmailAddressUserId = lmsLeaveApplicationsForReliverEmailAddressUserId;
-		this.lmsLeaveApplicationsForUserId = lmsLeaveApplicationsForUserId;
+		this.lmsLeaveApplications = lmsLeaveApplications;
 		this.lmsAttachments = lmsAttachments;
 		this.lmsUsers = lmsUsers;
+		this.lmsWftRoleUserMaps = lmsWftRoleUserMaps;
 		this.lmsUserRoleMaps = lmsUserRoleMaps;
 		this.lmsWfRequests = lmsWfRequests;
 	}
@@ -388,25 +387,14 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsLeaveBalances = lmsLeaveBalances;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByReliverEmailAddressUserId")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
 	@JsonIgnore
-	public Set<LmsLeaveApplication> getLmsLeaveApplicationsForReliverEmailAddressUserId() {
-		return this.lmsLeaveApplicationsForReliverEmailAddressUserId;
+	public Set<LmsLeaveApplication> getLmsLeaveApplications() {
+		return this.lmsLeaveApplications;
 	}
 
-	public void setLmsLeaveApplicationsForReliverEmailAddressUserId(
-			Set<LmsLeaveApplication> lmsLeaveApplicationsForReliverEmailAddressUserId) {
-		this.lmsLeaveApplicationsForReliverEmailAddressUserId = lmsLeaveApplicationsForReliverEmailAddressUserId;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByUserId")
-	@JsonIgnore
-	public Set<LmsLeaveApplication> getLmsLeaveApplicationsForUserId() {
-		return this.lmsLeaveApplicationsForUserId;
-	}
-
-	public void setLmsLeaveApplicationsForUserId(Set<LmsLeaveApplication> lmsLeaveApplicationsForUserId) {
-		this.lmsLeaveApplicationsForUserId = lmsLeaveApplicationsForUserId;
+	public void setLmsLeaveApplications(Set<LmsLeaveApplication> lmsLeaveApplications) {
+		this.lmsLeaveApplications = lmsLeaveApplications;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
@@ -427,6 +415,16 @@ public class LmsUser implements java.io.Serializable {
 
 	public void setLmsUsers(Set<LmsUser> lmsUsers) {
 		this.lmsUsers = lmsUsers;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
+	@JsonIgnore
+	public Set<LmsWftRoleUserMap> getLmsWftRoleUserMaps() {
+		return this.lmsWftRoleUserMaps;
+	}
+
+	public void setLmsWftRoleUserMaps(Set<LmsWftRoleUserMap> lmsWftRoleUserMaps) {
+		this.lmsWftRoleUserMaps = lmsWftRoleUserMaps;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
