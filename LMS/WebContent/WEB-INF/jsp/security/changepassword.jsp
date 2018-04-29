@@ -30,27 +30,28 @@
 <body>
 
 <div ng-controller="changepasswordController">
+<form class="form-horizontal" name="changepasswordForm">
 <div class="container-fluid">
 <br>
 
 	<div class="row">		
   		<div class="col-sm-2" style="background-color: white;">Old Password</div> 
 		<div class="col-sm-2" style="background-color: white;">		
-		<input type="password" ng-model="oldpassword" class="form-control" placeholder="Old Password">		
+		<input type="password" ng-model="oldpassword" ng-required="true" class="form-control" placeholder="Old Password">		
 		</div> 	
 	</div><br>
 	
 	<div class="row">
 		<div class="col-sm-2" style="background-color: white;">New Password</div>
 		<div class="col-sm-2" style="background-color: white;">
-		<input type="password" ng-model="newpassword" class="form-control" placeholder="New Password">
+		<input type="password" ng-model="newpassword" ng-required="true" class="form-control" placeholder="New Password">
 		</div>
 	</div><br>
 	
 	<div class="row">
 		<div class="col-sm-2" style="background-color: white;">Confirm Password</div>
 		<div class="col-sm-2" style="background-color: white;">
-		<input type="password" ng-model="confirmpassword" class="form-control" placeholder="Confirm Password">
+		<input type="password" ng-model="confirmpassword" ng-required="true" class="form-control" placeholder="Confirm Password">
 		</div> 
 	</div>
 	
@@ -95,13 +96,28 @@ document.ChangePasswordForm.submit();
 		 
 										    
  		<button type="submit" class="btn" id="changepassword" onclick="return fncSubmit()"
-										ng-click="changepassword(newpassword)">Submit</button>	
+										ng-click="changepassword(newpassword)" ng-disabled="changepasswordForm.$invalid">Submit</button>	
 		
 		<button type="button" class="btn">Cancel</button>
 		<div>Response: {{testMsg}}</div>
 		
 </div>
 
-	
+
+
+</form>
+
+<div class="row">
+			<div class="col-md-12">
+				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+					
+					data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+			</div>
+		</div>
+
+
+</div>	
 </body>
 </html>

@@ -52,15 +52,10 @@
 							<tr ng-repeat="user in $data">
 								<td title="'Employee ID'" filter="{ name: 'text'}" sortable="'name'">{{user.id}}</td>
 								<td title="'Employee name'" filter="{ name: 'text'}" sortable="'name'">{{user.name}}</td>
-
 								<td title="'Division'" filter="{ type: 'text'}" sortable="'lmsLeaveType.type'">{{user.lmsUser.passport}}</td>
-
 								<td title="'Section'" filter="{ leaveTotal: 'text'}" sortable="'totalleave'">{{user.leaveTotal}}</td>
-
 								<td title="'mobile'" filter="{ leavetaken: 'text'}" sortable="'takenleave'">{{user.leaveTaken}}</td>
-
 								<td title="'Status'" filter="{ Remainingleave: 'text'}" sortable="'remainingTotal'">{{user.leaveBalance}}</td>
-
 								<td title="'Action'">
 									<button class="btn-primary" ng-click="showEmpDetails(user)">Details</button>
 								</td>

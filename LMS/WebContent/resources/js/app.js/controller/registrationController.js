@@ -3,6 +3,7 @@ App
 		'registrationController',
 		[
 			'$scope',
+			'$timeout',
 			'$http',
 			'DivisionService',
 			'DesignationService',
@@ -15,7 +16,7 @@ App
 			'$filter',
 			'$location',
 
-			function($scope, $http, DivisionService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
+			function($scope, $timeout, $http, DivisionService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
@@ -85,15 +86,18 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
+								$scope.showSuccessMessage("Registration Successfully.");
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
+								$scope.showErrorMessage("Registration Failed.");
 							});
 				};
 				
 				$scope.getDivisionData = function(){
-					DivisionService.getAllDivision().then(function(d) {
+					DivisionService.getAllDivision().then(
+							function(d) {
 						$scope.divisionNames = d;
 					}, function(errResponse) {
 						console.log("Failed to get Drop Down.");
@@ -144,5 +148,24 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
+				
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
 				
 			} ]);
