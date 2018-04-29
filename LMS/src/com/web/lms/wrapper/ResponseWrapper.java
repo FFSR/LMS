@@ -7,6 +7,7 @@ import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsHolidayRecord;
+import com.web.lms.model.LmsDropdown;
 
 
 public class ResponseWrapper {
@@ -32,8 +33,13 @@ public class ResponseWrapper {
 	
 	List<LmsHolidayRecord> listLmsHolidayRecord;
 	
+	List<LmsDropdown> listLmsDropdown;
+
 	List<LmsWfRequestHop> listLmsWfRequestHops;
 
+	public List<LmsDropdown> getListLmsDropdown() {
+		return listLmsDropdown;
+	}
 
 	public String getMessage() {
 		return message;
@@ -90,6 +96,10 @@ public class ResponseWrapper {
 	
 	public void setListLmsHolidayRecord(List<LmsHolidayRecord> listLmsHolidayRecord) {
 		this.listLmsHolidayRecord = listLmsHolidayRecord;
+	}
+	
+	public void setListLmsDropdown(List<LmsDropdown> listLmsDropdown) {
+		this.listLmsDropdown = listLmsDropdown;
 	}
 
 	public Integer getUserid() {

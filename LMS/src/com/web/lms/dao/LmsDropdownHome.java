@@ -76,7 +76,7 @@ public class LmsDropdownHome {
 		}
 	}
 	
-/*	@SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked")
 	public List<LmsDropdown> findByDropdownName(String dropdownName) {
 		try {
 			Query query = entityManager.createQuery("SELECT e FROM LmsDropdown e WHERE e.dropdown=:dropdownName and LOWER(e.status)='active' order by e.slno").setParameter("dropdownName", dropdownName);
@@ -87,7 +87,7 @@ public class LmsDropdownHome {
 			ex.printStackTrace();
 			return null;
 		}
-	} */
+	} 
 	
 	
 	@SuppressWarnings("unchecked")

@@ -140,7 +140,7 @@
 			value="/WEB-INF/jsp/leavemanagement/applicationforleave.jsp" />
 
 	</definition>
-	
+
 	<definition name="leave" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
@@ -159,7 +159,7 @@
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/divisioninfo.jsp" />
-			
+
 	</definition>
 	
 	<definition name="menu" extends="baseLayout">

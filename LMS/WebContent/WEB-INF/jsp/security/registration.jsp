@@ -246,6 +246,7 @@
 				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
 					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 			</div>
+			<div class="col-sm-3" style="background-color: white;"></div>
 		</div>
 	</div>
 </body>
