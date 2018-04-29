@@ -34,136 +34,347 @@ public class HomeController {
 	@RequestMapping("/registration")
 	public String registration(Model model) {
 		
-		return "registration";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "registration";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/leaveapplication")
 	public String  leaveapplication(Model model) {
 		
-		return "leaveapplication";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leaveapplication";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+		
 	}
 
 	@RequestMapping("/login")
 	public String login(Model model) {
 		
-		return "login";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "login";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/changepassword")
 	public String changepassword(Model model) {
 		
-		return "changepassword";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "changepassword";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/adminpanel")
 	public String adminpanel(Model model) {
 		
-		return "adminpanel";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "adminpanel";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/leavehistory")
 	public String leavehistory(Model model) {
 		
-		return "leavehistory";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leavehistory";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/manageuser")
 	public String manageuser(Model model) {
 		
-		return "manageuser";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "manageuser";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/manageusersearch")
 	public String manageusersearch(Model model) {
 		
-		return "manageusersearch";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "manageusersearch";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/userprofile")
 	public String userprofile(Model model) {
 		
-		return "userprofile";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "userprofile";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/leavehistorysearch")
 	public String leavehistorysearch(Model model) {
 		
-		return "leavehistorysearch";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leavehistorysearch";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/leavehistoryresult")
 	public String leavehistoryresult(Model model) {
 		
-		return "leavehistoryresult";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leavehistoryresult";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/forgetpasswd")
 	public String forgetpasswd(Model model) {
 		
-		return "forgetpasswd";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "forgetpasswd";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/employeehomepage")
 	public String employeehomepage(Model model) {
 		
-		return "employeehomepage";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "employeehomepage";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+		
 	}
 	@RequestMapping("/leavemanagementhead")
 	public String leavemanagementhead(Model model) {
 		
-		return "leavemanagementhead";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leavemanagementhead";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/leaveapplicationdetails")
 	public String leaveapplicationdetails(Model model) {
 		
-		return "leaveapplicationdetails";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leaveapplicationdetails";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/holidaymanagement")
 	public String holidaymanagement(Model model) {
 		
-		return "holidaymanagement";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "holidaymanagement";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/rptleavestatus")
 	public String rptleavestatus(Model model) {
 		
-		return "rptleavestatus";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "rptleavestatus";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/leavesearchresult")
 	public String leavesearchresult(Model model) {
 		
-		return "leavesearchresult";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leavesearchresult";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/ministryinfo")
 	public String ministryinfo(Model model) {
 		
-		return "ministryinfo";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "ministryinfo";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/applicationforleave")
 	public String applicationforleave(Model model) {
 		
-		return "applicationforleave";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "applicationforleave";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/leave")
 	public String leave(Model model) {
 		
-		return "leave";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leave";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/testleave")
 	public String testleave(Model model) {
 		
-		return "testleave";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "testleave";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	@RequestMapping("/divisioninfo")
 	public String divisioninfo(Model model) {
 		
-		return "divisioninfo";
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "divisioninfo";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
-	
-	@RequestMapping("/menu")
-	public String menu(Model model) {
 		
-		return "menu";
+	@RequestMapping("/logout")
+	public String logout(Model model) {
+		
+		httpSession.invalidate();
+		
+		return "login";
 	}
 	
 }

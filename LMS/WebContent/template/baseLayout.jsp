@@ -99,7 +99,7 @@
                     <div class="dropdown user-pro-body">
                         <div><img src="resources/images/users/varun.jpg" alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
-                            <li><a href="login.html"><i class="fa fa-power-off"></i> Logout</a></li>
+                            <li><a href="logout"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
                     </div>
                 </div>
