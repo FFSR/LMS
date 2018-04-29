@@ -291,7 +291,8 @@ App
 					$scope.userid = userID;
 					
 					console.log("User Group");
-				}
+				};
+				
 			} 
 			]);
 				
