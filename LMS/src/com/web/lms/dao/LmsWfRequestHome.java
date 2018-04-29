@@ -2,6 +2,7 @@ package com.web.lms.dao;
 // Generated Mar 30, 2018 1:16:28 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -75,21 +76,33 @@ public class LmsWfRequestHome {
 	}
 	
 	public LmsWfRequest findRequestByUserAndDate(Integer userid, Date date) {
-		
-		try {			
-			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate=:date")
-					.setParameter("userid", userid)
-					.setParameter("date", date);
-		
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate=:date")
+					.setParameter("userid", userid).setParameter("date", date);
+
 			LmsWfRequest lmsWfRequest = (LmsWfRequest) query.getSingleResult();
-		
+
 			return lmsWfRequest;
-		
-		}
-		catch(Exception ex) {
-			
+
+		} catch (Exception ex) {
 			return null;
-			
+		}
+	}
+	
+	public List<LmsWfRequest> findRequestByUserID(Integer userid) {
+
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid")
+					.setParameter("userid", userid);
+
+			List<LmsWfRequest> listLmsWfRequest = query.getResultList();
+
+			return listLmsWfRequest;
+
+		} catch (Exception ex) {
+			return null;
 		}
 	}
 }
