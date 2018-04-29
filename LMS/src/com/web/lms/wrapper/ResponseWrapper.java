@@ -5,6 +5,8 @@ import java.util.List;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsHolidayRecord;
+
 
 public class ResponseWrapper {
 	String message;
@@ -20,6 +22,10 @@ public class ResponseWrapper {
 	LmsLeaveApplication lmsLeaveApplication;
 	
 	List<LmsLeaveApplication> listLmsLeaveApplication;
+	
+	LmsHolidayRecord lmsHolidayRecord;
+	
+	List<LmsHolidayRecord> listLmsHolidayRecord;
 
 
 	public String getMessage() {
@@ -70,7 +76,14 @@ public class ResponseWrapper {
 	public void setListLmsLeaveApplication(List<LmsLeaveApplication> listLmsLeaveApplication) {
 		this.listLmsLeaveApplication = listLmsLeaveApplication;
 	}
-
+	
+	public List<LmsHolidayRecord> getListLmsHolidayRecord() {
+		return listLmsHolidayRecord;
+	}
+	
+	public void setListLmsHolidayRecord(List<LmsHolidayRecord> listLmsHolidayRecord) {
+		this.listLmsHolidayRecord = listLmsHolidayRecord;
+	}	
 }
 
 

@@ -194,6 +194,32 @@
 			<div class="col-sm-3" style="background-color: white;">
 				<textarea rows="3" type="textarea" ng-model="user.address"
 					class="form-control" placeholder="Address"></textarea>
+			<div class="row">
+				<div class="col-sm-3" style="background-color: white;">Supervisor
+					Email</div>
+				<div class="col-sm-3" style="background-color: white;">
+					<input type="text" ng-model="supervisoremail" class="form-control"
+						placeholder="Supervisor Email">
+				</div>
+				<div class="col-sm-3" style="background-color: white;">Address</div>
+				<div class="col-sm-3" style="background-color: white;">
+					<textarea rows="3" type="textarea" ng-model="user.address" class="form-control"
+						placeholder="Address"></textarea>
+				</div>
+				
+				
+				
+				<div class="col-sm-3" style="background-color: white;">Office</div>
+				<div class="col-sm-3" style="background-color: white;">
+					<select class="form-control" id="ddAppStatus" ng-model="user.lmsOfficeLocation" 
+						ng-options="x as x.name for x in officeNames track by x.id">
+						<option value="">Select</option>
+						<!-- <option value="">Hospital</option>
+						<option value="">Casual</option> -->												
+					</select>
+						Status: {{appStatus}}				
+				</div>	
+	
 			</div>
 
 

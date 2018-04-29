@@ -1,14 +1,19 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsHolidayRecord;
+import com.web.lms.model.LmsLeaveApplication;
 
 /**
  * Home object for domain model class LmsHolidayRecord.
@@ -24,11 +29,14 @@ public class LmsHolidayRecordHome {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsHolidayRecord transientInstance) {
-		log.debug("persisting LmsHolidayRecord instance");
+	public int persist(LmsHolidayRecord transientInstance) {
+		log.debug("persisting LmsUser instance");
 		try {
 			entityManager.persist(transientInstance);
+			entityManager.flush();
+			int lmsholidayid = transientInstance.getId();
 			log.debug("persist successful");
+			return lmsholidayid;
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;
@@ -67,6 +75,20 @@ public class LmsHolidayRecordHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsHolidayRecord> findAllHoliday() {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsHolidayRecord e");
+			
+			return (List<LmsHolidayRecord>) query.getResultList();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			
+			return null;
 		}
 	}
 }

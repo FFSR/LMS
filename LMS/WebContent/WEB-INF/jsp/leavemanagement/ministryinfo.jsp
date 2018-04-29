@@ -25,13 +25,14 @@
 		<div class="container-fluid">
 
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Ministry Name</div>
+				<div class="col-sm-3" style="background-color: white;">Ministry
+					Name</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="name" class="form-control"
 						placeholder="Ministry Name">
 				</div>
 
-			</div>		
+			</div>
 			<br>
 			<div class="row">
 				<button type="submit" class="btn" id="submit"

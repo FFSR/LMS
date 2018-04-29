@@ -174,11 +174,12 @@ App
 						"totalDayText" : "",					
 						"reasonForLeave" : "",
 						"taskNeedToPerformed" : "",
-						//"lmsUserByReliverEmailAddressUserId":"",
+						"lmsUserByReliverEmailAddressUserId":"",
 						"insertDate" : "",
 						"insertBy" : "",
 						"updatDate" : "",						
 						"updateBy" : "",
+						"inStation" :"",
 					};
 	
 				$scope.applicationforleave = function(){				
@@ -186,10 +187,10 @@ App
 					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
 					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
-					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId=$scope.ddReliever
+					$scope.leaveapplication.lmsUserByUserId=$scope.ddReliever
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					//$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.lmsUserByReliverEmailAddressUserId;
+					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.ddReliever;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
@@ -197,6 +198,7 @@ App
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
+					$scope.leaveapplication.inStation = $scope.inStation;
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
@@ -226,7 +228,9 @@ App
 				
 			$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
-					userlistService.getAllUser().then(function(d) {
+					userlistService.getUserList()
+					.then(
+						function(d) {
 						$scope.userData = d;
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");

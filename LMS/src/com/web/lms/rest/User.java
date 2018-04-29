@@ -55,7 +55,7 @@ public class User {
 		
 		if(lmsUser != null) {
 			responseWrapper.setMessage("Success. UserName: "+lmsUser.getName()+" Password: "+lmsUser.getPassword());
-			
+			httpSession.setAttribute("userName", lmsUser.getName());
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
 		

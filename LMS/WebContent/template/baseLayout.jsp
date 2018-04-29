@@ -24,7 +24,8 @@
 <script src="resources/js/ng-table.min.js"></script>
 <!-- End of NG-Table -->
 </head>
-<body class="hold-transition skin-blue sidebar-mini" style="zoom: 0.8;" ng-app="myApp">
+<body class="hold-transition skin-blue sidebar-mini" style="zoom: 0.8;"
+	ng-app="myApp">
 	<tiles:insertAttribute name="menu" />
 	<tiles:insertAttribute name="body" />
 </body>

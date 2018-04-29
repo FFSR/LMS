@@ -32,15 +32,17 @@
 						<h4 class="modal-title">Forgot Password...</h4>
 					</div>
 					<div class="modal-body">
-						<form role="form">
+						<form role="form" name="myform">
 							<div class="form-group">
 								<label for="email">Email ID:</label> <input type="email"
-									ng-model="emailid" class="form-control" id="email">
+									ng-model="emailid" class="form-control" id="email" required/>
+									<span class="error" ng-show="myForm.input.$error.email">
+	    				            Not valid email!</span>
 							</div>
 							<button type="submit" class="btn btn-default"
 								ng-click="forgetpassword(emailid)">Submit</button>
 						</form>
-						<div style="color: blue">{{testMsg}}</div>
+						<div>Response: {{testMsg}}</div>
 					</div>
 				</div>
 
