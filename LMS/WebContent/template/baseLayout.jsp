@@ -116,9 +116,9 @@
                     <li> <a href="employeehomepage" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >Home</span></a> </li>
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw text-danger" data-icon="7"></i> <span class="hide-menu text-danger"> Leave Management <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="applicationforleave">Application For Leave</a> </li>
+                            <li> <a href="applicationforleave">Leave Application</a> </li>
                             <li role="separator" class="divider"></li>
-                            <li> <a href="leavemanagementhead">Approve Leave</a></li>
+                            <li> <a href="leavemanagementhead">Leave Approval</a></li>
                         </ul>
                     </li>
                     
