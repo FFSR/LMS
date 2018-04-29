@@ -84,7 +84,8 @@
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="leaveapplication in $data">
 							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{leaveapplication.id}}</td>
-							<td title="'Employee name'" filter="{ 'lmsUserByUserId.name': 'text'}"
+							<td title="'Employee name'"
+								filter="{ 'lmsUserByUserId.name': 'text'}"
 								sortable="'leaveapplication.lmsUserByUserId.name'">{{leaveapplication.lmsUserByUserId.name}}</td>
 
 							<td title="'From Date'" filter="{ type: 'text'}"
@@ -92,8 +93,8 @@
 								| date: YYYY-MM-dd}}</td>
 
 							<td title="'To Date'" filter="{ leaveTotal: 'text'}"
-								sortable="'totalleave'">{{leaveapplication.toDate
-								| date: YYYY-MM-dd}}</td>
+								sortable="'totalleave'">{{leaveapplication.toDate | date:
+								YYYY-MM-dd}}</td>
 
 							<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"
 								sortable="'leaveapplication.lmsLeaveType.type'">{{leaveapplication.lmsLeaveType.type}}</td>
@@ -177,15 +178,17 @@
 					<div class="col-sm-3" style="background-color: white;">From
 						Date</div>
 					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.fromDate
+						<input type="text"
+							ng-model="leaveapplication.fromDate
 								| date: YYYY-MM-dd"
 							class="form-control" placeholder="fromDate">
-							
+
 					</div>
 					<div class="col-sm-3" style="background-color: white;">To
 						Date</div>
 					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.toDate| date: YYYY-MM-dd"
+						<input type="text"
+							ng-model="leaveapplication.toDate| date: YYYY-MM-dd"
 							class="form-control" placeholder="Fax">
 					</div>
 				</div>

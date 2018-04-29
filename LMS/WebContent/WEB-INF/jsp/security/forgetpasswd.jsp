@@ -35,9 +35,9 @@
 						<form role="form" name="myform">
 							<div class="form-group">
 								<label for="email">Email ID:</label> <input type="email"
-									ng-model="emailid" class="form-control" id="email" required/>
-									<span class="error" ng-show="myForm.input.$error.email">
-	    				            Not valid email!</span>
+									ng-model="emailid" class="form-control" id="email" required />
+								<span class="error" ng-show="myForm.input.$error.email">
+									Not valid email!</span>
 							</div>
 							<button type="submit" class="btn btn-default"
 								ng-click="forgetpassword(emailid)">Submit</button>

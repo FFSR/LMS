@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsHolidayRecord;
-import com.web.lms.model.LmsLeaveApplication;
 
 /**
  * Home object for domain model class LmsHolidayRecord.
@@ -91,4 +90,6 @@ public class LmsHolidayRecordHome {
 			return null;
 		}
 	}
+	
+	
 }

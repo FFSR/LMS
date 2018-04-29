@@ -187,7 +187,7 @@ App
 					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
 					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
-					$scope.leaveapplication.lmsUserByUserId=$scope.ddReliever
+					$scope.leaveapplication.lmsUserByUserId=$scope.ddReliever;
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
 					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.ddReliever;

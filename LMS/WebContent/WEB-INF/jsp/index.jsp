@@ -56,190 +56,240 @@ F<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 opacity
 
 
+
+
 :
 
+
  
+
 
 1;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
- 
-
 }
 100%
 {
 opacity
 
 
+
+
 :
 
+
  
+
 
 0;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
- 
-
 }
 }
 @
@@ -258,190 +308,240 @@ px
 opacity
 
 
+
+
 :
 
+
  
+
 
 1;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
- 
-
 }
 100%
 {
 opacity
 
 
+
+
 :
 
+
  
+
 
 0;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
- 
-
 }
 }
 @
@@ -460,190 +560,240 @@ keyframes passing-through { 0% {
 opacity
 
 
+
+
 :
 
+
  
+
 
 1;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
- 
-
 }
 100%
 {
 opacity
 
 
+
+
 :
 
+
  
+
 
 0;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (-40
 px
+
+
 );
-
- 
-
 }
 }
 @
@@ -661,95 +811,120 @@ px
 opacity
 
 
+
+
 :
 
+
  
+
 
 1;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
- 
-
 }
 }
 @
@@ -767,95 +942,120 @@ px
 opacity
 
 
+
+
 :
 
+
  
+
 
 1;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
- 
-
 }
 }
 @
@@ -873,95 +1073,120 @@ keyframes slide-in { 0% {
 opacity
 
 
+
+
 :
 
+
  
+
 
 1;
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
-
-    
-
 transform
 
 
+
+
 :
 
+
  
+
 
 translateY
 
 
+
+
 (0
 px
+
+
 );
-
- 
-
 }
 }
 @
@@ -978,75 +1203,115 @@ px
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
@@ -1056,55 +1321,85 @@ scale
 -webkit-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -moz-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -ms-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -o-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
@@ -1124,75 +1419,115 @@ scale
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
@@ -1202,55 +1537,85 @@ scale
 -webkit-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -moz-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -ms-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -o-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
@@ -1270,75 +1635,115 @@ keyframes pulse { 0% {
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -ms-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
 transform
 
 
+
+
 :
 
+
  
+
 
 scale
 
 
+
+
 (1
 .1
+
+
 
 
 );
@@ -1348,55 +1753,85 @@ scale
 -webkit-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -moz-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -ms-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 -o-transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
 transform
 
 
+
+
 :
+
 
  
 
+
 scale
+
+
 
 
 (1);
@@ -1527,33 +1962,53 @@ scale
 }
 
 .dropzone
+
  
+
 .dz-preview
+
  
+
 .dz-details
+
  
+
 .dz-filename
+
+
 :not
+
  
+
 (
 :hover
+
  
+
 )
 {
 overflow
+
+
 :
+
  
+
 hidden
-;
 
-	
+
+;
 text-overflow
+
+
 :
+
  
+
 ellipsis
+
+
 ;
-
-
 }
 .dropzone .dz-preview .dz-details .dz-filename:not (:hover ) span {
 	border: 1px solid transparent;

@@ -24,6 +24,19 @@ App.factory('updateholidayrecordService', [
 					});
 				},
 				
+				deleteholidayrecord: function(holidayrecord_id){
+					return $http.put(url+'deleteholidayrecord',holidayrecord_id)
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching user info list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
+				
 				
 			}
 		} ]);

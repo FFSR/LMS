@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.dao.LmsDropdownHome;
 import com.web.lms.model.LmsDivision;
 import com.web.lms.model.LmsDropdown;
+import com.web.lms.model.LmsUser;
+import com.web.lms.wrapper.ResponseWrapper;
 
 @RestController
 public class Dropdown {
@@ -41,4 +43,25 @@ public class Dropdown {
 		
 		
 	}
+	
+	@RequestMapping(value="/getDropdownDataByName/{dropdownname}", method=RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable String dropdownname){
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		
+		List<LmsDropdown> lmsDropdown = lmsDropdownHome.findByDropdownName(dropdownname);
+		
+		if(lmsDropdown.size()>0) {
+			
+			responseWrapper.setListLmsDropdown(lmsDropdown);
+			
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+		
+		responseWrapper.setMessage("Fail. Data not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+	}		
+	
+	
 }
+

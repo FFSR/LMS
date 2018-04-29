@@ -52,7 +52,7 @@ App
 					
 					$scope.holidayrecord.leaveSubject = $scope.leaveSubject;
 					$scope.holidayrecord.leaveDate = new Date($('#fromDate').val());
-					$scope.holidayrecord.optional = $scope.optional;
+					$scope.holidayrecord.optional = $scope.ddOptional.name;
 					$scope.holidayrecord.subjectToMoon = $scope.subjectToMoon;
 					//$scope.holidayrecord.optional = $scope.SelectedOption.options;
 					//$scope.holidayrecord.subjectToMoon = $scope.SelectedOption.options;
@@ -63,18 +63,38 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
+								$scope.showSuccessMessage("Insertion successful");
+								$scope.ClearAll();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
+								$scope.showErrorMessage("Insertion Fail");
 							});
 				}
 				
                     $scope.showHolidayRecordDetails = function(holidayrecord){	
 					console.log("HolidayRecord", holidayrecord );
 					$scope.showHolidayDetails = true;	
-					$scope.holidayrecord = holidayrecord;
+					$scope.holidayrecd = holidayrecord;
+					$scope.test = "";
 				};
+				
+				$scope.deleteHolidayRecord = function(holidayrecord){	
+					//console.log("HolidayRecord", holidayrecord );
+					$scope.holidayrecord_id=holidayrecord.id;
+					updateholidayrecordService.deleteholidayrecord($scope.holidayrecord_id).then(
+							function(d){
+								console.log(d.message);
+							},
+							function(errResponse){
+								console.log("Failed to Update User Profile.");
+							}
+						);
+					
+				};
+				
+				//deleteHolidayRecord(holidayrecord)
 				
 				
 				// Used for updating specific holiday record
@@ -89,6 +109,45 @@ App
 						}
 					);
 				}
+				
+				$scope.loadDropDownHolidayOption = function(dropdownname){
+					holidayService.getHolidayOptions(dropdownname).then(function(d) {
+						$scope.optionData = d.listLmsDropdown;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				};
+				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+				
+				/* Show Error Message */
+				$scope.ClearAll = function() {
+
+					$scope.leaveSubject ="";
+					//$scope.leaveDate = new Date($('#fromDate').val(''));
+					new Date($('#fromDate').val(''));
+					$scope.ddOptional = '0';
+					$scope.subjectToMoon = '0';
+				};
+				
 			} 
 			]);
 				
