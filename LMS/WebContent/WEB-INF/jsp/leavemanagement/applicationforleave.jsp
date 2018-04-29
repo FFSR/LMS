@@ -111,23 +111,35 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Leave
-					Remaining</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="leaveBalance" class="form-control"
-						placeholder="Leave Remaining">
-				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3">Leave Remaining</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="leaveBalance" class="form-control"
+								placeholder="Leave Remaining">
+						</div>
+					</div>
+				</div>	
 			</div>
 			<br>
 
 			<div class="row">
-				<label class="col-sm-3 control-label">From Date</label>
-				<div class="col-sm-3">
+			<div class="col-md-6">
+			<div class="form-group">
+				<label class="col-md-3 control-label">From Date</label>
+				<div class="col-md-9">
 					<input type="text" id="fromDate" class="form-control" />
 				</div>
-				<label class="col-sm-3 control-label">To Date</label>
-				<div class="col-sm-3">
+			</div>
+			</div>
+			<div class="col-md-6">
+			<div class="form-group">
+				<label class="col-md-3 control-label">To Date</label>
+				<div class="col-md-9">
 					<input type="text" id="toDate" class="form-control" />
+				</div>
+				
+				</div>
 				</div>
 			</div>
 			<br>
