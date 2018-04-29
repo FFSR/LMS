@@ -231,8 +231,8 @@
 					  <label for="sel1">Action:</label>
 					  <select class="form-control" id="" ng-model="status">
 					  	<option value="">Select</option>
-					    <option value="ACCEPT">ACCEPT</option>
-					    <option value="REJECT">REJECT</option>
+					    <option value="ACCEPTED">ACCEPTED</option>
+					    <option value="REJECTED">REJECTED</option>
 
 					  </select>
 					</div>
