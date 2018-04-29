@@ -38,57 +38,76 @@
 	<br>
 	<div ng-controller="leaveapplicationController">
 	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');"></div>
-		<div class="container-fluid">
+	<form class="form-horizontal">
+	<div class="form-body">
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">User ID</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="userid" class="form-control"
-						placeholder="User ID">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >User ID</label>
+						<div class="col-md-9">
+							<input type="text" ng-disabled="true" ng-model="userid" class="form-control"
+								placeholder="User ID">
+						</div>
+					</div>
 				</div>
-
-				<div class="col-sm-3" style="background-color: white;">User
-					Name</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="username" class="form-control"
-						placeholder="User Name">
+				
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3">User Name</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="username" class="form-control"
+								placeholder="User Name">
+						</div>
+					</div>
 				</div>
-
 			</div>
-			<br>
+			
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Leave
-					Type</div>
-				<div class="col-md-3">
-					<!-- Drop Down list from table -->
-					<select class="form-control" id="ddleavetype" ng-model="leavetype"
-						ng-options="x as x.type for x in dropdownData track by x.id">
-						<option value="">Select</option>
-					</select>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3">Leave Type</label>
+						<div class="col-md-9">
+							<!-- Drop Down list from table -->
+							<select class="form-control" id="ddleavetype" ng-model="leavetype"
+								ng-options="x as x.type for x in dropdownData track by x.id">
+								<option value="">Select</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-3" style="background-color: white;">Reason
-					For Leave</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="reasonForLeave" class="form-control"
-						placeholder="Reason For Leave">
+				
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3">Reason For Leave</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="reasonForLeave" class="form-control"
+								placeholder="Reason For Leave">
+						</div>		
+					</div>
 				</div>
-
 			</div>
-			<br>
+			
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Yearly
-					Leave Eligibility</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="eligibility" class="form-control"
-						placeholder="Yearly Leave Eligibility">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3">Yearly Leave Eligibility</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="eligibility" class="form-control"
+								placeholder="Yearly Leave Eligibility">
+						</div>
+					</div>	
+				</div>		
+				
+				
+				<div class="col-md-6">
+					<div class="form-group">		
+						<label class="control-label col-md-3">Leave All ready Taken</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="leaveTaken" class="form-control"
+								placeholder="Leave All ready Taken">
+						</div>
+					</div>
 				</div>
-
-				<div class="col-sm-3" style="background-color: white;">Leave
-					All ready Taken</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="leaveTaken" class="form-control"
-						placeholder="Leave All ready Taken">
-				</div>
-
 			</div>
 			<br>
 			<div class="row">
@@ -181,8 +200,8 @@
 						data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 				</div>
 			</div>
-
-		</div>
+</div>
+</form>
 	</div>
 </body>
 <script>

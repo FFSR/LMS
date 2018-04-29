@@ -20,7 +20,7 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
-								$scope.showSuccessMessage("Login Successfull.");
+								window.location = "employeehomepage";
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								

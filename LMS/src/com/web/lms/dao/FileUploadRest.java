@@ -123,10 +123,10 @@ public class FileUploadRest {
 					
 					LmsAttachment lmsAttachment = new LmsAttachment();
 					LmsLeaveApplication lmsLeaveApplication = lmsLeaveApplicationHome.findById(1);
-					LmsUser lmsUser = lmsLeaveApplication.getLmsUserByUserId();
+					
 					
 					lmsAttachment.setLmsLeaveApplication(lmsLeaveApplication);
-					lmsAttachment.setLmsUser(lmsUser);
+					//lmsAttachment.setLmsUser(lmsUser);
 					lmsAttachment.setFilename(filename);
 
 					try {
