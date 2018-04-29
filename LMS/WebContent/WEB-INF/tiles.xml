@@ -116,7 +116,7 @@
 	<definition name="rptleavestatus" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/leavemanagement/rptleavestatus.jsp" />
+			value="/WEB-INF/jsp/report/rptleavestatus.jsp" />
 
 	</definition>
 

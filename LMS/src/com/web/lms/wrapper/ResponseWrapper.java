@@ -5,6 +5,7 @@ import java.util.List;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsWfRequest;
 import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsDropdown;
@@ -36,6 +37,16 @@ public class ResponseWrapper {
 	List<LmsDropdown> listLmsDropdown;
 
 	List<LmsWfRequestHop> listLmsWfRequestHops;
+	
+	List<LmsWfRequest> listLmsWfRequest;
+
+	public List<LmsWfRequest> getListLmsWfRequest() {
+		return listLmsWfRequest;
+	}
+
+	public void setListLmsWfRequest(List<LmsWfRequest> listLmsWfRequest) {
+		this.listLmsWfRequest = listLmsWfRequest;
+	}
 
 	public List<LmsDropdown> getListLmsDropdown() {
 		return listLmsDropdown;
