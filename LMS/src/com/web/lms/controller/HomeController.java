@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
+	@Autowired
+	private HttpSession httpSession;
+	
 	@RequestMapping("/")
 	public String root(Model model) {
 		
