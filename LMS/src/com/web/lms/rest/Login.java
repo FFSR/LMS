@@ -58,7 +58,7 @@ public class Login {
 			}
 			else {
 				responseWrapper.setMessage("Failed to Login. User Name or Password Wrong.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 		}
 		catch(Exception ex) {
