@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.web.lms.dao.LmsLeaveApplicationHome;
 import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.dao.LmsWfRequestHome;
@@ -19,6 +20,7 @@ import com.web.lms.dao.LmsWftFlowControlHome;
 import com.web.lms.dao.LmsWftRequestHopRolePageMapHome;
 import com.web.lms.dao.LmsWftRequestSelectorHome;
 import com.web.lms.enumcollection.WFSTATUS;
+import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsWfRequest;
@@ -45,11 +47,13 @@ public class WorkFlowManagement {
 	private LmsWfRequestHome lmsWfRequestHome ;
 	@Autowired
 	private LmsWftFlowControlHome lmsWftFlowControlHome;
+	@Autowired
+	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
 
 	
-	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}", method = RequestMethod.POST)
+	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}/{leaveapplicationid}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid,
-			@PathVariable("leavetypeid") Integer leavetypeid) {
+			@PathVariable("leavetypeid") Integer leavetypeid,@PathVariable("leaveapplicationid") Integer leaveapplicationid) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
@@ -69,6 +73,15 @@ public class WorkFlowManagement {
 				responseWrapper.setMessage("This Leave Type is not available in database.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
+			
+			// Validate Leave Application ID
+			
+			LmsLeaveApplication leaveApplication = lmsLeaveApplicationHome.findById(leaveapplicationid);
+					
+			if (leaveapplicationid == null) {
+				responseWrapper.setMessage("This Leave Application is not available in database.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}		
 
 			// Find request type
 			LmsWftRequestSelector lmsWftRequestSelector = LmsWftRequestSelectorHome
@@ -81,7 +94,7 @@ public class WorkFlowManagement {
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
-			generateWorkRequest(lmsWftRequestSelector, user);
+			generateWorkRequest(lmsWftRequestSelector, user, leaveApplication);
 
 			responseWrapper.setMessage("Success. Your request is successfully generated.");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
@@ -124,10 +137,10 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	public void generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user) {
+	public void generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user, LmsLeaveApplication leaveApplication) {
 
 		// Insert Request
-		LmsWfRequest lmsWfRequest = saveRequest(lmsWftRequestSelector, user);
+		LmsWfRequest lmsWfRequest = saveRequest(lmsWftRequestSelector, user, leaveApplication);
 
 		// Insert Request Hop
 		saveHops(lmsWfRequest, user);
@@ -145,7 +158,7 @@ public class WorkFlowManagement {
 		
 	}
 
-	private LmsWfRequest saveRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user) {
+	private LmsWfRequest saveRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user, LmsLeaveApplication leaveApplication) {
 		try {
 			LmsWfRequest lmsWfRequest = new LmsWfRequest();
 			Date currentDate = new Date();
@@ -154,6 +167,7 @@ public class WorkFlowManagement {
 			lmsWfRequest.setStartDate(currentDate);
 			lmsWfRequest.setStatus(WFSTATUS.APPLIED.toString());
 			lmsWfRequest.setLmsUser(user);
+			lmsWfRequest.setLmsLeaveApplication(leaveApplication);
 			lmsWfRequest.setInsertDate(currentDate);
 			lmsWfRequest.setInsertBy(user.getId());
 
@@ -199,7 +213,7 @@ public class WorkFlowManagement {
 			lmsWfRequestHop.setUserId(user.getId());
 			lmsWfRequestHop.setInsertDate(new Date());
 			lmsWfRequestHop.setInsertBy(user.getId());
-			lmsWfRequestHop.setPageId(lmsWftRequestHopRolePageMap.getLmsPages().getId());
+			//lmsWfRequestHop.setPageId(lmsWftRequestHopRolePageMap.getLmsPages().getId());
 
 			lmsWfRequestHopHome.persist(lmsWfRequestHop);
 			

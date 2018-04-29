@@ -57,4 +57,16 @@ App
 					);
 				}
 				
+				
+				
+				$scope.getDivisionData = function(){
+					DivisionService.getAllDivision().then(function(d) {
+						$scope.divisionNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				
+				
 			} ]);

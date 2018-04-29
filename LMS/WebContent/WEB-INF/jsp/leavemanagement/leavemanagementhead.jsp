@@ -7,11 +7,7 @@
 <title>Insert title here</title>
 
 
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script src="resources/js/popper.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-
+	
 
 <script type="text/javascript"
 	src="resources/js/app.js/service/updateuserleaveService.js"></script>
@@ -22,7 +18,7 @@
 
 </head>
 <body ng-controller="manageleaveController">
-
+<div ng-init="loadLeaveApplications('${sessionScope.userID}');"></div>
 	<div>
 
 		<div class="container-fluid">
@@ -82,11 +78,10 @@
 				<div>
 					Test Message: {{testMessage}}
 					<table ng-table="tableParams" class="table" show-filter="true">
-						<tr ng-repeat="leaveapplication in $data">
-							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{leaveapplication.id}}</td>
-							<td title="'Employee name'"
-								filter="{ 'lmsUserByUserId.name': 'text'}"
-								sortable="'leaveapplication.lmsUserByUserId.name'">{{leaveapplication.lmsUserByUserId.name}}</td>
+						<tr ng-repeat="wfRequestHop in $data">
+							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.id}}</td>
+							<td title="'Employee name'" filter="{ 'lmsUserByUserId.name': 'text'}"
+								sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsWfRequest.lmsUser.name}}</td>
 
 							<td title="'From Date'" filter="{ type: 'text'}"
 								sortable="'lmsLeaveType.type'">{{leaveapplication.fromDate
@@ -97,7 +92,7 @@
 								YYYY-MM-dd}}</td>
 
 							<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"
-								sortable="'leaveapplication.lmsLeaveType.type'">{{leaveapplication.lmsLeaveType.type}}</td>
+								sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveType.type}}</td>
 
 							<td title="'Reason'" filter="{ Remainingleave: 'text'}"
 								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
@@ -105,7 +100,7 @@
 								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
 
 							<td title="'Action'"><button class="btn-primary"
-									ng-click="showLeaveApplicationDetails(leaveapplication)">Details</button></td>
+									ng-click="showLeaveApplicationDetails(wfRequestHop)">Details</button></td>
 					</table>
 				</div>
 			</table>
@@ -118,12 +113,12 @@
 					<div class="col-sm-3" style="background-color: white;">User
 						ID</div>
 					<div class="col-sm-3" style="background-color: white;">
-						<input type="text">
+						<input type="text" ng-model="wfRequestHop.id">
 					</div>
 					<div class="col-sm-3" style="background-color: white;">Name</div>
 					<div class="col-sm-3" style="background-color: white;">
 						<input type="text"
-							ng-model="leaveapplication.lmsUserByUserId.name">
+							ng-model="wfRequestHop.lmsWfRequest.lmsUser.name">
 					</div>
 
 				</div>
@@ -226,23 +221,24 @@
 						<input type="text" ng-model="fax" class="form-control"
 							placeholder="Fax">
 					</div>
+					
 				</div>
 
 				<br>
 
 				<div class="row">
+					<div class="form-group">
+					  <label for="sel1">Action:</label>
+					  <select class="form-control" id="" ng-model="status">
+					  	<option value="">Select</option>
+					    <option value="ACCEPT">ACCEPT</option>
+					    <option value="REJECT">REJECT</option>
 
-					<div class="dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button"
-							data-toggle="dropdown">
-							Status <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu">
-							<div class="col-sm-3" style="background-color: white;">
-								<li><a href="#">Approved</a></li>
-								<li><a href="#">Reject</a></li>
-						</ul>
+					  </select>
 					</div>
+					
+					<div class="form-group"><buttom class="btn btn-primary" ng-click="submitHops(status)">Submit</buttom></div> 
+					Status: {{status}}
 				</div>
 
 			</div>

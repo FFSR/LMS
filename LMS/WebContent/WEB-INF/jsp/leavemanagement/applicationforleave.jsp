@@ -12,38 +12,32 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/wfManagementService.js"></script>
+<script type="text/javascript"
 	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
-
+<script type="text/javascript" src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
 
 
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script src="resources/js/popper.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<!-- <link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
-	rel="stylesheet" />
+
+<link href="resources/file-upload/css/dropzone/phase2_dropzone.css" rel="stylesheet" />
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/FIleUploadController.js"></script> -->
+	src="resources/js/app.js/controller/FIleUploadController.js"></script>
 <script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
 
 </head>
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-		<div ng-init="loadLeaveTypeDownDown();loadUserListDropDown();"></div>
-
-
+	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');"></div>
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">User ID</div>

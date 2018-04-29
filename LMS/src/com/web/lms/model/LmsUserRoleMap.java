@@ -60,7 +60,7 @@ public class LmsUserRoleMap implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ROLE_ID")
 	public LmsRole getLmsRole() {
 		return this.lmsRole;

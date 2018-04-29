@@ -42,19 +42,27 @@ App
 										.error("Error while fetching Currencies");
 							});
 				};
-				
-				$scope.showLeaveApplicationDetails = function(leaveapplication){
+				$scope.userID = 0;
+				$scope.wfRequestHopid = 0;
+				$scope.status = "";
+				$scope.showLeaveApplicationDetails = function(wfRequestHop){
 					
-					console.log("LeaveApplication", leaveapplication );
+					console.log("wfRequestHop", wfRequestHop );
 					$scope.showLeaveDetails = true;
 					
-					$scope.leaveapplication = leaveapplication;
+					$scope.wfRequestHop = wfRequestHop;
+					
+					$scope.userID = $scope.wfRequestHop.lmsWfRequest.lmsUser.id;
+					$scope.wfRequestHopid = $scope.wfRequestHop.id;
+					console.log("wfRequestHop", wfRequestHop );
 				};
 				
 				
 				
+				
+				
 				// Used for updating specific leave application
-				$scope.userleave = function(){ 
+				$scope.userleave = function(){
 					
 					updateuserleaveService.updateuserleave($scope.leaveapplication).then(
 						function(d){
@@ -64,6 +72,34 @@ App
 							console.log("Failed to Update User Profile.");
 						}
 					);
+				};
+				
+				
+				$scope.loadLeaveApplications = function(userID){
+					
+					manageleaveService.loadCurrentLeaveApplication(userID).then(
+					function(d){
+						var data = d.listLmsWfRequestHops;
+						$scope.tableParams = new NgTableParams({}, { dataset: data});
+					},
+					function(errResponse){
+						
+					}
+					);
+				};
+				
+				$scope.submitHops = function(status){
+					$scope.status = status;
+					console.log("Status:", $scope.status);
+					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status).then(
+					function(d){
+						console.log(d);
+					},
+					function(errResponse){
+						
+					}
+					);
+					
 				}
 				
 			} ]);

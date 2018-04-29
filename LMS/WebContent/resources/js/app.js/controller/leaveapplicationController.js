@@ -7,11 +7,12 @@ App
 			'leaveapplicationservice',
 			'leavetypeService',
 			'userlistService',
+			'wfManagementService',
 			'$timeout',
 			'$filter',
 			'$location',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,
+			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
@@ -207,6 +208,15 @@ App
 					
 					leaveapplicationservice.applicationforleave($scope.leaveapplication).then(
 							function(d) {
+								wfManagementService.generaterequest(d.userid,d.leavetypeid,d.leaveapplicationid).then(
+								function(d){
+									console.log(d);
+								},
+								function(e){
+									console.log(e);
+								}
+								);
+								
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
 								$scope.showSuccessMessage("Insertion successful");
@@ -274,6 +284,14 @@ App
 				};
 				
 				$scope.getleaveapplication(4);*/
+				
+				$scope.getSessionUserDetails = function(userName,userID){
+					
+					$scope.username = userName;
+					$scope.userid = userID;
+					
+					console.log("User Group");
+				}
 			} 
 			]);
 				

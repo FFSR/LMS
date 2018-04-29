@@ -62,8 +62,8 @@ public class LmsAttachment implements java.io.Serializable {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer lms_attachment_id) {
+		this.id = lms_attachment_id;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)

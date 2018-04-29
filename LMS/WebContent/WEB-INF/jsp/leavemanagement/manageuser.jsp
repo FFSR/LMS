@@ -1,35 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<html>
 
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>Insert title here</title>
+		
+		<script type="text/javascript" src="resources/js/app.js/service/divisionService.js"></script>
+		<script type="text/javascript" src="resources/js/app.js/service/updateuserprofileService.js"></script>
+		<script type="text/javascript" src="resources/js/app.js/service/manageuserService.js"></script>
+		<script type="text/javascript" src="resources/js/app.js/controller/manageuserController.js"></script>
+		<script type="text/javascript" src="resources/js/app.js/controller/registrationController.js"></script>
 
-
-<link rel="stylesheet" href="resources/css/bootstrap.min.css">
-<script src="resources/js/jquery-3.2.1.slim.min.js"></script>
-<script src="resources/js/popper.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/divisionService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/updateuserprofileService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/manageuserService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/controller/manageuserController.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/controller/registrationController.js"></script>
-
-</head>
-
-<body ng-controller="manageuserController as muc">
-	<div ng-init="getDivisionData()"></div>
-	<div>
-		<div class="container-fluid">
-			<br>
+	</head>
 
 			<div class="row">
 				<div class="col-sm-3" style="background-color: white;">
@@ -95,13 +79,24 @@
 
 				</div>
 				<br>
-
-				<div class="row">
-
-					<div class="col-sm-3" style="background-color: white;">NID</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="user.nid" class="form-control"
-							placeholder="nid">
+			</div>
+			<br>
+			<div>
+				<table class="table table-sm">
+					<div>
+						Test Message: {{testMessage}}
+						<table ng-table="tableParams" class="table" show-filter="true">
+							<tr ng-repeat="user in $data">
+								<td title="'Employee ID'" filter="{ name: 'text'}" sortable="'name'">{{user.id}}</td>
+								<td title="'Employee name'" filter="{ name: 'text'}" sortable="'name'">{{user.name}}</td>
+								<td title="'Division'" filter="{ type: 'text'}" sortable="'lmsLeaveType.type'">{{user.lmsUser.passport}}</td>
+								<td title="'Section'" filter="{ leaveTotal: 'text'}" sortable="'totalleave'">{{user.leaveTotal}}</td>
+								<td title="'mobile'" filter="{ leavetaken: 'text'}" sortable="'takenleave'">{{user.leaveTaken}}</td>
+								<td title="'Status'" filter="{ Remainingleave: 'text'}" sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+								<td title="'Action'">
+									<button class="btn-primary" ng-click="showEmpDetails(user)">Details</button>
+								</td>
+						</table>
 					</div>
 					<div class="col-sm-3" style="background-color: white;">Passport
 						No</div>

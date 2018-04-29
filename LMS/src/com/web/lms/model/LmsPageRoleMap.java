@@ -26,7 +26,6 @@ public class LmsPageRoleMap implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private LmsPages lmsPages;
 	private LmsRole lmsRole;
 	private Date insertDate;
 	private Integer insertBy;
@@ -36,9 +35,8 @@ public class LmsPageRoleMap implements java.io.Serializable {
 	public LmsPageRoleMap() {
 	}
 
-	public LmsPageRoleMap(LmsPages lmsPages, LmsRole lmsRole, Date insertDate, Integer insertBy, Date updateDate,
+	public LmsPageRoleMap(LmsRole lmsRole, Date insertDate, Integer insertBy, Date updateDate,
 			Integer updateBy) {
-		this.lmsPages = lmsPages;
 		this.lmsRole = lmsRole;
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
@@ -58,15 +56,6 @@ public class LmsPageRoleMap implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "PAGE_ID")
-	public LmsPages getLmsPages() {
-		return this.lmsPages;
-	}
-
-	public void setLmsPages(LmsPages lmsPages) {
-		this.lmsPages = lmsPages;
-	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "ROLE_ID")

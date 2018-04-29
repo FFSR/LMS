@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Apr 24, 2018 4:59:31 PM by Hibernate Tools 5.2.8.Final
+// Generated Apr 28, 2018 11:30:37 AM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -42,6 +42,9 @@ public class LmsLeaveType implements java.io.Serializable {
 	private Date insertDate;
 	private Integer updateBy;
 	private Date updateDate;
+	private Integer minimumAtATime;
+	private Integer applyDaysEachYear;
+	private Integer dependentLeaveAc;
 	private Set<LmsLeaveBalance> lmsLeaveBalances = new HashSet<LmsLeaveBalance>(0);
 	private Set<LmsLeaveApplication> lmsLeaveApplications = new HashSet<LmsLeaveApplication>(0);
 	private Set<LmsWftRequestSelector> lmsWftRequestSelectors = new HashSet<LmsWftRequestSelector>(0);
@@ -52,7 +55,8 @@ public class LmsLeaveType implements java.io.Serializable {
 	public LmsLeaveType(String type, String status, Integer maximumDays, String incremental, String yearlyAllocated,
 			Integer maximumTimes, Integer maximumAtATime, Integer yearInterval, Integer eligibleAfter,
 			Integer eligibleBefore, String impactOnHoliday, String extensible, String impactOnEarnedLeave,
-			Integer insertBy, Date insertDate, Integer updateBy, Date updateDate, Set<LmsLeaveBalance> lmsLeaveBalances,
+			Integer insertBy, Date insertDate, Integer updateBy, Date updateDate, Integer minimumAtATime,
+			Integer applyDaysEachYear, Integer dependentLeaveAc, Set<LmsLeaveBalance> lmsLeaveBalances,
 			Set<LmsLeaveApplication> lmsLeaveApplications, Set<LmsWftRequestSelector> lmsWftRequestSelectors) {
 		this.type = type;
 		this.status = status;
@@ -71,6 +75,9 @@ public class LmsLeaveType implements java.io.Serializable {
 		this.insertDate = insertDate;
 		this.updateBy = updateBy;
 		this.updateDate = updateDate;
+		this.minimumAtATime = minimumAtATime;
+		this.applyDaysEachYear = applyDaysEachYear;
+		this.dependentLeaveAc = dependentLeaveAc;
 		this.lmsLeaveBalances = lmsLeaveBalances;
 		this.lmsLeaveApplications = lmsLeaveApplications;
 		this.lmsWftRequestSelectors = lmsWftRequestSelectors;
@@ -241,6 +248,33 @@ public class LmsLeaveType implements java.io.Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	@Column(name = "MINIMUM_AT_A_TIME")
+	public Integer getMinimumAtATime() {
+		return this.minimumAtATime;
+	}
+
+	public void setMinimumAtATime(Integer minimumAtATime) {
+		this.minimumAtATime = minimumAtATime;
+	}
+
+	@Column(name = "APPLY_DAYS_EACH_YEAR")
+	public Integer getApplyDaysEachYear() {
+		return this.applyDaysEachYear;
+	}
+
+	public void setApplyDaysEachYear(Integer applyDaysEachYear) {
+		this.applyDaysEachYear = applyDaysEachYear;
+	}
+
+	@Column(name = "DEPENDENT_LEAVE_AC")
+	public Integer getDependentLeaveAc() {
+		return this.dependentLeaveAc;
+	}
+
+	public void setDependentLeaveAc(Integer dependentLeaveAc) {
+		this.dependentLeaveAc = dependentLeaveAc;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveType")

@@ -5,12 +5,17 @@ import java.util.List;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsDropdown;
 
 
 public class ResponseWrapper {
 	String message;
+	
+	Integer userid;
+	Integer leavetypeid;
+	Integer leaveapplicationid;
 	
 	LmsLeaveBalance lmsLeaveBalance;
 	
@@ -30,6 +35,7 @@ public class ResponseWrapper {
 	
 	List<LmsDropdown> listLmsDropdown;
 
+	List<LmsWfRequestHop> listLmsWfRequestHops;
 
 	public List<LmsDropdown> getListLmsDropdown() {
 		return listLmsDropdown;
@@ -95,6 +101,40 @@ public class ResponseWrapper {
 	public void setListLmsDropdown(List<LmsDropdown> listLmsDropdown) {
 		this.listLmsDropdown = listLmsDropdown;
 	}
+
+	public Integer getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
+
+	public Integer getLeavetypeid() {
+		return leavetypeid;
+	}
+
+	public void setLeavetypeid(Integer leavetypeid) {
+		this.leavetypeid = leavetypeid;
+	}
+
+	public Integer getLeaveapplicationid() {
+		return leaveapplicationid;
+	}
+
+	public void setLeaveapplicationid(Integer leaveapplicationid) {
+		this.leaveapplicationid = leaveapplicationid;
+	}
+
+	public List<LmsWfRequestHop> getListLmsWfRequestHops() {
+		return listLmsWfRequestHops;
+	}
+
+	public void setListLmsWfRequestHops(List<LmsWfRequestHop> listLmsWfRequestHops) {
+		this.listLmsWfRequestHops = listLmsWfRequestHops;
+	}
+	
+	
 }
 
 

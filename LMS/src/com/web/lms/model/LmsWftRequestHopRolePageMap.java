@@ -31,7 +31,7 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private LmsPages lmsPages;
+	//private LmsPages lmsPages;
 	private LmsWftHop lmsWftHop;
 	private LmsWftRequestType lmsWftRequestType;
 	private LmsWftRole lmsWftRole;
@@ -47,12 +47,11 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 	public LmsWftRequestHopRolePageMap() {
 	}
 
-	public LmsWftRequestHopRolePageMap(LmsPages lmsPages, LmsWftHop lmsWftHop, LmsWftRequestType lmsWftRequestType,
+	public LmsWftRequestHopRolePageMap(LmsWftHop lmsWftHop, LmsWftRequestType lmsWftRequestType,
 			LmsWftRole lmsWftRole, Date insertDate, Integer insertBy, Date updateDate, Integer updateBy,
 			Set<LmsWfRequestHop> lmsWfRequestHops, Set<LmsWftFlowControl> lmsWftFlowControlsForTrhmHopsId,
 			Set<LmsWftRequestSelector> lmsWftRequestSelectors,
 			Set<LmsWftFlowControl> lmsWftFlowControlsForTrhmDependedHopsId) {
-		this.lmsPages = lmsPages;
 		this.lmsWftHop = lmsWftHop;
 		this.lmsWftRequestType = lmsWftRequestType;
 		this.lmsWftRole = lmsWftRole;
@@ -78,15 +77,6 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "PAGE_ID")
-	public LmsPages getLmsPages() {
-		return this.lmsPages;
-	}
-
-	public void setLmsPages(LmsPages lmsPages) {
-		this.lmsPages = lmsPages;
-	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "WF_HOPS_ID")
