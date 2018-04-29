@@ -49,6 +49,16 @@
                     </div>
                     
 		</div>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+					
+					data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
