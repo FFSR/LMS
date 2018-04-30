@@ -129,7 +129,7 @@
 					<div class="col-sm-3" style="background-color: white;">Leave
 						Type</div>
 					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.lmsLeaveType.type"
+						<input type="text" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type"
 							class="form-control" placeholder="type">
 					</div>
 					<div class="col-sm-3" style="background-color: white;">Reason

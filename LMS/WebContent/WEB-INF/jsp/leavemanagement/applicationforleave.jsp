@@ -19,9 +19,9 @@
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
 
-
-
 <link href="resources/file-upload/css/dropzone/phase2_dropzone.css" rel="stylesheet" />
+
+
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
@@ -124,60 +124,71 @@
 			<br>
 
 			<div class="row">
-			<div class="col-md-6">
-			<div class="form-group">
-				<label class="col-md-3 control-label">From Date</label>
-				<div class="col-md-9">
-					<input type="text" id="fromDate" class="form-control" />
-				</div>
-			</div>
-			</div>
-			<div class="col-md-6">
-			<div class="form-group">
-				<label class="col-md-3 control-label">To Date</label>
-				<div class="col-md-9">
-					<input type="text" id="toDate" class="form-control" />
-				</div>
+			    <div class="col-md-6">
+			       <div class="form-group">
+				     <label class="control-label col-md-3">From Date</label>
+				       <div class="col-md-9">
+					     <input type="text" id="fromDate" class="form-control" />
+				       </div>
+			       </div>
+			   </div>
+			   <div class="col-md-6">
+			      <div class="form-group">
+				     <label class="col-md-3 control-label">To Date</label>
+				        <div class="col-md-9">
+					       <input type="text" id="toDate" class="form-control" />
+				       </div>
 				
-				</div>
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Total
-					Days Count</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="totalDayCount" class="form-control"
-						placeholder="Total Days Count">
-				</div>
-
-				<div class="col-sm-3" style="background-color: white;">Tasks
-					need to be performed</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="taskNeedToPerformed"
-						class="form-control" placeholder="Tasks need to be performed">
+				   </div>
 				</div>
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Reliever</div>
-				<div class="col-md-3">
-					<!-- Drop Down list from table -->
-					<select class="form-control" id="ddReliever" ng-model="ddReliever"
-						ng-options="x as x.name for x in userData track by x.id">
-						<option value="">Select</option>
-					</select>
-
-				</div>
-				<div class="col-sm-3" style="background-color: white;">In
-					Station</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="inStation" class="form-control"
-						placeholder="In Station">
+				<div class="col-sm-6">
+					<div class="form-group">
+					   <label class="control-label col-md-3">Total Day Count</label>
+					       <div class="col-md-9">
+					          <input type="text" ng-model="totalDayCount" class="form-control" placeholder="Total Days Count">
+				           </div>
+				    </div>
 				</div>
 
-			</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+					   <label class="control-label col-md-3">Tasks Need to Be Performed</label>
+					       <div class="col-md-9">
+					           <input type="text" ng-model="taskNeedToPerformed" class="form-control" placeholder="Tasks need to be performed">
+				           </div>
+			        </div>
+			     </div>
+			 </div>
+			<br>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+					   <label class="control-label col-md-3">Reliever</label>
+					       <div class="col-md-9">
+								<!-- Drop Down list from table -->
+								<select class="form-control" id="ddReliever" ng-model="ddReliever"
+									ng-options="x as x.name for x in userData track by x.id">
+									<option value="">Select</option>
+								</select>
 
+				          </div>
+				     </div>
+				 </div>
+				
+				
+				<div class="col-sm-6">
+					<div class="form-group">
+					   <label class="control-label col-md-3">In Station</label>
+					       <div class="col-md-9">
+					           <input type="text" ng-model="inStation" class="form-control" placeholder="In Station">
+				           </div>
+
+			         </div>
+			    </div>
+           </div>
 			<br>
 			<div class="row">
 				<div class="col-md-12 form-group">
