@@ -21,28 +21,6 @@
 
 	<div class="container-fluid">
 
-		<div class="row">
-			<button type="button" class="btn">Introductory Concepts</button>
-		</div>
-
-		<div class="row">
-			<button type="button" class="btn">Leave Rules</button>
-		</div>
-
-		<div class="row">
-			<button type="button" class="btn">My Profile</button>
-		</div>
-
-		<div class="row">
-			<button type="button" class="btn">Apply For Leave</button>
-		</div>
-
-		<div class="row">
-			<button type="button" class="btn">Leave History</button>
-		</div>
-
-		<br>
-
 		<div>
 			<table class="table table-sm">
 				<div>
@@ -50,7 +28,7 @@
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="leaveapplication in $data">
 							<td title="'Employee name'"
-								filter="{'lmsUserByUserId.name': 'text'}" sortable="'name'">{{leaveapplication.lmsUserByUserId.name}}</td>
+								filter="{'lmsUserByUserId.name': 'text'}" sortable="'name'">{{sessionScope.user.name}}</td>
 
 							<td title="'From Date'" filter="{ type: 'text'}"
 								sortable="'lmsLeaveType.fromDate'">{{leaveapplication.fromDate
