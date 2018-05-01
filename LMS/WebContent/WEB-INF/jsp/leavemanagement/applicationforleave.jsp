@@ -37,7 +37,7 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');"></div>
+	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');loadUserListDropDown();"></div>
 	<form class="form-horizontal">
 	<div class="form-body">
 			<div class="row">
