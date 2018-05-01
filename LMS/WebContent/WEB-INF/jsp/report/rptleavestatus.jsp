@@ -66,26 +66,24 @@
 						Test Message: {{testMessage}}
 						<table ng-table="tableParams" class="table" show-filter="true">
 							<tr ng-repeat="wfRequestHop in $data">
-								<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.id}}</td>
+								<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
 								<td title="'Employee name'"
 									filter="{ 'lmsUserByUserId.name': 'text'}"
-									sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsWfRequest.lmsUser.name}}</td>
+									sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUser.name}}</td>
 
 								<td title="'From Date'" filter="{ type: 'text'}"
-									sortable="'lmsLeaveType.type'">{{leaveapplication.fromDate
+									sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsleaveapplication.fromDate
 									| date: YYYY-MM-dd}}</td>
 
 								<td title="'To Date'" filter="{ leaveTotal: 'text'}"
-									sortable="'totalleave'">{{leaveapplication.toDate | date:
+									sortable="'totalleave'">{{wfRequestHop.lmsleaveapplication.toDate | date:
 									YYYY-MM-dd}}</td>
 
 								<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"
-									sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveType.type}}</td>
+									sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.lmsLeaveType.type}}</td>
 
-								<td title="'Reason'" filter="{ Remainingleave: 'text'}"
-									sortable="'remainingTotal'">{{user.leaveBalance}}</td>
 								<td title="'Status'" filter="{ Remainingleave: 'text'}"
-									sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+									sortable="'remainingTotal'">{{wfRequestHop.status}}</td>
 
 								<td title="'Action'"><button class="btn-primary"
 										ng-click="showLeaveApplicationDetails(wfRequestHop)">Details</button></td>

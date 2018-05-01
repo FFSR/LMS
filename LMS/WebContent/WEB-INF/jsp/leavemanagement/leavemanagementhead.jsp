@@ -22,30 +22,6 @@
 	<div>
 
 		<div class="container-fluid">
-			<br>
-
-			<div class="row">
-				<div class="col-sm-1" style="background-color: white;">Employee
-					ID</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text">
-				</div>
-				<div class="col-sm-1" style="background-color: white;">Mobile</div>
-				<div class="col-sm-1" style="background-color: white;">
-					<input type="text">
-				</div>
-			</div>
-			<br>
-			<div class="row">
-				<div class="col-sm-1" style="background-color: white;">Name</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="search.user_name">
-				</div>
-				<div class="col-sm-1" style="background-color: white;">Email</div>
-				<div class="col-sm-1" style="background-color: white;">
-					<input type="text">
-				</div>
-			</div>
 
 		</div>
 
@@ -109,157 +85,154 @@
 		Show: {{test}} <br>
 		<div class="container-fluid">
 			<div ng-if="showLeaveDetails">
-				<div class="row">
-					<div class="col-sm-3" style="background-color: white;">User
-						ID</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="wfRequestHop.id">
-					</div>
-					<div class="col-sm-3" style="background-color: white;">Name</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text"
-							ng-model="wfRequestHop.lmsWfRequest.lmsUser.name">
-					</div>
+			  <div class="row">
+				   <div class="col-md-6">
+				       <div class="form-group">
+				          <label class="control-label col-md-3" >User ID</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.id" class="form-control">
+					        </div>
+					    </div> 
+				   </div>
+				   
+				   <div class="col-md-6">
+				       <div class="form-group">
+					      <label class="control-label col-md-3" >Name</label>
+					          <div class="col-md-9">
+					              <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsUser.name" class="form-control">					
+					          </div>
+				       </div>
+				   </div>
+				  </div>
+				<br>
 
+				<div class="row">
+				    <div class="col-md-6">
+				       <div class="form-group">
+				          <label class="control-label col-md-3" >Leave Type</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type" class="form-control">
+					        </div>
+					    </div>
+					 </div>
+					 
+					 <div class="col-md-6">
+				       <div class="form-group">
+				          <label class="control-label col-md-3" >Reason For Leave</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.reasonForLeave" class="form-control">
+					        </div>
+					    </div>
+					 </div>
+				  </div>					
+				<br>
+				<div class="row">
+				    <div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >Yearly Leave Eligibility</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.eligibility" class="form-control">
+					        </div>
+					    </div> 
+				   </div>			
+					<div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >Leave Allready Taken</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.leaveTaken" class="form-control">
+					        </div>
+					    </div> 
+				   </div>						
 				</div>
 				<br>
 
 				<div class="row">
-
-					<div class="col-sm-3" style="background-color: white;">Leave
-						Type</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type"
-							class="form-control" placeholder="type">
-					</div>
-					<div class="col-sm-3" style="background-color: white;">Reason
-						For Leave</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.reasonForLeave"
-							class="form-control" placeholder="reasonForLeave">
-					</div>
-				</div>
-				<br>
-
-				<div class="row">
-					<div class="col-sm-3" style="background-color: white;">Yearly
-						Leave Eligibility</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.eligibility"
-							class="form-control" placeholder="eligibility">
-					</div>
-					<div class="col-sm-3" style="background-color: white;">Leave
-						Allready Taken</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.leaveTaken"
-							class="form-control" placeholder="leaveTaken">
-					</div>
-				</div>
-				<br>
-
-				<div class="row">
-
-					<div class="col-sm-3" style="background-color: white;">leave
-						Remaining</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.leaveBalance"
-							class="form-control" placeholder="leaveBalance">
-					</div>
+                    <div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >Leave Remaining</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.leaveBalance" class="form-control">
+					        </div>
+					    </div> 
+				   </div>			
 
 				</div>
 				<br>
 				<div class="row">
+				    <div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >From Date</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.fromDate | date: YYYY-MM-dd" class="form-control">
+					        </div>
+					    </div> 
+				   </div>	
+                   <div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >To Date</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.toDate | date: YYYY-MM-dd" class="form-control">
+					        </div>
+					    </div> 
+				   </div>	
 
-					<div class="col-sm-3" style="background-color: white;">From
-						Date</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text"
-							ng-model="leaveapplication.fromDate
-								| date: YYYY-MM-dd"
-							class="form-control" placeholder="fromDate">
-
-					</div>
-					<div class="col-sm-3" style="background-color: white;">To
-						Date</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text"
-							ng-model="leaveapplication.toDate| date: YYYY-MM-dd"
-							class="form-control" placeholder="Fax">
-					</div>
-				</div>
-				<br> <br>
+			  </div>
+				<br>
 				<div class="row">
-
-					<div class="col-sm-3" style="background-color: white;">Total
-						Days Count</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.totalDayCount"
-							class="form-control" placeholder="totalDayCount">
-					</div>
-
-					<div class="col-sm-3" style="background-color: white;">Task
-						Need to be Performed</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveapplication.taskNeedToPerformed"
-							class="form-control" placeholder="Fax">
-					</div>
+                    <div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >Total Days Count</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.totalDayCount" class="form-control">
+					        </div>
+					    </div> 
+				   </div>	
+					<div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >Tasks Need to be Performed</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.taskNeedToPerformed" class="form-control">
+					        </div>
+					    </div> 
+				   </div>	
 				</div>
-
 				<br>
 
 				<div class="row">
-					<div class="col-sm-3" style="background-color: white;">Reliever
-						Email Address</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text"
-							ng-model="leaveapplication.lmsUserByUserId.email"
-							class="form-control" placeholder="Fax">
-					</div>
-					<div class="col-sm-3" style="background-color: white;">In
-						Station</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="fax" class="form-control"
-							placeholder="Fax">
-					</div>
+				     <div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >Reliever Email Address</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.lmsUserByReliverEmailAddressUserId.email" class="form-control">
+					        </div>
+					    </div> 
+				    </div>
+					<div class="col-md-6">
+				        <div class="form-group">
+				          <label class="control-label col-md-3" >In Station</label>
+					        <div class="col-md-9">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.inStation" class="form-control">
+					        </div>
+					    </div> 
+				   </div>
 					
 				</div>
-
 				<br>
-
 				<div class="row">
-					<div class="form-group">
-					  <label for="sel1">Action:</label>
-					  <select class="form-control" id="" ng-model="status">
-					  	<option value="">Select</option>
-					    <option value="ACCEPTED">ACCEPTED</option>
-					    <option value="REJECTED">REJECTED</option>
-
-					  </select>
-					</div>
-					
+					<div class="col-md-6">
+					    <div class="form-group">
+					     <label for="sel1">Action:</label>
+					           
+						         <select class="form-control" id="" ng-model="status">
+						  	     <option value="">Select</option>
+						         <option value="ACCEPTED">ACCEPTED</option>
+						         <option value="REJECTED">REJECTED</option>
+						         </select>
+					    </div>
+					  </div>
 					<div class="form-group"><buttom class="btn btn-primary" ng-click="submitHops(status)">Submit</buttom></div> 
 					Status: {{status}}
 				</div>
-
-			</div>
-
-			<br>
-
-			<div class="row">
-
-				<div class="col-sm-3" style="background-color: white;"></div>
-				<div class="col-sm-3" style="background-color: white;"></div>
-			</div>
-
-			<br>
-
-			<div class="row">
-				<br>
-				<div class="col-sm-3" style="background-color: white;"></div>
-				<div class="col-sm-3" style="background-color: white;"></div>
-				<div class="col-sm-3" style="background-color: white;"></div>
-				<div class="col-sm-3" style="background-color: white;"></div>
-			</div>
 
 			<br>
 
