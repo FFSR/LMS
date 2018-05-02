@@ -23,7 +23,7 @@
 
 </head>
 <body>
-	<div ng-controller="leavehistoryController as lhc">
+	<div ng-controller="leavehistoryController as lc">
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
@@ -40,7 +40,7 @@
 								</div>
 
 								<button type="submit" class="btn btn-default" id="search"
-									ng-click="lhc.leave(lhc.user_id)">Leave History</button>
+									ng-click="lc.leave(lc.user_id)">Leave History</button>
 							</form>
 							<div style="color: blue">{{lc.user_id}}{{lc.testMsg}}</div>
 						</div>
@@ -51,8 +51,8 @@
 		<div>
 			<table class="table table-sm">
 				<div>
-					Test Message: {{lhc.testMsg1}}
-					<table ng-table="lhc.tableParams" class="table" show-filter="true">
+					Test Message: {{lc.testMsg1}}
+					<table ng-table="lc.tableParams" class="table" show-filter="true">
 						<tr ng-repeat="user in $data">
 							<td title="'Employee Name'" filter="{ name: 'text'}"
 								sortable="'name'">{{user.lmsUser.name}}</td>
@@ -74,7 +74,7 @@
 						</tr>
 					</table>
 				</div>
-				</div>
+				
 			</table>
 		</div>
 	</div>
