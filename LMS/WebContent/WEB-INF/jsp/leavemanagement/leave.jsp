@@ -13,13 +13,15 @@
 <script src="resources/js/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="resources/js/app.js/service/leaveService.js"></script>
+	src="resources/js/app.js/service/leavehistoryService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/leaveController.js"></script>
+	src="resources/js/app.js/controller/leavehistoryController.js"></script>
 
 </head>
 <body>
-	<div ng-controller="leavehistoryController as lhc">
+	<div ng-controller="leavehistoryController">
+	  <div ng-init="leavebalance();"></div>
+	  
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
@@ -49,7 +51,7 @@
 				<div>
 					Test Message: {{lhc.testMsg1}}
 					<table ng-table="lhc.tableParams" class="table" show-filter="true">
-						<tr ng-repeat="user in $data">
+						<tr ng-repeat="leavehistory in $data">
 							<td title="'Employee Name'" filter="{ name: 'text'}"
 								sortable="'name'">{{user.lmsUser.name}}</td>
 

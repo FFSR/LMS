@@ -10,8 +10,8 @@ App.factory('leavehistoryService', [
 		function($http, $q, url) {
 			return {
 				
-				leavehistory: function(user_id){
-					return $http.get(url+'leavehistory/'+user_id)
+				leavehistory: function(userID){
+					return $http.get(url+'leavehistory/'+userID)
 					.then(function(response) {
 						return response.data;
 					},

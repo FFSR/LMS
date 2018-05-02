@@ -58,7 +58,25 @@ App
 				};
 				
 				
-				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
 				
 				
 				// Used for updating specific leave application
@@ -94,8 +112,10 @@ App
 					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status).then(
 					function(d){
 						console.log(d);
+						$scope.showSuccessMessage("Status Updated");
 					},
 					function(errResponse){
+						$scope.showErrorMessage("Status Not Updated");
 						
 					}
 					);

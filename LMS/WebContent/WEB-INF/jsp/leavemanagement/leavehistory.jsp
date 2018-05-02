@@ -16,8 +16,8 @@
 
 </head>
 <body>
-	<div ng-controller="leavehistoryController as lhc">
-
+	<div ng-controller="leavehistoryController">
+       <div ng-init="leavehistory('${sessionScope.userID}');"></div>
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
@@ -46,25 +46,23 @@
 			<table class="table table-sm">
 				<div>
 					Test Message: {{lhc.testMsg1}}
-					<table ng-table="lhc.tableParams" class="table" show-filter="true">
-						<tr ng-repeat="user in $data">
-							<td title="'Employee Name'" filter="{ name: 'text'}"
-								sortable="'name'">{{user.lmsUser.name}}</td>
+					<table ng-table="tableParams" class="table" show-filter="true">
+						<tr ng-repeat="lmsLeaveBalance in $data">
 
 							<td title="'Leave Type'" filter="{ type: 'text'}"
-								sortable="'lmsLeaveType.type'">{{user.lmsLeaveType.type}}</td>
+								sortable="'lmsLeaveBalance.lmsLeaveType.type'">{{lmsLeaveBalance.lmsLeaveType.type}}</td>
 
 							<td title="'Total Leave'" filter="{ leaveTotal: 'text'}"
-								sortable="'totalleave'">{{user.leaveTotal}}</td>
+								sortable="'lmsLeaveBalance.leaveTotal'">{{lmsLeaveBalance.leaveTotal}}</td>
 
 							<td title="'Taken Leave'" filter="{ leavetaken: 'text'}"
-								sortable="'takenleave'">{{user.leaveTaken}}</td>
+								sortable="'lmsLeaveBalance.leaveTaken'">{{lmsLeaveBalance.leaveTaken}}</td>
 
 							<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
-								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+								sortable="'lmsLeaveBalance.leaveBalance'">{{lmsLeaveBalance.leaveBalance}}</td>
 
 							<td title="'Eligibility'" filter="{ eligibility: 'text'}"
-								sortable="'eligibility'">{{user.eligibility}}</td>
+								sortable="'lmsLeaveBalance.eligibility'">{{lmsLeaveBalance.eligibility}}</td>
 						</tr>
 					</table>
 				</div>

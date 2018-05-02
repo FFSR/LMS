@@ -42,7 +42,8 @@
                                     </form>
                                     <br/>
                                     <a href="http://localhost:8080/LMS/forgetpasswd">Forget Password</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="http://localhost:8080/LMS/registration">Registration</a>
+                                    <a href="http://localhost:8080/LMS/registration">Registration</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                                    
                                 </div>
                             </div>
                         </div>

@@ -54,97 +54,126 @@
 
 		<br>
 		<div class="row">
-			<div class="col-sm-3" style="background-color: white;">Name</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.name" ng-required="true" class="form-control"
-					placeholder="User Name">
-			</div>
+			<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Name</label>
+						<div class="col-md-9">
+							<input type="text" ng-required="true" ng-model="user.name" class="form-control"
+								placeholder="User Name">
+						</div>
+					</div>
+				</div>
 
-			<div class="col-sm-3" style="background-color: white;">Division</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<select class="form-control" id="ddAppStatus"
-					ng-model="user.lmsDivision"
-					ng-options="x as x.name for x in divisionNames track by x.id">
-					<option value="">Select</option>
-					<!-- <option value="">Hospital</option>
-						<option value="">Casual</option> -->
-				</select>
-			</div>
+                <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Division</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+					        ng-model="user.lmsDivision"
+					        ng-options="x as x.name for x in divisionNames track by x.id">
+					        <option value="">Select</option>
+					        <!-- <option value="">Hospital</option>
+						    <option value="">Casual</option> -->
+				            </select>
+						</div>
+					</div>
+				</div>
 		</div>
-
+		<br>
+		<div class="row">
+		    <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Designation</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+					        ng-model="user.lmsDesignation"
+					        ng-options="x as x.name for x in designationNames track by x.id">
+					        <option value="">Select</option>
+				            </select>
+						</div>
+					</div>
+				</div>
+		    <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Ministry</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+					        ng-model="user.lmsMinistry"
+					        ng-options="x as x.name for x in ministryNames track by x.id">
+					        <option value="">Select</option>
+				            </select>
+						</div>
+					</div>
+				</div>
+		</div>
 		<br>
 
 		<div class="row">
-			<div class="col-sm-3" style="background-color: white;">Designation</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<select class="form-control" id="ddAppStatus"
-					ng-model="user.lmsDesignation"
-					ng-options="x as x.name for x in designationNames track by x.id">
-					<option value="">Select</option>
-				</select>
+		     <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Section</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+					        ng-model="user.lmsSection"
+					        ng-options="x as x.name for x in sectionNames track by x.id">
+					        <option value="">Select</option>
+				            </select>
+						</div>
+					</div>
 			</div>
-			<div class="col-sm-3" style="background-color: white;">Ministry</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<select class="form-control" id="ddAppStatus"
-					ng-model="user.lmsMinistry"
-					ng-options="x as x.name for x in ministryNames track by x.id">
-					<option value="">Select</option>
-				</select>
+		    <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >NID</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="user.nid" class="form-control" placeholder="NID">
+						</div>
+					</div>
 			</div>
 		</div>
-
 		<br>
-
 		<div class="row">
-			<div class="col-sm-3" style="background-color: white;">Section</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<select class="form-control" id="ddAppStatus"
-					ng-model="user.lmsSection"
-					ng-options="x as x.name for x in sectionNames track by x.id">
-					<option value="">Select</option>
-				</select>
+		    <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Nationality</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+					        ng-model="user.LmsDropdown"
+					        ng-options="x as x.name for x in dropdownNames track by x.id">
+					        <option value="">Select</option>
+				            </select>
+						</div>
+					</div>
 			</div>
-			<div class="col-sm-3" style="background-color: white;">NID</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.nid" class="form-control"
-					placeholder="NID">
+		    <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Passport No</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="user.passport" class="form-control" placeholder="Passport No">
+						</div>
+					</div>
 			</div>
 		</div>
-
 		<br>
-
 		<div class="row">
-			<div class="col-sm-3" style="background-color: white;">Nationality</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<select class="form-control" id="ddAppStatus"
-					ng-model="user.LmsDropdown"
-					ng-options="x as x.name for x in dropdownNames track by x.id">
-					<option value="">Select</option>
-				</select>
+		    <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Mobile</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="user.mobile_personal" ng-required="true"
+					         class="form-control" placeholder="Mobile">
+						</div>
+					</div>
 			</div>
-			<div class="col-sm-3" style="background-color: white;">Passport
-				No</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.passport" class="form-control"
-					placeholder="Passport No">
+			<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Telephone</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="user.mobile_office"
+					        class="form-control" placeholder="Telephone">
+						</div>
+					</div>
 			</div>
 		</div>
-
-		<br>
-
-		<div class="row">
-			<div class="col-sm-3" style="background-color: white;">Mobile</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.mobile_personal" ng-required="true"
-					class="form-control" placeholder="Mobile">
-			</div>
-			<div class="col-sm-3" style="background-color: white;">Telephone</div>
-			<div class="col-sm-3" style="background-color: white;">
-				<input type="text" ng-model="user.mobile_office"
-					class="form-control" placeholder="Telephone">
-			</div>
-		</div>
-
 		<br>
 
 		<div class="row">
@@ -228,7 +257,7 @@
 
 		<div class="row">
 			<button type="submit" class="btn" id="submit"
-				ng-click="registration()" ng-disabled="registrationForm.$invalid">Submit</button>
+				ng-click="registration()">Submit</button>
 			<div class="col-sm-3" style="background-color: white;"></div>
 			<div class="col-sm-3" style="background-color: white;">
 				<input type="button" class="btn btn-info" value="Cancel">

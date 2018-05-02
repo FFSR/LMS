@@ -123,6 +123,7 @@
                     </li>
                     
                     <li> <a href="leavehistory" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >Leave History</span></a> </li>
+                     <li> <a href="registration" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >Registration</span></a> </li>
                     
                     <li> <a href="#" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">

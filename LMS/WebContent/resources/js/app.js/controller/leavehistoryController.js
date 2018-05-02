@@ -12,41 +12,21 @@ App
 
 			function($scope, $http, leavehistoryService,
 				$timeout, $filter,NgTableParams,$location) {
-				
-				$scope.testMsg = "Test Message New";
 
-				/*$scope.leavehistory = function(user_id){
-					$scope.user_id;
-					leavehistoryService.leavehistory($scope.user_id).then(
-							function(d) {
-								$scope.testMsg = d.message;
-								console.log("Success.",d.message);
-								var data = d.listLmsLeaveBalance;
-								self.tableParams = new NgTableParams({}, { dataset: data});
-								
-							},
-							function(errResponse) {
-								
-								console
-										.error("Error while fetching Currencies");
-							});
-				};*/
-				
-				$scope.leavehistory = function(user_id){
-					$scope.user_id;
-					leavehistoryService.leavehistory($scope.user_id).then(
-							function(d) {
-								$scope.testMsg = d.message;
-								console.log("Success.",d.message);
-								var data = d.listLmsLeaveBalance;
-								$scope.tableParams = new NgTableParams({}, { dataset: data});
-								
-							},
-							function(errResponse) {
-								
-								console
-										.error("Error while fetching Currencies");
-							});
+				$scope.leavehistory= function(userID){					
+					leavehistoryService.leavehistory(userID)
+					.then(
+							function(d){
+						var data = d.listLmsLeaveBalance;
+						$scope.tableParams = new NgTableParams({}, { dataset: data});
+					},
+					function(errResponse){
+						
+					}
+					);
 				};
 				
+
+			
 			} ]);
+				

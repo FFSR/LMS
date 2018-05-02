@@ -55,25 +55,25 @@
 					Test Message: {{testMessage}}
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="wfRequestHop in $data">
-							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.id}}</td>
+							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.id}}</td>
 							<td title="'Employee name'" filter="{ 'lmsUserByUserId.name': 'text'}"
 								sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsWfRequest.lmsUser.name}}</td>
 
 							<td title="'From Date'" filter="{ type: 'text'}"
-								sortable="'lmsLeaveType.type'">{{leaveapplication.fromDate
+								sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.fromDate
 								| date: YYYY-MM-dd}}</td>
 
 							<td title="'To Date'" filter="{ leaveTotal: 'text'}"
-								sortable="'totalleave'">{{leaveapplication.toDate | date:
+								sortable="'totalleave'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.toDate | date:
 								YYYY-MM-dd}}</td>
 
 							<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"
-								sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveType.type}}</td>
+								sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type}}</td>
 
 							<td title="'Reason'" filter="{ Remainingleave: 'text'}"
-								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+								sortable="'remainingTotal'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.reasonForLeave}}</td>
 							<td title="'Status'" filter="{ Remainingleave: 'text'}"
-								sortable="'remainingTotal'">{{user.leaveBalance}}</td>
+								sortable="'remainingTotal'">{{wfRequestHop.lmsWfRequest.status}}</td>
 
 							<td title="'Action'"><button class="btn-primary"
 									ng-click="showLeaveApplicationDetails(wfRequestHop)">Details</button></td>
@@ -90,7 +90,7 @@
 				       <div class="form-group">
 				          <label class="control-label col-md-3" >User ID</label>
 					        <div class="col-md-9">
-					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.id" class="form-control">
+					            <input type="text" ng-disabled="true" ng-model="wfRequestHop.lmsWfRequest.lmsUser.id" class="form-control">
 					        </div>
 					    </div> 
 				   </div>
@@ -230,12 +230,19 @@
 						         </select>
 					    </div>
 					  </div>
+					  
 					<div class="form-group"><buttom class="btn btn-primary" ng-click="submitHops(status)">Submit</buttom></div> 
-					Status: {{status}}
 				</div>
-
+				<br>
+				<div class="row">
+				<div class="col-md-12">
+					<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+						data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+					<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+						data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+				</div>
+			</div>
 			<br>
-
 			<div class="row">
 
 				<div class="col-sm-3" style="background-color: white;">
