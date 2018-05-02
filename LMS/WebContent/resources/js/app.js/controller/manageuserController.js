@@ -56,9 +56,12 @@ App
 					updateuserprofileService.updateuserprofile($scope.user).then(
 						function(d){
 							console.log(d.message);
+							console.log("Success.",d.message);
+							$scope.showSuccessMessage("Update successful");
 						},
 						function(errResponse){
 							console.log("Failed to Update User Profile.");
+							$scope.showErrorMessage("Update Fail");
 						}
 					);
 				}
@@ -111,6 +114,26 @@ App
 					}, function(errResponse) {
 						console.log("Failed to get Drop Down.");
 					});
+				}
+				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				}
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
 				}
 				
 			} ]);
