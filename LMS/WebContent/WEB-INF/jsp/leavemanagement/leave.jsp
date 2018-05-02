@@ -38,7 +38,7 @@
 								</div>
 
 								<button type="submit" class="btn btn-default" id="search"
-									ng-click="lhc.leave(lhc.user_id)">Leave History</button>
+									ng-click="lc.leave(lc.user_id)">Leave History</button>
 							</form>
 							<div style="color: blue">{{lc.user_id}}{{lc.testMsg}}</div>
 						</div>
@@ -72,7 +72,7 @@
 						</tr>
 					</table>
 				</div>
-				</div>
+				
 			</table>
 		</div>
 	</div>

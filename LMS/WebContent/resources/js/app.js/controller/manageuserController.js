@@ -6,13 +6,19 @@ App
 			'$http',
 			'updateuserprofileService',
 			'manageuserService',
+			'OfficeService',
+			'DivisionService',
+			'DesignationService',
+			'MinistryService',
+			'SectionService',
+			'DropDownService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http, updateuserprofileService, manageuserService,
-				$timeout, $filter,NgTableParams,$location) {
+			function($scope, $http, updateuserprofileService, manageuserService, OfficeService, DivisionService, DesignationService, MinistryService,
+					SectionService,DropDownService,$timeout, $filter,NgTableParams,$location) {
 				$scope.testMsg = "Test Message New";
 				$scope.user = {};
 				$scope.showUserDetails = false;
@@ -67,6 +73,44 @@ App
 					});
 				}
 				
+				$scope.getOfficeData = function(){
+					OfficeService.getAllOffice().then(function(d) {
+						$scope.officeNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
 				
+				$scope.getDesignationData = function(){
+					DesignationService.getAllDesignation().then(function(d) {
+						$scope.designationNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.getMinistryData = function(){
+					MinistryService.getAllMinistry().then(function(d) {
+						$scope.ministryNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.getSectionData = function(){
+					SectionService.getAllSection().then(function(d) {
+						$scope.sectionNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.getDropdownData = function(){
+					DropDownService.getAllDropdown().then(function(d) {
+						$scope.dropdownNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
 				
 			} ]);
