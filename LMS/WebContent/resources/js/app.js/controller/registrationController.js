@@ -63,7 +63,7 @@ App
 				
 				$scope.registration = function(){
 										
-					$scope.user.name = $scope.username;
+					/*$scope.user.name = $scope.username;
 					$scope.user.nid = $scope.nid;
 					$scope.user.office = $scope.office;
 					$scope.user.division = $scope.division;
@@ -79,7 +79,7 @@ App
 					$scope.user.joiningdate = new Date($('#joiningDate').val());
 					$scope.user.gender = $scope.gender;
 					$scope.user.supervisoremail = $scope.supervisoremail;
-					$scope.user.address = $scope.address;
+					$scope.user.address = $scope.address;*/
 						
 					console.log($scope.user.username);
 					
