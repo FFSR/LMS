@@ -12,12 +12,13 @@ App
 			'OfficeService',
 			'DropDownService',
 			'registrationService',
+			'userlistService',
 			'$timeout',
 			'$filter',
 			'$location',
 
 			function($scope, $timeout, $http, DivisionService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
-				$timeout, $filter,$location) {
+					userlistService,$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
 				$scope.user={};
@@ -62,7 +63,7 @@ App
 				
 				$scope.registration = function(){
 										
-					/*$scope.user.name = $scope.username;
+					$scope.user.name = $scope.username;
 					$scope.user.nid = $scope.nid;
 					$scope.user.office = $scope.office;
 					$scope.user.division = $scope.division;
@@ -75,10 +76,10 @@ App
 					$scope.user.telephone = $scope.telephone;
 					$scope.user.email = $scope.email;
 					$scope.user.fax = $scope.fax;
-					$scope.user.joiningdate = $scope.joiningdate;
+					$scope.user.joiningdate = new Date($('#joiningDate').val());
 					$scope.user.gender = $scope.gender;
 					$scope.user.supervisoremail = $scope.supervisoremail;
-					$scope.user.address = $scope.address;*/
+					$scope.user.address = $scope.address;
 						
 					console.log($scope.user.username);
 					
@@ -86,7 +87,7 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
-								$scope.showSuccessMessage("Registration Successfully.");
+								$scope.showSuccessMessage("Registration Successfull.");
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
@@ -146,6 +147,33 @@ App
 						$scope.dropdownNames = d;
 					}, function(errResponse) {
 						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.getDropdownDataNationality = function(dropdownname){
+					DropDownService.getNationalityOption(dropdownname).then(function(d) {
+						$scope.dropdownNationalityNames = d.listLmsDropdown;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.getDropdownDataGender = function(dropdownname){
+					DropDownService.getGenderOption(dropdownname).then(function(d) {
+						$scope.dropdownGenderNames = d.listLmsDropdown;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.loadUserListDropDown = function(){
+					$scope.dDName = "";
+					userlistService.getUserList()
+					.then(
+						function(d) {
+						$scope.userData = d;
+					}, function(errResponse) {
+						console.log("Failed to get User Drop Down.");
 					});
 				}
 				

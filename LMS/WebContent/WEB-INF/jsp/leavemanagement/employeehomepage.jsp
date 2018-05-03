@@ -28,7 +28,7 @@
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="leaveapplication in $data">
 							<td title="'Employee name'"
-								filter="{'lmsUserByUserId.name': 'text'}" sortable="'name'">{{sessionScope.user.name}}</td>
+								filter="{'lmsUserByUserId.name': 'text'}" sortable="'name'">{{}}</td>
 
 							<td title="'From Date'" filter="{ type: 'text'}"
 								sortable="'lmsLeaveType.fromDate'">{{leaveapplication.fromDate

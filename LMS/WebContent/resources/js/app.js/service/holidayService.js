@@ -34,20 +34,7 @@ App.factory('holidayService', [
 					return $q
 							.reject(errResponse);
 				});
-			},
+			}
 			
-			getHolidayOptions: function(dropdownname){
-				return $http.get(url+'getDropdownDataByName/' + dropdownname)// Fetching holiday options from lms_dropdown table.
-				.then(function(response) {
-					return response.data;
-				},
-				function(errResponse) {
-					console
-							.error('Error while fetching option type list.');
-					return $q
-							.reject(errResponse);
-				});
-			},
-			
-		}
+		};
 		} ]);

@@ -27,11 +27,14 @@
 <body>
 	<br>
 	<div ng-controller="holidayController">
-
 		<form class="form-horizontal" name="memoform">
-
 			<div
-				ng-init="holidaygridshow()();loadDropDownHolidayOption('HolidayOption');"></div>
+				ng-init="holidaygridshow()"></div>
+				<div
+				ng-init="loadDropDownHolidayOption('HolidayOption')"></div>
+				<div
+				ng-init="loadDropDownMoonOption('HolidayMoon')"></div>
+				
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-sm-3" style="background-color: white;">Holiday
@@ -51,7 +54,7 @@
 					<div class="col-md-3">
 						<!-- Drop Down list from table -->
 						<select class="form-control" id="ddOptional" ng-model="ddOptional"
-							ng-options="x as x.name for x in optionData track by x.id">
+							ng-options="x as x.name for x in optionData track by x.name">
 							<option value="">Select</option>
 						</select>
 
@@ -61,7 +64,7 @@
 					<div class="col-md-3">
 						<!-- Drop Down list from table -->
 						<select class="form-control" id="ddMoon" ng-model="ddMoon"
-							ng-options="x as x.name for x in userData track by x.id">
+							ng-options="x as x.name for x in moonData track by x.name">
 							<option value="">Select</option>
 						</select>
 

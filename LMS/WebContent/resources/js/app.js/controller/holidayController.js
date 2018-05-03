@@ -7,12 +7,13 @@ App
 			'holidayService',
 			'holidaygridshowService',
 			'updateholidayrecordService',
+			'DropDownService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http,holidayService,holidaygridshowService,updateholidayrecordService,
+			function($scope, $http,holidayService,holidaygridshowService,updateholidayrecordService,DropDownService,
 				$timeout, $filter,NgTableParams,$location) {
 				$scope.testMsg = "Test Message New";
 				$scope.holidaygridcontrol = {};
@@ -53,10 +54,7 @@ App
 					$scope.holidayrecord.leaveSubject = $scope.leaveSubject;
 					$scope.holidayrecord.leaveDate = new Date($('#fromDate').val());
 					$scope.holidayrecord.optional = $scope.ddOptional.name;
-					$scope.holidayrecord.subjectToMoon = $scope.subjectToMoon;
-					//$scope.holidayrecord.optional = $scope.SelectedOption.options;
-					//$scope.holidayrecord.subjectToMoon = $scope.SelectedOption.options;
-					
+					$scope.holidayrecord.subjectToMoon = $scope.ddMoon.name;
 						
 					
 					holidayService.holidaymanagement($scope.holidayrecord).then(
@@ -111,8 +109,16 @@ App
 				}
 				
 				$scope.loadDropDownHolidayOption = function(dropdownname){
-					holidayService.getHolidayOptions(dropdownname).then(function(d) {
+					DropDownService.getHolidayOptions(dropdownname).then(function(d) {
 						$scope.optionData = d.listLmsDropdown;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				};
+				
+				$scope.loadDropDownMoonOption = function(dropdownname){
+					DropDownService.getMoonOptions(dropdownname).then(function(d) {
+						$scope.moonData = d.listLmsDropdown;
 					}, function(errResponse) {
 						console.log("Failed to get Drop Down.");
 					});
