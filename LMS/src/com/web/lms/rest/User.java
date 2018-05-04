@@ -147,7 +147,8 @@ public class User {
 	@RequestMapping(value = "/getUserList/", method = RequestMethod.GET)
 	public ResponseEntity<List<LmsUser>> getUserList() {
 
-		List<LmsUser> listLmsUser = lmsUserHome.findAllUser();
+		List<LmsUser> listLmsUser = new ArrayList<>();
+		listLmsUser = lmsUserHome.findAllUser();
 		
 		
 		if(listLmsUser == null) {

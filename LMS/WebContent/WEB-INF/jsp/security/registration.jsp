@@ -145,10 +145,11 @@
 						<label class="control-label col-md-3" >Nationality</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-							ng-model="user.nationality"
+							ng-model="nationality"
 							ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
 							<option value="">Select</option>
 						   </select>
+						   trst: {{user.nationality}}
 						</div>
 					</div>
 				</div>
@@ -210,9 +211,9 @@
 		       <div class="col-md-6">
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Joining Date</label>
-						  <div class="col-md-9">
-							
-							<input type="text" id="joiningDate" class="form-control" />
+						  <div class="col-md-9">		
+							<input type="text" ng-model="user.joining_date" class="form-control" ng-required="true"
+					         placeholder="Joining Date">
 						</div>
 					</div>
 			   </div> 

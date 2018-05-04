@@ -83,6 +83,8 @@ App
 						
 					console.log($scope.user.username);
 					
+					$scope.user.nationality = $scope.nationality.text;
+					
 					registrationService.registration($scope.user).then(
 							function(d) {
 								$scope.testMsg = d.message;
