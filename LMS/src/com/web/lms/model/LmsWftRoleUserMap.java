@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Apr 28, 2018 3:31:02 PM by Hibernate Tools 5.2.8.Final
+// Generated May 4, 2018 5:18:14 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -28,18 +28,20 @@ public class LmsWftRoleUserMap implements java.io.Serializable {
 	private Integer insertBy;
 	private Date updateDate;
 	private Integer undateBy;
+	private Integer delegateBy;
 
 	public LmsWftRoleUserMap() {
 	}
 
 	public LmsWftRoleUserMap(LmsUser lmsUser, LmsWftRole lmsWftRole, Date insertDate, Integer insertBy, Date updateDate,
-			Integer undateBy) {
+			Integer undateBy, Integer delegateBy) {
 		this.lmsUser = lmsUser;
 		this.lmsWftRole = lmsWftRole;
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
 		this.undateBy = undateBy;
+		this.delegateBy = delegateBy;
 	}
 
 	@Id
@@ -110,6 +112,15 @@ public class LmsWftRoleUserMap implements java.io.Serializable {
 
 	public void setUndateBy(Integer undateBy) {
 		this.undateBy = undateBy;
+	}
+
+	@Column(name = "DELEGATE_BY")
+	public Integer getDelegateBy() {
+		return this.delegateBy;
+	}
+
+	public void setDelegateBy(Integer delegateBy) {
+		this.delegateBy = delegateBy;
 	}
 
 }

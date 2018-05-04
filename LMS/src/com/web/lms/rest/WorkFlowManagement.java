@@ -50,12 +50,12 @@ public class WorkFlowManagement {
 	@Autowired
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
 
-	
 	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}/{leaveapplicationid}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid,
 			@PathVariable("leavetypeid") Integer leavetypeid,@PathVariable("leaveapplicationid") Integer leaveapplicationid) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
+		LmsWftRequestSelector lmsWftRequestSelector = null;
 
 		try {
 
@@ -83,10 +83,17 @@ public class WorkFlowManagement {
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}		
 
-			// Find request type
-			LmsWftRequestSelector lmsWftRequestSelector = LmsWftRequestSelectorHome
+			// Find request type by User class, section and leave type
+			if(user.getLmsSection() !=null) {
+				
+			 lmsWftRequestSelector = LmsWftRequestSelectorHome
 					.findRequestTypeByClassSectorLeaveType(user.getLmsDesignation().getLmsClass().getId(),
 							user.getLmsSection().getId(), leaveType.getId());
+			 
+			}else {  // Find request type by User class and leave type, no section
+				lmsWftRequestSelector = LmsWftRequestSelectorHome
+						.findRequestTypeByClassSectorLeaveType(user.getLmsDesignation().getLmsClass().getId(), leaveType.getId());
+			}
 
 			if (lmsWftRequestSelector == null) {
 
