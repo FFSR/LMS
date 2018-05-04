@@ -34,16 +34,16 @@ public class HomeController {
 	@RequestMapping("/registration")
 	public String registration(Model model) {
 		
-		try {
-			if("" != httpSession.getAttribute("userName").toString()) {
+		/*try {
+			if("" != httpSession.getAttribute("userName").toString()) {*/
 				return "registration";
-			}else {
+			/*}else {
 			
 				return "login";
 			}
 		}catch(Exception ex) {
 			return "login";
-		}
+		}*/
 	}
 	
 	@RequestMapping("/leaveapplication")
