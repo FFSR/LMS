@@ -191,7 +191,7 @@ App
 					$scope.leaveapplication.userId= parseInt($scope.userid) ;
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.ddReliever;
+					$scope.leaveapplication.lmsUser = $scope.ddReliever;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
@@ -220,6 +220,7 @@ App
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
 								$scope.showSuccessMessage("Insertion successful");
+								$window.location.reload();
 								$scope.uploadFile();
 							},
 							function(e) {
@@ -292,6 +293,28 @@ App
 					
 					console.log("User Group");
 				};
+				
+				$scope.showLeaveBalance = function(userid,leavetypeid){
+					
+					//$scope.Userid = 
+					//$scope.t = leavetype;
+					//console.log("efghjk");
+					leaveapplicationservice.getLeaveBalance($scope.userid,leavetypeid)
+					.then(
+							function(d) {
+						
+						//$scope.lmsLeaveBalance=d.lmsLeaveBalance;
+						
+						$scope.eligibility = d.lmsLeaveBalance.eligiblity;
+						$scope.leaveBalance = d.lmsLeaveBalance.leaveBalance;
+						$scope.leaveTotal = d.lmsLeaveBalance.leaveTotal;
+						
+						//$scope.eligibility = d.eligiblity;
+						
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
 				
 			} 
 			]);

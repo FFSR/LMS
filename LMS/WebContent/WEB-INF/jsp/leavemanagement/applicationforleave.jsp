@@ -68,7 +68,7 @@
 						<label class="control-label col-md-3">Leave Type</label>
 						<div class="col-md-9">
 							<!-- Drop Down list from table -->
-							<select class="form-control" id="ddleavetype" ng-model="leavetype"
+							<select class="form-control" id="ddleavetype" ng-model="leavetype" ng-change="showLeaveBalance(userid,leavetype.id)"
 								ng-options="x as x.type for x in dropdownData track by x.id">
 								<option value="">Select</option>
 							</select>

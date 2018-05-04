@@ -90,6 +90,7 @@ App
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
 								$scope.showSuccessMessage("Registration Successfull.");
+								$window.location.reload();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
