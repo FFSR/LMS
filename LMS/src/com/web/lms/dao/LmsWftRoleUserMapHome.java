@@ -12,6 +12,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRoleUserMap;
 
 /**
@@ -86,5 +88,19 @@ public class LmsWftRoleUserMapHome {
 			return null;
 		}
 		
+	}
+	
+	public List<LmsWftRoleUserMap> findRoleByUser(LmsUser user) {		
+		try { 			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser=:user")
+					.setParameter("user", user);
+		
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap =  query.getResultList();
+		
+			return listLmsWftRoleUserMap;
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
 	}
 }

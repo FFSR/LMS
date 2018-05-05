@@ -1,5 +1,7 @@
 package com.web.lms.rest;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import com.web.lms.dao.LmsWfRequestHopHome;
 import com.web.lms.dao.LmsWftFlowControlHome;
 import com.web.lms.dao.LmsWftRequestHopRolePageMapHome;
 import com.web.lms.dao.LmsWftRequestSelectorHome;
+import com.web.lms.dao.LmsWftRoleUserMapHome;
 import com.web.lms.enumcollection.WFSTATUS;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveType;
@@ -28,7 +31,9 @@ import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsWftFlowControl;
 import com.web.lms.model.LmsWftRequestHopRolePageMap;
 import com.web.lms.model.LmsWftRequestSelector;
+import com.web.lms.model.LmsWftRoleUserMap;
 import com.web.lms.wrapper.ResponseWrapper;
+import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
 
 @RestController
 public class WorkFlowManagement {
@@ -49,6 +54,8 @@ public class WorkFlowManagement {
 	private LmsWftFlowControlHome lmsWftFlowControlHome;
 	@Autowired
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
+	@Autowired
+	private LmsWftRoleUserMapHome lmsWftRoleUserMapHome;
 
 	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}/{leaveapplicationid}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid,
@@ -141,6 +148,42 @@ public class WorkFlowManagement {
 		} catch (Exception ex) {
 			responseWrapper.setMessage("Fail." + ex.getMessage());
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
+	@RequestMapping(value = "/wfroleusermap/{userid}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> findrolebyuser(@PathVariable("userid") Integer userid) {
+
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+
+		try {
+
+			// Validate User
+			LmsUser user = lmsUserHome.findById(userid);
+			if (user == null) {
+				responseWrapper.setMessage("This userid is not available in database.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+			}
+
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findRoleByUser(user);
+
+			if (listLmsWftRoleUserMap.size() > 0) {
+				responseWrapper.setListLmsWftRoleUserMap(listLmsWftRoleUserMap);
+				responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+				
+			} else {
+				responseWrapper.setMessage("Fail. No record found");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+
+			}
+
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+					HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 	
@@ -375,5 +418,22 @@ public class WorkFlowManagement {
 			ex.printStackTrace();
 		}
 		return wfRequestFirstHop;
+	}
+	
+	private void findHoliday() {
+		
+		try {
+			
+		  String input_date="01/08/2012";
+		  SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+		  Date dt1=format1.parse(input_date);
+		  DateFormat format2=new SimpleDateFormat("EEEE"); 
+		  String finalDay=format2.format(dt1);
+		  
+		}catch(Exception ex) {		
+			
+			
+		}
+		
 	}
 }
