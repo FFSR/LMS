@@ -34,7 +34,6 @@ import com.web.lms.model.LmsWftRequestHopRolePageMap;
 import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRole;
 import com.web.lms.model.LmsWftRoleUserMap;
-import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
 
 @RestController
@@ -62,10 +61,10 @@ public class WorkFlowManagement {
 	private LmsWftRoleHome lmsWftRoleHome;
 
 	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}/{leaveapplicationid}", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid,
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> generateRequest(@PathVariable("userid") Integer userid,
 			@PathVariable("leavetypeid") Integer leavetypeid,@PathVariable("leaveapplicationid") Integer leaveapplicationid) {
 
-		ResponseWrapper responseWrapper = new ResponseWrapper();
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
 		LmsWftRequestSelector lmsWftRequestSelector = null;
 
 		try {
@@ -74,7 +73,7 @@ public class WorkFlowManagement {
 			LmsUser user = lmsUserHome.findById(userid);
 			if (user == null) {
 				responseWrapper.setMessage("This userid is not available in database.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			// Validate Leave Type
@@ -82,7 +81,7 @@ public class WorkFlowManagement {
 
 			if (leaveType == null) {
 				responseWrapper.setMessage("This Leave Type is not available in database.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 			
 			// Validate Leave Application ID
@@ -91,7 +90,7 @@ public class WorkFlowManagement {
 					
 			if (leaveapplicationid == null) {
 				responseWrapper.setMessage("This Leave Application is not available in database.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}		
 
 			// Find request type by User class, section and leave type
@@ -109,24 +108,24 @@ public class WorkFlowManagement {
 			if (lmsWftRequestSelector == null) {
 
 				responseWrapper.setMessage("This is no Request Type matched from Request Selector table.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			generateWorkRequest(lmsWftRequestSelector, user, leaveApplication);
 
 			responseWrapper.setMessage("Success. Your request is successfully generated.");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
 		} catch (Exception ex) {
 			responseWrapper.setMessage("Fail." + ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 
 	@RequestMapping(value = "/updaterequesthope/{userid}/{WfRequestHopid}/{hopStatus}", method = RequestMethod.PUT)
-	public ResponseEntity<ResponseWrapper> updateRequestHope(@PathVariable("userid") Integer userid,
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> updateRequestHope(@PathVariable("userid") Integer userid,
 			@PathVariable("WfRequestHopid") Integer WfRequestHopid, @PathVariable("hopStatus") String hopStatus) {
 
-		ResponseWrapper responseWrapper = new ResponseWrapper();
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
 
 		try {
 
@@ -134,7 +133,7 @@ public class WorkFlowManagement {
 			LmsUser user = lmsUserHome.findById(userid);
 			if (user == null) {
 				responseWrapper.setMessage("This userid is not available in database.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			// Validate Leave Type
@@ -142,16 +141,16 @@ public class WorkFlowManagement {
 
 			if (lmsWfRequestHop == null) {
 				responseWrapper.setMessage("This Request Hop id is not available in database.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			updateHopDoneStatus(lmsWfRequestHop, hopStatus, user);
 
 			responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
 		} catch (Exception ex) {
 			responseWrapper.setMessage("Fail." + ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 	
