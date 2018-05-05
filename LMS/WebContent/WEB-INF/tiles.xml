@@ -162,6 +162,13 @@
 
 	</definition>
 	
+	<definition name="managedelegation" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/managedelegation.jsp" />
+
+	</definition>
+	
 	<definition name="menu" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"

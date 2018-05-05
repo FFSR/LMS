@@ -241,6 +241,20 @@ public class HomeController {
 			return "login";
 		}
 	}
+	@RequestMapping("/managedelegation")
+	public String managedelegation(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "managedelegation";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}
 	@RequestMapping("/leaveapplicationdetails")
 	public String leaveapplicationdetails(Model model) {
 		
