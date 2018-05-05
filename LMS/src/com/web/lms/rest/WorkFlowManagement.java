@@ -226,8 +226,8 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wftrolebydelegateuser/{listLmsWftRole}/{userid}/{delegateuserid}/", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("roleid") List<LmsWftRole> listLmsWftRole, @PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid) {
+	@RequestMapping(value = "/wftrolebydelegateuser/{listLmsWftRoleUserMap}/{userid}/{delegateuserid}/", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("roleid") List<LmsWftRoleUserMap> listLmsWftRoleUserMap, @PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
 
@@ -237,10 +237,10 @@ public class WorkFlowManagement {
 			LmsWftRole lmsWftRole = null;
 			LmsUser lmsUser = null;
 
-			for (LmsWftRole role : listLmsWftRole) {
+			for (LmsWftRoleUserMap role : listLmsWftRoleUserMap) {
 
 				lmsWftRoleUserMap = new LmsWftRoleUserMap();
-				lmsWftRole = lmsWftRoleHome.findById(role.getId());
+				lmsWftRole = lmsWftRoleHome.findById(role.getLmsWftRole().getId());
 				lmsUser = lmsUserHome.findById(userid);
 
 				lmsWftRoleUserMap.setLmsWftRole(lmsWftRole);
