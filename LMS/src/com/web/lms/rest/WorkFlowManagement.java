@@ -151,8 +151,8 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wfroleusermap/{userid}/", method = RequestMethod.GET)
-	public ResponseEntity<ResponseWrapperWorkFlowManagement> findrolebyuser(@PathVariable("userid") Integer userid) {
+	@RequestMapping(value = "/wftrolebyuser/{userid}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> findwftrolebyuser(@PathVariable("userid") Integer userid) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
 
@@ -186,6 +186,43 @@ public class WorkFlowManagement {
 					HttpStatus.EXPECTATION_FAILED);
 		}
 	}
+	
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> findwftrolebydelegateuser(@PathVariable("userid") Integer userid) {
+
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+
+		try {
+
+			// Validate User
+			LmsUser user = lmsUserHome.findById(userid);
+			if (user == null) {
+				responseWrapper.setMessage("This userid is not available in database.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+			}
+
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findRoleByDelegateUser(user.getId());
+
+			if (listLmsWftRoleUserMap.size() > 0) {
+				responseWrapper.setListLmsWftRoleUserMap(listLmsWftRoleUserMap);
+				responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+				
+			} else {
+				responseWrapper.setMessage("Fail. No record found");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+
+			}
+
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+					HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
 	
 	public void generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user, LmsLeaveApplication leaveApplication) {
 
