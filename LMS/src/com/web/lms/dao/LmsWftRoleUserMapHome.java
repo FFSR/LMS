@@ -117,4 +117,19 @@ public class LmsWftRoleUserMapHome {
 			return null;			
 		}
 	}
+	
+	public List<LmsWftRoleUserMap> findByUserIDAndDelegateID(Integer userID, Integer delegateBy) {
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser.id=:userID AND e.delegateBy=:delegateBy")
+					.setParameter("userID", userID)
+					.setParameter("delegateBy", delegateBy);
+			
+			return (List<LmsWftRoleUserMap>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+	}
 }

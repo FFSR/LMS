@@ -21,6 +21,7 @@ import com.web.lms.dao.LmsWfRequestHopHome;
 import com.web.lms.dao.LmsWftFlowControlHome;
 import com.web.lms.dao.LmsWftRequestHopRolePageMapHome;
 import com.web.lms.dao.LmsWftRequestSelectorHome;
+import com.web.lms.dao.LmsWftRoleHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
 import com.web.lms.enumcollection.WFSTATUS;
 import com.web.lms.model.LmsLeaveApplication;
@@ -31,6 +32,7 @@ import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsWftFlowControl;
 import com.web.lms.model.LmsWftRequestHopRolePageMap;
 import com.web.lms.model.LmsWftRequestSelector;
+import com.web.lms.model.LmsWftRole;
 import com.web.lms.model.LmsWftRoleUserMap;
 import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
@@ -56,6 +58,8 @@ public class WorkFlowManagement {
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
 	@Autowired
 	private LmsWftRoleUserMapHome lmsWftRoleUserMapHome;
+	@Autowired
+	private LmsWftRoleHome lmsWftRoleHome;
 
 	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}/{leaveapplicationid}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid,
@@ -223,6 +227,65 @@ public class WorkFlowManagement {
 		}
 	}
 	
+	@RequestMapping(value = "/wftrolebydelegateuser/{listLmsWftRole}/{userid}/{delegateuserid}/", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("roleid") List<LmsWftRole> listLmsWftRole, @PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid) {
+
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+
+		try {
+
+			LmsWftRoleUserMap lmsWftRoleUserMap = null;
+			LmsWftRole lmsWftRole = null;
+			LmsUser lmsUser = null;
+
+			for (LmsWftRole role : listLmsWftRole) {
+
+				lmsWftRoleUserMap = new LmsWftRoleUserMap();
+				lmsWftRole = lmsWftRoleHome.findById(role.getId());
+				lmsUser = lmsUserHome.findById(userid);
+
+				lmsWftRoleUserMap.setLmsWftRole(lmsWftRole);
+				lmsWftRoleUserMap.setLmsUser(lmsUser);
+				lmsWftRoleUserMap.setDelegateBy(delegateuserid);
+				lmsWftRoleUserMap.setInsertBy(delegateuserid);
+				lmsWftRoleUserMap.setInsertDate(new Date());
+
+				lmsWftRoleUserMapHome.persist(lmsWftRoleUserMap);
+			}
+
+			responseWrapper.setMessage("Success. Work Flow Role User Map has inserted successfully.");
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+					HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateBy}/", method = RequestMethod.DELETE)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> deletewftrolebydelegateuser(@PathVariable("userid") Integer userid, @PathVariable("delegateBy") Integer delegateBy) {
+
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+
+		try {
+
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserIDAndDelegateID(userid, delegateBy);
+
+			for (LmsWftRoleUserMap lmsWftRoleUserMap : listLmsWftRoleUserMap) {
+
+				lmsWftRoleUserMapHome.remove(lmsWftRoleUserMap);
+			}
+
+			responseWrapper.setMessage("Success. Work Flow Role User Map has deleted successfully.");
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+					HttpStatus.EXPECTATION_FAILED);
+		}
+	}
 	
 	public void generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user, LmsLeaveApplication leaveApplication) {
 
