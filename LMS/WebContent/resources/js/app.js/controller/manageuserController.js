@@ -23,9 +23,25 @@ App
 				$scope.user = {};
 				$scope.showUserDetails = false;
 				
-				$scope.manageuser = function(user_id){
+				$scope.manageuser = function(userName, mobile, status){
+					
 					$scope.testMessage = "Test Message";
-					manageuserService.manageuser(user_id).then(
+					
+					if(userName==null){						
+						userName ="880";						
+					}
+					
+					if(mobile==null){
+						mobile="a";
+					}					
+					
+					
+					if(status.text==null){
+						status="880";
+					}
+					
+					manageuserService.manageuser(userName, mobile, status.text)
+					.then(
 							function(d) {
 								$scope.testMsg1 = "Test";
 								console.log("Success.",d.message);

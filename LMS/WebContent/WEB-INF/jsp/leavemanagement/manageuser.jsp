@@ -33,16 +33,42 @@
 				<div class="row">
 					<div class="col-sm-3" style="background-color: white;">
 						<form role="form">
-							<div class="form-group">
-								<label for="user_id">Employee ID:</label>
-								<input type="text" ng-model="user_id" class="form-control" id="user_id">
+							<div class="col-md-9">
+								<label for="userName">Employee Name:</label>
+								<input type="text" ng-model="userName" class="form-control" id="userName">
+								<label for="mobile">Employee Mobile:</label>
+								<input type="text" ng-model="mobile" class="form-control" id="mobile">
 							</div>
 
-							<button type="submit" class="btn btn-info" id="search" ng-click="manageuser(user_id)">Search</button>
+							
 						</form>
 						<div style="color: blue">{{user_id}}{{testMsg}}</div>
 					</div>
 				</div>
+					<div class="row">
+                           <div class="col-md-6">
+			                  <div class="form-group">
+				                  <label class="control-label col-md-3">Status</label>
+				                      <div class="col-md-9">
+					                  <select class="form-control" id="ddAppStatus"
+											ng-model="status"
+											ng-options="x as x.name for x in dropdownNames track by x.id">
+											<option value="">Select</option>
+										</select>
+				                     </div>
+			                    </div>
+			               </div>
+					</div>
+					
+					<div class="row">
+                           <div class="col-md-6">
+			                  <div class="form-group">
+									<button type="submit" class="btn btn-info" id="search" ng-click="manageuser(userName,mobile,status)">Search</button>
+			                    </div>
+			               </div>
+					</div>
+					
+					
 				<br>
 			</div>
 		</div>

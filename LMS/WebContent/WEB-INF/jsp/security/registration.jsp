@@ -170,7 +170,7 @@
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Mobile</label>
 						  <div class="col-md-9">
-							<input type="text" ng-model="user.mobile_personal" ng-required="true"
+							<input type="text" ng-model="user.mobilePersonal" ng-required="true"
 					        class="form-control" placeholder="Mobile">
 						</div>
 					</div>
@@ -179,7 +179,7 @@
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Telephone</label>
 						  <div class="col-md-9">
-							<input type="text" ng-model="user.mobile_office"
+							<input type="text" ng-model="user.mobileOffice"
 					         class="form-control" placeholder="Telephone">
 						</div>
 					</div>
@@ -212,7 +212,7 @@
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Joining Date</label>
 						  <div class="col-md-9">		
-							<input type="text" ng-model="user.joining_date" class="form-control" ng-required="true"
+							<input type="text" ng-model="user.joiningDate" class="form-control" ng-required="false"
 					         placeholder="Joining Date">
 						</div>
 					</div>
@@ -222,7 +222,7 @@
 						<label class="control-label col-md-3" >Gender</label>
 						  <div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-							ng-model="user.gender"
+							ng-model="gender"
 							ng-options="x as x.name for x in dropdownGenderNames track by x.name">
 							<option value="">Select</option>
 						    </select>
@@ -270,6 +270,18 @@
 						</div>
 					</div>
 			   </div> 
+			   
+			   <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Password</label>
+						<div class="col-md-9">
+							<input type="password" ng-model="user.password" ng-required="true" class="form-control"
+					         placeholder="Password">
+						</div>
+					</div>
+				</div>
+			   
+			   
 
 		</div>
 		<br>

@@ -18,6 +18,7 @@ import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
+import com.web.lms.utility.ProtectedConfigFile;
 import com.web.lms.wrapper.ResponseWrapper;
 
 @RestController
@@ -69,27 +70,11 @@ public class User {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
 		try {
-			//LmsUser user = new LmsUser();
 			
-			/*String office = lmsUser.getLmsOfficeLocation().getName();
-			String userName = lmsUser.getName();
-			//String division = lmsUser.getLmsDivision();
-			//String designation = lmsUser.getLmsDesignation();
-			//String ministry = lmsUser.getLmsMinistry();
-			//String Section = lmsUser.getLmsSection();
-			String nid = lmsUser.getNid();
-			String nationality = lmsUser.getNationality();
-			String passport = lmsUser.getPassport();
-			String mobile = lmsUser.getMobilePersonal();
-			String telephone = lmsUser.getPhone();
-			String email = lmsUser.getEmail();
-			String fax = lmsUser.getFax();
-			//String joiningdate = lmsUser.getJoiningDate();
-			String gender = lmsUser.getGender();
-		//	String supervisoremail = lmsUser.
-			String address = lmsUser.getAddress();*/
+			lmsUser.setPassword(ProtectedConfigFile.encrypt(lmsUser.getPassword()));	
 
 			try {
+				
 			int lmsuserid = lmsUserHome.persist(lmsUser);
 			}
 			catch(Exception ex) {
@@ -159,12 +144,13 @@ public class User {
 		
 	}
 	
-	@RequestMapping(value="/manageuser/{userid}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable Integer userid){
+	@RequestMapping(value="/manageuser/{userName}/{mobile}/{status}/", method=RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userName") String uName,
+			@PathVariable("mobile") String mobile,	@PathVariable("status") String status){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(userid);
-		
+	//	List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(userid);
+		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, status);
 		if(lmsUser.size()>0) {
 			
 			responseWrapper.setListLmsuser(lmsUser);

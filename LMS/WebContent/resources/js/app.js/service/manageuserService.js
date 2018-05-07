@@ -10,8 +10,8 @@ App.factory('manageuserService', [
 		function($http, $q, url) {
 			return {
 				
-				manageuser: function(user_id){
-					return $http.get(url+'manageuser/'+user_id)
+				manageuser: function(userName, mobile, status){
+					return $http.get(url+'manageuser/'+ userName +'/'+ mobile +'/'+ status +'/')
 					.then(function(response) {
 						return response.data;
 					},
