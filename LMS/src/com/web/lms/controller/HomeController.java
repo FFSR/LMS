@@ -255,6 +255,21 @@ public class HomeController {
 			return "login";
 		}
 	}
+	@RequestMapping("/delegateemployee")
+	public String delegateemployee(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "delegateemployee";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}
+	
 	@RequestMapping("/leaveapplicationdetails")
 	public String leaveapplicationdetails(Model model) {
 		

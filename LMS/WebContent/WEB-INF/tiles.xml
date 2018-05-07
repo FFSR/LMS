@@ -169,6 +169,13 @@
 
 	</definition>
 	
+	<definition name="delegateemployee" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/delegateemployee.jsp" />
+
+	</definition>
+	
 	<definition name="menu" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"

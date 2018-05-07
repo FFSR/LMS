@@ -4,22 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Ministry Information</title>
 
 <script type="text/javascript"
-	src="resources/js/app.js/service/managedelegationService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/DropDownService.js"></script>
-	<script type="text/javascript"
 	src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/service/manageuserService.js"></script>
+	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/managedelegationController.js"></script>
-	
+	src="resources/js/app.js/service/wfManagementService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/manageuserService.js"></script>
+<script type="text/javascript" src="resources/js/app.js/service/userlistService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/controller/delegateemployeeController.js"></script>
+
 <link href="resources/file-upload/css/dropzone/phase2_dropzone.css" rel="stylesheet" />
-	
-	<script src="resources/file-upload/js/dropzone/dropzone.js"></script>
+
+
+<script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
 <script type="text/javascript"
@@ -32,14 +34,14 @@
 
 </head>
 <body>
-	<div ng-controller="managedelegationController">
-		<div
-			ng-init="getUserInfo('${sessionScope.user.id}');loadUserListDropDown()">
-			</div>
-		<form class="form-horizontal">
-			<div class="form-body">
-				<div class="row">
-					<div class="col-md-6">
+	<br>
+	<div ng-controller="delegateemployeeController">
+	<div ng-init="getUserInfo('${sessionScope.user.id}');loadUserListDropDown();"></div>
+	
+	<form class="form-horizontal">
+	<div class="form-body">
+			<div class="row">
+				<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">User Name</label>
 							<div class="col-md-9">
@@ -59,8 +61,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-6">
+
+			<div class="row">
+				<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Section Name</label>
 							<div class="col-md-9">
@@ -79,51 +82,26 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-		</form>
-		<br>
-	    
-	    My Roles
-		<div>
-			<table class="table table-sm">
-				<div>
-					<table ng-table="tableParams" class="table" show-filter="true">
-						<tr ng-repeat="listLmsWftRoleUserMap in $data">
-
-							<td title="'Role Name'"
-								filter="{'listLmsWftRoleUserMap.lmsWftRole.roleName': 'text'}"
-								sortable="'listLmsWftRoleUserMap.lmsWftRole.roleName'">{{listLmsWftRoleUserMap.lmsWftRole.roleName}}
-							</td>
-						</tr>
-					</table>
-				</div>
-			</table>
-		</div>
-        <br>
-			  <div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-3"> Reliever </label>
-							<div class="col-md-9">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+					   <label class="control-label col-md-3">Reliever</label>
+					       <div class="col-md-9">
 								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddRnew" ng-model="ddRnew"
-									ng-options="x as x.name for x in userInfo track by x.name">
+								<select class="form-control" id="ddReliever" ng-model="ddReliever"
+									ng-options="x as x.name for x in userData track by x.id">
 									<option value="">Select</option>
 								</select>
-							</div>
-						</div>
-					</div>
 
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-3">User Name</label>
-							<div class="col-md-9">
-								<input type="text" ng-model="name" class="form-control">
-							</div>
-						</div>
-					</div>
-				</div>
+				          </div>
+				     </div>
+				 </div>
+           </div>
+			
+			<div>Response: {{testMsg}}</div>
+
+</div>
+</form>
 	</div>
 </body>
 </html>

@@ -160,8 +160,25 @@ public class User {
 		
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-	}		
+	}
 	
+	@RequestMapping(value="/manageuser/{userid}", method=RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userid") int uID){
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+	//	List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(userid);
+		List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(uID );
+		if(lmsUser.size()>0) {
+			
+			responseWrapper.setListLmsuser(lmsUser);
+			
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+		
+		responseWrapper.setMessage("Fail. Data not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+	}
+		
 	@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
 		
