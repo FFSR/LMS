@@ -24,7 +24,7 @@
 		<div>
 			<table class="table table-sm">
 				<div>
-					Test Message: {{testMessage}}
+					Leave Notice Board
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="leaveapplication in $data">
 							<td title="'Employee name'"

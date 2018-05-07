@@ -31,15 +31,14 @@ App
 					manageleaveService.manageleave($scope.search).then(
 							function(d) {
 								$scope.testMsg1 = "Test";
-								console.log("Success.",d.message);
+								console.log("Success.", d.message);
 								var data = d.listLmsLeaveApplication;
 								$scope.tableParams = new NgTableParams({}, { dataset: data});
 								
 							},
 							function(errResponse) {
 								
-								console
-										.error("Error while fetching Currencies");
+								console.error(errResponse.message);
 							});
 				};
 				$scope.userID = 0;

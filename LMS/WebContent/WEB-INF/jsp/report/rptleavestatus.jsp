@@ -19,64 +19,22 @@
 		<div ng-init="loadrptleavestatus('${sessionScope.userID}');"></div>
 
 		<div class="container-fluid">
-
-			<div class="row">
-				<div class="col-sm-3" style="background-color: lavender;">Start
-					Date</div>
-				<div class="col-sm-3" style="background-color: lavenderblush;">
-					<input type="text">
-				</div>
-				<div class="col-sm-3" style="background-color: lavender;">End
-					Date</div>
-				<div class="col-sm-3" style="background-color: lavenderblush;">
-					<input type="text">
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-3" style="background-color: lavender;">Employee
-					ID</div>
-				<div class="col-sm-3" style="background-color: lavenderblush;">
-					<input type="text">
-				</div>
-			</div>
-			<div class="row">
-				<br>
-				<div class="col-sm-3" style="background-color: lavender;"></div>
-				<div class="col-sm-3" style="background-color: lavenderblush;"></div>
-				<div class="col-sm-3" style="background-color: lavender;"></div>
-				<div class="col-sm-3" style="background-color: lavenderblush;"></div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1" style="background-color: none;">
-					<input type="submit" class="btn btn-info" value="Search">
-				</div>
-
-				<div class="col-sm-1" style="background-color: none;">
-					<input type="Clear" class="btn btn-info" value="Clear">
-				</div>
-			</div>
-
 			<!-- By Shourav 29th April 2018 -->
 
 			<div>
 				<table class="table table-sm">
 					<div>
-						Test Message: {{testMessage}}
 						<table ng-table="tableParams" class="table" show-filter="true">
 							<tr ng-repeat="wfRequestHop in $data">
 								<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
 								<td title="'Employee name'"
 									filter="{ 'lmsUserByUserId.name': 'text'}"
 									sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUser.name}}</td>
-
 								<td title="'From Date'" filter="{ type: 'text'}"
-									sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsleaveapplication.fromDate
+									sortable="'wfRequestHop.lmsleaveapplication.fromDate'">{{wfRequestHop.lmsleaveapplication.fromDate
 									| date: YYYY-MM-dd}}</td>
-
 								<td title="'To Date'" filter="{ leaveTotal: 'text'}"
-									sortable="'totalleave'">{{wfRequestHop.lmsleaveapplication.toDate | date:
+									sortable="'wfRequestHop.lmsleaveapplication.toDate'">{{wfRequestHop.lmsleaveapplication.toDate | date:
 									YYYY-MM-dd}}</td>
 
 								<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"

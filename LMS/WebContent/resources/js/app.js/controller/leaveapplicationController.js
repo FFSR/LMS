@@ -220,8 +220,8 @@ App
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
 								$scope.showSuccessMessage("Insertion successful");
-								$window.location.reload();
 								$scope.uploadFile();
+								$window.location.reload();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								

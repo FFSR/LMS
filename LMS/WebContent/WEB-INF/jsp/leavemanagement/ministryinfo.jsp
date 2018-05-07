@@ -20,13 +20,15 @@
 		<div class="container-fluid">
 
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">Ministry
-					Name</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="name" class="form-control"
-						placeholder="Ministry Name">
+			  <div class="col-md-6">
+					  <div class="form-group">
+						<label class="control-label col-md-3" >Ministry Name</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="name" class="form-control"
+						placeholder="Ministry Name" ng-required=true>
+						</div>
+					</div>
 				</div>
-
 			</div>
 			<br>
 			<div class="row">
