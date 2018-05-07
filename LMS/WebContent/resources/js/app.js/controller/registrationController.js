@@ -81,9 +81,12 @@ App
 					$scope.user.supervisoremail = $scope.supervisoremail;
 					$scope.user.address = $scope.address;*/
 						
-					console.log($scope.user.username);
+					//console.log($scope.user.username);
 					
-					$scope.user.nationality = $scope.nationality.text;
+					$scope.user.nationality = $scope.nationality.name;
+					$scope.user.status = "PENDING";
+					
+					$scope.user.gender= $scope.gender.name;
 					
 					registrationService.registration($scope.user).then(
 							function(d) {
@@ -94,7 +97,7 @@ App
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
-								console.error(e.data.message);
+								//console.error(e.data.message);
 								$scope.showErrorMessage("Registration Failed.");
 							});
 				};

@@ -135,5 +135,24 @@ public class LmsUserHome {
 			return null;			
 		}
 	}
+    
+    public List<LmsUser> findByUnameandMobile(String uName, String mobile, String status) {
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.status =:status")
+					.setParameter("uName","%"+ uName +"%")
+					.setParameter("mobile", "%"+ mobile +"%")
+					.setParameter("status", status);
+
+			List<LmsUser> lmsUser = query.getResultList();
+
+			return lmsUser;
+		} 
+		catch (Exception ex) {
+			return null;
+		}
+	}
+    
 		
 }
