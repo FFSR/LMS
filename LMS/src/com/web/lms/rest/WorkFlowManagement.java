@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -226,8 +227,10 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wftrolebydelegateuser/{listLmsWftRoleUserMap}/{userid}/{delegateuserid}/", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("roleid") List<LmsWftRoleUserMap> listLmsWftRoleUserMap, @PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid) {
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateuserid}{listLmsWftRoleUserMap}/", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid,
+			@RequestBody List<LmsWftRoleUserMap> listLmsWftRoleUserMap) 
+	{
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
 

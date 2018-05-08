@@ -23,5 +23,18 @@ App.factory('managedelegationService', [
 					});
 				},
 				
+				addReliever: function(loginUserID, releiverid, listLmsWftRoleUserMap){
+					return $http.put(url+'wftrolebydelegateuser/'+loginUserID +'/'+releiverid+'/'+listLmsWftRoleUserMap+'/')
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching WF Request Hops.");
+						return $q
+								.reject(errResponse);
+					});
+				},
+				
 			}
 		} ]);

@@ -64,8 +64,8 @@
 								| date: YYYY-MM-dd}}</td>
 
 							<td title="'To Date'" filter="{ leaveTotal: 'text'}"
-								sortable="'totalleave'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.toDate | date:
-								YYYY-MM-dd}}</td>
+								sortable="'totalleave'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.toDate
+								|date: YYYY-MM-dd}}</td>
 
 							<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"
 								sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type}}</td>
