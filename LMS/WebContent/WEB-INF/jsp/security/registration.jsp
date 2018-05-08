@@ -225,9 +225,9 @@
 				
 	
 			</div>
+</div>
 
-
-
+<div class="row">
 			<div class="col-sm-3" style="background-color: white;">Office</div>
 			<div class="col-sm-3" style="background-color: white;">
 				<select class="form-control" id="ddAppStatus"
@@ -238,9 +238,20 @@
 						<option value="">Casual</option> -->
 				</select> Status: {{appStatus}}
 			</div>
+<div class="col-sm-3" style="background-color: white;">Password:</div>
+			<div class="col-sm-3" style="background-color: white;">
+				<input type="text" name="password" ng-model="password" class="form-control" ng-required="true" ng-pattern="/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/"
+					placeholder="Password"><span ng-show="registrationForm.password.$error.pattern">Ensure string has two uppercase letters, one special case, two digits,three lowercase letters and minimum length 8</span> 
+			</div>
 
 
-
+		</div>
+		<div class=row>
+			<div class="col-sm-3" style="background-color: white;">Re-Type Password:</div>
+			<div class="col-sm-3" style="background-color: white;">
+				<input type="text" ng-model="re_password"  class="form-control" ng-required="true"
+					placeholder="Re-Type Password"/> <span ng-if="(password != re_password)"> Password Not Match</span>
+			</div>
 		</div>
 
 		<br>

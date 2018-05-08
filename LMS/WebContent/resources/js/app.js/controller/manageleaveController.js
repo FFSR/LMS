@@ -16,6 +16,7 @@ App
 				$scope.testMsg = "Test Message New";
 				$scope.leaveapplication = {};
 				$scope.showLeaveDetails = false;
+				$scope.showAttachment = false;
 				$scope.search = {
 						'user_name' : '',
 						'user_id' : 0
@@ -55,6 +56,30 @@ App
 					$scope.userID = $scope.wfRequestHop.lmsWfRequest.lmsUser.id;
 					$scope.wfRequestHopid = $scope.wfRequestHop.id;
 					console.log("wfRequestHop", wfRequestHop );
+					manageleaveService.getAttachment($scope.wfRequestHop.lmsWfRequest.lmsLeaveApplication.id).then(
+							function(d){
+								$scope.fileNames = d;
+								console.log("Attachment Data",d.filename);
+								$scope.showAttachment = true;
+							},
+							function(errResponse){
+								
+							}
+							);
+				};
+				
+				$scope.viewAttachment = function(leaveApplicationID){
+					
+					manageleaveService.getAttachment(leaveApplicationID).then(
+							function(d){
+								$scope.fileNames = d;
+								console.log("Attachment Data",d.filename);
+								$scope.showAttachment = true;
+							},
+							function(errResponse){
+								
+							}
+							);
 				};
 				
 				

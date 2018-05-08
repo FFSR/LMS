@@ -81,10 +81,10 @@ public class FileUploadRest {
 				// log error
 			}
 
-			if (httpSession.getAttribute("ticketNumberToCreateFolder") != null)
-				ticketFolderName = httpSession.getAttribute("ticketNumberToCreateFolder").toString();
+			if (httpSession.getAttribute("leaveApplicationID") != null)
+				ticketFolderName = httpSession.getAttribute("leaveApplicationID").toString();
 			
-			ticketFolderName = "1";
+			//ticketFolderName = "1";
 
 			while (itr.hasNext()) {
 				// Current Date and Time
@@ -122,7 +122,7 @@ public class FileUploadRest {
 					// Save To DB
 					
 					LmsAttachment lmsAttachment = new LmsAttachment();
-					LmsLeaveApplication lmsLeaveApplication = lmsLeaveApplicationHome.findById(1);
+					LmsLeaveApplication lmsLeaveApplication = lmsLeaveApplicationHome.findById((Integer)httpSession.getAttribute("leaveApplicationID"));
 					
 					
 					lmsAttachment.setLmsLeaveApplication(lmsLeaveApplication);
@@ -169,13 +169,13 @@ public class FileUploadRest {
 		OutputStream os = null;
 		String ticketFolderName = null;
 		/*Tomcat Rootpath*/
-		//String rootPath = System.getProperty("catalina.home");
+		String rootPath = System.getProperty("catalina.home");
 		/*JBoss RootPath*/
-		String rootPath="/u03/jboss/apps";
+		//String rootPath="/u03/jboss/apps";
 		//String rootPath = System.getProperty("jboss.server.base.dir");
 		//System.out.println(fileName);
 		try {
-			ticketFolderName = httpSession.getAttribute("ticketNumberToCreateFolder").toString();
+			ticketFolderName = httpSession.getAttribute("leaveApplicationID").toString();
 			file = new File(rootPath + File.separator + "AttachmentRepository" + File.separator + ticketFolderName
 					+ File.separator + fileName);
 			is = new FileInputStream(file);

@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.web.lms.dao.LmsAttachmentHome;
 import com.web.lms.dao.LmsLeaveApplicationHome;
 import com.web.lms.dao.LmsWfRequestHopHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
+import com.web.lms.model.LmsAttachment;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsWfRequestHop;
@@ -46,6 +48,8 @@ public class Testleaveapplication {
 	private LmsWftRoleUserMapHome lmsWftRoleUserMapHome;
 	@Autowired
 	private LmsWfRequestHopHome lmsWfRequestHopHome;
+	@Autowired
+	private LmsAttachmentHome lmsAttachmentHome;
 	
 	//@Autowired
 	//private LmsLeaveApplication lmsLeaveApplication;
@@ -96,6 +100,7 @@ public class Testleaveapplication {
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 			
+			httpSession.setAttribute("leaveApplicationID", lmsleaveapplicationid);
 			responseWrapper.setMessage("Success. Leave request is submitted");
 			responseWrapper.setUserid(userID);
 			responseWrapper.setLeaveapplicationid(lmsleaveapplicationid);
@@ -141,6 +146,7 @@ public class Testleaveapplication {
 		List<LmsWfRequestHop> listlmsWfRequestHop = null; 
 		List<LmsWfRequestHop> listlmsWfRequestHopFinal = new ArrayList<>();
 		List<LmsWftRoleUserMap> listlmsWftRoleUserMap = null;
+		List<LmsAttachment> listLmsAttachment = null;
 		
 		try {
 			listlmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserID(userID);
@@ -164,8 +170,12 @@ public class Testleaveapplication {
 			
 			for(LmsWfRequestHop lmsWfRequestHop: listlmsWfRequestHop) {
 				listlmsWfRequestHopFinal.add(lmsWfRequestHop);
+				listLmsAttachment = lmsAttachmentHome.findByApplicationID(lmsWfRequestHop.getLmsWfRequest().getLmsLeaveApplication().getId());
 			}
+			responseWrapper.setListLmsAttatchment(listLmsAttachment);
+			listLmsAttachment = null;
 		}
+		
 		
 		responseWrapper.setListLmsWfRequestHops(listlmsWfRequestHopFinal);
 		
@@ -221,6 +231,20 @@ public class Testleaveapplication {
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 
 		}
+	
+	@RequestMapping(value="/getAttachment/{applicationID}", method=RequestMethod.GET)
+	public ResponseEntity<List<LmsAttachment>> getAttachment(@PathVariable("applicationID") Integer applicationID){
+		
+		List<LmsAttachment> attachmentsList = null;
+		try {
+			attachmentsList = lmsAttachmentHome.findByApplicationID(applicationID);
+			httpSession.setAttribute("leaveApplicationID",applicationID);
+			return new ResponseEntity<List<LmsAttachment>>(attachmentsList, HttpStatus.OK);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return new ResponseEntity<List<LmsAttachment>>(attachmentsList, HttpStatus.EXPECTATION_FAILED);
+		}
+	}
 
 
 

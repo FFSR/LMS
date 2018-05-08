@@ -11,12 +11,12 @@ function dropzone() {
         	//url: 'http://localhost:8080/SRMS_2/upload',
         	//url: 'http://10.10.22.20:8280/SRMS_P12/upload',
 //        	url: 'http://10.10.21.20:8080/SRMS/upload',
-            maxFilesize: 10,
+            maxFilesize: 20000,
             paramName: "uploadfile",
             maxThumbnailFilesize: 10,
             parallelUploads: 10,
             autoProcessQueue: false,
-            acceptedFiles: ".pdf,.doc,.docx,.msg,.xls,.xlsx,.jpg,.png,.gif,.txt,.csv,.zip,.ppt,.pptx,.eml"
+            acceptedFiles: ".pdf,.doc,.docx,.msg,.xls,.xlsx,.jpg,.png,.gif,.txt,.csv,.zip,.ppt,.pptx,.eml,.mkv"
         };
 
         var eventHandlers = {
