@@ -26,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.web.lms.dao.LmsAttachmentHome;
 import com.web.lms.dao.LmsLeaveApplicationHome;
+import com.web.lms.dao.LmsUserHome;
 import com.web.lms.dao.LmsWfRequestHopHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
 import com.web.lms.model.LmsAttachment;
@@ -50,6 +51,8 @@ public class Testleaveapplication {
 	private LmsWfRequestHopHome lmsWfRequestHopHome;
 	@Autowired
 	private LmsAttachmentHome lmsAttachmentHome;
+	@Autowired
+	private LmsUserHome lmsUserHome;
 	
 	//@Autowired
 	//private LmsLeaveApplication lmsLeaveApplication;
@@ -195,13 +198,15 @@ public class Testleaveapplication {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		responseWrapper.setMessage("Test Message");
-		
+		LmsUser lmsUser = new LmsUser();
 		List<LmsLeaveApplication> lmsLeaveApplication = lmsLeaveApplicationHome.findAllLeaveApplicationsGeaterThanCurrentDate();// used for showing leave info in homepage
 			//listLmsLeaveApplication = lmsLeaveApplicationHome.findAllLeaveApplications();
 			
 		if(lmsLeaveApplication.size()>0) {
 			   responseWrapper.setListLmsLeaveApplication(lmsLeaveApplication);
-					
+					for(LmsLeaveApplication leaveApplication:lmsLeaveApplication) {
+						lmsUser = lmsUserHome.findById(leaveApplication.getUserId());
+					}
 					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 				}
 		
