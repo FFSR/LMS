@@ -10,9 +10,9 @@ App.factory('changepasswordService', [
 		function($http, $q, url) {
 			return {
 				
-				changepassword: function(user){
-					console.log(user);
-					return $http.put(url+'changepassword',user)
+				changepassword: function(newpassword, oldpassword, userID){
+					
+					return $http.put(url+'changepassword/'+ newpassword +'/'+ oldpassword +'/'+ userID +'/')
 					.then(function(response) {
 						return response.data;
 					},

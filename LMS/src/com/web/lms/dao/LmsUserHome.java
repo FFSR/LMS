@@ -154,5 +154,22 @@ public class LmsUserHome {
 		}
 	}
     
+    public LmsUser findByUserIDandPassword(String userid, String password) {
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsUser e WHERE e.id=:userid AND e.password=:password")
+					.setParameter("userid", userid).setParameter("password", password);
+
+			LmsUser lmsUser = (LmsUser) query.getSingleResult();
+
+			return lmsUser;
+		} 
+		catch (Exception ex) {
+			return null;
+		}
+	}
+
+    
 		
 }
