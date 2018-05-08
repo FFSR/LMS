@@ -271,7 +271,7 @@
 				ng-click="registration()">Submit</button>
 			<div class="col-sm-3" style="background-color: white;"></div>
 			<div class="col-sm-3" style="background-color: white;">
-				<input type="button" class="btn btn-info" value="Cancel">
+				<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()">
 			</div>
 			<div class="col-sm-3" style="background-color: white;"></div>
 		</div>
