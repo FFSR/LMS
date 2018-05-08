@@ -41,6 +41,8 @@ App
 								
 								$scope.getUserwiseRoleInfo();
 								
+								$scope.getUserDelegationInfo();
+								
 								//$scope.loadUserListDropDown();
 								
 							},
@@ -57,20 +59,6 @@ App
 					.then(
 							function(d) {
 								console.log("Success.",d.message);
-								//$scope.userRole = d.listLmsWftRoleUserMap;
-								var data = d.listLmsWftRoleUserMap;	
-								 $scope.userlist=d.listLmsWftRoleUserMap;
-								/*----------------
-								$scope.length =d.listLmsWftRoleUserMap.length ;
-								while ($scope.length!=0) {
-							        var oListItem = d.listLmsWftRoleUserMap[$scope.length-1];
-							        $scope.length=$scope.length-1;
-							       // listItemInfo += '\nID: ' + oListItem.get_id() + 
-							         //   '\nDisplay name: ' + oListItem.get_displayName() + 
-							           // '\nUnique role assignments: ' + oListItem.get_hasUniqueRoleAssignments();
-							    }
-								//*----------------*/
-								//listLmsWftRoleUserMap=d.listLmsWftRoleUserMap;
 								$scope.tableParams = new NgTableParams({}, { dataset: data});
 																
 							},
@@ -80,6 +68,22 @@ App
 										.error("Error while fetching Currencies");
 							});
 				};
+				
+				$scope.getUserDelegationInfo= function(){
+					$scope.testMessage = "Test Message";
+						managedelegationService.getUserDelegationInfo($scope.loginUserID)
+						.then(
+								function(d) {
+									console.log("Success.",d.message);
+									$scope.tableParams = new NgTableParams({}, { dataset: data});
+																	
+								},
+								function(errResponse) {
+									
+									console
+											.error("Error while fetching Currencies");
+								});
+					};
 			
 				$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";

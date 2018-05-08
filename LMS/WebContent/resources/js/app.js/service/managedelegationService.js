@@ -23,8 +23,21 @@ App.factory('managedelegationService', [
 					});
 				},
 				
+				getUserDelegationInfo: function(userID){
+					return $http.get(url+'wftdelegationbyuser/' + userID + '/')
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching user info list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
+				
 				addReliever: function(loginUserID, releiverid, listLmsWftRoleUserMap){
-					return $http.put(url+'wftrolebydelegateuser/'+loginUserID +'/'+releiverid+'/'+listLmsWftRoleUserMap+'/')
+					return $http.post(url+'wftrolebydelegateuser/'+ loginUserID +'/'+ releiverid +'/', listLmsWftRoleUserMap)
 					.then(function(response) {
 						return response.data;
 					},

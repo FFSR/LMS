@@ -39,7 +39,7 @@
 	<br>
 	<div ng-controller="delegateemployeeController">
 		<div
-			ng-init="getUserInfo('${sessionScope.user.id}');loadUserListDropDown();"></div>
+			ng-init="getUserInfo('${sessionScope.user.id}');loadUserListDropDown()"></div>
 
 		<form class="form-horizontal">
 			<div class="form-body">

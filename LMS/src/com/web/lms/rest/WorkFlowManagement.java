@@ -191,6 +191,43 @@ public class WorkFlowManagement {
 		}
 	}
 	
+	@RequestMapping(value = "/wftdelegationbyuser/{userid}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> findwftdelagationbyuser(@PathVariable("userid") Integer userid) {
+
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+
+		try {
+
+			// Validate User
+			LmsUser user = lmsUserHome.findById(userid);
+			if (user == null) {
+				responseWrapper.setMessage("This userid is not available in database.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+			}
+
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findDelegationByUser(userid);
+
+			if (listLmsWftRoleUserMap.size() > 0) {
+				responseWrapper.setListLmsWftRoleUserMap(listLmsWftRoleUserMap);
+				responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+				
+			} else {
+				responseWrapper.setMessage("Fail. No record found");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+
+			}
+
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+					HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+
+	
 	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> findwftrolebydelegateuser(@PathVariable("userid") Integer userid) {
 
@@ -227,7 +264,7 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateuserid}{listLmsWftRoleUserMap}/", method = RequestMethod.POST)
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateuserid}/", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid,
 			@RequestBody List<LmsWftRoleUserMap> listLmsWftRoleUserMap) 
 	{
@@ -244,12 +281,12 @@ public class WorkFlowManagement {
 
 				lmsWftRoleUserMap = new LmsWftRoleUserMap();
 				lmsWftRole = lmsWftRoleHome.findById(role.getLmsWftRole().getId());
-				lmsUser = lmsUserHome.findById(userid);
+				lmsUser = lmsUserHome.findById(delegateuserid);
 
 				lmsWftRoleUserMap.setLmsWftRole(lmsWftRole);
 				lmsWftRoleUserMap.setLmsUser(lmsUser);
-				lmsWftRoleUserMap.setDelegateBy(delegateuserid);
-				lmsWftRoleUserMap.setInsertBy(delegateuserid);
+				lmsWftRoleUserMap.setDelegateBy(userid);
+				lmsWftRoleUserMap.setInsertBy(userid);
 				lmsWftRoleUserMap.setInsertDate(new Date());
 
 				lmsWftRoleUserMapHome.persist(lmsWftRoleUserMap);

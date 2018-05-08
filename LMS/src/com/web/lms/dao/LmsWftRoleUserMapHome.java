@@ -90,6 +90,19 @@ public class LmsWftRoleUserMapHome {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<LmsWftRoleUserMap> findDelegationByUser(Integer userID ) {
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.delegateBy=:userID").setParameter("userID", userID);
+			
+			return (List<LmsWftRoleUserMap>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+	}
 	public List<LmsWftRoleUserMap> findRoleByUser(LmsUser user) {		
 		try { 			
 			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser=:user")
