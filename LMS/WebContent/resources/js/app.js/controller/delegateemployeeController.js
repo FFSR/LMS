@@ -19,17 +19,17 @@ App
                 $scope.loginUserID=0;
                 $scope.releiverid=0;
                 $scope.userlist="";
-                
+               
                // scope.listLmsWftRoleUserMap= null;
                // List<LmsWftRoleUserMap> listLmsWftRoleUserMap;
                 
 				$scope.getUserInfo= function(userID){
 					$scope.loginUserID=userID;
 					$scope.testMessage = "Test Message";
-					manageuserService.manageuser(userID).then(
+				manageuserService.manageuser(userID).then(
 							function(d) {
 								$scope.testMsg1 = "Test";
-								console.log("Success.",d.message);
+								//console.log("Success.",d.message);
 								var data = d.listLmsuser;
 								$scope.userlist=d.listLmsuser;
 								$scope.name=d.listLmsuser[0].name;								
@@ -54,14 +54,16 @@ App
 				};
 				
 				$scope.getUserwiseRoleInfo= function(){
-				$scope.testMessage = "Test Message";
+					
+					var dataUserwiseRoleInfo = {};
+					$scope.testMessage = "Test Message";
 					managedelegationService.getUserwiseRoleInfo($scope.loginUserID)
 					.then(
 							function(d) {
 								console.log("Success.",d.message);
-								var data = d.listLmsWftRoleUserMap;
+								dataUserwiseRoleInfo = d.listLmsWftRoleUserMap;
 								 $scope.userlist=d.listLmsWftRoleUserMap;
-								$scope.tableParams = new NgTableParams({}, { dataset: data});
+								$scope.tableParams = new NgTableParams({}, { dataset: dataUserwiseRoleInfo});
 																
 							},
 							function(errResponse) {
@@ -72,19 +74,21 @@ App
 				};
 				
 				$scope.getUserDelegationInfo= function(){
+					var dataUserDelegationInfo={};
 					$scope.testMessage = "Test Message";
 						managedelegationService.getUserDelegationInfo($scope.loginUserID)
 						.then(
 								function(d) {
 									console.log("Success.",d.message);
-									var data = d.listLmsWftRoleUserMap;
-									$scope.tableParams = new NgTableParams({}, { dataset: data});
+									dataUserDelegationInfo = d.listLmsWftRoleUserMap;
+									$scope.tableParams2 = new NgTableParams({}, { dataset: dataUserDelegationInfo});
 																	
 								},
 								function(errResponse) {
 									
 									console
 											.error("Error while fetching Currencies");
+									$scope.tableParams = new NgTableParams({}, { dataset: dataUserDelegationInfo});
 								});
 					};
 			
@@ -94,20 +98,25 @@ App
 					.then(
 						function(d) {
 						$scope.userData = d;
+						$scope.i=0;
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
+	
 					});
 				};
 				
 				$scope.deleteReliever = function(userid,delegatebyid){	
 					//console.log("HolidayRecord", holidayrecord );
 					//$scope.lmsWftRoleUserMap_id=lmsWftRoleUserMap.id;
-					managedelegationService.deleteReliever(userid,delegatebyid).then( 
+					managedelegationService.deleteReliever(userid,delegatebyid)
+					.then( 
 							function(d){
 								console.log(d.message);
+								$scope.getUserDelegationInfo();
 							},
 							function(errResponse){
 								console.log("Failed to Update User Profile.");
+								$scope.getUserDelegationInfo();
 							}
 						);
 					

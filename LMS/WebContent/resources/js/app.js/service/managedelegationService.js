@@ -50,7 +50,7 @@ App.factory('managedelegationService', [
 				},
 				
 				deleteReliever: function(userid,delegatebyid){
-					return $http.put(url+'wftrolebydelegateuser/' + userid +'/'+ delegatebyid +'/')
+					return $http.delete(url+'wftrolebydelegateuser/' + userid +'/'+ delegatebyid +'/')
 					.then(function(response) {
 						return response.data;
 					},

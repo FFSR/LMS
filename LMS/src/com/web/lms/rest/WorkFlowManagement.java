@@ -304,7 +304,7 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateBy}/", method = RequestMethod.PUT)
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateBy}/", method = RequestMethod.DELETE)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> deletewftrolebydelegateuser(@PathVariable("userid") Integer userid, @PathVariable("delegateBy") Integer delegateBy) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();

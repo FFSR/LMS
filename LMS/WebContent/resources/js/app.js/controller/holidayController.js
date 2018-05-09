@@ -12,9 +12,10 @@ App
 			'$filter',
 			'NgTableParams',
 			'$location',
+			'url',
 
 			function($scope, $http,holidayService,holidaygridshowService,updateholidayrecordService,DropDownService,
-				$timeout, $filter,NgTableParams,$location) {
+				$timeout, $filter,NgTableParams,$location,url) {
 				$scope.testMsg = "Test Message New";
 				$scope.holidaygridcontrol = {};
 				$scope.showHolidayDetails = false;
@@ -153,6 +154,10 @@ App
 					$scope.ddOptional = '0';
 					$scope.subjectToMoon = '0';
 				};
+				
+				$scope.gotoHomePage = function(){	
+					window.location = url+"employeehomepage";
+				}
 				
 			} 
 			]);

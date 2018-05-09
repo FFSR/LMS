@@ -44,6 +44,7 @@ public class LmsWftRoleUserMapHome {
 	public void remove(LmsWftRoleUserMap persistentInstance) {
 		log.debug("removing LmsWftRoleUserMap instance");
 		try {
+			persistentInstance = entityManager.merge(persistentInstance);
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
 		} catch (RuntimeException re) {

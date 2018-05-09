@@ -223,6 +223,7 @@ App
 								console.log("Success.",d.message);
 								$scope.showSuccessMessage("Insertion successful");
 								$scope.uploadFile();
+								 $scope.ClearAll();
 								$window.location.reload();
 							},
 							function(e) {
@@ -328,6 +329,24 @@ App
                     $scope.gotoHomePage = function(){	
 					window.location = url+"employeehomepage";
 				}
+                    
+                    $scope.ClearAll = function() {
+    					
+    					$scope.leaveTaken='0';
+    					 $scope.leavetype='0';
+    					$scope.userid =0;
+    					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
+    					 $scope.leaveBalance='0';
+    					$scope.ddReliever='0';
+    					 $scope.eligibility;
+    					 new Date($('#fromDate').val(''));
+    					new Date($('#toDate').val(''));
+    					 $scope.totalDayCount='0';
+    					 $scope.totalDayText="";
+    					 $scope.reasonForLeave="";
+    					 $scope.taskNeedToPerformed="";
+    					 $scope.inStation="";
+    				};
 				
 			} 
 			]);
