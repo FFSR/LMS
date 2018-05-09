@@ -12,9 +12,10 @@ App
 			'$timeout',
 			'$filter',
 			'$location',
+			'url',
 
 			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,DropDownService,
-				$timeout, $filter,$location) {
+				$timeout, $filter,$location,url) {
 				
 				$scope.testMsg = "Testing Message";
 				
@@ -322,6 +323,10 @@ App
 					}, function(errResponse) {
 						console.log("Failed to get Drop Down.");
 					});
+				}
+				
+                    $scope.gotoHomePage = function(){	
+					window.location = url+"employeehomepage";
 				}
 				
 			} 
