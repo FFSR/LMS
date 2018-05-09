@@ -9,6 +9,7 @@ import com.web.lms.model.LmsWfRequest;
 import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsDropdown;
+import com.web.lms.model.LmsAttachment;
 
 
 public class ResponseWrapper {
@@ -39,6 +40,8 @@ public class ResponseWrapper {
 	List<LmsWfRequestHop> listLmsWfRequestHops;
 	
 	List<LmsWfRequest> listLmsWfRequest;
+	
+	List<LmsAttachment> listLmsAttatchment;
 
 	public List<LmsWfRequest> getListLmsWfRequest() {
 		return listLmsWfRequest;
@@ -143,6 +146,14 @@ public class ResponseWrapper {
 
 	public void setListLmsWfRequestHops(List<LmsWfRequestHop> listLmsWfRequestHops) {
 		this.listLmsWfRequestHops = listLmsWfRequestHops;
+	}
+
+	public List<LmsAttachment> getListLmsAttatchment() {
+		return listLmsAttatchment;
+	}
+
+	public void setListLmsAttatchment(List<LmsAttachment> listLmsAttatchment) {
+		this.listLmsAttatchment = listLmsAttatchment;
 	}
 	
 	

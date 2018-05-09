@@ -84,7 +84,7 @@
 
 		Show: {{test}} <br>
 		<div class="container-fluid">
-			<div ng-if="showLeaveDetails">
+			<div ng-show="showLeaveDetails">
 			  <div class="row">
 				   <div class="col-md-6">
 				       <div class="form-group">
@@ -217,6 +217,21 @@
 				   </div>
 					
 				</div>
+				<div class="row"><button class="btn btn-primary" ng-click="viewAttachment(wfRequestHop.lmsWfRequest.lmsLeaveApplication.id)">View Attachment</button></div>
+				<div class="row" ng-show="showAttachment">
+					<div class="col-md-12 form-group">
+						<label class="col-md-2 control-label">Download
+							Files: </label>
+						<div class="col-md-10" style="height: 150px; overflow: scroll;">
+							<ul class="list-group" ng-repeat="file in fileNames.id">
+								<li class="list-group-item"><a
+									href="download?fileName={{file}}">{{file}}</a></li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+				
 				<br>
 				<div class="row">
 					<div class="col-md-6">
