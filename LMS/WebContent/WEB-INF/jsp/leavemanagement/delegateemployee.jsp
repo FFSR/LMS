@@ -104,6 +104,29 @@
 			</table>
 		</div>
         <br>
+		   My Reliever
+		    <div>
+			<table class="table table-sm">
+				<div>
+					<table ng-table="tableParams" class="table" show-filter="true" >
+						<tr ng-repeat="listLmsWftRoleUserMap in $data">
+                         
+							<td title="'Relievr Name'"
+								filter="{'listLmsWftRoleUserMap.lmsuser.name': 'text'}"
+								sortable="'listLmsWftRoleUserMap.lmsWftRole.roleName'">{{listLmsWftRoleUserMap.lmsUser.name}}
+							</td>
+							<td title="'Role Name'"
+								filter="{'listLmsWftRoleUserMap.lmsWftRole.roleName': 'text'}"
+								sortable="'listLmsWftRoleUserMap.lmsWftRole.roleName'">{{listLmsWftRoleUserMap.lmsWftRole.roleName}}
+							</td>
+							<td title="'Action'"><button class="btn-primary"
+										ng-click="deleteReliever(listLmsWftRoleUserMap.lmsUser.id,listLmsWftRoleUserMap.delegateBy)">Delete</button></td>
+						</tr>
+					</table>
+				</div>
+			</table>
+		</div>
+        <br>
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group">

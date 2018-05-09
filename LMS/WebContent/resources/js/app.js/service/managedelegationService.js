@@ -49,5 +49,18 @@ App.factory('managedelegationService', [
 					});
 				},
 				
+				deleteReliever: function(userid,delegatebyid){
+					return $http.put(url+'wftrolebydelegateuser/' + userid +'/'+ delegatebyid +'/')
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching user info list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
+				
 			}
 		} ]);

@@ -59,6 +59,8 @@ App
 					.then(
 							function(d) {
 								console.log("Success.",d.message);
+								var data = d.listLmsWftRoleUserMap;
+								 $scope.userlist=d.listLmsWftRoleUserMap;
 								$scope.tableParams = new NgTableParams({}, { dataset: data});
 																
 							},
@@ -75,6 +77,7 @@ App
 						.then(
 								function(d) {
 									console.log("Success.",d.message);
+									var data = d.listLmsWftRoleUserMap;
 									$scope.tableParams = new NgTableParams({}, { dataset: data});
 																	
 								},
@@ -96,7 +99,20 @@ App
 					});
 				};
 				
-                   
+				$scope.deleteReliever = function(userid,delegatebyid){	
+					//console.log("HolidayRecord", holidayrecord );
+					//$scope.lmsWftRoleUserMap_id=lmsWftRoleUserMap.id;
+					managedelegationService.deleteReliever(userid,delegatebyid).then( 
+							function(d){
+								console.log(d.message);
+							},
+							function(errResponse){
+								console.log("Failed to Update User Profile.");
+							}
+						);
+					
+				};
+				
 				$scope.showUserInfo = function(uid,uname,dname,sname){	
 					//$scope.Userid = 
 					

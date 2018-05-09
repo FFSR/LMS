@@ -25,6 +25,7 @@ import com.web.lms.dao.LmsWftRequestSelectorHome;
 import com.web.lms.dao.LmsWftRoleHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
 import com.web.lms.enumcollection.WFSTATUS;
+import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
@@ -35,6 +36,7 @@ import com.web.lms.model.LmsWftRequestHopRolePageMap;
 import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRole;
 import com.web.lms.model.LmsWftRoleUserMap;
+import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
 
 @RestController
@@ -302,7 +304,7 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateBy}/", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateBy}/", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> deletewftrolebydelegateuser(@PathVariable("userid") Integer userid, @PathVariable("delegateBy") Integer delegateBy) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
@@ -325,6 +327,7 @@ public class WorkFlowManagement {
 					HttpStatus.EXPECTATION_FAILED);
 		}
 	}
+	
 	
 	public void generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user, LmsLeaveApplication leaveApplication) {
 
