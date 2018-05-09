@@ -68,6 +68,18 @@ App.factory('DropDownService', ['$http', '$q', 'url',function($http, $q, url){
 		});
 	},
 	
+	getStationOptions: function(dropdownname){
+		return $http.get(url+'getDropdownDataByName/' + dropdownname)// Fetching holiday Moon from lms_dropdown table.
+		.then(function(response) {
+			return response.data;
+		},
+		function(errResponse) {
+			console
+					.error('Error while fetching option type list.');
+			return $q
+					.reject(errResponse);
+		});
+	},
 	
     }
     

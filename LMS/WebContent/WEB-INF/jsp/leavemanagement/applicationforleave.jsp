@@ -37,7 +37,10 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');loadUserListDropDown();"></div>
+	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');
+	loadUserListDropDown()"></div> 
+	<div ng-init="loadDropDownStation('Station')"></div>">
+	
 	<form class="form-horizontal">
 	<div class="form-body">
 			<div class="row">
@@ -183,7 +186,11 @@
 					<div class="form-group">
 					   <label class="control-label col-md-3">In Station</label>
 					       <div class="col-md-9">
-					           <input type="text" ng-model="inStation" class="form-control" placeholder="In Station">
+					           <!-- Drop Down list from table -->
+								<select class="form-control" id="ddStation" ng-model="ddStation"
+									ng-options="x as x.name for x in stationData track by x.name">
+									<option value="">Select</option>
+								</select>
 				           </div>
 
 			         </div>

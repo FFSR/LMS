@@ -8,11 +8,12 @@ App
 			'leavetypeService',
 			'userlistService',
 			'wfManagementService',
+			'DropDownService',
 			'$timeout',
 			'$filter',
 			'$location',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,
+			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,DropDownService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
@@ -239,7 +240,14 @@ App
 					});
 				};
 				
-			$scope.loadUserListDropDown = function(){
+				$scope.loadDropDownStation = function(dropdownname){
+					DropDownService.getStationOptions(dropdownname).then(function(d) {
+						$scope.stationData = d.listLmsDropdown;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				};
+				$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					userlistService.getUserList()
 					.then(
