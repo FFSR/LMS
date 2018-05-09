@@ -12,35 +12,44 @@ App
 			'MinistryService',
 			'SectionService',
 			'DropDownService',
+			'RoleService',
+			'WftroleService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
 			function($scope, $http, updateuserprofileService, manageuserService, OfficeService, DivisionService, DesignationService, MinistryService,
-					SectionService,DropDownService,$timeout, $filter,NgTableParams,$location) {
+					SectionService, DropDownService, RoleService, WftroleService, $timeout, $filter,NgTableParams,$location) {
 				$scope.testMsg = "Test Message New";
 				$scope.user = {};
 				$scope.showUserDetails = false;
 				
-				$scope.manageuser = function(userName, mobile, status){
+				$scope.manageuser = function(){
 					
-					$scope.testMessage = "Test Message";
-					
-					if(userName==null){						
-						userName ="880";						
+					$scope.statusFinal="";
+										
+					if($scope.userName==null){						
+						$scope.userName ="880";						
 					}
 					
-					if(mobile==null){
-						mobile="a";
+					if($scope.mobile==null){
+						$scope.mobile="a";
+					}
+					
+					if($scope.nid==null){
+						$scope.nid="a";
 					}					
 					
-					
-					if(status.text==null){
-						status="880";
+					if($scope.status==null){
+						$scope.statusFinal="880";
+
+					}else {
+						$scope.statusFinal=$scope.status.text; 					
 					}
 					
-					manageuserService.manageuser(userName, mobile, status.text)
+					
+					manageuserService.manageuser($scope.userName, $scope.mobile, $scope.nid, $scope.statusFinal)
 					.then(
 							function(d) {
 								$scope.testMsg1 = "Test";
@@ -131,6 +140,23 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
+				
+				$scope.getRoleData = function(){
+					RoleService.getAllRole().then(function(d) {
+						$scope.roleNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.getWftroleData = function(){
+					WftroleService.getAllWftrole().then(function(d) {
+						$scope.wftroleNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
 				
 				/* Show Success Message */
 				$scope.showSuccessMessage = function(message) {

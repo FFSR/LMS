@@ -136,13 +136,14 @@ public class LmsUserHome {
 		}
 	}
     
-    public List<LmsUser> findByUnameandMobile(String uName, String mobile, String status) {
+    public List<LmsUser> findByUnameandMobile(String uName, String mobile, String nid, String status) {
 
 		try {
 			Query query = entityManager
-					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.status =:status")
+					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.nid =:nid OR e.status =:status")
 					.setParameter("uName","%"+ uName +"%")
 					.setParameter("mobile", "%"+ mobile +"%")
+					.setParameter("nid", nid)
 					.setParameter("status", status);
 
 			List<LmsUser> lmsUser = query.getResultList();
