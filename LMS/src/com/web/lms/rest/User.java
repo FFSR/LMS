@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.dao.LmsLeaveTypeHome;
+import com.web.lms.dao.LmsRoleHome;
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsRole;
 import com.web.lms.utility.ProtectedConfigFile;
 import com.web.lms.wrapper.ResponseWrapper;
 
@@ -169,6 +171,7 @@ public class User {
 	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
+				
 
 		try {
 
