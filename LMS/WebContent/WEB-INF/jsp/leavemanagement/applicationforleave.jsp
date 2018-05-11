@@ -18,7 +18,7 @@
 <script type="text/javascript" src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
-
+<script type="text/javascript" src="resources/js/app.js/directives/RestrictInput.js"></script>
 <link href="resources/file-upload/css/dropzone/phase2_dropzone.css" rel="stylesheet" />
 
 
@@ -117,7 +117,7 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">Leave Remaining</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="leaveBalance" class="form-control"
+							<input type="text" ng-model="leaveBalance" restrict-input="{type: 'digitsOnly'}" class="form-control"
 								placeholder="Leave Remaining">
 						</div>
 					</div>

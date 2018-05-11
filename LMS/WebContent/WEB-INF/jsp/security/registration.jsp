@@ -284,7 +284,7 @@
 				ng-click="registration()">Submit</button>
 			<div class="col-sm-3" ></div>
 			<div class="col-sm-3" >
-				<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()">
+				<input type="button" class="btn btn-info" value="Cancel_n" ng-click="gotoHomePage()">
 				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
 			</div>
 			
