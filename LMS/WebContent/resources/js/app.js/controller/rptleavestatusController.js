@@ -19,13 +19,10 @@ App
 				$scope.getSessionUserDetails = function(userID) {
 
 					$scope.userID = userID;
-				};	
-			
+				};
 				
-				$scope.loadrptleavestatus = function(userID){	
-					
-					var dataReportStatus={};
-					rptleavestatusService.getleavestatus(userID)
+				$scope.loadrptleavestatus = function(){					
+					rptleavestatusService.getleavestatus($scope.userID)
 					.then(
 							function(d){
 						var dataReportStatus = d.listLmsWfRequest;
