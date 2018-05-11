@@ -86,6 +86,7 @@ App
 					$scope.user.nationality = $scope.nationality.name;
 					$scope.user.status = "PENDING";
 					$scope.user.lmsUser= $scope.ddReliever;
+					$scope.user.joiningdate = new Date($('#joiningDate').val());
 					
 					
 					$scope.user.gender= $scope.gender.name;
@@ -186,7 +187,7 @@ App
 					});
 				}
 				
-				/*$scope.loadUserListDropDown = function(){
+				$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					userlistService.getUserList()
 					.then(
@@ -195,7 +196,7 @@ App
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
 					});
-				}*/
+				}
 				
 				$scope.showSuccessMessage = function(message) {
 

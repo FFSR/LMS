@@ -39,7 +39,7 @@
 	<div ng-init="getDesignationData()"></div>
 	<div ng-init="getMinistryData()"></div>
 	<div ng-init="getSectionData()"></div>
-	<div ng-init="getDropdownData()"></div>
+	<div ng-init="getDropdownData('userStatus')"></div>
 	<div ng-init="getRoleData()"></div>
 	<div ng-init="getWftroleData()"></div>
 	<div>

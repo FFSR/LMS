@@ -23,6 +23,8 @@ App.controller('manageuserController', [
 			$scope.testMsg = "Test Message New";
 			$scope.user = {};
 			$scope.showUserDetails = false;
+			
+			
 
 			$scope.manageuser = function() {
 
@@ -47,6 +49,9 @@ App.controller('manageuserController', [
 					$scope.statusFinal = $scope.status.text;
 				}
 
+				
+				//$scope.user.status= $scope.status.name;
+				
 				manageuserService.manageuser($scope.userName, $scope.mobile,
 						$scope.nid, $scope.statusFinal).then(function(d) {
 					$scope.testMsg1 = "Test";
@@ -130,9 +135,9 @@ App.controller('manageuserController', [
 				});
 			}
 
-			$scope.getDropdownData = function() {
-				DropDownService.getAllDropdown().then(function(d) {
-					$scope.dropdownNames = d;
+			$scope.getDropdownData = function(userStatus) {
+				DropDownService.getAllDropdown(userStatus).then(function(d) {
+					$scope.dropdownNames = d.listLmsDropdown;
 				}, function(errResponse) {
 					console.log("Failed to get Drop Down.");
 				});
