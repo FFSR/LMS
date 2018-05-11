@@ -270,6 +270,23 @@ App
 						$scope.errorMessages = null;
 					}, 6000);
 				};
+				
+				$scope.loadUserListDropDown = function(){
+					$scope.dDName = "";
+					
+					userlistService.getUserList()
+					.then(
+						function(d) {
+						$scope.usersList = d;
+						$scope.q = d;
+						$scope.userData;
+						console.log($scope.usersList);
+						//$scope.userData = d.listLmsUser;
+					}, function(errResponse) {
+						console.log("Failed to get User Drop Down.");
+	
+					});
+				};
 		/* $scope.getleaveapplication = function(leaveapplicationid){
 					console.log("From Get Method");
 					leaveapplicationservice.getleaveapp(leaveapplicationid).then(

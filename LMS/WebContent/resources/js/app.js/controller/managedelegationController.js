@@ -4,78 +4,296 @@ App
 		[
 			'$scope',
 			'$http',
-			'managedelegationService',
-			'manageuserService',
+			'leaveapplicationservice',
+			'leavetypeService',
 			'userlistService',
+			'wfManagementService',
 			'$timeout',
-			'NgTableParams',
 			'$filter',
 			'$location',
 
-			function($scope, $http, managedelegationService,manageuserService,userlistService,
-				$timeout,NgTableParams,$filter,$location) {
+			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,
+				$timeout, $filter,$location) {
 				
-				//$scope.lmsWftRoleUserMap = {};
+				$scope.testMsg = "Testing Message";
 				
-				$scope.loginUserID=0;
+				$scope.uploadFile = function(){
+					$scope.processDropzone();
+					//$scope.restDropzone();
+				}
 				
-				$scope.getUserInfo= function(userID){
-					$scope.loginUserID=userID;
-					$scope.testMessage = "Test Message";
-					manageuserService.manageuser(userID).then(
+				$scope.leaveapplication = {
+						"year" : "",
+						"lmsLeaveType" : {
+							"id":0,
+							"type":"",
+							"status":"",
+							"maximumDays":"",
+							"incremental":"",
+							"yearlyAllocated":"",
+							"insertDate":"",
+							"insertBy":"",
+							"updateDate":"",
+							"updateBy":""			
+						},
+						"leaveAvailable" : "",
+						"leaveTaken" : "",
+						"leaveBalance" : "",
+						"lmsLeaveType" : {
+							"id": 0,
+							"type":"",
+							"status":"",
+							"maximumDays":"",
+							"incremental":"",
+							"yearlyAllocated":"",
+							"insertDate":"",
+							"insertBy":"",
+							"updateDate":"",
+							"updateBy":""					
+						},
+						
+						"lmsUserByReliverEmailAddressUserId" :{
+							"id": 0,
+					        "lmsDepartment": {
+					            "id": 0,
+					            "lmsMinistry": {
+					                "id": 0,
+					                "name": "",
+					                "insertDate": "",
+					                "insertBy": "",
+					                "updateDate": "",
+					                "updateBy": ""
+					            },
+					            "name": "",
+					            "insertDate": "",
+					            "insertBy": "",
+					            "updateDate": "",
+					            "updateBy": ""
+					        },
+					        "lmsDesignation": {
+					            "id": 0,
+					            "lmsClass": {
+					                "id": 0,
+					                "name": ""
+					            },
+					            "name": "",
+					            "insertDate": "",
+					            "insertBy": "",
+					            "updateDate": "",
+					            "updateBy": ""
+					        },
+					        "lmsDivision": {
+					            "id": 0,
+					            "lmsDepartment": {
+					                "id": 0,
+					                "lmsMinistry": {
+					                    "id": 0,
+					                    "name": "",
+					                    "insertDate": "",
+					                    "insertBy": "",
+					                    "updateDate": "",
+					                    "updateBy": ""
+					                },
+					                "name": "",
+					                "insertDate": "",
+					                "insertBy": "",
+					                "updateDate": "",
+					                "updateBy": ""
+					            },
+					            "name": "",
+					            "insertDate": "",
+					            "insertBy": "",
+					            "updateDate": "",
+					            "updateBy": ""
+					        },
+					        "lmsMinistry": {
+					            "id": 0,
+					            "name": "",
+					            "insertDate": "",
+					            "insertBy": "",
+					            "updateDate": "",
+					            "updateBy": ""
+					        },
+					        "lmsOfficeLocation": {
+					            "id": 0,
+					            "name": "",
+					            "address": "",
+					            "insertDate": "",
+					            "insertBy": "",
+					            "updateDate": "",
+					            "updateBy": ""
+					        },
+					        "lmsSection": {
+					            "id": 0,
+					            "lmsDepartment": {
+					                "id": 1,
+					                "lmsMinistry": {
+					                    "id": 0,
+					                    "name": "",
+					                    "insertDate": "",
+					                    "insertBy": "",
+					                    "updateDate": "",
+					                    "updateBy": ""
+					                },
+					                "name": "",
+					                "insertDate": "",
+					                "insertBy": "",
+					                "updateDate": "",
+					                "updateBy": ""
+					            },
+					            "name": "",
+					            "insertDate": "",
+					            "insertBy": "",
+					            "updateDate": "",
+					            "updateBy": ""
+					        },
+					        "lmsUser": "",
+					        "name": "",
+					        "email": "",
+					        "phone": "",
+					        "passport": "",
+					        "fax": "",
+					        "mobilePersonal": "",
+					        "mobileOffice": "",
+					        "gender": "",
+					        "address": "",
+					        "nid": "",
+					        "nationality": "",
+					        "joiningDate": "",
+					        "status": "",
+					        "password": "",
+					        "insertDate": "",
+					        "insertBy": "",
+					        "updateDate": "",
+					        "updateBy": ""
+						},
+
+						"eligibility" : "", 
+						"fromDate" : "",
+						"toDate" : "",
+						"totalDayCount" : "",
+						"totalDayText" : "",					
+						"reasonForLeave" : "",
+						"taskNeedToPerformed" : "",
+						"lmsUserByReliverEmailAddressUserId":"",
+						"insertDate" : "",
+						"insertBy" : "",
+						"updatDate" : "",						
+						"updateBy" : "",
+						"inStation" :"",
+					};
+	
+				$scope.applicationforleave = function(){				
+					
+					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
+					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
+					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
+					$scope.leaveapplication.userId= parseInt($scope.userid) ;
+					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
+					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
+					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.ddReliever;
+					$scope.leaveapplication.eligibility = $scope.eligibility;
+					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
+					$scope.leaveapplication.toDate = new Date($('#toDate').val());
+					$scope.leaveapplication.totalDayCount = $scope.totalDayCount;
+					$scope.leaveapplication.totalDayText = $scope.totalDayText;
+					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
+					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
+					$scope.leaveapplication.inStation = $scope.inStation;
+				//	$scope.leaveapplication.insertDate = 
+					//$scope.leaveapplication.insertBy = 3;
+					//$scope.leaveapplication.updatDate = $scope.update_date;
+					//$scope.leaveapplication.updateBy = $scope.update_by;
+						
+					
+					leaveapplicationservice.applicationforleave($scope.leaveapplication).then(
 							function(d) {
-								$scope.testMsg1 = "Test";
-								console.log("Success.",d.message);
-								var data = d.listLmsuser;
-								
-								$scope.name=d.listLmsuser[0].name;								
-								$scope.mobilePersonal=d.listLmsuser[0].mobilePersonal;
-								$scope.departmentname=d.listLmsuser[0].lmsDepartment.name;
-								if(d.listLmsuser[0].lmsSection !=null){
-									$scope.sectionname=d.listLmsuser[0].lmsSection.name;
+								wfManagementService.generaterequest(d.userid,d.leavetypeid,d.leaveapplicationid).then(
+								function(d){
+									console.log(d);
+								},
+								function(e){
+									console.log(e);
 								}
+								);
 								
-								$scope.getUserwiseRoleInfo();
-								
-								//$scope.loadUserListDropDown();
-								
-							},
-							function(errResponse) {
-								
-								console
-										.error("Error while fetching Currencies");
-							});
-				};
-				
-			$scope.getUserwiseRoleInfo= function(){
-					$scope.testMessage = "Test Message";
-					managedelegationService.getUserwiseRoleInfo($scope.loginUserID)
-					.then(
-							function(d) {
+								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
-								//$scope.userRole = d.listLmsWftRoleUserMap;
-								var data = d.listLmsWftRoleUserMap;							
-								$scope.tableParams = new NgTableParams({}, { dataset: data});
-																
+								$scope.showSuccessMessage("Insertion successful");
+								$scope.uploadFile();
 							},
-							function(errResponse) {
-								
-								console
-										.error("Error while fetching Currencies");
+							function(e) {
+								$scope.testMsg = e.data.message;								
+								console.error(e.data.message);
+								$scope.showErrorMessage("Insertion Fail");
 							});
+				}
+				
+			$scope.loadLeaveTypeDownDown = function(){
+					$scope.dDName = "";
+					leavetypeService.getLeaveType().then(function(d) {
+						$scope.dropdownData = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
 				};
 				
-				$scope.loadUserListDropDown = function(){
+			$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					userlistService.getUserList()
-					//managedelegationService.getUserList()
 					.then(
 						function(d) {
-						$scope.userInfo = d;
+						$scope.userData = d;
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
 					});
-				}
+				};
 				
-			
-			} ]);
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+		/* $scope.getleaveapplication = function(leaveapplicationid){
+					console.log("From Get Method");
+					leaveapplicationservice.getleaveapp(leaveapplicationid).then(
+					function(d){
+						$scope.leaveData = d;
+						$scope.leavetype = $scope.leaveData.lmsLeaveType;
+						$scope.reasonForLeave = $scope.leaveData.reasonForLeave;
+						
+					},
+					function(errResponse){
+						console.log(errResponse.data);
+					}
+					);
+				};
+				
+				$scope.getleaveapplication(4);*/
+				
+				$scope.getSessionUserDetails = function(userName,userID){
+					
+					$scope.username = userName;
+					$scope.userid = userID;
+					
+					console.log("User Group");
+				};
+				
+			} 
+			]);
+				
+				

@@ -55,7 +55,7 @@
 			</table>
 		</div>
 
-		Show: {{test}} <br>
+		Show: {{test}} <br><br><br>
 		<div class="container-fluid">
 			<div ng-if="showLeaveDetails">
 				<div class="row">
@@ -65,7 +65,7 @@
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true"
 									ng-model="wfRequestHop.lmsWfRequest.lmsUser.id"
-									class="form-control">
+									class="form-control"></input>
 							</div>
 						</div>
 					</div>
@@ -76,7 +76,7 @@
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true"
 									ng-model="wfRequestHop.lmsWfRequest.lmsUser.name"
-									class="form-control">
+									class="form-control"></input>
 							</div>
 						</div>
 					</div>
@@ -90,7 +90,7 @@
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true"
 									ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type"
-									class="form-control">
+									class="form-control"></input>
 							</div>
 						</div>
 					</div>
@@ -101,7 +101,7 @@
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true"
 									ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.reasonForLeave"
-									class="form-control">
+									class="form-control"></input>
 							</div>
 						</div>
 					</div>
