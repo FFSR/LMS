@@ -20,10 +20,6 @@
 		<div ng-init="getSessionUserDetails('${sessionScope.user.id}');"></div>
 
 		<div class="container-fluid">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
 			<div class="row">
 				<div class="col-sm-3" >Start
 					Date</div>
@@ -53,41 +49,10 @@
 				</form>
 			</div>
 		
->>>>>>> Fuad
-=======
->>>>>>> Fuad
 			<!-- By Shourav 29th April 2018 -->
 
 			<div>
 				<table class="table table-sm">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Fuad
-				<div>
-					Test Message: {{testMessage}}
-					<table ng-table="tableParams" class="table" show-filter="true">
-						<tr ng-repeat="wfRequestHop in $data">
-							<td title="'Leave ID'" >{{wfRequestHop.lmsLeaveApplication.id}}</td>
-							<td title="'From Date'" 
-								sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.fromDate
-								| date: YYYY-MM-dd}}</td>
-
-							<td title="'To Date'" 
-								sortable="'totalleave'">{{wfRequestHop.lmsLeaveApplication.toDate
-								|date: YYYY-MM-dd}}</td>
-
-							<td title="'Leave Type'" 
-								sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.lmsLeaveType.type}}</td>
-
-							<td title="'Status'" 
-								sortable="'remainingTotal'">{{wfRequestHop.status}}</td>
-
-					</table>
-				</div>
-			</table>
-<<<<<<< HEAD
-=======
 					<div>
 						Test Message: {{testMessage}}
 						<table ng-table="tableParams" class="table" show-filter="true">
@@ -116,9 +81,6 @@
 						</table>
 					</div>
 				</table>
->>>>>>> Fuad
-=======
->>>>>>> Fuad
 			</div>
 
 			<!-- By Shourav 29th April 2018 -->

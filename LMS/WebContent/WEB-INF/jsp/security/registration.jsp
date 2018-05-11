@@ -359,11 +359,6 @@
 			   
 			   
 			   </div>
-<<<<<<< HEAD
->>>>>>> Fuad
-=======
->>>>>>> Fuad
-
 		
 		<br>
 		<div class="row">
@@ -371,13 +366,6 @@
 				ng-click="registration()">Submit</button>
 			<div class="col-sm-3" ></div>
 			<div class="col-sm-3" >
-<<<<<<< HEAD
-<<<<<<< HEAD
-				<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()">
-=======
->>>>>>> Fuad
-=======
->>>>>>> Fuad
 				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
 			</div>
 			
