@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.dao.LmsLeaveTypeHome;
+import com.web.lms.dao.LmsRoleHome;
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsRole;
 import com.web.lms.utility.ProtectedConfigFile;
 import com.web.lms.wrapper.ResponseWrapper;
 
@@ -147,13 +149,13 @@ public class User {
 
 	}*/
 
-	@RequestMapping(value = "/manageuser/{userName}/{mobile}/{status}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/manageuser/{userName}/{mobile}/{nid}/{status}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userName") String uName,
-			@PathVariable("mobile") String mobile, @PathVariable("status") String status) {
+			@PathVariable("mobile") String mobile, @PathVariable("nid") String nid, @PathVariable("status") String status) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		// List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(userid);
-		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, status);
+		
+		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, nid, status);
 		if (lmsUser.size() > 0) {
 
 			responseWrapper.setListLmsuser(lmsUser);
@@ -188,6 +190,7 @@ public class User {
 	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
+				
 
 		try {
 

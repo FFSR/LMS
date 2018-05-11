@@ -280,11 +280,12 @@
 		</div>
 		<br>
 		<div class="row">
-			<button type="submit" class="btn" id="submit"
+			<button type="submit" class="btn btn-inverse waves-effect waves-light" id="submit"
 				ng-click="registration()">Submit</button>
 			<div class="col-sm-3" style="background-color: white;"></div>
 			<div class="col-sm-3" style="background-color: white;">
 				<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()">
+				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
 			</div>
 			<div class="col-sm-3" style="background-color: white;"></div>
 		</div>
