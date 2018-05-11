@@ -1,6 +1,7 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -91,5 +92,17 @@ public class LmsHolidayRecordHome {
 		}
 	}
 	
-	
+	public List<LmsHolidayRecord> findHoliday(Date date) {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsHolidayRecord e WHERE DATE(e.leaveDate) = DATE(:date)")
+					.setParameter("date", date);
+			
+			return (List<LmsHolidayRecord>) query.getResultList();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			
+			return null;
+		}
+	}
 }
