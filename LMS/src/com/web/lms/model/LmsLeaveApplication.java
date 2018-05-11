@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated May 11, 2018 9:34:58 PM by Hibernate Tools 5.2.8.Final
+// Generated May 11, 2018 8:29:30 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -283,8 +283,7 @@ public class LmsLeaveApplication implements java.io.Serializable {
 		this.remarks = remarks;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveApplication")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveApplication") @JsonIgnore
 	public Set<LmsAttachment> getLmsAttachments() {
 		return this.lmsAttachments;
 	}
@@ -293,8 +292,7 @@ public class LmsLeaveApplication implements java.io.Serializable {
 		this.lmsAttachments = lmsAttachments;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveApplication")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveApplication") @JsonIgnore
 	public Set<LmsWfRequest> getLmsWfRequests() {
 		return this.lmsWfRequests;
 	}

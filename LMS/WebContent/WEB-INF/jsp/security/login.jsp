@@ -16,45 +16,57 @@
 </head>
 
 <body>
-	<div ng-controller="loginController">		
+	<div ng-controller="loginController">
 		<div class="row">
 			<div class="col-md-6">
-                        <div class="white-box">
-                            <h3 class="box-title m-b-0">User Login</h3>
-                            <p class="text-muted m-b-30 font-13"> Please provide your details to login </p>
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <form>
-                                        <div class="form-group">
-                                            <label for="">User Name</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="ti-user"></i></div>
-                                                <input type="text" ng-model="username" class="form-control" id="" placeholder="Username"> </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputpwd1">Password</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="ti-lock"></i></div>
-                                                <input type="password" ng-model="password" class="form-control" id="exampleInputpwd1" placeholder="Password"> </div>
-                                        </div>
-                                        <button type="submit" ng-click="login(username,password)" class="btn btn-success waves-effect waves-light m-r-10">Login</button>
-                                        <button type="submit" class="btn btn-inverse waves-effect waves-light">Cancel</button>
-                                    </form>
-                                    <br/>
-                                    <a href="http://localhost:8080/LMS/forgetpasswd">Forget Password</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a href="http://localhost:8080/LMS/registration">Registration</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+				<div class="white-box">
+					<h3 class="box-title m-b-0">User Login</h3>
+					<p class="text-muted m-b-30 font-13">Please provide your
+						details to login</p>
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<form>
+								<div class="form-group">
+									<label for="">User Name</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="ti-user"></i>
+										</div>
+										<input type="text" ng-model="username" class="form-control"
+											id="" placeholder="Username" ng-required="true">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputpwd1">Password</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="ti-lock"></i>
+										</div>
+										<input type="password" ng-model="password"
+											class="form-control" id="exampleInputpwd1"
+											placeholder="Password" ng-required="true">
+									</div>
+								</div>
+								<button type="submit" ng-click="login(username,password)"
+									class="btn btn-success waves-effect waves-light m-r-10">Login</button>
+								<button type="submit"
+									class="btn btn-inverse waves-effect waves-light">Cancel</button>
+							</form>
+							<br /> <a href="http://localhost:8080/LMS/forgetpasswd">Forget
+								Password</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
+								href="http://localhost:8080/LMS/registration">Registration</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</div>
-		
+
 		<div class="row">
 			<div class="col-md-12">
 				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
-					
 					data-ng-show="successMessages" data-ng-bind="successMessages"></div>
 				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
 					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>

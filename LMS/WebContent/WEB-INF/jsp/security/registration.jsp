@@ -9,6 +9,8 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/divisionService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/departmentService.js"></script>
+<script type="text/javascript"
 	src="resources/js/app.js/service/designationService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/ministryService.js"></script>
@@ -40,6 +42,7 @@
 	<br>
 	<div ng-controller="registrationController">
 		<div ng-init="getDivisionData()"></div>
+		<div ng-init="getDepartmentData()"></div>
 		<div ng-init="getDesignationData()"></div>
 		<div ng-init="getMinistryData()"></div>
 		<div ng-init="getSectionData()"></div>
@@ -87,6 +90,38 @@
 					</div>
 				</div>
 		</div>
+		
+		<br>
+		<div class="row">
+		
+			<div class="col-md-6">
+				<div class="form-group">
+						<label class="control-label col-md-3" >Department</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+								ng-model="user.lmsDepartment"
+								ng-options="x as x.name for x in departmentNames track by x.id">
+								<option value="">Select</option>
+								
+							</select>
+						</div>
+					</div>	
+					</div>
+		
+			    <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Section</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+							ng-model="user.lmsSection"
+							ng-options="x as x.name for x in sectionNames track by x.id">
+							<option value="">Select</option>
+						    </select>
+						</div>
+					</div>
+				</div>				
+						    
+		</div>
 		<br>
 		<div class="row">
 			<div class="col-md-6">
@@ -114,30 +149,7 @@
 					</div>
 				</div>
 		</div>
-		<br>
-		<div class="row">
-			    <div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3" >Section</label>
-						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus"
-							ng-model="user.lmsSection"
-							ng-options="x as x.name for x in sectionNames track by x.id">
-							<option value="">Select</option>
-						    </select>
-						</div>
-					</div>
-				</div>
-			    <div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3" >NID</label>
-						<div class="col-md-9">
-							<input type="text" ng-model="user.nid" class="form-control"
-					         placeholder="NID">
-						</div>
-					</div>
-				</div>
-		</div>
+		
 		<br>
 		<div class="row">
 		        <div class="col-md-6">
@@ -153,15 +165,22 @@
 						</div>
 					</div>
 				</div>
-		        <div class="col-md-6">
+				
+				
+				 <div class="col-md-6">
 		           <div class="form-group">
-						<label class="control-label col-md-3" >Passport</label>
+						<label class="control-label col-md-3" >Office</label>
 						  <div class="col-md-9">
-							<input type="text" ng-model="user.passport" class="form-control"
-					        placeholder="Passport No">
+							<select class="form-control" id="ddAppStatus"
+								ng-model="user.lmsOfficeLocation"
+								ng-options="x as x.name for x in officeNames track by x.id">
+								<option value="">Select</option>
+								
+							  </select> Status: {{appStatus}}
 						</div>
 					</div>
-			</div>
+			   </div> 
+				
 		</div>
 		<br>
 
@@ -212,7 +231,7 @@
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Joining Date</label>
 						  <div class="col-md-9">		
-							<input type="text" ng-model="user.joiningDate" class="form-control" ng-required="false"
+							<input type="text" id="joiningDate" ng-model="user.joiningDate" class="form-control" ng-required="false"
 					         placeholder="Joining Date">
 						</div>
 					</div>
@@ -232,6 +251,8 @@
 		</div>
 		<br>
 		<div class="row">
+<<<<<<< HEAD
+<<<<<<< HEAD
 			<div class="col-sm-3" >Supervisor
 				Email</div>
 			<div class="col-sm-3" >
@@ -276,15 +297,75 @@
 		</div>
 
 		<br>
-
-		</div>
+=======
+=======
+>>>>>>> Fuad
+		       <div class="col-md-6">
+		           <div class="form-group">
+						<label class="control-label col-md-3" >Supervisor</label>
+						  <div class="col-md-9">
+							<!-- Drop Down list from table -->
+								<select class="form-control" id="ddReliever" ng-model="ddReliever"
+									ng-options="x as x.name for x in userData track by x.id">
+									<option value="">Select</option>
+								</select>
+						</div>
+					</div>
+			   </div> 
+			   <div class="col-md-6">
+		           <div class="form-group">
+						<label class="control-label col-md-3" >Address</label>
+						  <div class="col-md-9">
+							<textarea rows="3" type="textarea" ng-model="user.address"
+					         class="form-control" placeholder="Address"></textarea>
+						</div>
+					</div>
+			   </div> 
+	  </div>
+	   <div class="row">
+		      
+		      <div class="col-md-6">
+		           <div class="form-group">
+						<label class="control-label col-md-3" >Passport</label>
+						  <div class="col-md-9">
+							<input type="text" ng-model="user.passport" class="form-control"
+					        placeholder="Passport No">
+						</div>
+					</div>
+			</div>     
+			
+			   <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >Password</label>
+						<div class="col-md-9">
+							<input type="password" ng-model="user.password" ng-required="true" class="form-control"
+					         placeholder="Password">
+						</div>
+					</div>
+				</div>
+			   
+			   </div>
+			   <div class="row">
+			   
+			   <div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3" >NID</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="user.nid" class="form-control"
+					         placeholder="NID">
+						</div>
+					</div>
+				</div>
+			   
+			   
+			   </div>
+		
 		<br>
 		<div class="row">
-			<button type="submit" class="btn btn-inverse waves-effect waves-light" id="submit"
+			<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="submit"
 				ng-click="registration()">Submit</button>
 			<div class="col-sm-3" ></div>
 			<div class="col-sm-3" >
-				<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()">
 				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
 			</div>
 			
@@ -293,7 +374,7 @@
 		</form>
 		
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-4">
 				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
 					
 					data-ng-show="successMessages" data-ng-bind="successMessages"></div>

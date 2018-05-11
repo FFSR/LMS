@@ -561,21 +561,4 @@ public class WorkFlowManagement {
 		}
 		return wfRequestFirstHop;
 	}
-	
-	private void findHoliday() {
-		
-		try {
-			
-		  String input_date="01/08/2012";
-		  SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
-		  Date dt1=format1.parse(input_date);
-		  DateFormat format2=new SimpleDateFormat("EEEE"); 
-		  String finalDay=format2.format(dt1);
-		  
-		}catch(Exception ex) {		
-			
-			
-		}
-		
-	}
 }

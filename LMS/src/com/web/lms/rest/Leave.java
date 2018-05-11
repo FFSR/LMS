@@ -30,11 +30,11 @@ public class Leave {
 	private HttpSession httpSession;
 
 	
-	@RequestMapping(value="/leave/{userid}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> leave(@PathVariable Integer userid){
+	@RequestMapping(value="/leave/{user_id}", method=RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> leave(@PathVariable Integer user_id){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		List<LmsLeaveApplication> LmsLeaveApplication = LmsLeaveApplicationHome.findLeaveApplicationByUserID(userid);
+		List<LmsLeaveApplication> LmsLeaveApplication = LmsLeaveApplicationHome.findLeaveApplicationByUserID(user_id);
 		
 		if(LmsLeaveApplication.size()>0) {
 			
