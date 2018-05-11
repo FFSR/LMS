@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated May 11, 2018 5:57:10 PM by Hibernate Tools 5.2.8.Final
+// Generated May 11, 2018 8:29:30 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -381,8 +381,7 @@ public class LmsUser implements java.io.Serializable {
 		this.resigndate = resigndate;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser") @JsonIgnore
 	public Set<LmsLeaveBalance> getLmsLeaveBalances() {
 		return this.lmsLeaveBalances;
 	}
@@ -391,8 +390,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsLeaveBalances = lmsLeaveBalances;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByReliverEmailAddressUserId")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByReliverEmailAddressUserId") @JsonIgnore
 	public Set<LmsLeaveApplication> getLmsLeaveApplicationsForReliverEmailAddressUserId() {
 		return this.lmsLeaveApplicationsForReliverEmailAddressUserId;
 	}
@@ -402,8 +400,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsLeaveApplicationsForReliverEmailAddressUserId = lmsLeaveApplicationsForReliverEmailAddressUserId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser") @JsonIgnore
 	public Set<LmsAttachment> getLmsAttachments() {
 		return this.lmsAttachments;
 	}
@@ -412,8 +409,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsAttachments = lmsAttachments;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByUserId")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByUserId") @JsonIgnore
 	public Set<LmsLeaveApplication> getLmsLeaveApplicationsForUserId() {
 		return this.lmsLeaveApplicationsForUserId;
 	}
@@ -422,8 +418,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsLeaveApplicationsForUserId = lmsLeaveApplicationsForUserId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser") @JsonIgnore
 	public Set<LmsUser> getLmsUsers() {
 		return this.lmsUsers;
 	}
@@ -432,8 +427,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsUsers = lmsUsers;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser") @JsonIgnore
 	public Set<LmsWftRoleUserMap> getLmsWftRoleUserMaps() {
 		return this.lmsWftRoleUserMaps;
 	}
@@ -442,8 +436,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsWftRoleUserMaps = lmsWftRoleUserMaps;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser") @JsonIgnore
 	public Set<LmsUserRoleMap> getLmsUserRoleMaps() {
 		return this.lmsUserRoleMaps;
 	}
@@ -452,8 +445,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsUserRoleMaps = lmsUserRoleMaps;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser") @JsonIgnore
 	public Set<LmsWfRequest> getLmsWfRequests() {
 		return this.lmsWfRequests;
 	}
