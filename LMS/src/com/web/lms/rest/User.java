@@ -1,6 +1,7 @@
 package com.web.lms.rest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -17,8 +18,14 @@ import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsRoleHome;
 import com.web.lms.dao.LmsUserHome;
+import com.web.lms.dao.LmsUserRoleMapHome;
+import com.web.lms.dao.LmsWftRoleHome;
+import com.web.lms.dao.LmsWftRoleUserMapHome;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsUserRoleMap;
+import com.web.lms.model.LmsWftRole;
+import com.web.lms.model.LmsWftRoleUserMap;
 import com.web.lms.model.LmsRole;
 import com.web.lms.utility.ProtectedConfigFile;
 import com.web.lms.wrapper.ResponseWrapper;
@@ -28,9 +35,16 @@ public class User {
 
 	@Autowired
 	private LmsUserHome lmsUserHome;
-
 	@Autowired
 	private HttpSession httpSession;
+	@Autowired
+	private LmsWftRoleUserMapHome lmsWftRoleUserMapHome;
+	@Autowired
+	private LmsUserRoleMapHome lmsUserRoleMapHome;
+	@Autowired
+	private LmsRoleHome lmsRoleHome;
+	@Autowired
+	private LmsWftRoleHome LmsWftRoleHome;
 
 	@RequestMapping(value = "/log/{userName}/{password}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> getlog(@PathVariable("userName") String uName,
@@ -70,8 +84,26 @@ public class User {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> doRegistration(@RequestBody LmsUser lmsUser) {
 
-		ResponseWrapper responseWrapper = new ResponseWrapper();
-
+		ResponseWrapper responseWrapper = new ResponseWrapper();		
+		
+		LmsUser lmsUserValidate=null;		
+		
+		try {
+			
+			lmsUserValidate = lmsUserHome.findByNID(lmsUser.getNid());
+						
+			if (lmsUserValidate!=null) {
+				
+				responseWrapper.setMessage("User is available with this NID.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}		
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			responseWrapper.setMessage("Registration failed. Same NID created.");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}		
+		
 		try {
 
 			lmsUser.setPassword(ProtectedConfigFile.encrypt(lmsUser.getPassword()));
@@ -117,13 +149,12 @@ public class User {
 					lmsUserHome.merge(lmsUser);
 					responseWrapper.setMessage("Success. Password changed.");
 					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-				}
-				else {
-					responseWrapper.setMessage("Fail. Old Password is not matched.");
+				} else {
+					responseWrapper.setMessage("Fail. Old Password doesn`t match.");
 					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 				}
 			}
-			
+
 			responseWrapper.setMessage("Fail. User not found");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 
@@ -151,10 +182,11 @@ public class User {
 
 	@RequestMapping(value = "/manageuser/{userName}/{mobile}/{nid}/{status}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userName") String uName,
-			@PathVariable("mobile") String mobile, @PathVariable("nid") String nid, @PathVariable("status") String status) {
+			@PathVariable("mobile") String mobile, @PathVariable("nid") String nid,
+			@PathVariable("status") String status) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		
+
 		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, nid, status);
 		if (lmsUser.size() > 0) {
 
@@ -186,16 +218,37 @@ public class User {
 	}
 		
 
-	@RequestMapping(value = "/updateuserprofile", method = RequestMethod.PUT)
-	public ResponseEntity<ResponseWrapper> updateuserprofile(@RequestBody LmsUser lmsUser) {
+	
+	@RequestMapping(value="t", method=RequestMethod.POST)
+	public void test() {
+		System.out.println("Test Methoid");
+	}
+	
+	
+	@RequestMapping(value = "/updateuserprofile/{roleid}/{wftroleid}", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> updateuserprofile(@PathVariable("roleid") Integer roleid, @PathVariable("wftroleid") Integer wftroleid, @RequestBody LmsUser lmsUser){
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-				
-
+		LmsRole lmsRole;
+		LmsWftRole lmsWftrole;
+		
 		try {
 
-			lmsUserHome.merge(lmsUser); // For Update
+			lmsRole = lmsRoleHome.findById(roleid);
+			lmsWftrole = LmsWftRoleHome.findById(wftroleid);
 
+			if (lmsRole != null && lmsWftrole != null) {
+
+				lmsUserHome.merge(lmsUser); // For Update
+
+				manageUserRoleMap(lmsUser, lmsRole);
+
+				manageWftRoleUserMap(lmsUser, lmsWftrole);
+				
+			} else {
+				responseWrapper.setMessage("Mentioned Role not found in database.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
 		}
 
 		catch (Exception ex) {
@@ -206,7 +259,69 @@ public class User {
 
 		responseWrapper.setMessage("Success. User has created");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+	}
 
+	private void manageWftRoleUserMap(LmsUser lmsUser, LmsWftRole lmsWftrole) {
+
+		List<LmsWftRoleUserMap> listLmsWftRoleUserMap;
+		LmsWftRoleUserMap lmsWftRoleUserMapInsert;
+
+		if (lmsWftrole != null) {
+
+			listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserID(lmsUser.getId());
+
+			if (listLmsWftRoleUserMap.size() == 0) {
+				lmsWftRoleUserMapInsert = new LmsWftRoleUserMap();
+
+				lmsWftRoleUserMapInsert.setLmsWftRole(lmsWftrole);
+				lmsWftRoleUserMapInsert.setLmsUser(lmsUser);
+				lmsWftRoleUserMapInsert.setInsertBy(lmsUser.getId());
+				lmsWftRoleUserMapInsert.setInsertDate(new Date());
+
+				lmsWftRoleUserMapHome.persist(lmsWftRoleUserMapInsert);
+			}
+
+			for (LmsWftRoleUserMap lmsWftRoleUserMap : listLmsWftRoleUserMap) {
+
+				lmsWftRoleUserMap.setLmsWftRole(lmsWftrole);
+				lmsWftRoleUserMap.setUndateBy(lmsUser.getId());
+				lmsWftRoleUserMap.setUpdateDate(new Date());
+
+				lmsWftRoleUserMapHome.merge(lmsWftRoleUserMap);
+			}
+		}
+	}
+
+	private void manageUserRoleMap(LmsUser lmsUser, LmsRole lmsRole) {
+
+		LmsUserRoleMap lmsUserRoleMapInsert;
+		List<LmsUserRoleMap> listlmsUserRoleMap;
+
+		// Insert / Update User Role Map table
+		if (lmsUser != null && lmsRole != null) {
+
+			listlmsUserRoleMap = lmsUserRoleMapHome.findByUserID(lmsUser.getId());
+
+			if (listlmsUserRoleMap.size() == 0) {
+				lmsUserRoleMapInsert = new LmsUserRoleMap();
+
+				lmsUserRoleMapInsert.setLmsRole(lmsRole);
+				lmsUserRoleMapInsert.setLmsUser(lmsUser);
+				lmsUserRoleMapInsert.setInsertBy(lmsUser.getId());
+				lmsUserRoleMapInsert.setInsertDate(new Date());
+
+				lmsUserRoleMapHome.persist(lmsUserRoleMapInsert);
+			}
+
+			for (LmsUserRoleMap lmsUserRoleMap : listlmsUserRoleMap) {
+
+				lmsUserRoleMap.setLmsRole(lmsRole);
+				lmsUserRoleMap.setUpdateBy(lmsUser.getId());
+				lmsUserRoleMap.setUpdateDate(new Date());
+
+				lmsUserRoleMapHome.merge(lmsUserRoleMap);
+			}
+		}
 	}
 
 	@RequestMapping(value = "/getUserlist/", method = RequestMethod.GET)

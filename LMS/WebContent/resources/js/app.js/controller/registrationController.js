@@ -6,6 +6,7 @@ App
 			'$timeout',
 			'$http',
 			'DivisionService',
+			'DepartmentService',
 			'DesignationService',
 			'MinistryService',
 			'SectionService',
@@ -16,8 +17,8 @@ App
 			'$location',
 			'url',
 
-			function($scope, $timeout, $http, DivisionService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
-				$filter,$location,url) {
+			function($scope, $timeout, $http, DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
+					userlistService,$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
 				$scope.user={};
@@ -84,20 +85,24 @@ App
 					
 					$scope.user.nationality = $scope.nationality.name;
 					$scope.user.status = "PENDING";
+					$scope.user.lmsUser= $scope.ddReliever;
+					
 					
 					$scope.user.gender= $scope.gender.name;
 					
 					registrationService.registration($scope.user).then(
 							function(d) {
-								$scope.testMsg = d.message;
-								console.log("Success.",d.message);
-								$scope.showSuccessMessage("Registration Successfull.");
+								//$scope.testMsg = d.message;
+								//console.log("Success.",d.message);
+								$scope.showSuccessMessage(d.data.message);
 								$window.location.reload();
+								
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								//console.error(e.data.message);
-								$scope.showErrorMessage("Registration Failed.");
+								$scope.showErrorMessage(e.data.message);
+								
 							});
 				};
 				
@@ -105,6 +110,16 @@ App
 					DivisionService.getAllDivision().then(
 							function(d) {
 						$scope.divisionNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				
+				$scope.getDepartmentData = function(){
+					DepartmentService.getAllDepartment().then(
+							function(d) {
+						$scope.departmentNames = d;
 					}, function(errResponse) {
 						console.log("Failed to get Drop Down.");
 					});
@@ -217,7 +232,8 @@ App
 				
 				$scope.gotoHomePage = function(){
 					
-					window.location = url+"employeehomepage";
-				}
+					window.location = "employeehomepage";
+				};
+
 				
 			} ]);

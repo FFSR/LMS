@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsUserRoleMap;
 import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRoleUserMap;
 

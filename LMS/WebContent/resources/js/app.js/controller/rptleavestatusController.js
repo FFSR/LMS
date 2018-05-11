@@ -12,12 +12,25 @@ App
 
 			function($scope, $http, rptleavestatusService,
 				$timeout, $filter,NgTableParams,$location) {
+				
+				
+				$scope.userID = "";
+				
+				$scope.getSessionUserDetails = function(userID) {
+
+					$scope.userID = userID;
+				};	
 			
 				
+<<<<<<< HEAD
 				$scope.loadrptleavestatus = function(userID){	
 					
 					var dataReportStatus={};
 					rptleavestatusService.getleavestatus(userID)
+=======
+				$scope.loadrptleavestatus = function(){					
+					rptleavestatusService.getleavestatus($scope.userID)
+>>>>>>> Fuad
 					.then(
 							function(d){
 						var dataReportStatus = d.listLmsWfRequest;

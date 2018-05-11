@@ -19,9 +19,9 @@
 		<div class="container-fluid">
 			<br>
 			<div class="row">
-				<div class="col-sm-2" style="background-color: white;">Old
+				<div class="col-sm-2">Old
 					Password</div>
-				<div class="col-sm-2" style="background-color: white;">
+				<div class="col-sm-2" >
 					<input type="password" ng-model="oldpassword" class="form-control"
 						placeholder="Old Password">
 				</div>
@@ -29,9 +29,9 @@
 			<br>
 
 			<div class="row">
-				<div class="col-sm-2" style="background-color: white;">New
+				<div class="col-sm-2" >New
 					Password</div>
-				<div class="col-sm-2" style="background-color: white;">
+				<div class="col-sm-2" >
 					<input type="password" ng-model="newpassword" class="form-control"
 						placeholder="New Password">
 				</div>
@@ -39,9 +39,9 @@
 			<br>
 
 			<div class="row">
-				<div class="col-sm-2" style="background-color: white;">Confirm
+				<div class="col-sm-2" >Confirm
 					Password</div>
-				<div class="col-sm-2" style="background-color: white;">
+				<div class="col-sm-2" >
 					<input type="password" ng-model="confirmpassword"
 						class="form-control" placeholder="Confirm Password">
 				</div>
@@ -53,13 +53,13 @@
 			</div>
 
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-5">
 					<div id="successMssages" class="p-3 mb-2 bg-success text-white"
 						data-ng-show="successMessages" data-ng-bind="successMessages"></div>
 					<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
 						data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 				</div>
-				<div class="col-sm-3" style="background-color: white;"></div>
+				
 			</div>
 		</div>
 	</div>

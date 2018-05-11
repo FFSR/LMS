@@ -13,15 +13,15 @@
 <script src="resources/js/bootstrap.min.js"></script>
 
 <script type="text/javascript"
-	src="resources/js/app.js/service/leavehistoryService.js"></script>
+	src="resources/js/app.js/service/leaveService.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/controller/leavehistoryController.js"></script>
+	src="resources/js/app.js/controller/leaveController.js"></script>
 
 </head>
 <body>
-	<div ng-controller="leavehistoryController">
-	  <div ng-init="leavebalance();"></div>
-	  
+	<div ng-controller="leaveController">
+		<div ng-init="leavebalance();"></div>
+
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
@@ -34,11 +34,11 @@
 							<form role="form">
 								<div class="form-group">
 									<label for="user_id">Employee ID:</label> <input type="text"
-										ng-model="lc.user_id" class="form-control" id="user_id">
+										ng-model="user_id" class="form-control" id="user_id">
 								</div>
 
 								<button type="submit" class="btn btn-default" id="search"
-									ng-click="lc.leave(lc.user_id)">Leave History</button>
+									ng-click="leave(user_id)">Leave History</button>
 							</form>
 							<div style="color: blue">{{lc.user_id}}{{lc.testMsg}}</div>
 						</div>
@@ -50,8 +50,8 @@
 			<table class="table table-sm">
 				<div>
 					Test Message: {{lhc.testMsg1}}
-					<table ng-table="lhc.tableParams" class="table" show-filter="true">
-						<tr ng-repeat="leavehistory in $data">
+					<table ng-table="tableParams" class="table" show-filter="true">
+						<tr ng-repeat="leave in $data">
 							<td title="'Employee Name'" filter="{ name: 'text'}"
 								sortable="'name'">{{user.lmsUser.name}}</td>
 
@@ -72,7 +72,7 @@
 						</tr>
 					</table>
 				</div>
-				
+
 			</table>
 		</div>
 	</div>
