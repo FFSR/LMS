@@ -9,10 +9,11 @@ App
 			'$timeout',
 			'$filter',
 			'NgTableParams',
-			'$location',
+			'$window',
+			'$location','url',
 
 			function($scope, $http, updateuserleaveService, manageleaveService,
-				$timeout, $filter,NgTableParams,$location) {
+				$timeout, $filter,NgTableParams,$window,$location,url) {
 				$scope.testMsg = "Test Message New";
 				$scope.leaveapplication = {};
 				$scope.showLeaveDetails = false;
@@ -67,6 +68,10 @@ App
 							}
 							);
 				};
+				
+				$scope.gotoDetailsPage = function(wfRequestHop){
+					window.location = "requestDetails?wfID=" + wfRequestHop.lmsWfRequest.id + "&leaveApplication=" + wfRequestHop.lmsWfRequest.lmsLeaveApplication.id;
+				}
 				
 				$scope.viewAttachment = function(leaveApplicationID){
 					

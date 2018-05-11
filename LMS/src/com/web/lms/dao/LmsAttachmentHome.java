@@ -78,7 +78,7 @@ public class LmsAttachmentHome {
 	public List<LmsAttachment> findByApplicationID(Integer applicationID){
 		Query query;
 		try {
-			query = entityManager.createQuery("SELECT e FROM LmsAttachment e WHERE e.lmsLeaveApplication.id=:applicationID").setParameter("applicationID", applicationID);
+			query = entityManager.createQuery("SELECT e.filename FROM LmsAttachment e WHERE e.lmsLeaveApplication.id=:applicationID").setParameter("applicationID", applicationID);
 			return (List<LmsAttachment>) query.getResultList();
 		}catch(Exception ex) {
 			ex.printStackTrace();
