@@ -37,8 +37,7 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}');
-	loadUserListDropDown()"></div> 
+	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}')";></div> 
 	<div ng-init="loadDropDownStation('Station')"></div>">
 	
 	<form class="form-horizontal">
@@ -71,7 +70,7 @@
 						<label class="control-label col-md-3">Leave Type</label>
 						<div class="col-md-9">
 							<!-- Drop Down list from table -->
-							<select class="form-control" id="ddleavetype" ng-model="leavetype" ng-change="showLeaveBalance(userid,leavetype.id)"
+							<select class="form-control" id="ddleavetype" ng-required="true" ng-model="leavetype" ng-change="showLeaveBalance(userid,leavetype.id)"
 								ng-options="x as x.type for x in dropdownData track by x.id">
 								<option value="">Select</option>
 							</select>
@@ -83,7 +82,7 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">Reason For Leave</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="reasonForLeave" class="form-control"
+							<input type="text" ng-model="reasonForLeave" ng-required="true" class="form-control"
 								placeholder="Reason For Leave">
 						</div>		
 					</div>
@@ -166,22 +165,7 @@
 			     </div>
 			 </div>
 			<br>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-					   <label class="control-label col-md-3">Reliever</label>
-					       <div class="col-md-9">
-								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddReliever" ng-model="ddReliever"
-									ng-options="x as x.name for x in userData track by x.id">
-									<option value="">Select</option>
-								</select>
-
-				          </div>
-				     </div>
-				 </div>
-				
-				
+			<div class="row">							
 				<div class="col-sm-6">
 					<div class="form-group">
 					   <label class="control-label col-md-3">In Station</label>

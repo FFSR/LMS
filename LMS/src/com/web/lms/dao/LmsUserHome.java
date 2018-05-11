@@ -134,7 +134,9 @@ public class LmsUserHome {
 		catch(Exception ex) {			
 			return null;			
 		}
-	}
+	
+    }
+	 
     
     public List<LmsUser> findByUnameandMobile(String uName, String mobile, String status) {
 

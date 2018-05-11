@@ -23,7 +23,7 @@ App
                // scope.listLmsWftRoleUserMap= null;
                // List<LmsWftRoleUserMap> listLmsWftRoleUserMap;
                 
-				$scope.getUserInfo= function(userID){
+			/*	$scope.getUserInfo= function(userID){
 					$scope.loginUserID=userID;
 					$scope.testMessage = "Test Message";
 				manageuserService.manageuser(userID).then(
@@ -33,8 +33,13 @@ App
 								var data = d.listLmsuser;
 								$scope.userlist=d.listLmsuser;
 								$scope.name=d.listLmsuser[0].name;								
-								$scope.mobilePersonal=d.listLmsuser[0].mobilePersonal;
-								$scope.departmentname=d.listLmsuser[0].lmsDepartment.name;
+								
+								if(d.listLmsuser[0].mobilePersonal !=null){
+									$scope.mobilePersonal=d.listLmsuser[0].mobilePersonal;
+								}
+								if(d.listLmsuser[0].lmsDepartment !=null){
+									$scope.departmentname=d.listLmsuser[0].lmsDepartment.name;
+								}
 								if(d.listLmsuser[0].lmsSection !=null){
 									$scope.sectionname=d.listLmsuser[0].lmsSection.name;
 								}
@@ -51,10 +56,9 @@ App
 								console
 										.error("Error while fetching Currencies");
 							});
-				};
+				};*/
 				
-				$scope.getUserwiseRoleInfo= function(){
-					
+				$scope.getUserwiseRoleInfo= function(){	
 					var dataUserwiseRoleInfo = {};
 					$scope.testMessage = "Test Message";
 					managedelegationService.getUserwiseRoleInfo($scope.loginUserID)
@@ -94,11 +98,13 @@ App
 			
 				$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
+					$scope.userData={};
 					userlistService.getUserList()
 					.then(
 						function(d) {
 						$scope.userData = d;
-						$scope.i=0;
+						$scope.userData;
+						//$scope.userData = d.listLmsUser;
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
 	
@@ -148,6 +154,10 @@ App
 							);
 							
 						} 
+				
+				$scope.gotoHomePage = function(){	
+					window.location = url+"employeehomepage";
+				}
 				
 			} 
 			]);

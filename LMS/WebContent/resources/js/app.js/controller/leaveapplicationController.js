@@ -201,7 +201,7 @@ App
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
-					$scope.leaveapplication.inStation = $scope.inStation;
+					$scope.leaveapplication.inStation = $scope.ddStation.name;
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
@@ -249,16 +249,7 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				};
-				$scope.loadUserListDropDown = function(){
-					$scope.dDName = "";
-					userlistService.getUserList()
-					.then(
-						function(d) {
-						$scope.userData = d;
-					}, function(errResponse) {
-						console.log("Failed to get User Drop Down.");
-					});
-				};
+				
 				
 				/* Show Success Message */
 				$scope.showSuccessMessage = function(message) {
@@ -338,14 +329,16 @@ App
     					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
     					 $scope.leaveBalance='0';
     					$scope.ddReliever='0';
-    					 $scope.eligibility;
+    					 $scope.eligibility="";
     					 new Date($('#fromDate').val(''));
     					new Date($('#toDate').val(''));
     					 $scope.totalDayCount='0';
     					 $scope.totalDayText="";
     					 $scope.reasonForLeave="";
     					 $scope.taskNeedToPerformed="";
-    					 $scope.inStation="";
+    					 $scope.ddStation='0';
+    					 
+    					 
     				};
 				
 			} 

@@ -39,8 +39,8 @@
 	<br>
 	<div ng-controller="delegateemployeeController">
 		<div
-			ng-init="getUserInfo('${sessionScope.user.id}');loadUserListDropDown();"></div>
-
+			ng-init="loadUserListDropDown();getUserInfo('${sessionScope.user.id}')"></div>
+            
 		<form class="form-horizontal">
 			<div class="form-body">
 				<div class="row">
@@ -131,8 +131,8 @@
 							<label class="control-label col-md-3">Reliever</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddReliever"
-									ng-model="ddReliever"
+								<select class="form-control" id="ddReliever_n"
+									ng-model="ddReliever_n"
 									ng-options="x as x.name for x in userData track by x.id">
 									<option value="">Select</option>
 								</select>

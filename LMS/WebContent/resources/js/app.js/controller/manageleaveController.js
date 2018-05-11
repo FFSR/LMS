@@ -146,4 +146,8 @@ App
 					
 				}
 				
+				 $scope.gotoHomePage = function(){	
+						window.location = url+"employeehomepage";
+					}
+				
 			} ]);
