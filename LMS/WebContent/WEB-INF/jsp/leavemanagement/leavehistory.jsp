@@ -6,9 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
-
-
-
 <script type="text/javascript"
 	src="resources/js/app.js/service/leavehistoryService.js"></script>
 <script type="text/javascript"
@@ -17,26 +14,26 @@
 </head>
 <body>
 	<div ng-controller="leavehistoryController">
-       <div ng-init="leavehistory('${sessionScope.userID}');"></div>
+	<div ng-init="getSessionUserDetails('${sessionScope.user.id}');"></div>
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
 					<!-- Modal content-->
 					<div class="content">
 						<div class="header">
-							<h4 class="modal-title">Leave History Report...</h4>
+							<h4 class="modal-title">Leave History Report</h4>
 						</div>
 						<div class="modal-body">
 							<form role="form">
-								<div class="form-group">
+						<!--  		<div class="form-group">
 									<label for="user_id">Employee ID:</label> <input type="text"
-										ng-model="lhc.user_id" class="form-control" id="user_id">
-								</div>
+										ng-model="user_id" class="form-control" id="user_id">
+								</div> -->
 
-								<button type="submit" class="btn btn-default" id="search"
-									ng-click="lhc.leavehistory(lhc.user_id)">Leave History</button>
+								<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
+									ng-click="leavehistory()">Leave History</button>
 							</form>
-							<div style="color: blue">{{lhc.user_id}}{{lhc.testMsg}}</div>
+							
 						</div>
 					</div>
 				</div>
@@ -45,7 +42,7 @@
 		<div>
 			<table class="table table-sm">
 				<div>
-					Test Message: {{lhc.testMsg1}}
+					
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="lmsLeaveBalance in $data">
 

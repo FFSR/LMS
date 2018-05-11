@@ -20,14 +20,14 @@ public class Report {
 	@Autowired
 	private LmsWfRequestHome lmsWfRequestHome;
 
-	@RequestMapping(value = "report/{userid}", method = RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userid") Integer userid) {
+	@RequestMapping(value = "report/{userID}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userID") Integer userID) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
 		try {
 
-			List<LmsWfRequest> listLmsWfRequest = lmsWfRequestHome.findRequestByUserID(userid);
+			List<LmsWfRequest> listLmsWfRequest = lmsWfRequestHome.findRequestByUserID(userID);
 
 			if (listLmsWfRequest.size() > 0) {
 				

@@ -170,6 +170,21 @@ public class LmsUserHome {
 			return null;
 		}
 	}
+    
+    public LmsUser findByNID(String nid) {
+		
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.nid=:nid").setParameter("nid", nid);
+		
+			LmsUser lmsUser = (LmsUser) query.getSingleResult();
+		
+			return lmsUser;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+    
 
     
 		

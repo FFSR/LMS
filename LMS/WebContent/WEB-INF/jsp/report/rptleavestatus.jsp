@@ -16,48 +16,39 @@
 
 	<div ng-controller="rptleavestatusController">
 
-		<div ng-init="loadrptleavestatus('${sessionScope.userID}');"></div>
+		<div ng-init="getSessionUserDetails('${sessionScope.user.id}');"></div>
 
 		<div class="container-fluid">
 
 			<div class="row">
-				<div class="col-sm-3" style="background-color: lavender;">Start
+				<div class="col-sm-3" >Start
 					Date</div>
-				<div class="col-sm-3" style="background-color: lavenderblush;">
+				<div class="col-sm-3">
 					<input type="text">
 				</div>
-				<div class="col-sm-3" style="background-color: lavender;">End
+				<div class="col-sm-3" >End
 					Date</div>
-				<div class="col-sm-3" style="background-color: lavenderblush;">
+				<div class="col-sm-3" >
 					<input type="text">
 				</div>
 			</div>
+			<br>
+			
+			
+			<br>
+			<div class="modal-body">
+			
+			<form role="form">
+				<div class="row">
+				<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
+									ng-click="loadrptleavestatus()">Search</button>
 
-			<div class="row">
-				<div class="col-sm-3" style="background-color: lavender;">Employee
-					ID</div>
-				<div class="col-sm-3" style="background-color: lavenderblush;">
-					<input type="text">
-				</div>
+				<button type="submit" class="btn btn-success waves-effect waves-light " id="cancel"
+									>Cancel</button>
+				</div>	</div>
+				</form>
 			</div>
-			<div class="row">
-				<br>
-				<div class="col-sm-3" style="background-color: lavender;"></div>
-				<div class="col-sm-3" style="background-color: lavenderblush;"></div>
-				<div class="col-sm-3" style="background-color: lavender;"></div>
-				<div class="col-sm-3" style="background-color: lavenderblush;"></div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-1" style="background-color: none;">
-					<input type="submit" class="btn btn-info" value="Search">
-				</div>
-
-				<div class="col-sm-1" style="background-color: none;">
-					<input type="Clear" class="btn btn-info" value="Clear">
-				</div>
-			</div>
-
+		
 			<!-- By Shourav 29th April 2018 -->
 
 			<div>
@@ -65,8 +56,8 @@
 					<div>
 						Test Message: {{testMessage}}
 						<table ng-table="tableParams" class="table" show-filter="true">
-							<tr ng-repeat="wfRequestHop in $data">
-								<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
+							<tr ng-repeat="LmsWfRequest in $data">
+								<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequest.lmsLeaveApplication.id}}</td>
 								<td title="'Employee name'"
 									filter="{ 'lmsUserByUserId.name': 'text'}"
 									sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUser.name}}</td>

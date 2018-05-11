@@ -1,14 +1,19 @@
 package com.web.lms.dao;
 // Generated Mar 27, 2018 11:06:49 PM by Hibernate Tools 5.2.8.Final
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsDepartment;
+
 
 /**
  * Home object for domain model class LmsDepartment.
@@ -67,6 +72,20 @@ public class LmsDepartmentHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsDepartment> getAlldepartment(){
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsDepartment e");
+			
+			return (List<LmsDepartment>) query.getResultList(); 
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
 		}
 	}
 }

@@ -47,18 +47,18 @@
 			<br>
 
 			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">
+				<div class="col-sm-3">
 					<form role="form">
-						<div class="col-md-9">
+						
 							<label for="userName">Employee Name:</label> <input type="text"
-								ng-model="userName" class="form-control" id="userName">
+								ng-model="userName" class="form-control" id="userName"> <br>
 							<label for="mobile">Employee Mobile:</label> <input type="text"
-								ng-model="mobile" class="form-control" id="mobile"> <label
-								for="mobile">NID (Duplicate Checking)</label> <input type="text"
-								ng-model="nid" class="form-control" id="nid">
-						</div>
+								ng-model="mobile" class="form-control" id="mobile"> <br>
+						<!--  	<label for="mobile">NID (Duplicate Checking)</label> <input type="text"
+								ng-model="nid" class="form-control" id="nid"> -->
+						
 					</form>
-					<div style="color: blue">{{user_id}}{{testMsg}}</div>
+				<!--  	<div style="color: blue">{{user_id}}{{testMsg}}</div> -->
 				</div>
 			</div>
 			<br>
@@ -122,19 +122,21 @@
 	<div class="container-fluid">
 		<div ng-if="showUserDetails">
 			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3">User ID</label>
-						<div class="col-md-9">
-							<input type="text">
-						</div>
-					</div>
-				</div>
+				
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label col-md-3">Name</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.name">
+							<input type="text" ng-model="user.name" class="form-control" placeholder="mobile no">
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+				<div class="form-group">
+						<label class="control-label col-md-3">Mobile</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="user.mobilePersonal"
+								class="form-control" placeholder="mobile no">
 						</div>
 					</div>
 				</div>
@@ -162,15 +164,18 @@
 			</div>
 			<br>
 			<div class="row">
+				
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Mobile</label>
+						<label class="control-label col-md-3">Joining Date</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.mobilePersonal"
-								class="form-control" placeholder="mobile no">
+							<input type="text" ng-model="user.joining-date"
+								class="form-control" placeholder="Joining Date">
 						</div>
 					</div>
 				</div>
+					
+				
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label col-md-3">Telephone</label>
@@ -204,15 +209,20 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-md-6">
+			
+			<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Joining Date</label>
+						<label class="control-label col-md-3">Gender</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.joining-date"
-								class="form-control" placeholder="Joining Date">
+							<select class="form-control" id="ddAppStatus"
+								ng-model="user.lmsDropdown"
+								ng-options="x as x.name for x in dropdownNames track by x.id">
+								<option value="">Select</option>
+							</select>
 						</div>
 					</div>
 				</div>
+				
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="control-label col-md-3">Office</label>
@@ -297,19 +307,20 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Gender</label>
+						<label class="control-label col-md-3">Workflow Role</label>
 						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsDropdown"
-								ng-options="x as x.name for x in dropdownNames track by x.id">
+							<select class="form-control" id="ddlmsWftrole" ng-required="true"
+								ng-model="ddlmsWftrole"
+								ng-options="x as x.roleName for x in wftroleNames track by x.id">
 								<option value="">Select</option>
 							</select>
+							
 						</div>
 					</div>
 				</div>
+				
 			</div>
 			<br>
 			<div class="row">
@@ -330,11 +341,12 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">Application Role</label>
 						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsRole"
+							<select class="form-control" id="ddlmsRole" ng-required="true"
+								ng-model="ddlmsRole"
 								ng-options="x as x.name for x in roleNames track by x.id">
 								<option value="">Select</option>
 							</select>
+							
 						</div>
 					</div>
 				</div>
@@ -343,31 +355,21 @@
 			<br>
 
 			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3">Workflow Role</label>
-						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsWftrole"
-								ng-options="x as x.name for x in wftroleNames track by x.id">
-								<option value="">Select</option>
-							</select>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 			<br>
-
-			<div class="col-sm-3" style="background-color: white;"></div>
-			<button type="submit" class="btn" id="submit"
-				ng-click="userprofile()">Update</button>
-			<br><br>
-			<div class="col-sm-3" style="background-color: white;">
-				<input type="button" class="btn btn-info" value="Cancel">
+			<div class="row">
+			<div class="col-sm-3" >
+			<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="submit"
+				ng-click="userprofile(ddlmsWftrole,ddlmsRole)">Update</button>
+			</div>
+			<div class="col-sm-9" >
+				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
+			</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-3">
 				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
 					data-ng-show="successMessages" data-ng-bind="successMessages"></div>
 				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"

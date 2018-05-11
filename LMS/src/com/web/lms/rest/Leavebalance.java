@@ -18,30 +18,28 @@ import com.web.lms.wrapper.ResponseWrapper;
 
 @RestController
 public class Leavebalance {
-	
+
 	@Autowired
 	private LmsLeaveBalanceHome LmsLeaveBalanceHome;
-	
+
 	@Autowired
 	private HttpSession httpSession;
 
-	
-	@RequestMapping(value="/leavehistory/{userid}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> leavehistory(@PathVariable Integer userid){
-		
+	@RequestMapping(value = "/leavehistory/{userID}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> leavehistory(@PathVariable Integer userID) {
+
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		List<LmsLeaveBalance> lmsLeaveBalances = LmsLeaveBalanceHome.findLeaveBalanceByUserID(userid);
-		
-		if(lmsLeaveBalances.size()>0) {
-			
+		List<LmsLeaveBalance> lmsLeaveBalances = LmsLeaveBalanceHome.findLeaveBalanceByUserID(userID);
+
+		if (lmsLeaveBalances.size() > 0) {
+
 			responseWrapper.setListLmsLeaveBalance(lmsLeaveBalances);
-			
+
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-		
+
 		responseWrapper.setMessage("Fail. User Name or Password not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
-	
 
 }
