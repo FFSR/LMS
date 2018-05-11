@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.web.lms.dao.LmsHolidayRecordHome;
 import com.web.lms.dao.LmsLeaveApplicationHome;
 import com.web.lms.dao.LmsLeaveBalanceHome;
 import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsUserHome;
+import com.web.lms.enumcollection.DAY;
 import com.web.lms.enumcollection.DECISION;
 import com.web.lms.enumcollection.LEAVETYPE;
+import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveBalance;
 import com.web.lms.model.LmsLeaveType;
@@ -37,27 +40,29 @@ public class Leaverule {
 	private LmsLeaveBalanceHome lmsLeaveBalanceHome;
 	@Autowired
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
+	@Autowired
+	private LmsHolidayRecordHome lmsHolidayRecordHome;
 
 	@RequestMapping(value = "/leaverule/{userid}/{leavetypeid}/{startdate}/{enddate}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapperLeaveRule> generateRequest(@PathVariable("userid") Integer userid,
 			@PathVariable("leavetypeid") Integer leavetypeid, @PathVariable("startdate") String strstartdate,
 			@PathVariable("enddate") String strenddate) {
 
-		ResponseWrapperLeaveRule responseWrapper = new ResponseWrapperLeaveRule();
+		ResponseWrapperLeaveRule resWrapper = new ResponseWrapperLeaveRule();
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		try {
 
-			Date startdate = format.parse(strstartdate);
-			Date enddate = format.parse(strenddate);
+			Date startDate = format.parse(strstartdate);
+			Date endDate = format.parse(strenddate);
 
 			// Validate User
 			LmsUser user = null;
 			user = lmsUserHome.findById(userid);
 
 			if (user == null) {
-				responseWrapper.setMessage("This userid is not available in database.");
-				return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				resWrapper.setMessage("This userid is not available in database.");
+				return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			// Validate Leave Type
@@ -65,52 +70,54 @@ public class Leaverule {
 			leaveType = lmsLeaveTypeHome.findById(leavetypeid);
 
 			if (leaveType == null) {
-				responseWrapper.setMessage("This Leave Type is not available in database.");
-				return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				resWrapper.setMessage("This Leave Type is not available in database.");
+				return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			// Validate Date : Start date is Null
-			if (startdate == null) {
-				responseWrapper.setMessage("Start date is Null.");
-				return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			if (startDate == null) {
+				resWrapper.setMessage("Start date is Null.");
+				return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			// Validate Date : End date is Null
-			if (enddate == null) {
-				responseWrapper.setMessage("End date is Null.");
-				return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			if (endDate == null) {
+				resWrapper.setMessage("End date is Null.");
+				return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 			// Validate Date : End date is advanced than start date
-			int dateValidator = startdate.compareTo(enddate);
+			int dateValidator = startDate.compareTo(endDate);
 			if (dateValidator > 0) {
-				responseWrapper.setMessage("Enddate is advanced than startdate.");
-				return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+				resWrapper.setMessage("Enddate is advanced than startdate.");
+				return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
-			String replayMessage = validateWithLeaveRulet(user, leaveType, startdate, enddate);
+			resWrapper = validateWithLeaveRule(user, leaveType, startDate, endDate);
 
-			if (replayMessage.contains("OK")) {
+			if (resWrapper.getMessage().contains("OK")) {
 
-				responseWrapper.setMessage("Success. Leave rule validation complete.");
-				return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.OK);
+				resWrapper.setMessage("Success. Leave rule validation complete.");
+				return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.OK);
 
 			} else {
-				responseWrapper.setMessage(replayMessage);
-				return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+
+				return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
 		} catch (Exception ex) {
-			responseWrapper.setMessage("Fail." + ex.getMessage());
-			return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			resWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 	}
 
-	private String validateWithLeaveRulet(LmsUser user, LmsLeaveType leaveType, Date startdate, Date enddate) {
+	private ResponseWrapperLeaveRule validateWithLeaveRule(LmsUser user, LmsLeaveType leaveType, Date startDate, Date endDate) {
+		
+		ResponseWrapperLeaveRule resWrapper = new ResponseWrapperLeaveRule();
 
-		String replayMessage = "OK";
+		resWrapper.setMessage("OK");
 
-		LmsLeaveBalance lmsLeaveBalance;
+		LmsLeaveBalance lmsLeaveBalance = null;
 
 		try {
 
@@ -128,27 +135,32 @@ public class Leaverule {
 			cal.set(Calendar.YEAR, year);
 			cal.set(Calendar.DAY_OF_YEAR, 1);
 			Date firstDateOfCurrentYesr = cal.getTime();
-
+			
+			//boolean isHoliday = findHoliday(currentDate);
+			
+			resWrapper = findHolidayRange(startDate, endDate);			
+				
 			// 1 day added for start and end date are same
-			long numberOfDays = calculateDateDifference(startdate, enddate) + 1;
+			long numberOfDaysApplied = calculateDateDifference(startDate, endDate) + 1;
+			resWrapper.setNumberOfDaysApplied(numberOfDaysApplied);
+			resWrapper.setNumberOfDayConsider( (int) numberOfDaysApplied + resWrapper.getMinimumHolidayConsider());
+				
+			// Validation 0.1 : Leave Balance is not found for this Leave Type. Leave Balance account may change for dependent leave account.
+			lmsLeaveBalance = findLeaveBalanceCurrent(user, leaveType);
+			
+			if (lmsLeaveBalance == null) {
+				resWrapper.setMessage("Validation 0.1 : Leave Balance is not found for this Leave Type.");
+				return resWrapper;
+			}
 
 			// Validation 1: Maximum Leave limit exceed.
 			if (leaveType.getMaximumDays() != null && leaveType.getMaximumDays() != 0) {
 
-				lmsLeaveBalance = findLeaveBalanceCurrent(user, leaveType);
-
-				if (lmsLeaveBalance == null) {
-
-					replayMessage = "Validation 1.1: Leave Balance for this leave type is not found.";
-					return replayMessage;
-
-				}
-
 				if (leaveType.getMaximumDays() > (lmsLeaveBalance.getLeaveTaken() + lmsLeaveBalance.getLeaveApplied()
-						+ numberOfDays)) {
-
-					replayMessage = "Validation 1.0: Maximum Leave limit exceed.";
-					return replayMessage;
+						+ numberOfDaysApplied)) {
+					
+					resWrapper.setMessage("Validation 1.0: Maximum Leave limit exceed.");
+					return resWrapper;
 				}
 			}
 
@@ -159,19 +171,19 @@ public class Leaverule {
 						.findLeaveApplicationByUserandLeaveTypeandYear(user.getId(), leaveType.getId(), strCurrentYear);
 
 				if (leaveType.getMaximumTimes() > leaveApplications.size()) {
-
-					replayMessage = "Validation 2.0: Maximum times limit exceed.";
-					return replayMessage;
+					
+					resWrapper.setMessage("Validation 2.0: Maximum times limit exceed.");
+					return resWrapper;
 				}
 			}
 
 			// Validation 3: Maximum leaves at a time limit exceed.
 			else if (leaveType.getMaximumAtATime() != null && leaveType.getMaximumAtATime() != 0) {
 
-				if (leaveType.getMaximumAtATime() < numberOfDays) {
-
-					replayMessage = "Validation 3.0: Maximum leaves at a time limit exceed.";
-					return replayMessage;
+				if (leaveType.getMaximumAtATime() < numberOfDaysApplied) {
+				
+					resWrapper.setMessage("Validation 3.0: Maximum leaves at a time limit exceed.");
+					return resWrapper;
 				}
 			}
 
@@ -180,17 +192,17 @@ public class Leaverule {
 			else if (leaveType.getEligibleAfter() != null && leaveType.getEligibleAfter() != 0) {
 
 				if (user.getJoiningDate() == null) {
-
-					replayMessage = "Validation 4.1: User joining date can not be empty.";
-					return replayMessage;
+					
+					resWrapper.setMessage("Validation 4.1: User joining date can not be empty.");
+					return resWrapper;
 				}
 
-				long numberOfDaysFromJoining = calculateDateDifference(user.getJoiningDate(), startdate);
+				long numberOfDaysFromJoining = calculateDateDifference(user.getJoiningDate(), startDate);
 
 				if (leaveType.getEligibleAfter() > numberOfDaysFromJoining) {
 
-					replayMessage = "Validation 4.0: Eligibility requirement, number of days from Joining date does not full filled.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 4.0: Eligibility requirement, number of days from Joining date does not full filled.");
+					return resWrapper;
 				}
 			}
 
@@ -199,23 +211,22 @@ public class Leaverule {
 			else if (leaveType.getEligibleBefore() != null && leaveType.getEligibleBefore() != 0) {
 
 				if (user.getResigndate() == null) {
-
-					replayMessage = "Validation 5.1: User resign date can not be empty.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 5.1: User resign date can not be empty.");
+					return resWrapper;
 				}
 
-				long numberOfDaysToResign = calculateDateDifference(startdate, user.getResigndate());
+				long numberOfDaysToResign = calculateDateDifference(startDate, user.getResigndate());
 
 				if (numberOfDaysToResign < 0) {
 
-					replayMessage = "Validation 5.2: Number of days to resign can not be negative.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 5.2: Number of days to resign can not be negative.");
+					return resWrapper;
 				}
 
 				if (leaveType.getEligibleBefore() < numberOfDaysToResign) {
 
-					replayMessage = "Validation 5.0: Eligibility requirement, number of days to resign does not full filled.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 5.0: Eligibility requirement, number of days to resign does not full filled.");
+					return resWrapper;
 				}
 			}
 
@@ -224,8 +235,8 @@ public class Leaverule {
 
 				if (!leaveType.getStatus().equals(LEAVETYPE.ACTIVE)) {
 
-					replayMessage = "Validation 6.0: Leave Type is not ACTIVE.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 6.0: Leave Type is not ACTIVE.");
+					return resWrapper;
 				}
 			}
 
@@ -233,18 +244,11 @@ public class Leaverule {
 			else if ((leaveType.getIncremental() != null && !leaveType.getIncremental().equals(""))
 					&& leaveType.getIncremental().toUpperCase().equals(DECISION.YES)) {
 
-				lmsLeaveBalance = findLeaveBalanceCurrent(user, leaveType);
-
-				if (lmsLeaveBalance == null) {
-					replayMessage = "Validation 7.1: Leave Balance for this leave type is not found.";
-					return replayMessage;
-				}
-
 				if (lmsLeaveBalance.getLeaveTotal() > (lmsLeaveBalance.getLeaveTaken()
-						+ lmsLeaveBalance.getLeaveApplied() + numberOfDays)) {
+						+ lmsLeaveBalance.getLeaveApplied() + numberOfDaysApplied)) {
 
-					replayMessage = "Validation 7.0: Insufficient Leave Balance.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 7.0: Insufficient Leave Balance.");
+					return resWrapper;
 				}
 			}
 
@@ -252,10 +256,10 @@ public class Leaverule {
 
 			else if (leaveType.getMinimumAtATime() != null && leaveType.getMinimumAtATime() != 0) {
 
-				if (leaveType.getMinimumAtATime() > numberOfDays) {
+				if (leaveType.getMinimumAtATime() > numberOfDaysApplied) {
 
-					replayMessage = "Validation 8.0: Minimum at a time limit is not fulfilled.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 8.0: Minimum at a time limit is not fulfilled.");
+					return resWrapper;
 				}
 			}
 
@@ -267,23 +271,23 @@ public class Leaverule {
 
 				if (numberOfDaysToApply < 0) {
 
-					replayMessage = "Validation 9.1: Application must be submitted be for 31st January each year, but not advanced.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 9.1: Application must be submitted be for 31st January each year, but not advanced.");
+					return resWrapper;
 				}
 
 				if (leaveType.getApplyDaysEachYear() < numberOfDaysToApply) {
 
-					replayMessage = "Validation 9.0: Application must be submitted be for 31st January each year.";
-					return replayMessage;
+					resWrapper.setMessage("Validation 9.0: Application must be submitted be for 31st January each year.");
+					return resWrapper;
 				}
 			}
 
 		} catch (Exception ex) {
 
-			replayMessage += ex.getMessage();
+			resWrapper.setMessage(ex.getMessage());
 		}
 
-		return replayMessage;
+		return resWrapper;
 	}
 
 	private long calculateDateDifference(Date startdate, Date enddate) {
@@ -364,5 +368,95 @@ public class Leaverule {
 			responseWrapper.setMessage("Fail." + ex.getMessage());
 			return new ResponseEntity<ResponseWrapperLeaveRule>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
+	}
+	
+	private ResponseWrapperLeaveRule findHolidayRange(Date startDate, Date endDate) {
+			
+		ResponseWrapperLeaveRule resWrapper = new ResponseWrapperLeaveRule();
+		
+		Integer noOfHolidays = 0;
+		boolean forward = true;
+		Integer forwardCount =0;
+		boolean backward = true;
+		Integer backwardCount =0;
+				
+		//String dt = "2008-01-01";  // Start date
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Calendar c = Calendar.getInstance();
+		//c.setTime(startDate);
+		//c.add(Calendar.DATE, 1);  // number of days to add
+		//strStartDate = sdf.format(c.getTime());  // dt is now the new date
+		
+		
+		while(backward) {
+			
+			c.setTime(startDate);
+			c.add(Calendar.DATE, -1);  // number of days to add
+			startDate = c.getTime();
+			
+			backward = findHoliday(startDate);
+			if(backward) {
+				backwardCount++;
+			}
+		}
+		resWrapper.setBackwardHolidayCount(backwardCount);
+
+		while(forward) {
+			
+			c.setTime(endDate);
+			c.add(Calendar.DATE, 1);  // number of days to add
+			endDate = c.getTime();
+			
+			forward = findHoliday(endDate);
+			if(forward) {
+				forwardCount++;
+			}
+		}
+		
+		resWrapper.setForwardHolidayCount(forwardCount);
+		
+		if(forwardCount < backwardCount ) {			
+			resWrapper.setMinimumHolidayConsider(forwardCount);			
+		}else {			
+			resWrapper.setMinimumHolidayConsider(backwardCount);			
+		}
+		
+		
+		return resWrapper;
+	}
+		
+	private boolean findHoliday(Date date) {
+		
+		boolean isHoliday = false;		
+		
+		try {
+			
+		  //String input_date="01/08/2012";
+		  //SimpleDateFormat format1=new SimpleDateFormat("dd/MM/yyyy");
+		  	  
+		  //Date dt1=format1.parse(input_date);		  
+		  
+		  DateFormat format2 = new SimpleDateFormat("EEEE"); 
+		  String finalDay = format2.format(date);
+		  
+		  if(DAY.Friday.toString().equals(finalDay) || DAY.Saturday.toString().equals(finalDay)) {			  
+			  isHoliday = true;
+			  return isHoliday;
+		  }else {
+			  List<LmsHolidayRecord> holidayRecords = lmsHolidayRecordHome.findHoliday(date);
+			  if(holidayRecords.size()>0) {
+				  isHoliday = true;
+				  return isHoliday;				  
+			  }			  
+		  }
+		  
+		  return isHoliday; 
+		  
+		}
+		catch(Exception ex) {
+			
+			return false;
+		}	
 	}
 }
