@@ -327,7 +327,7 @@ public class User {
 	@RequestMapping(value = "/getUserlist/", method = RequestMethod.GET)
 	public ResponseEntity<List<LmsUser>> getlog() {
 
-		List<LmsUser> listLmsUser = new ArrayList<>();
+		List<LmsUser> listLmsUser = new ArrayList<LmsUser>();
 		try {
 			listLmsUser = lmsUserHome.findAllUser();
 		} catch (Exception ex) {
