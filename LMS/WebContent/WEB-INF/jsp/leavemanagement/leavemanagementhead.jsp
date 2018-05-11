@@ -231,6 +231,15 @@
 					
 				</div>
 				
+				<div class="row">
+					<div class="col-md-6 form-group">
+						<label>Remarks:</label>
+					</div>
+					<div class="col-md-6 form-group">
+						<input type="text" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.remarks" />
+					</div>
+				</div>
+				
 				<br>
 				<div class="row">
 					<div class="col-md-6">

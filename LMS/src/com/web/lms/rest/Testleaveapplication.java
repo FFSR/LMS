@@ -205,7 +205,7 @@ public class Testleaveapplication {
 		if(lmsLeaveApplication.size()>0) {
 			   responseWrapper.setListLmsLeaveApplication(lmsLeaveApplication);
 					for(LmsLeaveApplication leaveApplication:lmsLeaveApplication) {
-						lmsUser = lmsUserHome.findById(leaveApplication.getUserId());
+						lmsUser = lmsUserHome.findById(leaveApplication.getLmsUserByUserId().getId());
 					}
 					return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 				}
