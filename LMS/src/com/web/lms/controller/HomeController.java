@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -241,12 +242,12 @@ public class HomeController {
 			return "login";
 		}
 	}
-	@RequestMapping("/managedelegation")
-	public String managedelegation(Model model) {
+	@RequestMapping("/managereliever")
+	public String managereliever(Model model) {
 		
 		try {
 			if("" != httpSession.getAttribute("userName").toString()) {
-				return "managedelegation";
+				return "managereliever";
 			}else {
 			
 				return "login";
@@ -255,6 +256,21 @@ public class HomeController {
 			return "login";
 		}
 	}
+	@RequestMapping("/delegateemployee")
+	public String delegateemployee(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "delegateemployee";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}
+	
 	@RequestMapping("/leaveapplicationdetails")
 	public String leaveapplicationdetails(Model model) {
 		
@@ -389,6 +405,15 @@ public class HomeController {
 		httpSession.invalidate();
 		
 		return "login";
+	}
+	
+	@RequestMapping("/requestDetails")
+	public String requestDetails(Model model, @RequestParam(value="wfID", required=true) Integer wfID, @RequestParam(value="leaveApplication", required=true) Integer leaveApplication) {
+		
+		//httpSession.invalidate();
+		model.addAttribute("wfID", wfID);
+		model.addAttribute("leaveApplication", leaveApplication);
+		return "requestDetails";
 	}
 	
 }

@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Apr 29, 2018 2:50:56 PM by Hibernate Tools 5.2.8.Final
+// Generated May 11, 2018 5:57:10 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -28,8 +28,8 @@ public class LmsLeaveApplication implements java.io.Serializable {
 
 	private Integer id;
 	private LmsLeaveType lmsLeaveType;
-	private LmsUser lmsUser;
-	private Integer userId;
+	private LmsUser lmsUserByReliverEmailAddressUserId;
+	private LmsUser lmsUserByUserId;
 	private Date year;
 	private Integer leaveAvailable;
 	private Integer leaveTaken;
@@ -46,20 +46,22 @@ public class LmsLeaveApplication implements java.io.Serializable {
 	private Date updateDate;
 	private Integer updateBy;
 	private String inStation;
+	private String remarks;
 	private Set<LmsAttachment> lmsAttachments = new HashSet<LmsAttachment>(0);
 	private Set<LmsWfRequest> lmsWfRequests = new HashSet<LmsWfRequest>(0);
 
 	public LmsLeaveApplication() {
 	}
 
-	public LmsLeaveApplication(LmsLeaveType lmsLeaveType, LmsUser lmsUser, Integer userId, Date year,
-			Integer leaveAvailable, Integer leaveTaken, Integer leaveBalance, String eligibility, Date fromDate,
-			Date toDate, Integer totalDayCount, String totalDayText, String reasonForLeave, String taskNeedToPerformed,
-			Date insertDate, Integer insertBy, Date updateDate, Integer updateBy, String inStation,
-			Set<LmsAttachment> lmsAttachments, Set<LmsWfRequest> lmsWfRequests) {
+	public LmsLeaveApplication(LmsLeaveType lmsLeaveType, LmsUser lmsUserByReliverEmailAddressUserId,
+			LmsUser lmsUserByUserId, Date year, Integer leaveAvailable, Integer leaveTaken, Integer leaveBalance,
+			String eligibility, Date fromDate, Date toDate, Integer totalDayCount, String totalDayText,
+			String reasonForLeave, String taskNeedToPerformed, Date insertDate, Integer insertBy, Date updateDate,
+			Integer updateBy, String inStation, String remarks, Set<LmsAttachment> lmsAttachments,
+			Set<LmsWfRequest> lmsWfRequests) {
 		this.lmsLeaveType = lmsLeaveType;
-		this.lmsUser = lmsUser;
-		this.userId = userId;
+		this.lmsUserByReliverEmailAddressUserId = lmsUserByReliverEmailAddressUserId;
+		this.lmsUserByUserId = lmsUserByUserId;
 		this.year = year;
 		this.leaveAvailable = leaveAvailable;
 		this.leaveTaken = leaveTaken;
@@ -76,6 +78,7 @@ public class LmsLeaveApplication implements java.io.Serializable {
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 		this.inStation = inStation;
+		this.remarks = remarks;
 		this.lmsAttachments = lmsAttachments;
 		this.lmsWfRequests = lmsWfRequests;
 	}
@@ -104,21 +107,22 @@ public class LmsLeaveApplication implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "RELIVER_EMAIL_ADDRESS_USER_ID")
-	public LmsUser getLmsUser() {
-		return this.lmsUser;
+	public LmsUser getLmsUserByReliverEmailAddressUserId() {
+		return this.lmsUserByReliverEmailAddressUserId;
 	}
 
-	public void setLmsUser(LmsUser lmsUser) {
-		this.lmsUser = lmsUser;
+	public void setLmsUserByReliverEmailAddressUserId(LmsUser lmsUserByReliverEmailAddressUserId) {
+		this.lmsUserByReliverEmailAddressUserId = lmsUserByReliverEmailAddressUserId;
 	}
 
-	@Column(name = "USER_ID")
-	public Integer getUserId() {
-		return this.userId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID")
+	public LmsUser getLmsUserByUserId() {
+		return this.lmsUserByUserId;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setLmsUserByUserId(LmsUser lmsUserByUserId) {
+		this.lmsUserByUserId = lmsUserByUserId;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -268,6 +272,15 @@ public class LmsLeaveApplication implements java.io.Serializable {
 
 	public void setInStation(String inStation) {
 		this.inStation = inStation;
+	}
+
+	@Column(name = "REMARKS", length = 1000)
+	public String getRemarks() {
+		return this.remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsLeaveApplication")

@@ -9,13 +9,15 @@ App
 			'$timeout',
 			'$filter',
 			'NgTableParams',
-			'$location',
+			'$window',
+			'$location','url',
 
 			function($scope, $http, updateuserleaveService, manageleaveService,
-				$timeout, $filter,NgTableParams,$location) {
+				$timeout, $filter,NgTableParams,$window,$location,url) {
 				$scope.testMsg = "Test Message New";
 				$scope.leaveapplication = {};
 				$scope.showLeaveDetails = false;
+				$scope.showAttachment = false;
 				$scope.search = {
 						'user_name' : '',
 						'user_id' : 0
@@ -31,15 +33,14 @@ App
 					manageleaveService.manageleave($scope.search).then(
 							function(d) {
 								$scope.testMsg1 = "Test";
-								console.log("Success.",d.message);
+								console.log("Success.", d.message);
 								var data = d.listLmsLeaveApplication;
 								$scope.tableParams = new NgTableParams({}, { dataset: data});
 								
 							},
 							function(errResponse) {
 								
-								console
-										.error("Error while fetching Currencies");
+								console.error(errResponse.message);
 							});
 				};
 				$scope.userID = 0;
@@ -55,6 +56,34 @@ App
 					$scope.userID = $scope.wfRequestHop.lmsWfRequest.lmsUser.id;
 					$scope.wfRequestHopid = $scope.wfRequestHop.id;
 					console.log("wfRequestHop", wfRequestHop );
+					manageleaveService.getAttachment($scope.wfRequestHop.lmsWfRequest.lmsLeaveApplication.id).then(
+							function(d){
+								$scope.fileNames = d;
+								console.log("Attachment Data",d.filename);
+								$scope.showAttachment = true;
+							},
+							function(errResponse){
+								
+							}
+							);
+				};
+				
+				$scope.gotoDetailsPage = function(wfRequestHop){
+					window.location = "requestDetails?wfID=" + wfRequestHop.lmsWfRequest.id + "&leaveApplication=" + wfRequestHop.lmsWfRequest.lmsLeaveApplication.id;
+				}
+				
+				$scope.viewAttachment = function(leaveApplicationID){
+					
+					manageleaveService.getAttachment(leaveApplicationID).then(
+							function(d){
+								$scope.fileNames = d;
+								console.log("Attachment Data",d.filename);
+								$scope.showAttachment = true;
+							},
+							function(errResponse){
+								
+							}
+							);
 				};
 				
 				
@@ -121,5 +150,9 @@ App
 					);
 					
 				}
+				
+				 $scope.gotoHomePage = function(){	
+						window.location = url+"employeehomepage";
+					}
 				
 			} ]);

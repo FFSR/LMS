@@ -13,10 +13,9 @@ App
 			'OfficeService',
 			'DropDownService',
 			'registrationService',
-			'userlistService',
-			'$timeout',
 			'$filter',
 			'$location',
+			'url',
 
 			function($scope, $timeout, $http, DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
 					userlistService,$timeout, $filter,$location) {
@@ -187,7 +186,7 @@ App
 					});
 				}
 				
-				$scope.loadUserListDropDown = function(){
+				/*$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					userlistService.getUserList()
 					.then(
@@ -196,7 +195,7 @@ App
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
 					});
-				}
+				}*/
 				
 				$scope.showSuccessMessage = function(message) {
 

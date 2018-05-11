@@ -46,5 +46,17 @@ App.factory('manageleaveService', [
 								.reject(errResponse);
 					});
 				},
+				getAttachment: function(leaveapplicationid){
+					return $http.get(url+'getAttachment/'+ leaveapplicationid)
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching attachment list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
 			}
 		} ]);

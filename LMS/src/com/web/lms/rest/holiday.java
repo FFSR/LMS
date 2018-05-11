@@ -75,7 +75,7 @@ public class holiday {
 
 			if (lmsHolidayRecord_n != null) {
 
-				lmsHolidayRecordHome.merge(lmsHolidayRecord_n);
+				//lmsHolidayRecordHome.merge(lmsHolidayRecord_n);
 				lmsHolidayRecordHome.remove(lmsHolidayRecord_n); // For Delete
 
 			}
