@@ -44,6 +44,7 @@ public class LmsWftRoleUserMapHome {
 	public void remove(LmsWftRoleUserMap persistentInstance) {
 		log.debug("removing LmsWftRoleUserMap instance");
 		try {
+			persistentInstance = entityManager.merge(persistentInstance);
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
 		} catch (RuntimeException re) {
@@ -90,6 +91,19 @@ public class LmsWftRoleUserMapHome {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<LmsWftRoleUserMap> findDelegationByUser(Integer userID ) {
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.delegateBy=:userID").setParameter("userID", userID);
+			
+			return (List<LmsWftRoleUserMap>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+	}
 	public List<LmsWftRoleUserMap> findRoleByUser(LmsUser user) {		
 		try { 			
 			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser=:user")

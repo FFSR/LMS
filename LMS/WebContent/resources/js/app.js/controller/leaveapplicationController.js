@@ -8,12 +8,14 @@ App
 			'leavetypeService',
 			'userlistService',
 			'wfManagementService',
+			'DropDownService',
 			'$timeout',
 			'$filter',
 			'$location',
+			'url',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,
-				$timeout, $filter,$location) {
+			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,DropDownService,
+				$timeout, $filter,$location,url) {
 				
 				$scope.testMsg = "Testing Message";
 				
@@ -199,7 +201,7 @@ App
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
-					$scope.leaveapplication.inStation = $scope.inStation;
+					$scope.leaveapplication.inStation = $scope.ddStation.name;
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
@@ -220,8 +222,9 @@ App
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
 								$scope.showSuccessMessage("Insertion successful");
-								$window.location.reload();
 								$scope.uploadFile();
+								 $scope.ClearAll();
+								$window.location.reload();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
@@ -239,16 +242,14 @@ App
 					});
 				};
 				
-			$scope.loadUserListDropDown = function(){
-					$scope.dDName = "";
-					userlistService.getUserList()
-					.then(
-						function(d) {
-						$scope.userData = d;
+				$scope.loadDropDownStation = function(dropdownname){
+					DropDownService.getStationOptions(dropdownname).then(function(d) {
+						$scope.stationData = d.listLmsDropdown;
 					}, function(errResponse) {
-						console.log("Failed to get User Drop Down.");
+						console.log("Failed to get Drop Down.");
 					});
 				};
+				
 				
 				/* Show Success Message */
 				$scope.showSuccessMessage = function(message) {
@@ -268,6 +269,23 @@ App
 						$scope.successMessages = null;
 						$scope.errorMessages = null;
 					}, 6000);
+				};
+				
+				$scope.loadUserListDropDown = function(){
+					$scope.dDName = "";
+					
+					userlistService.getUserList()
+					.then(
+						function(d) {
+						$scope.usersList = d;
+						$scope.q = d;
+						$scope.userData;
+						console.log($scope.usersList);
+						//$scope.userData = d.listLmsUser;
+					}, function(errResponse) {
+						console.log("Failed to get User Drop Down.");
+	
+					});
 				};
 		/* $scope.getleaveapplication = function(leaveapplicationid){
 					console.log("From Get Method");
@@ -315,6 +333,30 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
+				
+                    $scope.gotoHomePage = function(){	
+					window.location = url+"employeehomepage";
+				}
+                    
+                    $scope.ClearAll = function() {
+    					
+    					$scope.leaveTaken='0';
+    					 $scope.leavetype='0';
+    					$scope.userid =0;
+    					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
+    					 $scope.leaveBalance='0';
+    					$scope.ddReliever='0';
+    					 $scope.eligibility="";
+    					 new Date($('#fromDate').val(''));
+    					new Date($('#toDate').val(''));
+    					 $scope.totalDayCount='0';
+    					 $scope.totalDayText="";
+    					 $scope.reasonForLeave="";
+    					 $scope.taskNeedToPerformed="";
+    					 $scope.ddStation='0';
+    					 
+    					 
+    				};
 				
 			} 
 			]);

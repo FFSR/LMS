@@ -12,13 +12,12 @@ App
 			'OfficeService',
 			'DropDownService',
 			'registrationService',
-			'userlistService',
-			'$timeout',
 			'$filter',
 			'$location',
+			'url',
 
 			function($scope, $timeout, $http, DivisionService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
-					userlistService,$timeout, $filter,$location) {
+				$filter,$location,url) {
 				
 				$scope.testMsg = "Testing Message";
 				$scope.user={};
@@ -172,7 +171,7 @@ App
 					});
 				}
 				
-				$scope.loadUserListDropDown = function(){
+				/*$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					userlistService.getUserList()
 					.then(
@@ -181,7 +180,7 @@ App
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
 					});
-				}
+				}*/
 				
 				$scope.showSuccessMessage = function(message) {
 
@@ -215,5 +214,10 @@ App
 					$scope.email = "";
 					
 				};
+				
+				$scope.gotoHomePage = function(){
+					
+					window.location = url+"employeehomepage";
+				}
 				
 			} ]);

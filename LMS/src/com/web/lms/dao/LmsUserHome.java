@@ -134,15 +134,18 @@ public class LmsUserHome {
 		catch(Exception ex) {			
 			return null;			
 		}
-	}
+	
+    }
+	 
     
-    public List<LmsUser> findByUnameandMobile(String uName, String mobile, String status) {
+    public List<LmsUser> findByUnameandMobile(String uName, String mobile, String nid, String status) {
 
 		try {
 			Query query = entityManager
-					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.status =:status")
+					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.nid =:nid OR e.status =:status")
 					.setParameter("uName","%"+ uName +"%")
 					.setParameter("mobile", "%"+ mobile +"%")
+					.setParameter("nid", nid)
 					.setParameter("status", status);
 
 			List<LmsUser> lmsUser = query.getResultList();
@@ -153,6 +156,23 @@ public class LmsUserHome {
 			return null;
 		}
 	}
+    
+    public LmsUser findByUserIDandPassword(String userid, String password) {
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsUser e WHERE e.id=:userid AND e.password=:password")
+					.setParameter("userid", userid).setParameter("password", password);
+
+			LmsUser lmsUser = (LmsUser) query.getSingleResult();
+
+			return lmsUser;
+		} 
+		catch (Exception ex) {
+			return null;
+		}
+	}
+
     
 		
 }

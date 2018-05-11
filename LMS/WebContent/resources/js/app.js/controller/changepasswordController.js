@@ -8,11 +8,14 @@ App
 			'$timeout',
 			'$filter',
 			'$location',
+			
+			
 
 			function($scope, $http, changepasswordService,
 				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
+				$scope.userID = "";
 				$scope.user = {
 						"office" : "",
 						"name" : "",
@@ -34,10 +37,7 @@ App
 						"insertDate" : "",
 						"insertBy" : "",
 						"updateDate" : "",
-						"updateBy" : "",
-						
-						
-						
+						"updateBy" : "",						
 						"mobileOffice" : "",	
 						"status" : "",
 						"password" : "",
@@ -47,26 +47,32 @@ App
 						"division_id" : "",
 						"ministry_id" : "",
 						"office_location_id" : "",
-													
-						
+																	
 					};
 				
 				
-				$scope.changepassword = function(newpassword){					
-					$scope.user.password = newpassword;
-					$scope.user.email = 's@sd.com';
+				$scope.getSessionUserDetails = function(userID){					
 					
-				changepasswordService.changepassword($scope.user).then(
+					$scope.userID = userID;						
+				};			
+				
+				$scope.changepassword = function(){		
+					
+					if ($scope.confirmpassword != $scope.newpassword){
+						
+						$scope.showErrorMessage("Your confirmpassword & newpassword doesn`t match.");
+						$scope.clearAll();
+						return;
+					}
+					
+					
+				changepasswordService.changepassword($scope.newpassword, $scope.oldpassword, $scope.userID).then(
 						function(d) {
-							$scope.testMsg = d.message;
-							console.log("Success.",d.message);
-							$scope.showSuccessMessage("Password change Successfull.");
+							$scope.showSuccessMessage(d.data.message);
 							$scope.clearAll();
 						},
-						function(e) {
-							$scope.testMsg = e.data.message;								
-							console.error(e.data.message);
-							$scope.showErrorMessage("Fail password change.");
+						function(e) {							
+							$scope.showErrorMessage(e.data.message);
 							$scope.clearAll();
 						});
 			};
@@ -109,7 +115,6 @@ App
 				
 			};
 			
-			
-			
+					
 			
 			} ]);

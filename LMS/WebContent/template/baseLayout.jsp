@@ -122,8 +122,8 @@
                         </ul>
                     </li>
                     
-                    <li> <a href="leavehistory" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >Leave History</span></a> </li>
-                     <li> <a href="managedelegation" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >Manage Delegation</span></a> </li>
+                    <li> <a href="leavehistory" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >My Leave Balance</span></a> </li>
+                     <li> <a href="rptleavestatus" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >My Leave Status</span></a> </li>
                     
                     <li> <a href="#" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
@@ -134,7 +134,6 @@
                     <li> <a href="#" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Maintainance<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="manageuser">Manage User</a></li>
-                            <li><a href="manageusersearch">Search User</a></li>
                             <li><a href="divisioninfo">Division</a></li>
                             <li><a href="ministryinfo">Ministry</a></li>
                             <li><a href="holidaymanagement">Holiday</a></li>
@@ -144,6 +143,9 @@
                         <ul class="nav nav-second-level">
                             <li><a href="changepassword">Change Password</a></li>
                             <li><a href="userprofile">Update Profile</a></li>
+                            <li><a href="delegateemployee">Manage Delegation</a></li>
+                            <li><a href="managereliever">Manage Delegation New</a></li>  
+                            
                         </ul>
                     </li>
                 </ul>

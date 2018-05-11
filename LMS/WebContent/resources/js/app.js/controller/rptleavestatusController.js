@@ -14,18 +14,24 @@ App
 				$timeout, $filter,NgTableParams,$location) {
 			
 				
-				$scope.loadrptleavestatus = function(userID){					
+				$scope.loadrptleavestatus = function(userID){	
+					
+					var dataReportStatus={};
 					rptleavestatusService.getleavestatus(userID)
 					.then(
 							function(d){
-						var data = d.listLmsWfRequest;
-						$scope.tableParams = new NgTableParams({}, { dataset: data});
+						var dataReportStatus = d.listLmsWfRequest;
+						$scope.tableParams = new NgTableParams({}, { dataset: dataReportStatus});
 					},
 					function(errResponse){
 						
 					}
 					);
 				};
+				
+				$scope.gotoHomePage = function(){	
+					window.location = url+"employeehomepage";
+				}
 				
 
 			

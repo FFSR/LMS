@@ -232,67 +232,62 @@
 		</div>
 		<br>
 		<div class="row">
-		       <div class="col-md-6">
-		           <div class="form-group">
-						<label class="control-label col-md-3" >Supervisor</label>
-						  <div class="col-md-9">
-							<!-- Drop Down list from table -->
-								<select class="form-control" id="ddReliever" ng-model="ddReliever"
-									ng-model="user.lmsUser"
-									ng-options="x as x.name for x in userData track by x.id">
-									<option value="">Select</option>
-								</select>
-						</div>
-					</div>
-			   </div> 
-			   <div class="col-md-6">
-		           <div class="form-group">
-						<label class="control-label col-md-3" >Address</label>
-						  <div class="col-md-9">
-							<textarea rows="3" type="textarea" ng-model="user.address"
-					         class="form-control" placeholder="Address"></textarea>
-						</div>
-					</div>
-			   </div> 
-	  </div>
-	   <div class="row">
-		       <div class="col-md-6">
-		           <div class="form-group">
-						<label class="control-label col-md-3" >Office</label>
-						  <div class="col-md-9">
-							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsOfficeLocation"
-								ng-options="x as x.name for x in officeNames track by x.id">
-								<option value="">Select</option>
-								<!-- <option value="">Hospital</option>
-									<option value="">Casual</option> -->
-							  </select> Status: {{appStatus}}
-						</div>
-					</div>
-			   </div> 
-			   
-			   <div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3" >Password</label>
-						<div class="col-md-9">
-							<input type="password" ng-model="user.password" ng-required="true" class="form-control"
-					         placeholder="Password">
-						</div>
-					</div>
-				</div>
-			   
-			   
+			<div class="col-sm-3" >Supervisor
+				Email</div>
+			<div class="col-sm-3" >
+				<input type="text" ng-model="supervisoremail" class="form-control" ng-required="true"
+					placeholder="Supervisor Email">
+			</div>
+			<div class="col-sm-3" >Address</div>
+			<div class="col-sm-3" >
+				<textarea rows="3" type="textarea" ng-model="user.address"
+					class="form-control" placeholder="Address"></textarea>
+			
+				
+	
+			</div>
+</div>
+
+<div class="row">
+			<div class="col-sm-3" >Office</div>
+			<div class="col-sm-3" >
+				<select class="form-control" id="ddAppStatus"
+					ng-model="user.lmsOfficeLocation"
+					ng-options="x as x.name for x in officeNames track by x.id">
+					<option value="">Select</option>
+					<!-- <option value="">Hospital</option>
+						<option value="">Casual</option> -->
+				</select> Status: {{appStatus}}
+			</div>
+<div class="col-sm-3" >Password:</div>
+			<div class="col-sm-3" >
+				<input type="text" name="password" ng-model="password" class="form-control" ng-required="true" ng-pattern="/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/"
+					placeholder="Password"><span ng-show="registrationForm.password.$error.pattern">Ensure string has two uppercase letters, one special case, two digits,three lowercase letters and minimum length 8</span> 
+			</div>
+
+
+		</div>
+		<div class=row>
+			<div class="col-sm-3" >Re-Type Password:</div>
+			<div class="col-sm-3" >
+				<input type="text" ng-model="re_password"  class="form-control" ng-required="true"
+					placeholder="Re-Type Password"/> <span ng-if="(password != re_password)"> Password Not Match</span>
+			</div>
+		</div>
+
+		<br>
 
 		</div>
 		<br>
 		<div class="row">
-			<button type="submit" class="btn" id="submit"
+			<button type="submit" class="btn btn-inverse waves-effect waves-light" id="submit"
 				ng-click="registration()">Submit</button>
-			<div class="col-sm-3" style="background-color: white;"></div>
-			<div class="col-sm-3" style="background-color: white;">
-				<input type="button" class="btn btn-info" value="Cancel">
+			<div class="col-sm-3" ></div>
+			<div class="col-sm-3" >
+				<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()">
+				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
 			</div>
-			<div class="col-sm-3" style="background-color: white;"></div>
+			
 		</div>
 		
 		</form>
@@ -305,7 +300,7 @@
 				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
 					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 			</div>
-			<div class="col-sm-3" style="background-color: white;"></div>
+			
 		</div>
 	</div>
 </body>

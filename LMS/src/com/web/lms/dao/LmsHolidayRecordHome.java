@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,6 +47,7 @@ public class LmsHolidayRecordHome {
 	public void remove(LmsHolidayRecord persistentInstance) {
 		log.debug("removing LmsHolidayRecord instance");
 		try {
+			persistentInstance = entityManager.merge(persistentInstance);
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
 		} catch (RuntimeException re) {
