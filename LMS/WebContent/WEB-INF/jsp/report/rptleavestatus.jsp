@@ -21,6 +21,7 @@
 
 		<div class="container-fluid">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 			<div class="row">
@@ -53,11 +54,16 @@
 			</div>
 		
 >>>>>>> Fuad
+=======
+>>>>>>> Fuad
 			<!-- By Shourav 29th April 2018 -->
 
 			<div>
 				<table class="table table-sm">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Fuad
 				<div>
 					Test Message: {{testMessage}}
 					<table ng-table="tableParams" class="table" show-filter="true">
@@ -80,6 +86,7 @@
 					</table>
 				</div>
 			</table>
+<<<<<<< HEAD
 =======
 					<div>
 						Test Message: {{testMessage}}
@@ -109,6 +116,8 @@
 						</table>
 					</div>
 				</table>
+>>>>>>> Fuad
+=======
 >>>>>>> Fuad
 			</div>
 

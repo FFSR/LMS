@@ -252,6 +252,7 @@
 		<br>
 		<div class="row">
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<div class="col-sm-3" >Supervisor
 				Email</div>
 			<div class="col-sm-3" >
@@ -297,6 +298,8 @@
 
 		<br>
 =======
+=======
+>>>>>>> Fuad
 		       <div class="col-md-6">
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Supervisor</label>
@@ -356,6 +359,9 @@
 			   
 			   
 			   </div>
+<<<<<<< HEAD
+>>>>>>> Fuad
+=======
 >>>>>>> Fuad
 
 		
@@ -366,7 +372,10 @@
 			<div class="col-sm-3" ></div>
 			<div class="col-sm-3" >
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()">
+=======
+>>>>>>> Fuad
 =======
 >>>>>>> Fuad
 				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
