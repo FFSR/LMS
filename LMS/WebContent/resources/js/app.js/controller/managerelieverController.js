@@ -53,9 +53,9 @@ App
 									$scope.sectionname=d.listLmsuser[0].lmsSection.name;
 								}
 								
-							//	$scope.getUserwiseRoleInfo();
+							$scope.getUserwiseRoleInfo();
 								
-							//	$scope.getUserDelegationInfo();
+						    $scope.getUserDelegationInfo();
 								
 								//$scope.loadUserListDropDown();
 								
