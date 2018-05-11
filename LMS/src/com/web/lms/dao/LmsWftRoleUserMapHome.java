@@ -12,6 +12,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRoleUserMap;
 
 /**
@@ -42,6 +44,7 @@ public class LmsWftRoleUserMapHome {
 	public void remove(LmsWftRoleUserMap persistentInstance) {
 		log.debug("removing LmsWftRoleUserMap instance");
 		try {
+			persistentInstance = entityManager.merge(persistentInstance);
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
 		} catch (RuntimeException re) {
@@ -79,6 +82,62 @@ public class LmsWftRoleUserMapHome {
 		Query query;
 		try {
 			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser.id=:userID").setParameter("userID", userID);
+			
+			return (List<LmsWftRoleUserMap>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsWftRoleUserMap> findDelegationByUser(Integer userID ) {
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.delegateBy=:userID").setParameter("userID", userID);
+			
+			return (List<LmsWftRoleUserMap>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+		
+	}
+	public List<LmsWftRoleUserMap> findRoleByUser(LmsUser user) {		
+		try { 			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser=:user")
+					.setParameter("user", user);
+		
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap =  query.getResultList();
+		
+			return listLmsWftRoleUserMap;
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public List<LmsWftRoleUserMap> findRoleByDelegateUser(Integer delegateBy ) {		
+		try { 			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.delegateBy=:delegateBy")
+					.setParameter("delegateBy", delegateBy);
+		
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap =  query.getResultList();
+		
+			return listLmsWftRoleUserMap;
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public List<LmsWftRoleUserMap> findByUserIDAndDelegateID(Integer userID, Integer delegateBy) {
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser.id=:userID AND e.delegateBy=:delegateBy")
+					.setParameter("userID", userID)
+					.setParameter("delegateBy", delegateBy);
 			
 			return (List<LmsWftRoleUserMap>) query.getResultList();
 		}catch(Exception ex) {

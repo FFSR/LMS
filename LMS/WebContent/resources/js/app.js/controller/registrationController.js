@@ -75,22 +75,28 @@ App
 					$scope.user.telephone = $scope.telephone;
 					$scope.user.email = $scope.email;
 					$scope.user.fax = $scope.fax;
-					$scope.user.joiningdate = $scope.joiningdate;
+					$scope.user.joiningdate = new Date($('#joiningDate').val());
 					$scope.user.gender = $scope.gender;
 					$scope.user.supervisoremail = $scope.supervisoremail;
 					$scope.user.address = $scope.address;*/
 						
-					console.log($scope.user.username);
+					//console.log($scope.user.username);
+					
+					$scope.user.nationality = $scope.nationality.name;
+					$scope.user.status = "PENDING";
+					
+					$scope.user.gender= $scope.gender.name;
 					
 					registrationService.registration($scope.user).then(
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
-								$scope.showSuccessMessage("Registration Successfully.");
+								$scope.showSuccessMessage("Registration Successfull.");
+								$window.location.reload();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
-								console.error(e.data.message);
+								//console.error(e.data.message);
 								$scope.showErrorMessage("Registration Failed.");
 							});
 				};
@@ -148,6 +154,33 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
+				
+				$scope.getDropdownDataNationality = function(dropdownname){
+					DropDownService.getNationalityOption(dropdownname).then(function(d) {
+						$scope.dropdownNationalityNames = d.listLmsDropdown;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				$scope.getDropdownDataGender = function(dropdownname){
+					DropDownService.getGenderOption(dropdownname).then(function(d) {
+						$scope.dropdownGenderNames = d.listLmsDropdown;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
+				
+				/*$scope.loadUserListDropDown = function(){
+					$scope.dDName = "";
+					userlistService.getUserList()
+					.then(
+						function(d) {
+						$scope.userData = d;
+					}, function(errResponse) {
+						console.log("Failed to get User Drop Down.");
+					});
+				}*/
 				
 				$scope.showSuccessMessage = function(message) {
 

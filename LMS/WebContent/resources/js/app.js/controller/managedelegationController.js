@@ -1,6 +1,6 @@
 App
 	.controller(
-		'leaveapplicationController',
+		'managedelegationController',
 		[
 			'$scope',
 			'$http',
@@ -8,14 +8,12 @@ App
 			'leavetypeService',
 			'userlistService',
 			'wfManagementService',
-			'DropDownService',
 			'$timeout',
 			'$filter',
 			'$location',
-			'url',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,DropDownService,
-				$timeout, $filter,$location,url) {
+			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,
+				$timeout, $filter,$location) {
 				
 				$scope.testMsg = "Testing Message";
 				
@@ -193,7 +191,7 @@ App
 					$scope.leaveapplication.userId= parseInt($scope.userid) ;
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					$scope.leaveapplication.lmsUser = $scope.ddReliever;
+					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId = $scope.ddReliever;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
@@ -201,7 +199,7 @@ App
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
-					$scope.leaveapplication.inStation = $scope.ddStation.name;
+					$scope.leaveapplication.inStation = $scope.inStation;
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
@@ -223,8 +221,6 @@ App
 								console.log("Success.",d.message);
 								$scope.showSuccessMessage("Insertion successful");
 								$scope.uploadFile();
-								 $scope.ClearAll();
-								$window.location.reload();
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
@@ -242,14 +238,16 @@ App
 					});
 				};
 				
-				$scope.loadDropDownStation = function(dropdownname){
-					DropDownService.getStationOptions(dropdownname).then(function(d) {
-						$scope.stationData = d.listLmsDropdown;
+			$scope.loadUserListDropDown = function(){
+					$scope.dDName = "";
+					userlistService.getUserList()
+					.then(
+						function(d) {
+						$scope.userData = d;
 					}, function(errResponse) {
-						console.log("Failed to get Drop Down.");
+						console.log("Failed to get User Drop Down.");
 					});
 				};
-				
 				
 				/* Show Success Message */
 				$scope.showSuccessMessage = function(message) {
@@ -269,23 +267,6 @@ App
 						$scope.successMessages = null;
 						$scope.errorMessages = null;
 					}, 6000);
-				};
-				
-				$scope.loadUserListDropDown = function(){
-					$scope.dDName = "";
-					
-					userlistService.getUserList()
-					.then(
-						function(d) {
-						$scope.usersList = d;
-						$scope.q = d;
-						$scope.userData;
-						console.log($scope.usersList);
-						//$scope.userData = d.listLmsUser;
-					}, function(errResponse) {
-						console.log("Failed to get User Drop Down.");
-	
-					});
 				};
 		/* $scope.getleaveapplication = function(leaveapplicationid){
 					console.log("From Get Method");
@@ -311,52 +292,6 @@ App
 					
 					console.log("User Group");
 				};
-				
-				$scope.showLeaveBalance = function(userid,leavetypeid){
-					
-					//$scope.Userid = 
-					//$scope.t = leavetype;
-					//console.log("efghjk");
-					leaveapplicationservice.getLeaveBalance($scope.userid,leavetypeid)
-					.then(
-							function(d) {
-						
-						//$scope.lmsLeaveBalance=d.lmsLeaveBalance;
-						
-						$scope.eligibility = d.lmsLeaveBalance.eligiblity;
-						$scope.leaveBalance = d.lmsLeaveBalance.leaveBalance;
-						$scope.leaveTotal = d.lmsLeaveBalance.leaveTotal;
-						
-						//$scope.eligibility = d.eligiblity;
-						
-					}, function(errResponse) {
-						console.log("Failed to get Drop Down.");
-					});
-				}
-				
-                    $scope.gotoHomePage = function(){	
-					window.location = url+"employeehomepage";
-				}
-                    
-                    $scope.ClearAll = function() {
-    					
-    					$scope.leaveTaken='0';
-    					 $scope.leavetype='0';
-    					$scope.userid =0;
-    					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
-    					 $scope.leaveBalance='0';
-    					$scope.ddReliever='0';
-    					 $scope.eligibility="";
-    					 new Date($('#fromDate').val(''));
-    					new Date($('#toDate').val(''));
-    					 $scope.totalDayCount='0';
-    					 $scope.totalDayText="";
-    					 $scope.reasonForLeave="";
-    					 $scope.taskNeedToPerformed="";
-    					 $scope.ddStation='0';
-    					 
-    					 
-    				};
 				
 			} 
 			]);

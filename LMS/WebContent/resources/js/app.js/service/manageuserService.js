@@ -10,8 +10,21 @@ App.factory('manageuserService', [
 		function($http, $q, url) {
 			return {
 				
-				manageuser: function(user_id){
-					return $http.get(url+'manageuser/'+user_id)
+				manageuser: function(userName, mobile, nid, status){
+					return $http.get(url+'manageuser/'+ userName +'/'+ mobile +'/'+ nid +'/'+ status +'/')
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						console
+								.error("Error while fetching user info list.");
+						return $q
+								.reject(errResponse);
+					});
+				},
+				
+				manageuser: function(userid){
+					return $http.get(url+'manageuser/'+ userid)
 					.then(function(response) {
 						return response.data;
 					},

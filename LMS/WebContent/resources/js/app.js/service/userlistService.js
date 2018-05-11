@@ -11,7 +11,7 @@ App.factory('userlistService', [
 			return {
 				
 				getUserList: function(){
-					return $http.get(url+'getUserList/')
+					return $http.get(url+'getUserlist/')
 					.then(function(response) {
 						return response.data;
 					},

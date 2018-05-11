@@ -30,7 +30,16 @@ App
 								console
 										.error("Error while fetching Currencies");
 							});
-				};											
+				};	
+				
+				$scope.showUsername = function(userID){
+					$scope.dDName = "";
+					homepagegridshowService.getUserName(userID).then(function(d) {
+						$scope.dropdownData = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				};
 				
 				
 			} ]);

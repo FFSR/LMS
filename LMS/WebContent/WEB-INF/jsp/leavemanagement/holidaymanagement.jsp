@@ -27,46 +27,61 @@
 <body>
 	<br>
 	<div ng-controller="holidayController">
-
 		<form class="form-horizontal" name="memoform">
-
 			<div
-				ng-init="holidaygridshow()();loadDropDownHolidayOption('HolidayOption');"></div>
+				ng-init="holidaygridshow()"></div>
+				<div
+				ng-init="loadDropDownHolidayOption('HolidayOption')"></div>
+				<div
+				ng-init="loadDropDownMoonOption('HolidayMoon')"></div>
+				
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-sm-3" style="background-color: white;">Holiday
-						Description</div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="text" ng-model="leaveSubject" class="form-control" ng-required="true">
+					<div class="col-md-6">
+					  <div class="form-group">
+						<label class="control-label col-md-3" >Holiday Description</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="leaveSubject" class="form-control" ng-required="true">
+						</div>
 					</div>
-					<label class="col-sm-3 control-label">Holiday Date</label>
-					<div class="col-sm-3">
-						<input type="text" id="fromDate" class="form-control" />
-					</div>
+				</div>
+				    <div class="col-md-6">
+					  <div class="form-group">
+						 <label class="control-label col-md-3" >Holiday Date</label>
+						 <div class="col-md-9">
+							<input type="text" id="fromDate" class="form-control" />
+						</div>
+					  </div>
+				  </div>
 
 				</div>
 				<br>
 				<div class="row">
-					<div class="col-sm-3" style="background-color: white;">Optional</div>
-					<div class="col-md-3">
-						<!-- Drop Down list from table -->
+				  <div class="col-md-6">
+					  <div class="form-group">
+						 <label class="control-label col-md-3" >Optional</label>
+						   <div class="col-md-9">
+							<!-- Drop Down list from table -->
 						<select class="form-control" id="ddOptional" ng-model="ddOptional"
-							ng-options="x as x.name for x in optionData track by x.id">
+							ng-options="x as x.name for x in optionData track by x.name">
 							<option value="">Select</option>
 						</select>
-
-					</div>
-					<div class="col-sm-3" style="background-color: white;">Subject
-						to Moon</div>
-					<div class="col-md-3">
-						<!-- Drop Down list from table -->
+						   </div>
+					  </div>
+				  </div>
+				 
+				 <div class="col-md-6">
+					  <div class="form-group">
+						 <label class="control-label col-md-3" >Subject to Moon</label>
+						   <div class="col-md-9">
+							<!-- Drop Down list from table -->
 						<select class="form-control" id="ddMoon" ng-model="ddMoon"
-							ng-options="x as x.name for x in userData track by x.id">
+							ng-options="x as x.name for x in moonData track by x.name">
 							<option value="">Select</option>
 						</select>
-
-					</div>
-
+						   </div>
+					  </div>
+				  </div>
 				</div>
 
 				<div class="row">
@@ -74,11 +89,9 @@
 						ng-click="holidaymanagement()">Submit</button \>
 					<div class="col-sm-3" style="background-color: white;"></div>
 					<div class="col-sm-3" style="background-color: white;">
-						<input type="button" class="btn btn-info" value="Cancel">
+						<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()";>
 					</div>
 				</div>
-				<div>Response: {{testMsg}}</div>
-				
 				<div class="row">
 				<div class="col-md-12">
 					<div id="successMssages" class="p-3 mb-2 bg-success text-white"
@@ -94,7 +107,7 @@
 			<div>
 				<table class="table table-sm">
 					<div>
-						Test Message: {{testMessage}}
+						Holiday List
 						<table ng-table="tableParams" class="table" show-filter="true">
 							<tr ng-repeat="holidayrecord in $data">
 								<td title="'Serial No'" filter="{name: 'text'}"
