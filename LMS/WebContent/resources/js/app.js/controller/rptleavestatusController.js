@@ -21,7 +21,10 @@ App
 					$scope.userID = userID;
 				};
 				
-				$scope.loadrptleavestatus = function(){					
+				$scope.loadrptleavestatus = function(userID){	
+					
+					$scope.userID = userID;
+					
 					rptleavestatusService.getleavestatus($scope.userID)
 					.then(
 							function(d){

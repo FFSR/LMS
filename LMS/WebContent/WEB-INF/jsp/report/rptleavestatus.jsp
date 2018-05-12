@@ -17,7 +17,7 @@
 
 	<div ng-controller="rptleavestatusController">
 
-		<div ng-init="getSessionUserDetails('${sessionScope.user.id}');"></div>
+		<div ng-init="loadrptleavestatus('${sessionScope.user.id}');"></div>
 
 		<div class="container-fluid">
 			<div class="row">
@@ -56,18 +56,16 @@
 					<div>
 						Test Message: {{testMessage}}
 						<table ng-table="tableParams" class="table" show-filter="true">
-							<tr ng-repeat="LmsWfRequest in $data">
-								<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequest.lmsLeaveApplication.id}}</td>
+							<tr ng-repeat="wfRequestHop in $data">
+								<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
 								<td title="'Employee name'"
 									filter="{ 'lmsUserByUserId.name': 'text'}"
 									sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUser.name}}</td>
-
 								<td title="'From Date'" filter="{ type: 'text'}"
-									sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsleaveapplication.fromDate
+									sortable="'wfRequestHop.lmsleaveapplication.fromDate'">{{wfRequestHop.lmsleaveapplication.fromDate
 									| date: YYYY-MM-dd}}</td>
-
 								<td title="'To Date'" filter="{ leaveTotal: 'text'}"
-									sortable="'totalleave'">{{wfRequestHop.lmsleaveapplication.toDate | date:
+									sortable="'wfRequestHop.lmsleaveapplication.toDate'">{{wfRequestHop.lmsleaveapplication.toDate | date:
 									YYYY-MM-dd}}</td>
 
 								<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"
@@ -78,8 +76,7 @@
 
 								<td title="'Action'"><button class="btn-primary"
 										ng-click="showLeaveApplicationDetails(wfRequestHop)">Details</button></td>
-						</table>
-					</div>
+						</table>					</div>
 				</table>
 			</div>
 

@@ -54,7 +54,7 @@ App
 							"updateBy":""					
 						},
 						
-						"lmsUserByReliverEmailAddressUserId" :{
+						"lmsUserByUserId" :{
 							"id": 0,
 					        "lmsDepartment": {
 					            "id": 0,
@@ -190,10 +190,11 @@ App
 					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
 					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
-					$scope.leaveapplication.userId= parseInt($scope.userid) ;
+					//$scope.leaveapplication.userId= parseInt($scope.userid) ;
+					$scope.leaveapplication.lmsUserByUserId.id= parseInt($scope.userid) ;
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					$scope.leaveapplication.lmsUser = $scope.ddReliever;
+					//$scope.leaveapplication.lmsUser = $scope.ddReliever;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
@@ -202,6 +203,7 @@ App
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
 					$scope.leaveapplication.inStation = $scope.ddStation.name;
+					//$scope.leaveapplication.lmsUserByReliverEmailAddressUserId=
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
@@ -271,7 +273,7 @@ App
 					}, 6000);
 				};
 				
-				$scope.loadUserListDropDown = function(){
+			/*	$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					
 					userlistService.getUserList()
@@ -360,5 +362,3 @@ App
 				
 			} 
 			]);
-				
-				
