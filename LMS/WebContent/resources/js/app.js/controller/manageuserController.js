@@ -30,23 +30,23 @@ App.controller('manageuserController', [
 
 				$scope.statusFinal = "";
 
-				if ($scope.userName == null) {
+				if ($scope.userName == null || $scope.userName == "") {
 					$scope.userName = "880";
 				}
 
-				if ($scope.mobile == null) {
+				if ($scope.mobile == null || $scope.mobile == "") {
 					$scope.mobile = "a";
 				}
 
-				if ($scope.nid == null) {
+				if ($scope.nid == null || $scope.nid == "") {
 					$scope.nid = "a";
 				}
 
-				if ($scope.status == null) {
+				if ($scope.ddstatus == null) {
 					$scope.statusFinal = "880";
 
 				} else {
-					$scope.statusFinal = $scope.status.text;
+					$scope.statusFinal = $scope.ddstatus.text;
 				}
 
 				

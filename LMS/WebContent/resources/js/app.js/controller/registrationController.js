@@ -13,6 +13,7 @@ App
 			'OfficeService',
 			'DropDownService',
 			'registrationService',
+			'userlistService',
 			'$filter',
 			'$location',
 			'url',
