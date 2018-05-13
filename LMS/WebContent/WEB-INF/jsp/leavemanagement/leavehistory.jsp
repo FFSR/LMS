@@ -21,7 +21,7 @@
 					<!-- Modal content-->
 					<div class="content">
 						<div class="header">
-							<h4 class="modal-title">Leave History Report</h4>
+							<h4 class="modal-title">My Leave Balance</h4>
 						</div>
 						<div class="modal-body">
 							<form role="form">
@@ -31,7 +31,7 @@
 								</div> -->
 
 								<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
-									ng-click="leavehistory()">Leave History</button>
+									ng-click="leavehistory()">Leave Balance</button>
 							</form>
 							
 						</div>

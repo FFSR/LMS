@@ -92,6 +92,26 @@ public class LmsWfRequestHome {
 		}
 	}
 	
+	public List<LmsWfRequest> findRequestByUserAndDateRange(Integer userid, Date startdate,Date enddate) {
+		
+		// used to find request for a particular date range so that user can see status
+		// of all leave requests which are raised within this range. For checking 'My Leave Status' this will be used.
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate BETWEEN :startdate and :enddate")
+					.setParameter("userid", userid).setParameter("startdate", startdate).setParameter("enddate", enddate);
+
+			List<LmsWfRequest> listLmsWfRequest =  query.getResultList();
+
+			return listLmsWfRequest;
+
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+	
+	
 	public List<LmsWfRequest> findRequestByUserID(Integer userid) {
 
 		try {
