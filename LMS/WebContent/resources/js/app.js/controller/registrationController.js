@@ -87,7 +87,7 @@ App
 					$scope.user.nationality = $scope.nationality.name;
 					$scope.user.status = "PENDING";
 					$scope.user.lmsUser= $scope.ddReliever;
-					$scope.user.joiningdate = new Date($('#joiningDate').val());
+					$scope.user.joiningDate = new Date($('#joiningDate').val());
 					
 					
 					$scope.user.gender= $scope.gender.name;
