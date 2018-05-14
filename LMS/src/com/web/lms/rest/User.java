@@ -180,14 +180,14 @@ public class User {
 
 	}*/
 
-	@RequestMapping(value = "/manageuser/{userName}/{mobile}/{nid}/{status}/", method = RequestMethod.GET)
+	@RequestMapping(value = "/manageuser/{userName}/{mobile}/{status}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userName") String uName,
-			@PathVariable("mobile") String mobile, @PathVariable("nid") String nid,
+			@PathVariable("mobile") String mobile,
 			@PathVariable("status") String status) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
-		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, nid, status);
+		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, status);
 		if (lmsUser.size() > 0) {
 
 			responseWrapper.setListLmsuser(lmsUser);
