@@ -32,6 +32,9 @@
 
 								<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
 									ng-click="leavehistory()">Leave Balance</button>
+									
+									<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="cancel"
+									ng-click="gomyPage()">Cancel</button>
 							</form>
 							
 						</div>

@@ -57,8 +57,10 @@ App
 					);
 				};
 				
-				$scope.gotoHomePage = function(){	
-					window.location = url+"employeehomepage";
+				
+				$scope.gomyPage = function(){	
+					location.reload();
+					window.location = url+"rptleavestatus";
 				}
 				
 

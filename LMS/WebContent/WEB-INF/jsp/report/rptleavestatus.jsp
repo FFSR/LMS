@@ -48,8 +48,8 @@
 				<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
 									ng-click="loadDatewiserptleavestatus('${sessionScope.user.id}')">Search</button>
 
-				<button type="submit" class="btn btn-success waves-effect waves-light " id="cancel"
-									>Cancel</button>
+				<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="cancel"
+									ng-click="gomyPage()">Cancel</button>
 				</div>	</div>
 				</form>
 			</div>
