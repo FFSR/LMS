@@ -12,6 +12,8 @@ public class ResponseWrapperLeaveRule {
 	Integer minimumHolidayConsider;
 	Integer numberOfDayConsider;
 	long numberOfDaysApplied;
+	
+	
 	public String getMessage() {
 		return message;
 	}

@@ -49,7 +49,7 @@ public class Leaverule {
 			@PathVariable("enddate") String strenddate) {
 
 		ResponseWrapperLeaveRule resWrapper = new ResponseWrapperLeaveRule();
-		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
 		try {
 
@@ -115,8 +115,6 @@ public class Leaverule {
 		
 		ResponseWrapperLeaveRule resWrapper = new ResponseWrapperLeaveRule();
 
-		resWrapper.setMessage("OK");
-
 		LmsLeaveBalance lmsLeaveBalance = null;
 
 		try {
@@ -138,12 +136,13 @@ public class Leaverule {
 			
 			//boolean isHoliday = findHoliday(currentDate);
 			
-			resWrapper = findHolidayRange(startDate, endDate);			
+			// rest wrapper has initialize from this method
+			resWrapper = findHolidayRange(startDate, endDate);
+			resWrapper.setMessage("OK");
 				
 			// 1 day added for start and end date are same
 			long numberOfDaysApplied = calculateDateDifference(startDate, endDate) + 1;
-			resWrapper.setNumberOfDaysApplied(numberOfDaysApplied);
-			resWrapper.setNumberOfDayConsider( (int) numberOfDaysApplied + resWrapper.getMinimumHolidayConsider());
+
 				
 			// Validation 0.1 : Leave Balance is not found for this Leave Type. Leave Balance account may change for dependent leave account.
 			lmsLeaveBalance = findLeaveBalanceCurrent(user, leaveType);
@@ -151,6 +150,18 @@ public class Leaverule {
 			if (lmsLeaveBalance == null) {
 				resWrapper.setMessage("Validation 0.1 : Leave Balance is not found for this Leave Type.");
 				return resWrapper;
+			}
+			
+			// number of leave will be added based on ImpactOnEarnedLeave flag
+			if(leaveType.getImpactOnHoliday()!=null && leaveType.getImpactOnHoliday().equals(DECISION.YES.toString())) {
+				
+				resWrapper.setNumberOfDaysApplied(numberOfDaysApplied);
+				resWrapper.setNumberOfDayConsider( (int) numberOfDaysApplied + resWrapper.getMinimumHolidayConsider());
+				
+			}else {
+				
+				resWrapper.setNumberOfDaysApplied(numberOfDaysApplied);
+				resWrapper.setNumberOfDayConsider((int) numberOfDaysApplied);				
 			}
 
 			// Validation 1: Maximum Leave limit exceed.
@@ -281,6 +292,8 @@ public class Leaverule {
 					return resWrapper;
 				}
 			}
+			
+
 
 		} catch (Exception ex) {
 
@@ -310,13 +323,11 @@ public class Leaverule {
 
 				if (leaveTypeDependentLeaveAc != null) {
 
-					lmsLeaveBalance = lmsLeaveBalanceHome.findLeavebalacebyUserAndLeaveTypeAndACStatus(user.getId(),
-							leaveTypeDependentLeaveAc.getId(), LEAVETYPE.CURRENT.toString());
+					lmsLeaveBalance = lmsLeaveBalanceHome.findLeavebalacebyUserAndLeaveTypeAndACStatus(user.getId(), leaveTypeDependentLeaveAc.getId(), LEAVETYPE.CURRENT.toString());
 				}
 
 			} else {
-				lmsLeaveBalance = lmsLeaveBalanceHome.findLeavebalacebyUserAndLeaveTypeAndACStatus(user.getId(),
-						leaveType.getId(), LEAVETYPE.CURRENT.toString());
+				lmsLeaveBalance = lmsLeaveBalanceHome.findLeavebalacebyUserAndLeaveTypeAndACStatus(user.getId(),leaveType.getId(), LEAVETYPE.CURRENT.toString());
 			}
 			return lmsLeaveBalance;
 		} catch (Exception ex) {
@@ -416,12 +427,12 @@ public class Leaverule {
 		
 		resWrapper.setForwardHolidayCount(forwardCount);
 		
+		// minimum holiday part will be consider with original applied leave
 		if(forwardCount < backwardCount ) {			
 			resWrapper.setMinimumHolidayConsider(forwardCount);			
 		}else {			
 			resWrapper.setMinimumHolidayConsider(backwardCount);			
-		}
-		
+		}		
 		
 		return resWrapper;
 	}
