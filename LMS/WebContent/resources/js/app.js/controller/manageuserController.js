@@ -38,10 +38,7 @@ App.controller('manageuserController', [
 					$scope.mobile = "a";
 				}
 
-				if ($scope.nid == null || $scope.nid == "") {
-					$scope.nid = "a";
-				}
-
+				
 				if ($scope.ddstatus == null) {
 					$scope.statusFinal = "880";
 
@@ -52,14 +49,14 @@ App.controller('manageuserController', [
 				
 				//$scope.user.status= $scope.status.name;
 				
-				manageuserService.manageuser($scope.userName, $scope.mobile,
-						$scope.nid, $scope.statusFinal).then(function(d) {
-					$scope.testMsg1 = "Test";
-					console.log("Success.", d.message);
-					var data = d.listLmsuser;
-					$scope.tableParams = new NgTableParams({}, {
-						dataset : data
-					});
+				manageuserService.getmanageuser($scope.userName, $scope.mobile, $scope.statusFinal)
+					.then(function(d) {
+						$scope.testMsg1 = "Test";
+						console.log("Success.", d.message);
+						var data = d.listLmsuser;
+						$scope.tableParams = new NgTableParams({}, {
+							dataset : data
+						});
 
 				}, function(errResponse) {
 

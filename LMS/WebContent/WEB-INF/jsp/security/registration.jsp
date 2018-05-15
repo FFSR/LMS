@@ -233,9 +233,11 @@
 						  <div class="col-md-9">		
 							<input type="text" id="joiningDate" class="form-control" ng-required="false"
 					         placeholder="Joining Date">
+							<input type="text" id="joiningDate"  class="form-control" ng-required="false"
+					         placeholder="Joining Date">  
 						</div>
 					</div>
-			   </div> 
+			   </div>  
 			   <div class="col-md-6">
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Gender</label>
