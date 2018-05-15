@@ -206,7 +206,9 @@ App
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
-					$scope.leaveapplication.inStation = $scope.ddStation.name;
+					if($scope.ddStation!=null){
+						$scope.leaveapplication.inStation = $scope.ddStation.name;
+					}
 					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId=$scope.ddReliever;
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
