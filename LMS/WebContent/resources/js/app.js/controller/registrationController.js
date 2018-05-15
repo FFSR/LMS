@@ -13,6 +13,7 @@ App
 			'OfficeService',
 			'DropDownService',
 			'registrationService',
+			'userlistService',
 			'$filter',
 			'$location',
 			'url',
@@ -86,6 +87,7 @@ App
 					$scope.user.nationality = $scope.nationality.name;
 					$scope.user.status = "PENDING";
 					$scope.user.lmsUser= $scope.ddReliever;
+					$scope.user.joiningDate = new Date($('#joiningDate').val());
 					
 					
 					$scope.user.gender= $scope.gender.name;
@@ -94,14 +96,18 @@ App
 							function(d) {
 								//$scope.testMsg = d.message;
 								//console.log("Success.",d.message);
-								$scope.showSuccessMessage(d.data.message);
-								$window.location.reload();
+								$scope.clearAll();
+								
+								$scope.showSuccessMessage(d.message);
+								//$window.location.reload();
+								
+								
 								
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								//console.error(e.data.message);
-								$scope.showErrorMessage(e.data.message);
+								$scope.showErrorMessage(e.message);
 								
 							});
 				};
@@ -186,7 +192,7 @@ App
 					});
 				}
 				
-				/*$scope.loadUserListDropDown = function(){
+				$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					userlistService.getUserList()
 					.then(
@@ -195,7 +201,7 @@ App
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
 					});
-				}*/
+				}
 				
 				$scope.showSuccessMessage = function(message) {
 
@@ -226,7 +232,7 @@ App
 					//$scope.formSignVerified = false;
 					$scope.user.name = "";
 					$scope.user.lmsDivision = '0';
-					$scope.email = "";
+					$scope.user.email = "";
 					
 				};
 				

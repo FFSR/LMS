@@ -39,7 +39,7 @@
 	<div ng-init="getDesignationData()"></div>
 	<div ng-init="getMinistryData()"></div>
 	<div ng-init="getSectionData()"></div>
-	<div ng-init="getDropdownData()"></div>
+	<div ng-init="getDropdownData('userStatus')"></div>
 	<div ng-init="getRoleData()"></div>
 	<div ng-init="getWftroleData()"></div>
 	<div>
@@ -68,7 +68,7 @@
 					<div class="form-group">
 						<label class="control-label col-md-3">Status</label>
 						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus" ng-model="status"
+							<select class="form-control" id="ddAppStatus" ng-model="ddstatus"
 								ng-options="x as x.name for x in dropdownNames track by x.id">
 								<option value="">Select</option>
 							</select>

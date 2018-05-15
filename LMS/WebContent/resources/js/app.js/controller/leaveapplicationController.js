@@ -7,6 +7,7 @@ App
 			'leaveapplicationservice',
 			'leavetypeService',
 			'userlistService',
+			'manageuserService',
 			'wfManagementService',
 			'DropDownService',
 			'$timeout',
@@ -14,10 +15,11 @@ App
 			'$location',
 			'url',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,wfManagementService,DropDownService,
+			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,manageuserService,wfManagementService,DropDownService,
 				$timeout, $filter,$location,url) {
 				
 				$scope.testMsg = "Testing Message";
+				$scope.lmsuser="";
 				
 				$scope.uploadFile = function(){
 					$scope.processDropzone();
@@ -54,7 +56,7 @@ App
 							"updateBy":""					
 						},
 						
-						"lmsUserByReliverEmailAddressUserId" :{
+						"lmsUserByUserId" :{
 							"id": 0,
 					        "lmsDepartment": {
 					            "id": 0,
@@ -185,15 +187,18 @@ App
 						"inStation" :"",
 					};
 	
-				$scope.applicationforleave = function(){				
+				$scope.applicationforleave = function(){		
+				
 					
 					//$scope.leaveapplication.leaveAvailable = $scope.leaveavailable;
 					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
-					$scope.leaveapplication.userId= parseInt($scope.userid) ;
+					//$scope.leaveapplication.userId= parseInt($scope.userid) ;
+				//	$scope.leaveapplication.lmsUserByUserId.id= parseInt($scope.userid) ;
+					$scope.leaveapplication.lmsUserByUserId= $scope.lmsuser;
 					//$scope.leaveapplication.lmsLeaveType.type = $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					$scope.leaveapplication.lmsUser = $scope.ddReliever;
+					//$scope.leaveapplication.lmsUser = $scope.ddReliever;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
@@ -202,6 +207,7 @@ App
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
 					$scope.leaveapplication.inStation = $scope.ddStation.name;
+					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId=$scope.ddReliever;
 				//	$scope.leaveapplication.insertDate = 
 					//$scope.leaveapplication.insertBy = 3;
 					//$scope.leaveapplication.updatDate = $scope.update_date;
@@ -232,6 +238,24 @@ App
 								$scope.showErrorMessage("Insertion Fail");
 							});
 				}
+				
+                   $scope.getUserInfo= function(userID){
+					
+					$scope.testMessage = "Test Message";
+				  
+					  manageuserService.manageuser(userID).then(
+							function(d) {
+								$scope.testMsg1 = "Test";
+								console.log("Success.",d.message);
+								var data = d.listLmsuser;
+								$scope.lmsuser=d.listLmsuser[0];
+							},
+							function(errResponse) {
+								
+								console
+										.error("Error while fetching Currencies");
+							});
+				};
 				
 			$scope.loadLeaveTypeDownDown = function(){
 					$scope.dDName = "";
@@ -271,16 +295,16 @@ App
 					}, 6000);
 				};
 				
-				$scope.loadUserListDropDown = function(){
+			$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					
 					userlistService.getUserList()
 					.then(
 						function(d) {
-						$scope.usersList = d;
+						//$scope.usersList = d;
 						$scope.q = d;
-						$scope.userData;
-						console.log($scope.usersList);
+						$scope.userData=d;
+						//console.log($scope.usersList);
 						//$scope.userData = d.listLmsUser;
 					}, function(errResponse) {
 						console.log("Failed to get User Drop Down.");
@@ -360,5 +384,3 @@ App
 				
 			} 
 			]);
-				
-				

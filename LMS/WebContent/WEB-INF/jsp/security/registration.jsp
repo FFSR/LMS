@@ -231,11 +231,13 @@
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Joining Date</label>
 						  <div class="col-md-9">		
-							<input type="text" id="joiningDate" ng-model="user.joiningDate" class="form-control" ng-required="false"
+							<input type="text" id="joiningDate" class="form-control" ng-required="false"
 					         placeholder="Joining Date">
+							<input type="text" id="joiningDate"  class="form-control" ng-required="false"
+					         placeholder="Joining Date">  
 						</div>
 					</div>
-			   </div> 
+			   </div>  
 			   <div class="col-md-6">
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Gender</label>
@@ -250,11 +252,8 @@
 			   </div> 
 		</div>
 		<br>
-		<div class="row">
-<<<<<<< HEAD
-<<<<<<< HEAD
-			<div class="col-sm-3" >Supervisor
-				Email</div>
+<!-- 		<div class="row">
+			<div class="col-sm-3" >Supervisor Email</div>
 			<div class="col-sm-3" >
 				<input type="text" ng-model="supervisoremail" class="form-control" ng-required="true"
 					placeholder="Supervisor Email">
@@ -263,31 +262,30 @@
 			<div class="col-sm-3" >
 				<textarea rows="3" type="textarea" ng-model="user.address"
 					class="form-control" placeholder="Address"></textarea>
-			
 				
-	
 			</div>
-</div>
-
-<div class="row">
+		</div>
+		<br>
+			
+		<div class="row">
 			<div class="col-sm-3" >Office</div>
 			<div class="col-sm-3" >
 				<select class="form-control" id="ddAppStatus"
 					ng-model="user.lmsOfficeLocation"
 					ng-options="x as x.name for x in officeNames track by x.id">
 					<option value="">Select</option>
-					<!-- <option value="">Hospital</option>
-						<option value="">Casual</option> -->
+					
 				</select> Status: {{appStatus}}
 			</div>
-<div class="col-sm-3" >Password:</div>
+			
+			<div class="col-sm-3" >Password:</div>
 			<div class="col-sm-3" >
 				<input type="text" name="password" ng-model="password" class="form-control" ng-required="true" ng-pattern="/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/"
 					placeholder="Password"><span ng-show="registrationForm.password.$error.pattern">Ensure string has two uppercase letters, one special case, two digits,three lowercase letters and minimum length 8</span> 
 			</div>
 
-
 		</div>
+		<br>
 		<div class=row>
 			<div class="col-sm-3" >Re-Type Password:</div>
 			<div class="col-sm-3" >
@@ -295,11 +293,9 @@
 					placeholder="Re-Type Password"/> <span ng-if="(password != re_password)"> Password Not Match</span>
 			</div>
 		</div>
-
+ -->
 		<br>
-=======
-=======
->>>>>>> Fuad
+		<div class=row>
 		       <div class="col-md-6">
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Supervisor</label>

@@ -14,6 +14,9 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/wfManagementService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/manageuserService.js"></script>
+	
+<script type="text/javascript"
 	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
 <script type="text/javascript" src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
@@ -38,7 +41,7 @@
 	<br>
 	<div ng-controller="leaveapplicationController">
 	<div ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}')";></div> 
-	<div ng-init="loadDropDownStation('Station')"></div>">
+	<div ng-init="loadDropDownStation('Station');loadUserListDropDown();getUserInfo('${sessionScope.user.id}')"></div>">
 	
 	<form class="form-horizontal">
 	<div class="form-body">
@@ -179,6 +182,20 @@
 
 			         </div>
 			    </div>
+			    <div class="col-sm-6">
+					<div class="form-group">
+					   <label class="control-label col-md-3">Reliever</label>
+					       <div class="col-md-9">
+					           <!-- Drop Down list from table -->
+								<select class="form-control" id="ddReliever" ng-model="ddReliever"
+									ng-options="x as x.name for x in userData track by x.id">
+									<option value="">Select</option>
+								</select>
+				           </div>
+
+			         </div>
+			    </div>
+			    
            </div>
 			<br>
 			<div class="row">
