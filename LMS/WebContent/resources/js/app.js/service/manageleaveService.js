@@ -34,8 +34,8 @@ App.factory('manageleaveService', [
 								.reject(errResponse);
 					});
 				},
-				updateWFRequestHop: function(userID,wfRequestHopid,status){
-					return $http.put(url+'updaterequesthope/'+userID+'/'+wfRequestHopid+'/'+status+'/')
+				updateWFRequestHop: function(userID,wfRequestHopid,status, wfRequestHop){
+					return $http.put(url+'updaterequesthope/'+userID+'/'+wfRequestHopid+'/'+status+'/',wfRequestHop)
 					.then(function(response) {
 						return response.data;
 					},
