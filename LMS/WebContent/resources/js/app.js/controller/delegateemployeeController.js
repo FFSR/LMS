@@ -76,6 +76,8 @@ App
 							});
 				};
 				
+				
+				
 				$scope.getUserDelegationInfo= function(){
 					var dataUserDelegationInfo={};
 					$scope.testMessage = "Test Message";
