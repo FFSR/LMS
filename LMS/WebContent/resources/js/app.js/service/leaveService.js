@@ -20,6 +20,8 @@ App.factory('leaveService', [
 						return $q.reject(errResponse);
 					});
 				},
-								
+				
+				// new function
 			}
-		} ]);
+		} 
+		]);

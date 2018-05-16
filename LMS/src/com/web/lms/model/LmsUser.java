@@ -191,6 +191,7 @@ public class LmsUser implements java.io.Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SUPERVISOR_ID")
 	@JsonBackReference
+	// Update koi
 	public LmsUser getLmsUser() {
 		return this.lmsUser;
 	}

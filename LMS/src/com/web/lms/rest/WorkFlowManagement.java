@@ -126,7 +126,7 @@ public class WorkFlowManagement {
 
 	@RequestMapping(value = "/updaterequesthope/{userid}/{WfRequestHopid}/{hopStatus}", method = RequestMethod.PUT)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> updateRequestHope(@PathVariable("userid") Integer userid,
-			@PathVariable("WfRequestHopid") Integer WfRequestHopid, @PathVariable("hopStatus") String hopStatus) {
+			@PathVariable("WfRequestHopid") Integer WfRequestHopid, @PathVariable("hopStatus") String hopStatus, @RequestBody LmsWfRequestHop wfRequestHop) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
 

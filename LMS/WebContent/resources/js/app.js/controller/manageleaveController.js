@@ -138,7 +138,7 @@ App
 				$scope.submitHops = function(status){
 					$scope.status = status;
 					console.log("Status:", $scope.status);
-					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status).then(
+					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status, $scope.wfRequestHop).then(
 					function(d){
 						console.log(d);
 						$scope.showSuccessMessage("Status Updated");
