@@ -26,7 +26,7 @@
 	src="resources/js/app.js/directives/RestrictInput.js"></script>
 <link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
 	rel="stylesheet" />
-
+<script src="resources/js/app.js/service/leavehistoryService.js"></script>
 
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript"
