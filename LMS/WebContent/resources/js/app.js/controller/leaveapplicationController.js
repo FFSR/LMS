@@ -223,6 +223,7 @@ App.controller(
 													function(d){
 														$scope.showSuccessMessage(d.message);	
 														$scope.ClearAll();
+														$scope.validationLock = true;
 													},
 													function(e){
 														$scope.showErrorMessage(e.data.message);
