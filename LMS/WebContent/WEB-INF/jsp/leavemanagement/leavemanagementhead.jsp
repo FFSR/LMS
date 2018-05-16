@@ -82,6 +82,7 @@
 			</table>
 		</div>
 
+
 		Show: {{test}} <br>
 		<div class="container-fluid">
 			<div ng-show="showLeaveDetails">

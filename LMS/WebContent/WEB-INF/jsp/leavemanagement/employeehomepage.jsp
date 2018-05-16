@@ -44,6 +44,12 @@
 							<td title="'Section'"
 								filter="{ 'lmsUserByUserId.lmsSection.name': 'text'}"
 								sortable="'name'">{{leaveapplication.lmsUserByUserId.lmsSection.name}}</td>
+							<td title="'Department'"
+								filter="{ 'lmsUserByUserId.lmsDepartment.name': 'text'}"
+								sortable="'name'">{{leaveapplication.lmsUserByUserId.lmsDepartment.name}}</td>
+							<td title="'Division'"
+								filter="{ 'lmsUserByUserId.lmsDivision.name': 'text'}"
+								sortable="'name'">{{leaveapplication.lmsUserByUserId.lmsDivision.name}}</td>
 					</table>
 				</div>
 			</table>
