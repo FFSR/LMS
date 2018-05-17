@@ -122,7 +122,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Leave Remaining</label>
+							<label class="control-label col-md-3">Leave Balance</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="leaveBalance"
 									restrict-input="{type: 'digitsOnly'}" class="form-control"

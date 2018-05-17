@@ -141,7 +141,9 @@ public class Leaverule {
 			resWrapper.setMessage("OK");
 				
 			// 1 day added for start and end date are same
-			long numberOfDaysApplied = calculateDateDifference(startDate, endDate) + 1;
+			long numberOfDaysAppliedLong = calculateDateDifference(startDate, endDate) + 1;
+			Integer numberOfDaysApplied = (int) (long) numberOfDaysAppliedLong;
+			
 
 				
 			// Validation 0.1 : Leave Balance is not found for this Leave Type. Leave Balance account may change for dependent leave account.
@@ -156,27 +158,31 @@ public class Leaverule {
 			if(leaveType.getImpactOnHoliday()!=null && leaveType.getImpactOnHoliday().equals(DECISION.YES.toString())) {
 				
 				resWrapper.setNumberOfDaysApplied(numberOfDaysApplied);
-				resWrapper.setNumberOfDayConsider( (int) numberOfDaysApplied + resWrapper.getMinimumHolidayConsider());
+				resWrapper.setNumberOfDayConsider( numberOfDaysApplied + resWrapper.getMinimumHolidayConsider());
 				
 			}else {
 				
 				resWrapper.setNumberOfDaysApplied(numberOfDaysApplied);
-				resWrapper.setNumberOfDayConsider((int) numberOfDaysApplied);				
+				resWrapper.setNumberOfDayConsider( numberOfDaysApplied);				
 			}
 
 			// Validation 1: Maximum Leave limit exceed.
 			if (leaveType.getMaximumDays() != null && leaveType.getMaximumDays() != 0) {
 
-				if (leaveType.getMaximumDays() > (lmsLeaveBalance.getLeaveTaken() + lmsLeaveBalance.getLeaveApplied()
-						+ numberOfDaysApplied)) {
+				if (leaveType.getMaximumDays() < (lmsLeaveBalance.getLeaveTaken() + lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider())) {
 					
 					resWrapper.setMessage("Validation 1.0: Maximum Leave limit exceed.");
 					return resWrapper;
 				}
 			}
+			
+			if(lmsLeaveBalance.getLeaveBalance() < lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider()) {
+				
+				resWrapper.setMessage("Validation 1.1: Insafficient Leave Balance for this Leave Type.");
+			}
 
 			// Validation 2: Maximum times limit exceed.
-			else if (leaveType.getMaximumTimes() != null && leaveType.getMaximumTimes() != 0) {
+			if (leaveType.getMaximumTimes() != null && leaveType.getMaximumTimes() != 0) {
 
 				List<LmsLeaveApplication> leaveApplications = lmsLeaveApplicationHome
 						.findLeaveApplicationByUserandLeaveTypeandYear(user.getId(), leaveType.getId(), strCurrentYear);
@@ -189,7 +195,7 @@ public class Leaverule {
 			}
 
 			// Validation 3: Maximum leaves at a time limit exceed.
-			else if (leaveType.getMaximumAtATime() != null && leaveType.getMaximumAtATime() != 0) {
+			if (leaveType.getMaximumAtATime() != null && leaveType.getMaximumAtATime() != 0) {
 
 				if (leaveType.getMaximumAtATime() < numberOfDaysApplied) {
 				
@@ -200,7 +206,7 @@ public class Leaverule {
 
 			// Validation 4: Eligibility requirement, number of days from Joining date does
 			// not full filled.
-			else if (leaveType.getEligibleAfter() != null && leaveType.getEligibleAfter() != 0) {
+			if (leaveType.getEligibleAfter() != null && leaveType.getEligibleAfter() != 0) {
 
 				if (user.getJoiningDate() == null) {
 					
@@ -219,7 +225,7 @@ public class Leaverule {
 
 			// Validation 5: Eligibility requirement, number of days to resign does not full
 			// filled.
-			else if (leaveType.getEligibleBefore() != null && leaveType.getEligibleBefore() != 0) {
+			if (leaveType.getEligibleBefore() != null && leaveType.getEligibleBefore() != 0) {
 
 				if (user.getResigndate() == null) {
 					resWrapper.setMessage("Validation 5.1: User resign date can not be empty.");
@@ -234,7 +240,7 @@ public class Leaverule {
 					return resWrapper;
 				}
 
-				if (leaveType.getEligibleBefore() < numberOfDaysToResign) {
+				if (leaveType.getEligibleBefore() > numberOfDaysToResign) {
 
 					resWrapper.setMessage("Validation 5.0: Eligibility requirement, number of days to resign does not full filled.");
 					return resWrapper;
@@ -242,9 +248,9 @@ public class Leaverule {
 			}
 
 			// Validation 6: Leave Type is not ACTIVE.
-			else if (leaveType.getStatus() != null && !leaveType.getStatus().equals("")) {
+			if (leaveType.getStatus() != null && !leaveType.getStatus().equals("")) {
 
-				if (!leaveType.getStatus().equals(LEAVETYPE.ACTIVE)) {
+				if (!leaveType.getStatus().equals(LEAVETYPE.ACTIVE.toString())) {
 
 					resWrapper.setMessage("Validation 6.0: Leave Type is not ACTIVE.");
 					return resWrapper;
@@ -252,8 +258,8 @@ public class Leaverule {
 			}
 
 			// Validation 7: Insufficient Leave Balance.
-			else if ((leaveType.getIncremental() != null && !leaveType.getIncremental().equals(""))
-					&& leaveType.getIncremental().toUpperCase().equals(DECISION.YES)) {
+			if ((leaveType.getIncremental() != null && !leaveType.getIncremental().equals(""))
+					&& leaveType.getIncremental().toUpperCase().equals(DECISION.YES.toString())) {
 
 				if (lmsLeaveBalance.getLeaveTotal() > (lmsLeaveBalance.getLeaveTaken()
 						+ lmsLeaveBalance.getLeaveApplied() + numberOfDaysApplied)) {
@@ -265,7 +271,7 @@ public class Leaverule {
 
 			// Validation 8: Minimum at a time limit is not fulfilled
 
-			else if (leaveType.getMinimumAtATime() != null && leaveType.getMinimumAtATime() != 0) {
+			if (leaveType.getMinimumAtATime() != null && leaveType.getMinimumAtATime() != 0) {
 
 				if (leaveType.getMinimumAtATime() > numberOfDaysApplied) {
 
@@ -276,7 +282,7 @@ public class Leaverule {
 
 			// Validation 9: Application must be submitted be for 31st January each year.
 
-			else if (leaveType.getApplyDaysEachYear() != null && leaveType.getApplyDaysEachYear() != 0) {
+			if (leaveType.getApplyDaysEachYear() != null && leaveType.getApplyDaysEachYear() != 0) {
 
 				long numberOfDaysToApply = calculateDateDifference(firstDateOfCurrentYesr, currentDate);
 
@@ -427,11 +433,20 @@ public class Leaverule {
 		
 		resWrapper.setForwardHolidayCount(forwardCount);
 		
-		// minimum holiday part will be consider with original applied leave
-		if(forwardCount < backwardCount ) {			
+		// minimum holiday part will be added with original applied leave
+		if(forwardCount == 0 && backwardCount == 0 ) {
+			
+			resWrapper.setMinimumHolidayConsider(forwardCount);					
+		}
+		else if(forwardCount == 0  && backwardCount > 0 ){
+			
+			resWrapper.setMinimumHolidayConsider(backwardCount);	
+		}
+		else if(backwardCount == 0 && forwardCount > 0){		
+			
 			resWrapper.setMinimumHolidayConsider(forwardCount);			
-		}else {			
-			resWrapper.setMinimumHolidayConsider(backwardCount);			
+		}else {
+			resWrapper.setMinimumHolidayConsider(Math.min(backwardCount, forwardCount));
 		}		
 		
 		return resWrapper;
