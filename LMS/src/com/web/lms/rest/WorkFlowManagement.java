@@ -149,6 +149,9 @@ public class WorkFlowManagement {
 
 			updateHopDoneStatus(lmsWfRequestHop, hopStatus, user);
 
+			responseWrapper.setLmsWfRequestHop(lmsWfRequestHop);
+			responseWrapper.setLmsWfRequest(lmsWfRequestHop.getLmsWfRequest());
+			responseWrapper.setLmsLeaveApplication(lmsWfRequestHop.getLmsWfRequest().getLmsLeaveApplication());
 			responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
 			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
 		} catch (Exception ex) {
@@ -431,17 +434,17 @@ public class WorkFlowManagement {
 
 			lmsWfRequestHopHome.merge(lmsWfRequestHop);
 
-			updateHopCurrentStatus(lmsWfRequestHop.getLmsWfRequest());
+			updateHopCurrentStatus(lmsWfRequestHop.getLmsWfRequest(), user);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 
-	protected void updateHopCurrentStatus(LmsWfRequest lmsWfRequest) {
+	protected void updateHopCurrentStatus(LmsWfRequest lmsWfRequest, LmsUser user) {
 
 		try {
 
-			if (updateRequestStatus(lmsWfRequest)) {
+			if (updateRequestStatus(lmsWfRequest, user)) {
 				return;
 			}
 			
@@ -494,7 +497,7 @@ public class WorkFlowManagement {
 		}
 	}
 
-	protected boolean updateRequestStatus(LmsWfRequest lmsWfRequest) {
+	protected boolean updateRequestStatus(LmsWfRequest lmsWfRequest, LmsUser user) {
 		
 		String requestStatus = "";
 		boolean requestComplete = false;
@@ -520,11 +523,14 @@ public class WorkFlowManagement {
 				}
 			}
 			lmsWfRequest.setStatus(requestStatus);
+			lmsWfRequest.setUpdateDate(new Date());
+			lmsWfRequest.setUpdateBy(user.getId());
 			
 			if (requestStatus.equals(WFSTATUS.APPROVED.toString())
 					|| requestStatus.equals(WFSTATUS.REJECTED.toString())) {
 
 				lmsWfRequest.setEndDate(new Date());
+				
 			}
 
 			lmsWfRequestHome.merge(lmsWfRequest);

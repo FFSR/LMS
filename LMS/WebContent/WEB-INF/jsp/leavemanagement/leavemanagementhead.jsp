@@ -15,7 +15,7 @@
 	src="resources/js/app.js/service/manageleaveService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/manageleaveController.js"></script>
-
+<script type="text/javascript" src="resources/js/app.js/service/leavehistoryService.js"></script>
 </head>
 <body ng-controller="manageleaveController">
 <div ng-init="loadLeaveApplications('${sessionScope.userID}');"></div>
