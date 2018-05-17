@@ -83,15 +83,17 @@
 					  </div>
 				  </div>
 				</div>
-
+				
 				<div class="row">
 					<button type="submit" class="btn" id="submit"
-						ng-click="holidaymanagement()">Submit</button \>
+						ng-click="showConfirmationMessage(submit)"  >Submit</button \>
 					<div class="col-sm-3" style="background-color: white;"></div>
 					<div class="col-sm-3" style="background-color: white;">
 						<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()";>
 					</div>
 				</div>
+				
+				
 				<div class="row">
 				<div class="col-md-12">
 					<div id="successMssages" class="p-3 mb-2 bg-success text-white"

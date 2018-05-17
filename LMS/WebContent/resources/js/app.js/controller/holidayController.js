@@ -147,6 +147,15 @@ App
 					}, 6000);
 				};
 				
+				$scope.showConfirmationMessage = function() {
+					var result = confirm("Do your want to submit?");
+	                if (result) {
+	                	$scope.holidaymanagement();
+	                } else {
+	                    return false;
+	                }
+				};
+				
 				/* Show Error Message */
 				$scope.ClearAll = function() {
 
