@@ -21,6 +21,7 @@ import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.enumcollection.DAY;
 import com.web.lms.enumcollection.DECISION;
+import com.web.lms.enumcollection.GENDER;
 import com.web.lms.enumcollection.LEAVETYPE;
 import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsLeaveApplication;
@@ -106,7 +107,7 @@ public class Leaverule {
 			}
 
 		} catch (Exception ex) {
-			resWrapper.setMessage("Fail." + ex.getMessage());
+			resWrapper.setMessage("Exception from Leave Rule : " + ex.getMessage());
 			return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 	}
@@ -116,6 +117,7 @@ public class Leaverule {
 		ResponseWrapperLeaveRule resWrapper = new ResponseWrapperLeaveRule();
 
 		LmsLeaveBalance lmsLeaveBalance = null;
+		List<LmsLeaveApplication> leaveApplications;
 
 		try {
 
@@ -183,13 +185,22 @@ public class Leaverule {
 
 			// Validation 2: Maximum times limit exceed.
 			if (leaveType.getMaximumTimes() != null && leaveType.getMaximumTimes() != 0) {
-
-				List<LmsLeaveApplication> leaveApplications = lmsLeaveApplicationHome
-						.findLeaveApplicationByUserandLeaveTypeandYear(user.getId(), leaveType.getId(), strCurrentYear);
-
-				if (leaveType.getMaximumTimes() > leaveApplications.size()) {
+				
+				if(leaveType.getYearlyAllocated()!=null && leaveType.getYearlyAllocated().equals(DECISION.YES.toString())) {
 					
-					resWrapper.setMessage("Validation 2.0: Maximum times limit exceed.");
+					// for current year
+					leaveApplications = lmsLeaveApplicationHome.findLeaveApplicationByUserandLeaveTypeandYear(user.getId(), leaveType.getId(), strCurrentYear);		
+					
+					// Need to build new method for more 2/3 year
+				}
+				else {
+					
+					leaveApplications = lmsLeaveApplicationHome.findLeaveApplicationByUserandLeaveType(user.getId(), leaveType.getId());
+				}
+
+				if (leaveType.getMaximumTimes() < leaveApplications.size()) {
+					
+					resWrapper.setMessage("Validation 2.0: Maximum times limit exceed for this Leave Type.");
 					return resWrapper;
 				}
 			}
@@ -197,7 +208,7 @@ public class Leaverule {
 			// Validation 3: Maximum leaves at a time limit exceed.
 			if (leaveType.getMaximumAtATime() != null && leaveType.getMaximumAtATime() != 0) {
 
-				if (leaveType.getMaximumAtATime() < numberOfDaysApplied) {
+				if (leaveType.getMaximumAtATime() < resWrapper.getNumberOfDayConsider()) {
 				
 					resWrapper.setMessage("Validation 3.0: Maximum leaves at a time limit exceed.");
 					return resWrapper;
@@ -261,8 +272,7 @@ public class Leaverule {
 			if ((leaveType.getIncremental() != null && !leaveType.getIncremental().equals(""))
 					&& leaveType.getIncremental().toUpperCase().equals(DECISION.YES.toString())) {
 
-				if (lmsLeaveBalance.getLeaveTotal() > (lmsLeaveBalance.getLeaveTaken()
-						+ lmsLeaveBalance.getLeaveApplied() + numberOfDaysApplied)) {
+				if (lmsLeaveBalance.getLeaveTotal() < (lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider())) {
 
 					resWrapper.setMessage("Validation 7.0: Insufficient Leave Balance.");
 					return resWrapper;
@@ -273,7 +283,7 @@ public class Leaverule {
 
 			if (leaveType.getMinimumAtATime() != null && leaveType.getMinimumAtATime() != 0) {
 
-				if (leaveType.getMinimumAtATime() > numberOfDaysApplied) {
+				if (leaveType.getMinimumAtATime() > resWrapper.getNumberOfDayConsider()) {
 
 					resWrapper.setMessage("Validation 8.0: Minimum at a time limit is not fulfilled.");
 					return resWrapper;
@@ -297,6 +307,13 @@ public class Leaverule {
 					resWrapper.setMessage("Validation 9.0: Application must be submitted be for 31st January each year.");
 					return resWrapper;
 				}
+			}
+			
+			if(user.getGender().equals(GENDER.MALE.toString()) && leaveType.getType().contains(LEAVETYPE.MATERNITY.toString())) {
+				
+				resWrapper.setMessage("Validation 10.0: Male is not eligible for Maternity Leave.");
+				return resWrapper;
+				
 			}
 			
 
