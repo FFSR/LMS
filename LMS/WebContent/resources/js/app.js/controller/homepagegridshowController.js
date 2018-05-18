@@ -17,7 +17,8 @@ App
 				
 				$scope.homepagegridshow = function(){
 					$scope.testMessage = "Test Message";
-					homepagegridshowService.homepagegridshow().then(
+					homepagegridshowService.homepagegridshow()
+					.then(
 							function(d) {
 								$scope.testMsg1 = "Test";
 								console.log("Success.",d.message);

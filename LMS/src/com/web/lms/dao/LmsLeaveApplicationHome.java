@@ -150,7 +150,9 @@ public List<LmsLeaveApplication> findAllLeaveApplications() {
 @SuppressWarnings("unchecked")
 public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate() {
 	try {
-		Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.toDate >=CURDATE()");
+		
+		Query query = entityManager.createQuery("SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND t.toDate >=CURDATE()");
+		//Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.toDate >=CURDATE()");
 		
 		return (List<LmsLeaveApplication>) query.getResultList();
 	}
