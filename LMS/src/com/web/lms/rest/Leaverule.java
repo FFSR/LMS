@@ -309,9 +309,16 @@ public class Leaverule {
 				}
 			}
 			
-			if(user.getGender().equals(GENDER.MALE.toString()) && leaveType.getType().contains(LEAVETYPE.MATERNITY.toString())) {
+			if(user.getGender()!=null) {
+				if(user.getGender().equals(GENDER.MALE.toString()) && leaveType.getType().contains(LEAVETYPE.MATERNITY.toString())) {
 				
 				resWrapper.setMessage("Validation 10.0: Male is not eligible for Maternity Leave.");
+				return resWrapper;
+				
+				}
+			}else {
+				
+				resWrapper.setMessage("Validation 10.1: Gender can not be empty.");
 				return resWrapper;
 				
 			}
