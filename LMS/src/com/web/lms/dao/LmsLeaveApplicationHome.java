@@ -117,6 +117,21 @@ public class LmsLeaveApplicationHome {
 			return null;			
 		}
 	}
+	
+	public List<LmsLeaveApplication> findLeaveApplicationByUserandLeaveType(Integer userid, Integer leaveTypeId) {		
+		try {			
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid AND e.lmsLeaveType.id=:leaveTypeId")
+					.setParameter("userid", userid)
+					.setParameter("leaveTypeId", leaveTypeId);
+		
+			List<LmsLeaveApplication> leaveApplications = query.getResultList();
+		
+			return leaveApplications;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
 
 @SuppressWarnings("unchecked")
 public List<LmsLeaveApplication> findAllLeaveApplications() {
