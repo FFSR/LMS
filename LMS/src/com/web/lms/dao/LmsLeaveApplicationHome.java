@@ -151,6 +151,10 @@ public List<LmsLeaveApplication> findAllLeaveApplications() {
 public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate() {
 	try {
 		
+		// Both return same data
+		// SELECT t.* FROM lms_leave_application t JOIN lms_wf_request r ON r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE > CURDATE();
+		// SELECT r.* FROM lms_wf_request r JOIN lms_leave_application t ON r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE > CURDATE();
+		
 		Query query = entityManager.createQuery("SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND t.toDate >=CURDATE()");
 		//Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.toDate >=CURDATE()");
 		
