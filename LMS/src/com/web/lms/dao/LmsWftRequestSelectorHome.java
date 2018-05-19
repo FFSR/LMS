@@ -91,11 +91,14 @@ public class LmsWftRequestSelectorHome {
 		}
 	}
 	
+	// Change by Feroj on 19-05-18
+	// Reason: in query, there was a part to check section but section info is not available for below function. Section checking is withdrawn from query.
+	
 	public LmsWftRequestSelector findRequestTypeByClassSectorLeaveType(Integer classid, Integer leaveTypeid) {
 		
 		try { // SELECT t.* FROM lms_wft_request_selector t WHERE t.CLASS_ID=2 AND t.SECTION_ID=3 AND t.LEAVE_TYPE_ID=1;
 			
-			Query query = entityManager.createQuery("SELECT e FROM LmsWftRequestSelector e WHERE e.lmsClass.id=:classid AND e.lmsSection.id=:sectionid AND e.lmsLeaveType.id=:leaveTypeid")
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRequestSelector e WHERE e.lmsClass.id=:classid AND e.lmsLeaveType.id=:leaveTypeid")
 					.setParameter("classid", classid)
 					.setParameter("leaveTypeid", leaveTypeid);
 		
