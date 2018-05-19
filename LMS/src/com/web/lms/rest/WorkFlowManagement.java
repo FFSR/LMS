@@ -1,7 +1,5 @@
 package com.web.lms.rest;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +23,6 @@ import com.web.lms.dao.LmsWftRequestSelectorHome;
 import com.web.lms.dao.LmsWftRoleHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
 import com.web.lms.enumcollection.WFSTATUS;
-import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
@@ -36,7 +33,6 @@ import com.web.lms.model.LmsWftRequestHopRolePageMap;
 import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRole;
 import com.web.lms.model.LmsWftRoleUserMap;
-import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
 
 @RestController
@@ -358,7 +354,7 @@ public class WorkFlowManagement {
 			LmsWfRequest lmsWfRequest = new LmsWfRequest();
 			Date currentDate = new Date();
 
-			lmsWfRequest.setLmsWftRequestType(lmsWftRequestSelector.getLmsWftRequestHopRolePageMap().getLmsWftRequestType());
+			lmsWfRequest.setLmsWftRequestType(lmsWftRequestSelector.getLmsWftRequestType());
 			lmsWfRequest.setStartDate(currentDate);
 			lmsWfRequest.setStatus(WFSTATUS.APPLIED.toString());
 			lmsWfRequest.setLmsUser(user);

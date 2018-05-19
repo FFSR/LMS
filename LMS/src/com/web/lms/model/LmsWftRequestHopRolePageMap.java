@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
+// Generated May 19, 2018 10:54:22 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -26,12 +26,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_wft_request_hop_role_page_map", catalog = "lmsdb")
 public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer id;
-	//private LmsPages lmsPages;
+	private LmsPages lmsPages;
 	private LmsWftHop lmsWftHop;
 	private LmsWftRequestType lmsWftRequestType;
 	private LmsWftRole lmsWftRole;
@@ -41,17 +37,16 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 	private Integer updateBy;
 	private Set<LmsWfRequestHop> lmsWfRequestHops = new HashSet<LmsWfRequestHop>(0);
 	private Set<LmsWftFlowControl> lmsWftFlowControlsForTrhmHopsId = new HashSet<LmsWftFlowControl>(0);
-	private Set<LmsWftRequestSelector> lmsWftRequestSelectors = new HashSet<LmsWftRequestSelector>(0);
 	private Set<LmsWftFlowControl> lmsWftFlowControlsForTrhmDependedHopsId = new HashSet<LmsWftFlowControl>(0);
 
 	public LmsWftRequestHopRolePageMap() {
 	}
 
-	public LmsWftRequestHopRolePageMap(LmsWftHop lmsWftHop, LmsWftRequestType lmsWftRequestType,
+	public LmsWftRequestHopRolePageMap(LmsPages lmsPages, LmsWftHop lmsWftHop, LmsWftRequestType lmsWftRequestType,
 			LmsWftRole lmsWftRole, Date insertDate, Integer insertBy, Date updateDate, Integer updateBy,
 			Set<LmsWfRequestHop> lmsWfRequestHops, Set<LmsWftFlowControl> lmsWftFlowControlsForTrhmHopsId,
-			Set<LmsWftRequestSelector> lmsWftRequestSelectors,
 			Set<LmsWftFlowControl> lmsWftFlowControlsForTrhmDependedHopsId) {
+		this.lmsPages = lmsPages;
 		this.lmsWftHop = lmsWftHop;
 		this.lmsWftRequestType = lmsWftRequestType;
 		this.lmsWftRole = lmsWftRole;
@@ -61,7 +56,6 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 		this.updateBy = updateBy;
 		this.lmsWfRequestHops = lmsWfRequestHops;
 		this.lmsWftFlowControlsForTrhmHopsId = lmsWftFlowControlsForTrhmHopsId;
-		this.lmsWftRequestSelectors = lmsWftRequestSelectors;
 		this.lmsWftFlowControlsForTrhmDependedHopsId = lmsWftFlowControlsForTrhmDependedHopsId;
 	}
 
@@ -77,6 +71,15 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 		this.id = id;
 	}
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "PAGE_ID")
+	public LmsPages getLmsPages() {
+		return this.lmsPages;
+	}
+
+	public void setLmsPages(LmsPages lmsPages) {
+		this.lmsPages = lmsPages;
+	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "WF_HOPS_ID")
@@ -146,8 +149,7 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 		this.updateBy = updateBy;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestHopRolePageMap")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestHopRolePageMap") @JsonIgnore
 	public Set<LmsWfRequestHop> getLmsWfRequestHops() {
 		return this.lmsWfRequestHops;
 	}
@@ -156,8 +158,7 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 		this.lmsWfRequestHops = lmsWfRequestHops;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestHopRolePageMapByTrhmHopsId")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestHopRolePageMapByTrhmHopsId") @JsonIgnore
 	public Set<LmsWftFlowControl> getLmsWftFlowControlsForTrhmHopsId() {
 		return this.lmsWftFlowControlsForTrhmHopsId;
 	}
@@ -166,18 +167,7 @@ public class LmsWftRequestHopRolePageMap implements java.io.Serializable {
 		this.lmsWftFlowControlsForTrhmHopsId = lmsWftFlowControlsForTrhmHopsId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestHopRolePageMap")
-	@JsonIgnore
-	public Set<LmsWftRequestSelector> getLmsWftRequestSelectors() {
-		return this.lmsWftRequestSelectors;
-	}
-
-	public void setLmsWftRequestSelectors(Set<LmsWftRequestSelector> lmsWftRequestSelectors) {
-		this.lmsWftRequestSelectors = lmsWftRequestSelectors;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestHopRolePageMapByTrhmDependedHopsId")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestHopRolePageMapByTrhmDependedHopsId") @JsonIgnore
 	public Set<LmsWftFlowControl> getLmsWftFlowControlsForTrhmDependedHopsId() {
 		return this.lmsWftFlowControlsForTrhmDependedHopsId;
 	}

@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
+// Generated May 19, 2018 10:54:22 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -24,10 +24,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "lms_wft_request_type", catalog = "lmsdb")
 public class LmsWftRequestType implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private String versionNo;
@@ -36,6 +32,7 @@ public class LmsWftRequestType implements java.io.Serializable {
 	private Date updateDate;
 	private Integer updateBy;
 	private String status;
+	private Set<LmsWftRequestSelector> lmsWftRequestSelectors = new HashSet<LmsWftRequestSelector>(0);
 	private Set<LmsWfRequest> lmsWfRequests = new HashSet<LmsWfRequest>(0);
 	private Set<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps = new HashSet<LmsWftRequestHopRolePageMap>(0);
 
@@ -43,8 +40,8 @@ public class LmsWftRequestType implements java.io.Serializable {
 	}
 
 	public LmsWftRequestType(String name, String versionNo, Date insertDate, Integer insertBy, Date updateDate,
-			Integer updateBy, String status, Set<LmsWfRequest> lmsWfRequests,
-			Set<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps) {
+			Integer updateBy, String status, Set<LmsWftRequestSelector> lmsWftRequestSelectors,
+			Set<LmsWfRequest> lmsWfRequests, Set<LmsWftRequestHopRolePageMap> lmsWftRequestHopRolePageMaps) {
 		this.name = name;
 		this.versionNo = versionNo;
 		this.insertDate = insertDate;
@@ -52,6 +49,7 @@ public class LmsWftRequestType implements java.io.Serializable {
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 		this.status = status;
+		this.lmsWftRequestSelectors = lmsWftRequestSelectors;
 		this.lmsWfRequests = lmsWfRequests;
 		this.lmsWftRequestHopRolePageMaps = lmsWftRequestHopRolePageMaps;
 	}
@@ -133,8 +131,16 @@ public class LmsWftRequestType implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestType")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestType") @JsonIgnore
+	public Set<LmsWftRequestSelector> getLmsWftRequestSelectors() {
+		return this.lmsWftRequestSelectors;
+	}
+
+	public void setLmsWftRequestSelectors(Set<LmsWftRequestSelector> lmsWftRequestSelectors) {
+		this.lmsWftRequestSelectors = lmsWftRequestSelectors;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestType") @JsonIgnore
 	public Set<LmsWfRequest> getLmsWfRequests() {
 		return this.lmsWfRequests;
 	}
@@ -143,8 +149,7 @@ public class LmsWftRequestType implements java.io.Serializable {
 		this.lmsWfRequests = lmsWfRequests;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestType")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRequestType") @JsonIgnore
 	public Set<LmsWftRequestHopRolePageMap> getLmsWftRequestHopRolePageMaps() {
 		return this.lmsWftRequestHopRolePageMaps;
 	}
