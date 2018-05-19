@@ -108,6 +108,14 @@ App
 					}, 6000);
 				};
 				
+				$scope.showConfirmationMessage = function(status) {
+					var result = confirm("Do your want to submit?");
+	                if (result) {
+	                	$scope.submitHops(status);
+	                } else {
+	                    return false;
+	                }
+				};
 				
 				// Used for updating specific leave application
 				$scope.userleave = function(){
@@ -151,6 +159,7 @@ App
 						.then(
 								function(d){
 									$scope.showSuccessMessage(d.message);
+									 $scope.stayMyPage();
 								},
 								function(e){
 									$scope.showErrorMessage(e.data.message);
@@ -184,6 +193,10 @@ App
 				
 				 $scope.gotoHomePage = function(){	
 						window.location = url+"employeehomepage";
+					}
+				 
+				 $scope.stayMyPage = function(){	
+						window.location = url+"leavemanagementhead";
 					}
 				
 			} ]);

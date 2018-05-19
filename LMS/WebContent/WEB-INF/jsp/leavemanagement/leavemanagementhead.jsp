@@ -24,35 +24,12 @@
 		<div class="container-fluid">
 
 		</div>
-
-		<br>
-		<div class="modal-body">
-			<form role="form">
-				<div class="form-group">
-					<label for="user_id">User ID:</label> <input type="text"
-						ng-model="search.user_id" class="form-control" id="user_id">
-				</div>
-
-				<button type="submit" class="btn btn-default" id="search"
-					ng-click="manageleave(user_id)">Search</button>
-			</form>
-			<div style="color: blue">{{user_id}}{{testMsg}}</div>
-			<div>Response: {{testMsg}}</div>
-		</div>
-
-
-
-		<a href="http://localhost:8080/LMS/manageusersearch"
-			class="btn btn-info" role="button">Search</a>
-		<button type="button" class="btn">Clear</button>
-
-
-		<br>
+        <br>
 
 		<div>
 			<table class="table table-sm">
 				<div>
-					Test Message: {{testMessage}}
+					My Approval Pending List
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="wfRequestHop in $data">
 							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.id}}</td>
@@ -82,8 +59,8 @@
 			</table>
 		</div>
 
+<br><br><br><br>
 
-		Show: {{test}} <br>
 		<div class="container-fluid">
 			<div ng-show="showLeaveDetails">
 			  <div class="row">
@@ -240,22 +217,30 @@
 						<input type="text" ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.remarks" />
 					</div>
 				</div>
-				
 				<br>
 				<div class="row">
 					<div class="col-md-6">
-					    <div class="form-group">
-					     <label for="sel1">Action:</label>
-					           
-						         <select class="form-control" id="" ng-model="status">
+						<div class="form-group">
+							<label class="control-label col-md-3">Action</label>
+							<div class="col-md-9">
+								<select class="form-control" id="" ng-model="status">
 						  	     <option value="">Select</option>
 						         <option value="ACCEPTED">ACCEPTED</option>
 						         <option value="REJECTED">REJECTED</option>
 						         </select>
-					    </div>
-					  </div>
-					  
-					<div class="form-group"><buttom class="btn btn-primary" ng-click="submitHops(status)">Submit</buttom></div> 
+							</div>
+						</div>  
+					</div>
+					<div class="col-sm-4">
+						<button type="submit" class="btn btn-danger" id="submit"
+							ng-click="showConfirmationMessage(status)" >Submit</button>
+					</div>
+					
+					<div class="col-sm-4">
+						<input type="button" class="btn btn-info" value="Cancel"
+							id="Cancel" ng-click="gotoHomePage()">
+					</div>
+					
 				</div>
 				<br>
 				<div class="row">
@@ -267,15 +252,7 @@
 				</div>
 			</div>
 			<br>
-			<div class="row">
-
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="button" class="btn btn-info" value="Cancel">
-				</div>
-				<div class="col-sm-3" style="background-color: white;"></div>
-				<button type="submit" class="btn" id="submit" ng-click="userleave()">Update</button>
-			</div>
-			<div>Response: {{testMsg}}</div>
+			
 		</div>
 	</div>
 
