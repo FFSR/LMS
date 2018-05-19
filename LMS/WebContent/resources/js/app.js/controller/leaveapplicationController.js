@@ -9,12 +9,13 @@ App.controller(
 			'manageuserService',
 			'wfManagementService',
 			'DropDownService',
+			'leavehistoryService',
 			'$timeout',
 			'$filter',
 			'$location',
 			'url',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,manageuserService,wfManagementService,DropDownService,
+			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,manageuserService,wfManagementService,DropDownService,leavehistoryService,
 					$timeout, $filter,$location,url) {
 
 				$scope.testMsg = "Testing Message";
@@ -189,25 +190,17 @@ App.controller(
 						"inStation" :"",
 				};
 
-				$scope.applicationforleave = function(){		
-
-					// $scope.leaveapplication.leaveAvailable =
-					// $scope.leaveavailable;
+				$scope.applicationforleave = function(){
 					
+					$scope.leaveapplication.leaveAvailable = $scope.leaveTotal;
 					$scope.leaveapplication.leaveTaken = $scope.leaveTaken;
 					$scope.leaveapplication.lmsLeaveType = $scope.leavetype;
-					// $scope.leaveapplication.userId= parseInt($scope.userid) ;
-					// $scope.leaveapplication.lmsUserByUserId.id=
-					// parseInt($scope.userid) ;
 					$scope.leaveapplication.lmsUserByUserId= $scope.lmsuser;
-					// $scope.leaveapplication.lmsLeaveType.type =
-					// $scope.appStatus.type;
 					$scope.leaveapplication.leaveBalance = $scope.leaveBalance;
-					// $scope.leaveapplication.lmsUser = $scope.ddReliever;
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
-					$scope.leaveapplication.totalDayCount = $scope.totalDayCount;
+					$scope.leaveapplication.totalDayCount = $scope.finaltotalDayCount;
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
@@ -216,47 +209,49 @@ App.controller(
 						$scope.leaveapplication.inStation = $scope.ddStation.name;
 					}
 					$scope.leaveapplication.lmsUserByReliverEmailAddressUserId=$scope.ddReliever;
-					// $scope.leaveapplication.insertDate =
-					// $scope.leaveapplication.insertBy = 3;
-					// $scope.leaveapplication.updatDate = $scope.update_date;
-					// $scope.leaveapplication.updateBy = $scope.update_by;
-
 
 					leaveapplicationservice.applicationforleave($scope.leaveapplication).then(
+							
 							function(d) {
-
+															
 								wfManagementService.generaterequest(d.userid,d.leavetypeid,d.leaveapplicationid).then(
+										
 										function(d){
-											// console.log(d.message);
-											$scope.showSuccessMessage(d.message);
+																						
+											leavehistoryService.leavebalanceforapply($scope.lmsuser.id, $scope.leavetype.id, $scope.finaltotalDayCount)
+											.then(
+													function(d){
+														$scope.showSuccessMessage(d.message);	
+														$scope.ClearAll();
+														$scope.validationLock = true;
+													},
+													function(e){
+														$scope.showErrorMessage(e.data.message);
+													}
+											);
+											
+											$scope.showSuccessMessage(d.message);											
 										},
 										function(e){
-											// console.log(e.message);
 											$scope.showErrorMessage(e.data.message);
 										}
 								);
 
-								// $scope.testMsg = d.message;
-								// console.log("Success.",d.message);
-								$scope.showSuccessMessage(d.message);
 								$scope.uploadFile();
-								$scope.ClearAll();
+								
 								// $window.location.reload();
+								$scope.showSuccessMessage(d.message);
 							},
 							function(e) {
-								// $scope.testMsg = e.data.message;
-								// console.error(e.data.message);
+
 								$scope.showErrorMessage(e.message);
 							});
 				}
 
 				$scope.getUserInfo= function(userID){
 
-					$scope.testMessage = "Test Message";
-
 					manageuserService.manageuser(userID).then(
 							function(d) {
-								// $scope.testMsg1 = "Test";
 								console.log("Success.",d.message);
 								var data = d.listLmsuser;
 								$scope.lmsuser=d.listLmsuser[0];
@@ -265,9 +260,7 @@ App.controller(
 								console.error(errResponse.message);
 							});
 				};
-
-
-
+				
 				$scope.loadLeaveTypeDownDown = function(){
 					$scope.dDName = "";
 					leavetypeService.getLeaveType().then(function(d) {
@@ -323,17 +316,6 @@ App.controller(
 
 							});
 				};
-				/*
-				 * $scope.getleaveapplication = function(leaveapplicationid){
-				 * console.log("From Get Method");
-				 * leaveapplicationservice.getleaveapp(leaveapplicationid).then(
-				 * function(d){ $scope.leaveData = d; $scope.leavetype =
-				 * $scope.leaveData.lmsLeaveType; $scope.reasonForLeave =
-				 * $scope.leaveData.reasonForLeave;
-				 *  }, function(errResponse){ console.log(errResponse.data); } ); };
-				 * 
-				 * $scope.getleaveapplication(4);
-				 */
 
 				$scope.getSessionUserDetails = function(userName,userID){
 
@@ -345,15 +327,9 @@ App.controller(
 
 				$scope.showLeaveBalance = function(userid,leavetypeid){
 
-					// $scope.Userid =
-					// $scope.t = leavetype;
-					// console.log("efghjk");
-
 					leaveapplicationservice.getLeaveBalance($scope.userid,leavetypeid)
 					.then(
 							function(d) {
-
-								// $scope.lmsLeaveBalance=d.lmsLeaveBalance;
 
 								$scope.eligibility = d.lmsLeaveBalance.eligibility;
 								$scope.leaveTotal = d.lmsLeaveBalance.leaveTotal;
@@ -361,14 +337,10 @@ App.controller(
 								$scope.leaveBalance = d.lmsLeaveBalance.leaveBalance;
 								$scope.leaveApplied = d.lmsLeaveBalance.leaveApplied;
 
-								// $scope.eligibility = d.eligiblity;
-								
 								$scope.validationLock = true;
 
 							}, function(errResponse) {
-								//console.log("Failed to get Drop Down.");
-								$scope.showErrorMessage(errResponse.data.message);	
-								
+								$scope.showErrorMessage(errResponse.data.message);
 								$scope.validationLock = true;
 							});
 				}
@@ -395,34 +367,26 @@ App.controller(
 					$scope.taskNeedToPerformed="";
 					$scope.ddStation='0';
 
-
 				};
 
 				$scope.validate = function(){
-
-					// validateLeaveRule: function(userid, leavetypeid,
-					// startdate, enddate)
 
 					leaveapplicationservice.validateLeaveRule($scope.userid, $scope.leavetype.id, $scope.fromDate, $scope.toDate)
 					.then(
 							function(d) {
 
-								$scope.totalDayCount = "APPLIED ( "+d.numberOfDaysApplied+" ) + IF IMPACT ON HOLIDAY THAN MIN ( "+d.minimumHolidayConsider+" ) OF BEFORE ( "+d.forwardHolidayCount+" ) AND AFTER ( "+d.backwardHolidayCount+" )  = TOTAL ( "+d.numberOfDayConsider+" )";
-								//$scope.totalDayCount = "APPLIED("+d.numberOfDaysApplied+") + MIN ("+d.minimumHolidayConsider+") ( BEFORE("+d.forwardHolidayCount+") | AFTER("+d.backwardHolidayCount+") ) = TOTAL("+d.numberOfDayConsider+")";
+								$scope.totalDayCount = "APPLIED ( "+d.numberOfDaysApplied+" ) + IF IMPACT ON HOLIDAY THAN MIN ( "+d.minimumHolidayConsider+" ) OF BEFORE ( "+ d.backwardHolidayCount +" ) AND AFTER ( "+ d.forwardHolidayCount +" )  = TOTAL ( "+d.numberOfDayConsider+" )";	
+								$scope.finaltotalDayCount = d.numberOfDayConsider;
 								$scope.validationLock = false;
-								$scope.showSuccessMessage(d.message);						
-
+								$scope.showSuccessMessage(d.message);
 							}, 
 							function(errResponse) {		
 
-								$scope.totalDayCount = "Error on Leave Rule."
+								$scope.totalDayCount = errResponse.data.message
 								$scope.validationLock = true;						
-								$scope.showErrorMessage(errResponse.data.message);					
-
+								$scope.showErrorMessage(errResponse.data.message);
 							});
 
-
 				};
-
 			} 
 			]);

@@ -95,7 +95,7 @@ public class LmsWftRequestSelectorHome {
 		
 		try { // SELECT t.* FROM lms_wft_request_selector t WHERE t.CLASS_ID=2 AND t.SECTION_ID=3 AND t.LEAVE_TYPE_ID=1;
 			
-			Query query = entityManager.createQuery("SELECT e FROM LmsWftRequestSelector e WHERE e.lmsClass.id=:classid AND e.lmsSection.id=:sectionid AND e.lmsLeaveType.id=:leaveTypeid")
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRequestSelector e WHERE e.lmsClass.id=:classid AND e.lmsLeaveType.id=:leaveTypeid")
 					.setParameter("classid", classid)
 					.setParameter("leaveTypeid", leaveTypeid);
 		
