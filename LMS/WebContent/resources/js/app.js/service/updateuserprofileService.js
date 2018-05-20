@@ -12,10 +12,10 @@ App.factory(
 						function($http, $q, url) {
 							return {
 
-								updateuserprofile : function(user, lmsRole, lmsWftrole) {
+								updateuserprofile : function(lmsWftrole, lmsRole, user ) {
 									//console.log(user);
-									// , lmsWftrole  user,  , user
-									return $http.post(url + 'updateuserprofile/'+ lmsRole.id +'/'+ lmsWftrole.id,user)
+									// , lmsWftrole  user,  , user lmsWftrole
+									return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/', user)
 											.then(
 													function(response) {
 														return response.data;

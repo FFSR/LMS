@@ -31,15 +31,8 @@
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 	
-
-
-
-
-
-
 </head>
 <body>
-	<br>
 	<div ng-controller="registrationController">
 		<div ng-init="getDivisionData()"></div>
 		<div ng-init="getDepartmentData()"></div>
@@ -52,7 +45,6 @@
 		<div ng-init="getDropdownDataGender('Sex')"></div>
 		<div ng-init="loadUserListDropDown()"></div>
 	
-		<form class="form-horizontal" name="registrationForm">
 		<div class="container-fluid">
 
 			<div class="row">
@@ -379,6 +371,7 @@
 		</div>
 	</div>
 </body>
+
 <script>
 	$('#joiningDate').datetimepicker(
 			{

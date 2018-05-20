@@ -107,7 +107,8 @@ public class User {
 		try {
 
 			lmsUser.setPassword(ProtectedConfigFile.encrypt(lmsUser.getPassword()));
-
+			lmsUser.setInsertDate(new Date());
+			
 			try {
 
 				int lmsuserid = lmsUserHome.persist(lmsUser);
@@ -225,8 +226,8 @@ public class User {
 	}
 	
 	
-	@RequestMapping(value = "/updateuserprofile/{roleid}/{wftroleid}", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> updateuserprofile(@PathVariable("roleid") Integer roleid, @PathVariable("wftroleid") Integer wftroleid, @RequestBody LmsUser lmsUser){
+	@RequestMapping(value = "/updateuserprofile/{wftroleid}/{roleid}/", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> updateuserprofile( @PathVariable("wftroleid") Integer wftroleid, @PathVariable("roleid") Integer roleid, @RequestBody LmsUser lmsUser){
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsRole lmsRole;
@@ -238,6 +239,9 @@ public class User {
 			lmsWftrole = LmsWftRoleHome.findById(wftroleid);
 
 			if (lmsRole != null && lmsWftrole != null) {
+				
+				lmsUser.setUpdateDate(new Date());
+				lmsUser.setUpdateBy(lmsUser.getId());
 
 				lmsUserHome.merge(lmsUser); // For Update
 

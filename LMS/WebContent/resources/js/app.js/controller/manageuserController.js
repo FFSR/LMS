@@ -15,6 +15,7 @@ App.controller('manageuserController', [
 		'$filter',
 		'NgTableParams',
 		'$location',
+		'url',
 
 		function($scope, $http, updateuserprofileService, manageuserService,
 				OfficeService, DivisionService, DesignationService,
@@ -72,15 +73,16 @@ App.controller('manageuserController', [
 				$scope.user = user;
 			};
 
-			
+		
 			$scope.userprofile = function(ddlmsWftrole,ddlmsRole) {
 
 				//$scope.ddlmsRole = ddlmsRole;
 				$scope.ddlmsWftrole = ddlmsWftrole;
 				//console.log($scope.ddlmsRole);
 				//console.log($scope.ddlmsWftrole);
-				
-				updateuserprofileService.updateuserprofile($scope.user, ddlmsRole, $scope.ddlmsWftrole).then(
+				$scope.user.joiningDate = new Date($('#joiningDate').val());
+				//$scope.user.gender= $scope.gender.name;
+				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.user).then(
 						function(d) {
 							console.log(d.message);
 							console.log("Success.", d.message);
@@ -135,6 +137,23 @@ App.controller('manageuserController', [
 			$scope.getDropdownData = function(userStatus) {
 				DropDownService.getAllDropdown(userStatus).then(function(d) {
 					$scope.dropdownNames = d.listLmsDropdown;
+				}, function(errResponse) {
+					console.log("Failed to get Drop Down.");
+				});
+			}
+			
+			$scope.getDropdownDataGender = function(dropdownname){
+				DropDownService.getGenderOption(dropdownname).then(function(d) {
+					$scope.dropdownGenderNames = d.listLmsDropdown;
+				}, function(errResponse) {
+					console.log("Failed to get Drop Down.");
+				});
+			}
+			
+			
+			$scope.getDropdownDataNationality = function(dropdownname){
+				DropDownService.getNationalityOption(dropdownname).then(function(d) {
+					$scope.dropdownNationalityNames = d.listLmsDropdown;
 				}, function(errResponse) {
 					console.log("Failed to get Drop Down.");
 				});

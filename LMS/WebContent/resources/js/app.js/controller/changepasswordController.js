@@ -66,10 +66,10 @@ App
 								changepasswordService.changepassword(
 										$scope.newpassword, $scope.oldpassword,
 										$scope.userID).then(function(d) {
-									$scope.showSuccessMessage(d.data.message);
+									$scope.showSuccessMessage(d.message);
 									$scope.clearAll();
 								}, function(e) {
-									$scope.showErrorMessage(e.data.message);
+									$scope.showErrorMessage(e.message);
 									$scope.clearAll();
 								});
 							};
