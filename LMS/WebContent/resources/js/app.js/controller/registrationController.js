@@ -100,7 +100,7 @@ App
 								
 								$scope.showSuccessMessage(d.message);
 								//$window.location.reload();
-								
+								location.reload();// Added by Feroj on 20-05-18
 								
 								
 							},

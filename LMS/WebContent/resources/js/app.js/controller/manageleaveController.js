@@ -157,9 +157,9 @@ App
 						
 						leavehistoryService.leavebalanceforapprove($scope.lmsLeaveApplicationReturn.lmsUserByUserId.id, $scope.lmsLeaveApplicationReturn.lmsLeaveType.id, $scope.lmsLeaveApplicationReturn.totalDayCount)
 						.then(
-								function(d){
-									$scope.showSuccessMessage(d.message);
+								function(d){	
 									 $scope.stayMyPage();
+									 $scope.showSuccessMessage(d.message);
 								},
 								function(e){
 									$scope.showErrorMessage(e.data.message);
@@ -196,6 +196,7 @@ App
 					}
 				 
 				 $scope.stayMyPage = function(){	
+					    location.reload();
 						window.location = url+"leavemanagementhead";
 					}
 				

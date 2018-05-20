@@ -65,7 +65,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">User Name</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="username" class="form-control"
+								<input type="text" ng-disabled="true" ng-model="username" class="form-control"
 									placeholder="User Name">
 							</div>
 						</div>
@@ -91,7 +91,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Leave Eligibility</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="eligibility" class="form-control"
+								<input type="text" ng-disabled="true" ng-model="eligibility" class="form-control"
 									placeholder="Yearly Leave Eligibility">
 							</div>
 						</div>
@@ -102,7 +102,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Total Leave</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="leaveTotal" class="form-control"
+								<input type="text" ng-disabled="true" ng-model="leaveTotal" class="form-control"
 									placeholder="Total Leave">
 							</div>
 						</div>
@@ -113,7 +113,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Leave	Taken</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="leaveTaken" class="form-control"
+								<input type="text" ng-disabled="true" ng-model="leaveTaken" class="form-control"
 									placeholder="Leave All ready Taken">
 							</div>
 						</div>
@@ -124,7 +124,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Leave Balance</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="leaveBalance"
+								<input type="text" ng-disabled="true" ng-model="leaveBalance"
 									restrict-input="{type: 'digitsOnly'}" class="form-control"
 									placeholder="Leave Remaining">
 							</div>
@@ -134,8 +134,8 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Leave Applied</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="leaveApplied"
-									restrict-input="{type: 'digitsOnly'}" class="form-control"
+								<input type="text" ng-disabled="true" ng-model="leaveApplied"
+									 class="form-control"
 									placeholder="Leave Remaining">
 							</div>
 						</div>
