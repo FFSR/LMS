@@ -316,14 +316,10 @@ public class Leaverule {
 				return resWrapper;
 				
 				}
-			}else {
-				
+			}else {				
 				resWrapper.setMessage("Validation 10.1: Gender can not be empty.");
-				return resWrapper;
-				
-			}
-			
-
+				return resWrapper;				
+			}		
 
 		} catch (Exception ex) {
 
