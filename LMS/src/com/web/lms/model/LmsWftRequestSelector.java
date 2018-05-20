@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
+// Generated May 19, 2018 10:54:22 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,15 +21,11 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_wft_request_selector", catalog = "lmsdb")
 public class LmsWftRequestSelector implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private LmsClass lmsClass;
 	private LmsLeaveType lmsLeaveType;
 	private LmsSection lmsSection;
-	private LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap;
+	private LmsWftRequestType lmsWftRequestType;
 	private Integer insertBy;
 	private Date insertDate;
 	private Integer updateBy;
@@ -39,12 +35,11 @@ public class LmsWftRequestSelector implements java.io.Serializable {
 	}
 
 	public LmsWftRequestSelector(LmsClass lmsClass, LmsLeaveType lmsLeaveType, LmsSection lmsSection,
-			LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap, Integer insertBy, Date insertDate,
-			Integer updateBy, Date updateDate) {
+			LmsWftRequestType lmsWftRequestType, Integer insertBy, Date insertDate, Integer updateBy, Date updateDate) {
 		this.lmsClass = lmsClass;
 		this.lmsLeaveType = lmsLeaveType;
 		this.lmsSection = lmsSection;
-		this.lmsWftRequestHopRolePageMap = lmsWftRequestHopRolePageMap;
+		this.lmsWftRequestType = lmsWftRequestType;
 		this.insertBy = insertBy;
 		this.insertDate = insertDate;
 		this.updateBy = updateBy;
@@ -95,12 +90,12 @@ public class LmsWftRequestSelector implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "TRHR_MAP_ID")
-	public LmsWftRequestHopRolePageMap getLmsWftRequestHopRolePageMap() {
-		return this.lmsWftRequestHopRolePageMap;
+	public LmsWftRequestType getLmsWftRequestType() {
+		return this.lmsWftRequestType;
 	}
 
-	public void setLmsWftRequestHopRolePageMap(LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap) {
-		this.lmsWftRequestHopRolePageMap = lmsWftRequestHopRolePageMap;
+	public void setLmsWftRequestType(LmsWftRequestType lmsWftRequestType) {
+		this.lmsWftRequestType = lmsWftRequestType;
 	}
 
 	@Column(name = "INSERT_BY")

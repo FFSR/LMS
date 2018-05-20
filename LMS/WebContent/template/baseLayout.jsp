@@ -143,8 +143,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="changepassword">Change Password</a></li>
                             <li><a href="userprofile">Update Profile</a></li>
-                            <li><a href="delegateemployee">Manage Delegation</a></li>
-                            <li><a href="managereliever">Manage Delegation New</a></li>  
+                            <li><a href="managereliever">Manage Delegation</a></li>  
                             
                         </ul>
                     </li>

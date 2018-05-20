@@ -29,5 +29,10 @@ App.controller('leavehistoryController', [
 
 				});
 			};
-
+			
+			$scope.gomyPage = function(){	
+				location.reload();
+				window.location = url+"leavehistory";
+			}
+			
 		} ]);

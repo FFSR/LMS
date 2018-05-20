@@ -93,6 +93,8 @@ App
 					
 				};
 				
+				
+				
 				//deleteHolidayRecord(holidayrecord)
 				
 				
@@ -143,6 +145,15 @@ App
 						$scope.successMessages = null;
 						$scope.errorMessages = null;
 					}, 6000);
+				};
+				
+				$scope.showConfirmationMessage = function() {
+					var result = confirm("Do your want to submit?");
+	                if (result) {
+	                	$scope.holidaymanagement();
+	                } else {
+	                    return false;
+	                }
 				};
 				
 				/* Show Error Message */

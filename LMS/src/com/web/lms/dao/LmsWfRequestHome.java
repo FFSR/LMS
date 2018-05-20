@@ -92,6 +92,26 @@ public class LmsWfRequestHome {
 		}
 	}
 	
+	public List<LmsWfRequest> findRequestByUserAndDateRange(Integer userid, Date startdate,Date enddate) {
+		
+		// used to find request for a particular date range so that user can see status
+		// of all leave requests which are raised within this range. For checking 'My Leave Status' this will be used.
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate BETWEEN :startdate and :enddate")
+					.setParameter("userid", userid).setParameter("startdate", startdate).setParameter("enddate", enddate);
+
+			List<LmsWfRequest> listLmsWfRequest =  query.getResultList();
+
+			return listLmsWfRequest;
+
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+	
+	
 	public List<LmsWfRequest> findRequestByUserID(Integer userid) {
 
 		try {
@@ -105,7 +125,26 @@ public class LmsWfRequestHome {
 		} catch (Exception ex) {
 			return null;
 		}
-		
-		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LmsWfRequest> findAllLeaveApplicationsGeaterThanCurrentDate() {
+		try {
+
+			// Both are same mysql query
+			// SELECT t.* FROM lms_leave_application t JOIN lms_wf_request r ON r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE > CURDATE();
+			// SELECT r.* FROM lms_wf_request r JOIN lms_leave_application t ON r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE > CURDATE();
+
+			// Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e RIGHT JOIN LmsWfRequest.lmsLeaveApplication t WHERE t.status='APPROVED' AND
+			// e.toDate >=CURDATE()");
+
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND t.toDate >=CURDATE()");
+
+			return (List<LmsWfRequest>) query.getResultList();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+
+			return null;
+		}
 	}
 }

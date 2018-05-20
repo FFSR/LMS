@@ -6,13 +6,14 @@ App
 			'$http',
 			'updateuserleaveService',
 			'manageleaveService',
+			'leavehistoryService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$window',
 			'$location','url',
 
-			function($scope, $http, updateuserleaveService, manageleaveService,
+			function($scope, $http, updateuserleaveService, manageleaveService,leavehistoryService,
 				$timeout, $filter,NgTableParams,$window,$location,url) {
 				$scope.testMsg = "Test Message New";
 				$scope.leaveapplication = {};
@@ -138,9 +139,39 @@ App
 				$scope.submitHops = function(status){
 					$scope.status = status;
 					console.log("Status:", $scope.status);
-					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status).then(
+					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status, $scope.wfRequestHop).then(
 					function(d){
 						console.log(d);
+						
+						$scope.lmsLeaveApplicationReturn = d.lmsLeaveApplication;
+						
+						if(d.lmsWfRequest.status == 'APPROVED'){
+						
+						leavehistoryService.leavebalanceforapprove($scope.lmsLeaveApplicationReturn.lmsUserByUserId.id, $scope.lmsLeaveApplicationReturn.lmsLeaveType.id, $scope.lmsLeaveApplicationReturn.totalDayCount)
+						.then(
+								function(d){
+									$scope.showSuccessMessage(d.message);
+								},
+								function(e){
+									$scope.showErrorMessage(e.data.message);
+								}
+						);
+						}else if(d.lmsWfRequest.status == 'REJECTED'){
+							
+							leavehistoryService.leavebalanceforreject($scope.lmsLeaveApplicationReturn.lmsUserByUserId.id, $scope.lmsLeaveApplicationReturn.lmsLeaveType.id, $scope.lmsLeaveApplicationReturn.totalDayCount)
+							.then(
+									function(d){
+										$scope.showSuccessMessage(d.message);
+									},
+									function(e){
+										$scope.showErrorMessage(e.data.message);
+									}
+							);
+							
+						}
+					
+						
+						
 						$scope.showSuccessMessage("Status Updated");
 					},
 					function(errResponse){

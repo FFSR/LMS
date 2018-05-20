@@ -2,6 +2,9 @@ package com.web.lms.wrapper;
 
 import java.util.List;
 
+import com.web.lms.model.LmsLeaveApplication;
+import com.web.lms.model.LmsWfRequest;
+import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsWftRoleUserMap;
 
 public class ResponseWrapperWorkFlowManagement {
@@ -9,6 +12,12 @@ public class ResponseWrapperWorkFlowManagement {
 	String message;
 	
 	List<LmsWftRoleUserMap> listLmsWftRoleUserMap;
+	
+	LmsWfRequestHop lmsWfRequestHop;
+	
+	LmsWfRequest lmsWfRequest;
+	
+	LmsLeaveApplication lmsLeaveApplication;
 	
 	public List<LmsWftRoleUserMap> getListLmsWftRoleUserMap() {
 		return listLmsWftRoleUserMap;
@@ -25,6 +34,32 @@ public class ResponseWrapperWorkFlowManagement {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	public LmsWfRequestHop getLmsWfRequestHop() {
+		return lmsWfRequestHop;
+	}
+
+	public void setLmsWfRequestHop(LmsWfRequestHop lmsWfRequestHop) {
+		this.lmsWfRequestHop = lmsWfRequestHop;
+	}
+
+	public LmsWfRequest getLmsWfRequest() {
+		return lmsWfRequest;
+	}
+
+	public void setLmsWfRequest(LmsWfRequest lmsWfRequest) {
+		this.lmsWfRequest = lmsWfRequest;
+	}
+
+	public LmsLeaveApplication getLmsLeaveApplication() {
+		return lmsLeaveApplication;
+	}
+
+	public void setLmsLeaveApplication(LmsLeaveApplication lmsLeaveApplication) {
+		this.lmsLeaveApplication = lmsLeaveApplication;
+	}
+	
+	
 }
 
 

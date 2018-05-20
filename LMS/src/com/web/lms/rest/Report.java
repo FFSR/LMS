@@ -1,5 +1,6 @@
 package com.web.lms.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,34 @@ public class Report {
 		try {
 
 			List<LmsWfRequest> listLmsWfRequest = lmsWfRequestHome.findRequestByUserID(userID);
+
+			if (listLmsWfRequest.size() > 0) {
+				
+				responseWrapper.setMessage("Success. Leave request found.");
+				responseWrapper.setListLmsWfRequest(listLmsWfRequest);
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+				
+			} else {
+				
+				responseWrapper.setMessage("Fail. No record found.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
+	@RequestMapping(value = "report/{userID}/{startdate}/{enddate}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userID") Integer userID,@PathVariable("startdate") Date startdate,@PathVariable("enddate") Date enddate ) {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+		try {
+
+			//List<LmsWfRequest> listLmsWfRequest = lmsWfRequestHome.findRequestByUserAndDateRange(userID,startdate,enddate);
+			List<LmsWfRequest> listLmsWfRequest = lmsWfRequestHome.findRequestByUserAndDateRange(userID,startdate,enddate);
 
 			if (listLmsWfRequest.size() > 0) {
 				
