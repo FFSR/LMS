@@ -26,7 +26,7 @@
     <link href="resources/css/style.css" rel="stylesheet"> 
     <!-- <link href="resources/css/style_n2.css" rel="stylesheet"> -->
     <!-- color CSS -->
-    <link href="resources/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="resources/css/colors/green.css" id="theme" rel="stylesheet">
     
     <!-- <link href="resources/css/colors/blue.css" id="theme" rel="stylesheet"> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -94,7 +94,8 @@ body, body td, body th {
                     <!-- .Megamenu -->
                     <!-- /.Megamenu -->
                     <!-- /.dropdown -->
-                   <h3 style="align: center; color: #fff;"> Leave Management System</h3>
+                   <h3 style="align: center; color: #ff0000;"> Leave Management System</h3>
+                   <h3 style="align: center; color: #ff0000;"> CCA Department, ICT Ministry</h3>
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -161,12 +162,12 @@ body, body td, body th {
         </div>
         <!-- Left navbar-header end -->
         <!-- Page Content -->
-        <div id="page-wrapper" style="background: #fff;">
+        <div id="page-wrapper" style="background: #F7F8E0;">
             <div class="container-fluid" >
                 <div class="row">
                 	<div class="col-md-12 col-lg-12 col-sm-12">
                 	<br/>
-                		<div class="white-box" style="background: #fff;">
+                		<div class="white-box" style="background: #F7F8E0;">
                     		<tiles:insertAttribute name="body"/>
                     	</div>
                     </div>
