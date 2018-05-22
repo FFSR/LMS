@@ -43,8 +43,8 @@
 }
 /*Just change your choise color here its theme Colors*/
 body {
-  background: #FF0000;
-  color:#FF0000;
+  background: #ff0000;
+  color:#ff0000;
 }
 /*Top Header Part*/
 .logo i {
@@ -125,10 +125,10 @@ body {
 }
 /*themecolor*/
 .bg-theme {
-  background-color: #fb9678 !important;
+  background-color: #ff0000 !important;
 }
 .bg-theme-dark {
-  background-color: #01c0c8 !important;
+  background-color: #ff0000 !important;
 }
 /*Chat widget*/
 .chat-list .odd .chat-text {

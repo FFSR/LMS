@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon.png">
-    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/images/govt.jpg">
+    
+    <title>LMS - The intelligent leave management system</title>
     <!-- Bootstrap Core CSS -->
     <link href="resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
@@ -22,9 +23,11 @@
     <!-- animation CSS -->
     <link href="resources/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="resources/css/style.css" rel="stylesheet">
+    <link href="resources/css/style.css" rel="stylesheet"> 
+    <!-- <link href="resources/css/style_n2.css" rel="stylesheet"> -->
     <!-- color CSS -->
-    <link href="resources/css/colors/default-dark.css" id="theme" rel="stylesheet">
+    <link href="resources/css/colors/blue.css" id="theme" rel="stylesheet">
+    
     <!-- <link href="resources/css/colors/blue.css" id="theme" rel="stylesheet"> -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -65,6 +68,11 @@
 <link href="resources/css/ng-table.min.css">
 
 <script type="text/javascript" src="resources/js/app.js/app.js"></script>
+<style type="text/css">
+body, body td, body th {
+	color: #000;
+}
+</style>
 </head>
 
 <body ng-app="myApp">
@@ -76,16 +84,17 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><!--This is dark logo icon--><img src="resources/images/eliteadmin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="resources/images/eliteadmin-logo-dark.png" alt="home" class="light-logo" /></b><span class="hidden-xs"><!--This is dark logo text--><img src="resources/images/eliteadmin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="resources/images/eliteadmin-text-dark.png" alt="home" class="light-logo" /></span></a></div>
+                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="resources/images/govt.jpg" alt="home" class="light-logo" style="margin-left: 40px; margin-top: 5px;" /></b></a></div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
                 </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right">
+                <ul class="nav navbar-top-links" style="text-align: center; display: block;">
                     <!-- /.dropdown -->
                     <!-- /.dropdown -->
                     <!-- .Megamenu -->
                     <!-- /.Megamenu -->
                     <!-- /.dropdown -->
+                   <h3 style="align: center; color: #fff;"> Leave Management System</h3>
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -95,9 +104,9 @@
         <!-- Left navbar-header -->
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                <div class="user-profile">
+                <div class="user-profile" style="margin-top: 60px;">
                     <div class="dropdown user-pro-body">
-                        <div><img src="resources/images/users/varun.jpg" alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Steave Gection <span class="caret"></span></a>
+                         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout <span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
                             <li><a href="logout"><i class="fa fa-power-off"></i> Logout</a></li>
                         </ul>
@@ -114,7 +123,7 @@
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
                     <li> <a href="employeehomepage" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >Home</span></a> </li>
-                    <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw text-danger" data-icon="7"></i> <span class="hide-menu text-danger"> Leave Management <span class="fa arrow"></span></span></a>
+                    <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw text-dark" data-icon="7"></i> <span class="hide-menu text-dark"> Leave Management <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="applicationforleave">Leave Application</a> </li>
                             <li role="separator" class="divider"></li>
@@ -152,13 +161,13 @@
         </div>
         <!-- Left navbar-header end -->
         <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
+        <div id="page-wrapper" style="background: #fff;">
+            <div class="container-fluid" >
                 <div class="row">
                 	<div class="col-md-12 col-lg-12 col-sm-12">
                 	<br/>
-                		<div class="white-box">
-                    		<tiles:insertAttribute name="body" />
+                		<div class="white-box" style="background: #fff;">
+                    		<tiles:insertAttribute name="body"/>
                     	</div>
                     </div>
                 </div>
@@ -174,7 +183,7 @@
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Elite Admin </footer>
+            <footer class="footer text-center"> 2018 &copy; Technosis </footer>
         </div>
         <!-- /#page-wrapper -->
     </div>
