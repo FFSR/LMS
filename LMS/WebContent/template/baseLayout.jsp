@@ -73,6 +73,7 @@ body, body td, body th {
 	color: #000;
 }
 </style>
+
 </head>
 
 <body ng-app="myApp">

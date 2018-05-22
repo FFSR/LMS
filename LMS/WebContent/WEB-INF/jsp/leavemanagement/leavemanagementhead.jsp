@@ -29,7 +29,8 @@
 		<div>
 			<table class="table table-sm">
 				<div>
-					My Approval Pending List
+					
+					<p style="font-family:Courier; color:#000; font-size: 20px;">My Approval Pending List</p>
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="wfRequestHop in $data">
 							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.id}}</td>
