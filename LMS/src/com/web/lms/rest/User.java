@@ -345,5 +345,55 @@ public class User {
 		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
 
 	}
+	
+	
 
+	
+	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> doupdateprofile(@RequestBody LmsUser lmsUser) {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();		
+		
+		LmsUser lmsUserValidate=null;		
+		
+		try {
+			
+			lmsUserValidate = lmsUserHome.findByNID(lmsUser.getNid());
+						
+			if (lmsUserValidate!=null) {
+				
+				responseWrapper.setMessage("User is available with this NID.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}		
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			responseWrapper.setMessage("Registration failed. Same NID created.");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}		
+		
+		try {
+
+			lmsUser.setPassword(ProtectedConfigFile.encrypt(lmsUser.getPassword()));
+			lmsUser.setInsertDate(new Date());
+			
+			try {
+
+				int lmsuserid = lmsUserHome.persist(lmsUser);
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("Failed to create User.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
+			responseWrapper.setMessage("Success. User has created");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+		} catch (Exception ex) {
+
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+	} 
 }
