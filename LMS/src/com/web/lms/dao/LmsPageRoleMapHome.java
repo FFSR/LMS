@@ -3,12 +3,15 @@ package com.web.lms.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsPageRoleMap;
+import com.web.lms.model.LmsUser;
 
 /**
  * Home object for domain model class LmsPageRoleMap.
@@ -67,6 +70,23 @@ public class LmsPageRoleMapHome {
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
 			throw re;
+		}
+	}
+	
+	public LmsPageRoleMap findByRoleidandPageid(Integer roleid, Integer pageid) {
+
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsPageRoleMap e WHERE e.lmsRole.id=:roleid AND e.lmsPages.id=:pageid")
+					.setParameter("roleid", roleid)
+					.setParameter("pageid", pageid);
+
+			LmsPageRoleMap lmsPageRoleMap = (LmsPageRoleMap) query.getSingleResult();
+
+			return lmsPageRoleMap;
+		} 
+		catch (Exception ex) {
+			return null;
 		}
 	}
 }

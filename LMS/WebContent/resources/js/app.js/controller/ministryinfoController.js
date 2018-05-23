@@ -4,13 +4,15 @@ App
 		[
 			'$scope',
 			'$http',
+			'loginService',
 			'ministryinfoService',
 			'$timeout',
 			'$filter',
 			'$location',
+			'url',
 
-			function($scope, $http, ministryinfoService,
-				$timeout, $filter,$location) {
+			function($scope, $http, loginService, ministryinfoService,
+				$timeout, $filter,$location, url) {
 				
 				$scope.testMsg = "Testing Message";
 				
@@ -52,4 +54,40 @@ App
 				$scope.gotoHomePage = function(){	
 					window.location = url+"employeehomepage";
 				}
+				
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+				
+				$scope.showConfirmationMessage = function() {
+					var result = confirm("Do your want to submit?");
+	                if (result) {
+	                	$scope.holidaymanagement();
+	                } else {
+	                    return false;
+	                }
+				};
+				
+				$scope.userAuthentication = function(userid){
+					
+					// Validate from lms_pages table
+					$scope.pageid = 24;
+					
+					loginService.getauthorised(userid, $scope.pageid)
+					.then(function(d) {						
+						$scope.showSuccessMessage(d.message);
+						
+					}, 
+					function(e) {
+						$scope.showErrorMessage(e.data.message);
+						window.location = url + "unauthorised";
+					});					
+				};
+				
 			} ]);

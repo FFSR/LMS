@@ -4,6 +4,7 @@ App
 		[
 			'$scope',
 			'$http',
+			'loginService',
 			'holidayService',
 			'holidaygridshowService',
 			'updateholidayrecordService',
@@ -14,8 +15,8 @@ App
 			'$location',
 			'url',
 
-			function($scope, $http,holidayService,holidaygridshowService,updateholidayrecordService,DropDownService,
-				$timeout, $filter,NgTableParams,$location,url) {
+			function($scope, $http, loginService, holidayService, holidaygridshowService, updateholidayrecordService, DropDownService,
+				$timeout, $filter, NgTableParams, $location, url) {
 				$scope.testMsg = "Test Message New";
 				$scope.holidaygridcontrol = {};
 				$scope.showHolidayDetails = false;
@@ -171,6 +172,21 @@ App
 					window.location = url+"employeehomepage";
 				}
 				
+				$scope.userAuthentication = function(userid){
+					
+					// Validate from lms_pages table
+					$scope.pageid = 12;
+					
+					loginService.getauthorised(userid, $scope.pageid)
+					.then(function(d) {						
+						$scope.showSuccessMessage(d.message);
+						
+					}, 
+					function(e) {
+						$scope.showErrorMessage(e.data.message);
+						window.location = url + "unauthorised";
+					});					
+				};		
 			} 
 			]);
 				

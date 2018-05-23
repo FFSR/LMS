@@ -23,6 +23,17 @@ App.factory('loginService', [
 					});
 				},
 				
+				//login.java  /getauthorised/{userid}/{pageid}/
+				
+				getauthorised: function(userid, pageid){
+					return $http.get(url+'getauthorised/'+ userid +'/'+ pageid +'/')
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						return $q.reject(errResponse);
+					});
+				},				
 				
 			}
 		} ]);

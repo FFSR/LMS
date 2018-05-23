@@ -1,6 +1,7 @@
 App.controller('manageuserController', [
 		'$scope',
 		'$http',
+		'loginService',
 		'updateuserprofileService',
 		'manageuserService',
 		'OfficeService',
@@ -17,10 +18,10 @@ App.controller('manageuserController', [
 		'$location',
 		'url',
 
-		function($scope, $http, updateuserprofileService, manageuserService,
+		function($scope, $http, loginService, updateuserprofileService, manageuserService,
 				OfficeService, DivisionService, DesignationService,
 				MinistryService, SectionService, DropDownService, RoleService,
-				WftroleService, $timeout, $filter, NgTableParams, $location) {
+				WftroleService, $timeout, $filter, NgTableParams, $location, url) {
 			$scope.testMsg = "Test Message New";
 			$scope.user = {};
 			$scope.showUserDetails = false;
@@ -201,5 +202,21 @@ App.controller('manageuserController', [
 
 				window.location = url + "employeehomepage";
 			}
+			
+			$scope.userAuthentication = function(userid){
+				
+				// Validate from lms_pages table
+				$scope.pageid = 22;
+				
+				loginService.getauthorised(userid, $scope.pageid)
+				.then(function(d) {						
+					$scope.showSuccessMessage(d.message);
+					
+				}, 
+				function(e) {
+					$scope.showErrorMessage(e.data.message);
+					window.location = url + "unauthorised";
+				});					
+			};
 
 		} ]);

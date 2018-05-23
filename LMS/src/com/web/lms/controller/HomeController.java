@@ -399,6 +399,7 @@ public class HomeController {
 			return "login";
 		}
 	}
+	
 	@RequestMapping("/divisioninfo")
 	public String divisioninfo(Model model) {
 		
@@ -420,6 +421,21 @@ public class HomeController {
 		httpSession.invalidate();
 		
 		return "login";
+	}
+	
+	@RequestMapping("/unauthorised")
+	public String unauthorised(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "unauthorised";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/requestDetails")

@@ -7,6 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 
+
+<script type="text/javascript"
+	src="resources/js/app.js/service/loginService.js"> </script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/divisionService.js"></script>
 <script type="text/javascript"
@@ -38,7 +41,8 @@
 
 </head>
 
-<body ng-controller="manageuserController">
+<body ng-controller="manageuserController as muc">
+	<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 	<div ng-init="getDivisionData()"></div>
 	<div ng-init="getOfficeData()"></div>
 	<div ng-init="getDesignationData()"></div>
