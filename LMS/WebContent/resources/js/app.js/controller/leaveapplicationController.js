@@ -353,7 +353,7 @@ App.controller(
 
 					$scope.leaveTaken='0';
 					$scope.leavetype='0';
-					$scope.userid =0;
+					//$scope.userid =0;
 					// $scope.leaveapplication.lmsLeaveType.type =
 					// $scope.appStatus.type;
 					$scope.leaveBalance='0';

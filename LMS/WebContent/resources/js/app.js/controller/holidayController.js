@@ -85,14 +85,15 @@ App
 					updateholidayrecordService.deleteholidayrecord($scope.holidayrecord_id).then(
 							function(d){
 								console.log(d.message);
+								$scope.showSuccessMessage("Deletion successful");
 							},
 							function(errResponse){
 								console.log("Failed to Update User Profile.");
+								$scope.showErrorMessage("Deletion Fail");
 							}
 						);
 					
 				};
-				
 				
 				
 				//deleteHolidayRecord(holidayrecord)

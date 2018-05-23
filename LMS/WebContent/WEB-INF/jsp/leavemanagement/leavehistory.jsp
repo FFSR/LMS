@@ -21,7 +21,6 @@
 					<!-- Modal content-->
 					<div class="content">
 						<div class="header">
-							<h4 class="modal-title">My Leave Balance</h4>
 						</div>
 						<div class="modal-body">
 							<form role="form">
@@ -29,7 +28,7 @@
 									<label for="user_id">Employee ID:</label> <input type="text"
 										ng-model="user_id" class="form-control" id="user_id">
 								</div> -->
-
+                                <p style="font-family:Courier; color:#000; font-size: 20px;">My Leave Balance</p>
 								<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
 									ng-click="leavehistory()">Leave Balance</button>
 									
