@@ -13,6 +13,14 @@
 	src="resources/js/app.js/service/homepagegridshowService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/homepagegridshowController.js"></script>
+	
+<style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size:20px;
+}
+</style>
 
 </head>
 
@@ -24,7 +32,10 @@
 		<div>
 			<table class="table table-sm">
 				<div>
-					Leave Notice Board
+					
+					<!-- <label class="control-label col-md-3">Leave Notice Board</label> -->
+					<p style="font-family:Courier; color:#000; font-size: 20px;">Leave Notice Board</p>
+					
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="leaveapplication in $data">
 							<td title="'Employee name'"

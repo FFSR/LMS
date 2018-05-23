@@ -26,16 +26,23 @@
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-3" >Start
-					Date</div>
-				<div class="col-sm-3">
-					<input type="text" id="fromDate" class="form-control" />
-				</div>
-				<div class="col-sm-3" >End
-					Date</div>
-				<div class="col-sm-3" >
-					 <input type="text" id="toDate" class="form-control" />
-				</div>
+				<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Start Date</label>
+							<div class="col-md-9">
+								<input type="text" id="fromDate" ng-model="fromDate" class="form-control" ng-required="true"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-3 control-label">End Date</label>
+							<div class="col-md-9">
+								<input type="text" id="toDate" ng-model="toDate" class="form-control" ng-required="true"/>
+							</div>
+
+						</div>
+					</div>
 			</div>
 			<br>
 			
@@ -59,7 +66,7 @@
 			<div>
 				<table class="table table-sm">
 				<div>
-					Test Message: {{testMessage}}
+					
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="wfRequestHop in $data">
 							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
