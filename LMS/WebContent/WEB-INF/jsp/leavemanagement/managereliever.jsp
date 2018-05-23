@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,19 +7,17 @@
 <title>Insert title here</title>
 
 <script type="text/javascript"
+	src="resources/js/app.js/service/loginService.js"> </script>
+<script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
-
-<script type="text/javascript" src="resources/js/app.js/service/userlistService.js"></script>
-<script type="text/javascript" src="resources/js/app.js/service/manageuserService.js"></script>
-<script type="text/javascript" src="resources/js/app.js/service/managedelegationService.js"></script>
-
-
-	
+<script type="text/javascript"
+	src="resources/js/app.js/service/userlistService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/manageuserService.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/managedelegationService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/managerelieverController.js"></script>
-
-
-
 <script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
@@ -32,12 +30,14 @@
 
 </head>
 <body>
-<br>
+	<br>
 	<div ng-controller="managerelieverController">
-	<div ng-init="loadUserListDropDown();getUserInfo('${sessionScope.user.id}')"></div>
-	<form class="form-horizontal">
-	<div class="form-body">
-					
+		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
+		<div
+			ng-init="loadUserListDropDown();getUserInfo('${sessionScope.user.id}')"></div>
+		<form class="form-horizontal">
+			<div class="form-body">
+
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -59,7 +59,7 @@
 						</div>
 					</div>
 				</div>
-            <div class="row">
+				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Section Name</label>
@@ -80,16 +80,15 @@
 						</div>
 					</div>
 				</div>
-            
-            <br> My Roles
-				<div >
+
+				<br> My Roles
+				<div>
 					<table class="table table-sm">
 						<div>
 							<table ng-table="tableParams" class="table" show-filter="true">
 								<tr ng-repeat="listLmsWftRoleUserMap in $data">
 
 									<td title="'Role Name'"
-										
 										sortable="'listLmsWftRoleUserMap.lmsWftRole.roleName'">{{listLmsWftRoleUserMap.lmsWftRole.roleName}}
 									</td>
 								</tr>
@@ -97,22 +96,24 @@
 						</div>
 					</table>
 				</div>
-			<br><br><br>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-					   <label class="control-label col-md-3">Reliever</label>
-					       <div class="col-md-9">
+				<br> <br> <br>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Reliever</label>
+							<div class="col-md-9">
 								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddReliever" ng-model="ddReliever" ng-change="showUserInfo(ddReliever.id,ddReliever.name,ddReliever.lmsDepartment.name,ddReliever.lmsSection.name)"
+								<select class="form-control" id="ddReliever"
+									ng-model="ddReliever"
+									ng-change="showUserInfo(ddReliever.id,ddReliever.name,ddReliever.lmsDepartment.name,ddReliever.lmsSection.name)"
 									ng-options="x as x.name for x in userlistInfo track by x.id">
 									<option value="">Select</option>
 								</select>
 
-				          </div>
-				     </div>
-				 </div>
-				 <div class="col-md-6">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">User Name</label>
 							<div class="col-md-9">
@@ -120,8 +121,8 @@
 							</div>
 						</div>
 					</div>
-			</div>
-			<div class="row">
+				</div>
+				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Department Name</label>
@@ -139,7 +140,7 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<button type="submit" class="btn" id="submit"
 						ng-click="addReliever()">Add Reliever</button>
@@ -148,20 +149,17 @@
 						<input type="button" class="btn btn-info" value="Cancel">
 					</div>
 				</div>
-				<br>
-			<br> My Reliever
-				<div>
+				<br> <br> My Reliever
+				<div class="row">
 					<table class="table table-sm">
 						<div>
 							<table ng-table="tableParams2" class="table" show-filter="true">
 								<tr ng-repeat="RoleUserMap in $data">
 
 									<td title="'Relievr Name'"
-										
 										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.lmsUser.name}}
 									</td>
 									<td title="'Role Name'"
-										
 										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.lmsWftRole.roleName}}
 									</td>
 									<td title="'Action'"><button class="btn-primary"
@@ -171,9 +169,18 @@
 						</div>
 					</table>
 				</div>
-			
-</div>
-</form>
+
+				<div class="row">
+					<div class="col-md-12">
+						<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+							data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+						<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+							data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+					</div>
+				</div>
+
+			</div>
+		</form>
 	</div>
 
 </body>

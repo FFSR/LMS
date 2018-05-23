@@ -4,13 +4,15 @@ App
 		[
 			'$scope',
 			'$http',
+			'loginService',
 			'divisioninfoService',
 			'$timeout',
 			'$filter',
 			'$location',
+			'url',
 
-			function($scope, $http, divisioninfoService,
-				$timeout, $filter,$location) {
+			function($scope, $http, loginService, divisioninfoService,
+				$timeout, $filter,$location, url) {
 				
 				$scope.testMsg = "Testing Message";
 				
@@ -48,5 +50,41 @@ App
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
 							});
-				}
+				};
+				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+				
+				$scope.userAuthentication = function(userid){
+					
+					// Validate from lms_pages table
+					$scope.pageid = 10;
+					
+					loginService.getauthorised(userid, $scope.pageid)
+					.then(function(d) {						
+						$scope.showSuccessMessage(d.message);
+						
+					}, 
+					function(e) {
+						$scope.showErrorMessage(e.data.message);
+						window.location = url + "unauthorised";
+					});					
+				};
 			} ]);
