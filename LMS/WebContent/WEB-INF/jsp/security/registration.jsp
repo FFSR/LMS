@@ -26,7 +26,7 @@
 	src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/registrationController.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
@@ -168,7 +168,7 @@
 								ng-options="x as x.name for x in officeNames track by x.id">
 								<option value="">Select</option>
 								
-							  </select> Status: {{appStatus}}
+							  </select>
 						</div>
 					</div>
 			   </div> 
@@ -225,8 +225,6 @@
 						  <div class="col-md-9">		
 							<input type="text" id="joiningDate" class="form-control" ng-required="false"
 					         placeholder="Joining Date">
-							<input type="text" id="joiningDate"  class="form-control" ng-required="false"
-					         placeholder="Joining Date">  
 						</div>
 					</div>
 			   </div>  
@@ -363,8 +361,7 @@
 		
 		<div class="row">
 			<div class="col-md-4">
-				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
-					
+				<div id="successMssages" class="p-3 mb-2 bg-success text-white"					
 					data-ng-show="successMessages" data-ng-bind="successMessages"></div>
 				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
 					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>

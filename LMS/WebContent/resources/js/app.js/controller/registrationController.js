@@ -18,8 +18,9 @@ App
 			'$location',
 			'url',
 
-			function($scope, $timeout, $http, DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService,
-					userlistService,$timeout, $filter,$location) {
+			function($scope, $timeout, $http, 
+					DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService, userlistService,
+					$timeout, $filter,$location, url) {
 				
 				$scope.testMsg = "Testing Message";
 				$scope.user={};

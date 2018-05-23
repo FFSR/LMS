@@ -1,5 +1,9 @@
-App.controller('manageuserController', [
+App
+.controller(
+		'manageuserController', 
+		[
 		'$scope',
+		'$timeout',
 		'$http',
 		'loginService',
 		'updateuserprofileService',
@@ -12,16 +16,17 @@ App.controller('manageuserController', [
 		'DropDownService',
 		'RoleService',
 		'WftroleService',
-		'$timeout',
 		'$filter',
 		'NgTableParams',
 		'$location',
 		'url',
 
-		function($scope, $http, loginService, updateuserprofileService, manageuserService,
+		function($scope, $timeout, $http, 
+				loginService, updateuserprofileService, manageuserService,
 				OfficeService, DivisionService, DesignationService,
-				MinistryService, SectionService, DropDownService, RoleService,
-				WftroleService, $timeout, $filter, NgTableParams, $location, url) {
+				MinistryService, SectionService, DropDownService, RoleService, WftroleService, 
+				$filter, NgTableParams, $location, url) {
+			
 			$scope.testMsg = "Test Message New";
 			$scope.user = {};
 			$scope.showUserDetails = false;
@@ -33,11 +38,15 @@ App.controller('manageuserController', [
 				$scope.statusFinal = "";
 
 				if ($scope.userName == null || $scope.userName == "") {
-					$scope.userName = "880";
+					$scope.userNameDummy = "880";
+				}else{
+					$scope.userNameDummy = $scope.userName;
 				}
 
 				if ($scope.mobile == null || $scope.mobile == "") {
-					$scope.mobile = "a";
+					$scope.mobileDummy = "a";
+				}else{
+					$scope.mobileDummy = $scope.mobile;
 				}
 
 				
@@ -51,7 +60,7 @@ App.controller('manageuserController', [
 				
 				//$scope.user.status= $scope.status.name;
 				
-				manageuserService.getmanageuser($scope.userName, $scope.mobile, $scope.statusFinal)
+				manageuserService.getmanageuser($scope.userNameDummy, $scope.mobileDummy, $scope.statusFinal)
 					.then(function(d) {
 						$scope.testMsg1 = "Test";
 						console.log("Success.", d.message);
@@ -68,7 +77,7 @@ App.controller('manageuserController', [
 
 			$scope.showEmpDetails = function(user) {
 
-				console.log("User", user);
+				//console.log("User", user);
 				$scope.showUserDetails = true;
 
 				$scope.user = user;
