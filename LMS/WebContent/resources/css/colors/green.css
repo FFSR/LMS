@@ -56,10 +56,10 @@ body {
   display: none;
 }
 .navbar-header {
-  background: #00c292;
+  background: #fff;
 }
 .navbar-top-links > li > a {
-  color: #ffffff;
+  color: #fff;
 }
 /*Right panel*/
 .right-sidebar .rpanel-title {
@@ -75,7 +75,7 @@ body {
   box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
 }
 .sidebar .label-custom {
-  background: #01c0c8;
+  background: #fff;
 }
 #side-menu li a {
   color: #54667a;
