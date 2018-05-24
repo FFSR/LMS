@@ -4,6 +4,7 @@ App.controller(
 			'$scope',
 			'$http',
 			'leaveapplicationservice',
+			'loginService',
 			'leavetypeService',
 			'userlistService',
 			'manageuserService',
@@ -15,7 +16,7 @@ App.controller(
 			'$location',
 			'url',
 
-			function($scope, $http,leaveapplicationservice,leavetypeService,userlistService,manageuserService,wfManagementService,DropDownService,leavehistoryService,
+			function($scope, $http,leaveapplicationservice,loginService,leavetypeService,userlistService,manageuserService,wfManagementService,DropDownService,leavehistoryService,
 					$timeout, $filter,$location,url) {
 
 				$scope.testMsg = "Testing Message";
@@ -387,6 +388,23 @@ App.controller(
 								$scope.showErrorMessage(errResponse.data.message);
 							});
 
+				};
+				
+				$scope.userAuthentication = function(userid){
+					
+					// Validate from lms_pages table
+					$scope.pageid = 8;
+								
+					loginService.getauthorised(userid, $scope.pageid)
+					.then(function(d) {						
+						$scope.showSuccessMessage(d.message);
+									
+					}, 
+					function(e) {
+						$scope.showErrorMessage(e.data.message);
+						window.location = url + "unauthorised";
+					});					
+												
 				};
 			} 
 			]);

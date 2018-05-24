@@ -8,6 +8,8 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/leavetypeService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/loginService.js"> </script>
+<script type="text/javascript"
 	src="resources/js/app.js/service/userlistService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
@@ -43,6 +45,7 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
+	<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 		<div
 			ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}')"></div>
 		<div
