@@ -1,10 +1,11 @@
 App
-	.controller(
-		'registrationController',
+.controller(
+		'userprofileController',
 		[
 			'$scope',
 			'$timeout',
 			'$http',
+			'updateprofileService',
 			'DivisionService',
 			'DepartmentService',
 			'DesignationService',
@@ -12,16 +13,16 @@ App
 			'SectionService',
 			'OfficeService',
 			'DropDownService',
-			'registrationService',
+			//'registrationService',
 			'userlistService',
 			'$filter',
 			'$location',
+			'NgTableParams',
 			'url',
 
-			function($scope, $timeout, $http, 
-					DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, registrationService, userlistService,
-					$timeout, $filter,$location, url) {
-				
+			function($scope, $timeout, $http, updateprofileService, DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, 
+					userlistService, $filter,$location, NgTableParams, url) {
+
 				$scope.testMsg = "Testing Message";
 				$scope.user={};
 				/*$scope.user = {
@@ -46,9 +47,9 @@ App
 						"insertBy" : "",
 						"updateDate" : "",
 						"updateBy" : "",
-						
-						
-						
+
+
+
 						"mobileOffice" : "",	
 						"status" : "",
 						"password" : "",
@@ -58,13 +59,13 @@ App
 						"division_id" : "",
 						"ministry_id" : "",
 						"office_location_id" : "",
-													
-						
+
+
 					};*/
 
-				
-				$scope.registration = function(){
-										
+
+				$scope.userprofile = function(){
+
 					/*$scope.user.name = $scope.username;
 					$scope.user.nid = $scope.nid;
 					$scope.user.office = $scope.office;
@@ -82,57 +83,57 @@ App
 					$scope.user.gender = $scope.gender;
 					$scope.user.supervisoremail = $scope.supervisoremail;
 					$scope.user.address = $scope.address;*/
-						
+
 					//console.log($scope.user.username);
-					
-					$scope.user.nationality = $scope.nationality.name;
-					$scope.user.status = "PENDING";
-					$scope.user.lmsUser= $scope.ddReliever;
-					$scope.user.joiningDate = new Date($('#joiningDate').val());
-					
-					
-					$scope.user.gender= $scope.gender.name;
-					
-					registrationService.registration($scope.user).then(
+
+					//$scope.user.nationality = $scope.nationality.name;
+					//$scope.user.status = "PENDING";
+					//$scope.user.lmsUser= $scope.ddReliever;
+					//$scope.user.joiningDate = new Date($('#joiningDate').val());
+
+
+					//$scope.user.gender= $scope.gender.name;
+
+					updateprofileService.updateprofile($scope.user).then(
 							function(d) {
 								//$scope.testMsg = d.message;
 								//console.log("Success.",d.message);
 								$scope.clearAll();
-								
+
 								$scope.showSuccessMessage(d.message);
 								//$window.location.reload();
-								location.reload();// Added by Feroj on 20-05-18
-								
-								
+
+
+
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								//console.error(e.data.message);
 								$scope.showErrorMessage(e.message);
-								
+
 							});
 				};
-				
+
 				$scope.getDivisionData = function(){
 					DivisionService.getAllDivision().then(
 							function(d) {
-						$scope.divisionNames = d;
-					}, function(errResponse) {
-						console.log("Failed to get Drop Down.");
-					});
+								$scope.divisionNames = d;
+							}, function(errResponse) {
+								console.log("Failed to get Drop Down.");
+							});
 				}
-				
-				
+
+
 				$scope.getDepartmentData = function(){
 					DepartmentService.getAllDepartment().then(
 							function(d) {
-						$scope.departmentNames = d;
-					}, function(errResponse) {
-						console.log("Failed to get Drop Down.");
-					});
+								$scope.departmentNames = d;
+							}, function(errResponse) {
+								console.log("Failed to get Drop Down.");
+							});
 				}
-				
-				
+
+
 				$scope.getDesignationData = function(){
 					DesignationService.getAllDesignation().then(function(d) {
 						$scope.designationNames = d;
@@ -140,8 +141,8 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
-				
-				
+
+
 				$scope.getMinistryData = function(){
 					MinistryService.getAllMinistry().then(function(d) {
 						$scope.ministryNames = d;
@@ -149,8 +150,8 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
-				
-				
+
+
 				$scope.getSectionData = function(){
 					SectionService.getAllSection().then(function(d) {
 						$scope.sectionNames = d;
@@ -158,8 +159,8 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
-				
-				
+
+
 				$scope.getOfficeData = function(){
 					OfficeService.getAllOffice().then(function(d) {
 						$scope.officeNames = d;
@@ -167,8 +168,8 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
-				
-				
+
+
 				$scope.getDropdownData = function(){
 					DropDownService.getAllDropdown().then(function(d) {
 						$scope.dropdownNames = d;
@@ -176,7 +177,7 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
-				
+
 				$scope.getDropdownDataNationality = function(dropdownname){
 					DropDownService.getNationalityOption(dropdownname).then(function(d) {
 						$scope.dropdownNationalityNames = d.listLmsDropdown;
@@ -184,7 +185,7 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
-				
+
 				$scope.getDropdownDataGender = function(dropdownname){
 					DropDownService.getGenderOption(dropdownname).then(function(d) {
 						$scope.dropdownGenderNames = d.listLmsDropdown;
@@ -192,18 +193,18 @@ App
 						console.log("Failed to get Drop Down.");
 					});
 				}
-				
+
 				$scope.loadUserListDropDown = function(){
 					$scope.dDName = "";
 					userlistService.getUserList()
 					.then(
-						function(d) {
-						$scope.userData = d;
-					}, function(errResponse) {
-						console.log("Failed to get User Drop Down.");
-					});
+							function(d) {
+								$scope.userData = d;
+							}, function(errResponse) {
+								console.log("Failed to get User Drop Down.");
+							});
 				}
-				
+
 				$scope.showSuccessMessage = function(message) {
 
 					$scope.successMessages = message;
@@ -222,8 +223,8 @@ App
 						$scope.errorMessages = null;
 					}, 6000);
 				};
-				
-				
+
+
 				$scope.clearAll = function(){
 					// for dropdown set to zero
 					//$scope.mobileNoDropDown = '0';
@@ -234,13 +235,13 @@ App
 					$scope.user.name = "";
 					$scope.user.lmsDivision = '0';
 					$scope.user.email = "";
-					
+
 				};
-				
+
 				$scope.gotoHomePage = function(){
-					
+
 					window.location = "employeehomepage";
 				};
 
-				
+
 			} ]);

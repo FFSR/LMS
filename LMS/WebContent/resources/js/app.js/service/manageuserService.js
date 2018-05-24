@@ -16,8 +16,6 @@ App.factory('manageuserService', [
 						return response.data;
 					},
 					function(errResponse) {
-						console
-								.error("Error while fetching user info list.");
 						return $q
 								.reject(errResponse);
 					});
@@ -29,8 +27,6 @@ App.factory('manageuserService', [
 						return response.data;
 					},
 					function(errResponse) {
-						console
-								.error("Error while fetching user info list.");
 						return $q
 								.reject(errResponse);
 					});

@@ -35,33 +35,40 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-    <!-- jQuery -->
-    <script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="resources/bootstrap/dist/js/tether.min.js"></script>
-    <script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="resources/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
-    <!-- Menu Plugin JavaScript -->
-    <script src="resources/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-    <!--slimscroll JavaScript -->
-    <script src="resources/js/jquery.slimscroll.js"></script>
-    <!--Wave Effects -->
-    <script src="resources/js/waves.js"></script>
-    <!--Counter js -->
-    <script src="resources/bower_components/waypoints/lib/jquery.waypoints.js"></script>
-    <script src="resources/bower_components/counterup/jquery.counterup.min.js"></script>
-    <!--Morris JavaScript -->
-    <script src="resources/bower_components/raphael/raphael-min.js"></script>
-    <!-- <script src="resources/bower_components/morrisjs/morris.js"></script> -->
-    <!-- Custom Theme JavaScript -->
-    <script src="resources/js/custom.min.js"></script>
-    <!-- <script src="resources/js/dashboard1.js"></script> -->
-    <!-- Sparkline chart JavaScript -->
-    <script src="resources/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
-    <script src="resources/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
-    <script src="resources/bower_components/toast-master/js/jquery.toast.js"></script>
-    <!--Style Switcher -->
-    <script src="resources/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+<!-- jQuery -->
+<script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="resources/bootstrap/dist/js/tether.min.js"></script>
+<script src="resources/bootstrap/dist/js/bootstrap.min.js"></script>
+<script
+	src="resources/bower_components/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+<!-- Menu Plugin JavaScript -->
+<script
+	src="resources/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<!--slimscroll JavaScript -->
+<script src="resources/js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="resources/js/waves.js"></script>
+<!--Counter js -->
+<script
+	src="resources/bower_components/waypoints/lib/jquery.waypoints.js"></script>
+<script
+	src="resources/bower_components/counterup/jquery.counterup.min.js"></script>
+<!--Morris JavaScript -->
+<script src="resources/bower_components/raphael/raphael-min.js"></script>
+<!-- <script src="resources/bower_components/morrisjs/morris.js"></script> -->
+<!-- Custom Theme JavaScript -->
+<script src="resources/js/custom.min.js"></script>
+<!-- <script src="resources/js/dashboard1.js"></script> -->
+<!-- Sparkline chart JavaScript -->
+<script
+	src="resources/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
+<script
+	src="resources/bower_components/jquery-sparkline/jquery.charts-sparkline.js"></script>
+<script src="resources/bower_components/toast-master/js/jquery.toast.js"></script>
+<!--Style Switcher -->
+<script
+	src="resources/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 <!-- Angular Stuff -->
 <script type="text/javascript" src="resources/js/angular.min.js"></script>
 <script type="text/javascript" src="resources/js/ng-table.min.js"></script>

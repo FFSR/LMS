@@ -168,6 +168,21 @@ public class HomeController {
 		}
 	}
 	
+	@RequestMapping("/updateprofile")
+	public String updateprofile(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "updateprofile";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}
+	
 	@RequestMapping("/leavehistorysearch")
 	public String leavehistorysearch(Model model) {
 		
@@ -384,6 +399,7 @@ public class HomeController {
 			return "login";
 		}
 	}
+	
 	@RequestMapping("/divisioninfo")
 	public String divisioninfo(Model model) {
 		
@@ -405,6 +421,21 @@ public class HomeController {
 		httpSession.invalidate();
 		
 		return "login";
+	}
+	
+	@RequestMapping("/unauthorised")
+	public String unauthorised(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "unauthorised";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
 	}
 	
 	@RequestMapping("/requestDetails")

@@ -176,6 +176,13 @@
 
 	</definition>
 	
+	<definition name="userprofile" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/userprofile.jsp" />
+
+	</definition>
+	
 	<definition name="menu" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
@@ -186,6 +193,13 @@
 	<definition name="requestDetails" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body" value="/WEB-INF/jsp/leavemanagement/wfDetails.jsp" />
+	</definition>
+	
+	
+	
+	<definition name="unauthorised" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/security/unauthorised.jsp" />
 	</definition>
 
 

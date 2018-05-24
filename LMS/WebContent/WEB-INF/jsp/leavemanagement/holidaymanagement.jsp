@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Ministry Information</title>
 
+
+<script type="text/javascript"
+	src="resources/js/app.js/service/loginService.js"> </script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
 <script type="text/javascript"
@@ -28,135 +31,135 @@
 	<br>
 	<div ng-controller="holidayController">
 		<form class="form-horizontal" name="memoform">
-			<div
-				ng-init="holidaygridshow()"></div>
-				<div
-				ng-init="loadDropDownHolidayOption('HolidayOption')"></div>
-				<div
-				ng-init="loadDropDownMoonOption('HolidayMoon')"></div>
-				
+			<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
+			<div ng-init="holidaygridshow()"></div>
+			<div ng-init="loadDropDownHolidayOption('HolidayOption')"></div>
+			<div ng-init="loadDropDownMoonOption('HolidayMoon')"></div>
+
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6">
-					  <div class="form-group">
-						<label class="control-label col-md-3" >Holiday Description</label>
-						<div class="col-md-9">
-							<input type="text" ng-model="leaveSubject" class="form-control" ng-required="true">
+						<div class="form-group">
+							<label class="control-label col-md-3">Holiday Description</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="leaveSubject" class="form-control"
+									ng-required="true">
+							</div>
 						</div>
 					</div>
-				</div>
-				    <div class="col-md-6">
-					  <div class="form-group">
-						 <label class="control-label col-md-3" >Holiday Date</label>
-						 <div class="col-md-9">
-							<input type="text" id="fromDate" class="form-control" />
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Holiday Date</label>
+							<div class="col-md-9">
+								<input type="text" id="fromDate" class="form-control" />
+							</div>
 						</div>
-					  </div>
-				  </div>
-
-				</div>
-				<br>
-				<div class="row">
-				  <div class="col-md-6">
-					  <div class="form-group">
-						 <label class="control-label col-md-3" >Optional</label>
-						   <div class="col-md-9">
-							<!-- Drop Down list from table -->
-						<select class="form-control" id="ddOptional" ng-model="ddOptional"
-							ng-options="x as x.name for x in optionData track by x.name">
-							<option value="">Select</option>
-						</select>
-						   </div>
-					  </div>
-				  </div>
-				 
-				 <div class="col-md-6">
-					  <div class="form-group">
-						 <label class="control-label col-md-3" >Subject to Moon</label>
-						   <div class="col-md-9">
-							<!-- Drop Down list from table -->
-						<select class="form-control" id="ddMoon" ng-model="ddMoon"
-							ng-options="x as x.name for x in moonData track by x.name">
-							<option value="">Select</option>
-						</select>
-						   </div>
-					  </div>
-				  </div>
-				</div>
-				
-				<div class="row">
-					<button type="submit" class="btn" id="submit"
-						ng-click="showConfirmationMessage(submit)"  >Submit</button \>
-					<div class="col-sm-3" style="background-color: white;"></div>
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="button" class="btn btn-info" value="Cancel" ng-click="gotoHomePage()";>
-					</div>
-				</div>
-				
-				
-				<div class="row">
-				<div class="col-md-12">
-					<div id="successMssages" class="p-3 mb-2 bg-success text-white"
-						data-ng-show="successMessages" data-ng-bind="successMessages"></div>
-					<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
-						data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
-				</div>
-			</div>
-				
-			</div>
-            </form>
-			<br> <br>
-			<div>
-				<table class="table table-sm">
-					<div>
-						Holiday List
-						<table ng-table="tableParams" class="table" show-filter="true">
-							<tr ng-repeat="holidayrecord in $data">
-								<td title="'Serial No'" filter="{name: 'text'}"
-									sortable="'name'">{{holidayrecord.id}}</td>
-								<td title="'Holiday Name'" filter="{ type: 'text'}"
-									sortable="'lmsLeaveType.fromDate'">{{holidayrecord.leaveSubject}}</td>
-								<td title="'Holiday Date'" filter="{ leaveTotal: 'text'}"
-									sortable="'lmsLeaveType.toDate'">{{holidayrecord.leaveDate|date:
-									Mon-dd}}</td>
-								<td title="'Action'"><button class="btn-primary"
-										ng-click="deleteHolidayRecord(holidayrecord)">Delete</button></td>
-						</table>
-					</div>
-				</table>
-			</div>
-			
-			<div class="container-fluid">
-				<div ng-if="showHolidayDetails">
-					<div class="row">
-						<div class="col-sm-3" style="background-color: white;">Holiday
-							Description</div>
-						<div class="col-sm-3" style="background-color: white;">
-							<input type="text" ng-model="holidayrecord.leaveSubject">
-						</div>
-						<div class="col-sm-3" style="background-color: white;">Holiday
-							Date</div>
-						<div class="col-sm-3" style="background-color: white;">
-							{{holidayrecord.leaveDate |date: YYYY-Mon-dd}}</div>
-
 					</div>
 
 				</div>
 				<br>
 				<div class="row">
-					<div class="col-sm-3" style="background-color: white;">
-						<input type="button" class="btn btn-info" value="Cancel">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Optional</label>
+							<div class="col-md-9">
+								<!-- Drop Down list from table -->
+								<select class="form-control" id="ddOptional"
+									ng-model="ddOptional"
+									ng-options="x as x.name for x in optionData track by x.name">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
 					</div>
-					<div class="col-sm-3" style="background-color: white;"></div>
-					<button type="submit" class="btn" id="submit"
-						ng-click="holidayRecord()">Update</button>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Subject to Moon</label>
+							<div class="col-md-9">
+								<!-- Drop Down list from table -->
+								<select class="form-control" id="ddMoon" ng-model="ddMoon"
+									ng-options="x as x.name for x in moonData track by x.name">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div>Response: {{testMsg}}</div>
-				
-				
-				
-were:{{holidayrecd.leaveSubject}}
+
+				<div class="row">
+					<button type="submit" class="btn" id="submit"
+						ng-click="showConfirmationMessage(submit)">Submit</button \>
+					<div class="col-sm-3" style="background-color: white;"></div>
+					<div class="col-sm-3" style="background-color: white;">
+						<input type="button" class="btn btn-info" value="Cancel"
+							ng-click="gotoHomePage()";>
+					</div>
+				</div>
+
+
+				<div class="row">
+					<div class="col-md-12">
+						<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+							data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+						<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+							data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+					</div>
+				</div>
+
 			</div>
+		</form>
+		<br> <br>
+		<div>
+			<table class="table table-sm">
+				<div>
+					Holiday List
+					<table ng-table="tableParams" class="table" show-filter="true">
+						<tr ng-repeat="holidayrecord in $data">
+							<td title="'Serial No'" filter="{name: 'text'}" sortable="'name'">{{holidayrecord.id}}</td>
+							<td title="'Holiday Name'" filter="{ type: 'text'}"
+								sortable="'lmsLeaveType.fromDate'">{{holidayrecord.leaveSubject}}</td>
+							<td title="'Holiday Date'" filter="{ leaveTotal: 'text'}"
+								sortable="'lmsLeaveType.toDate'">{{holidayrecord.leaveDate|date:
+								Mon-dd}}</td>
+							<td title="'Action'"><button class="btn-primary"
+									ng-click="deleteHolidayRecord(holidayrecord)">Delete</button></td>
+					</table>
+				</div>
+			</table>
+		</div>
+
+		<div class="container-fluid">
+			<div ng-if="showHolidayDetails">
+				<div class="row">
+					<div class="col-sm-3" style="background-color: white;">Holiday
+						Description</div>
+					<div class="col-sm-3" style="background-color: white;">
+						<input type="text" ng-model="holidayrecord.leaveSubject">
+					</div>
+					<div class="col-sm-3" style="background-color: white;">Holiday
+						Date</div>
+					<div class="col-sm-3" style="background-color: white;">
+						{{holidayrecord.leaveDate |date: YYYY-Mon-dd}}</div>
+
+				</div>
+
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-sm-3" style="background-color: white;">
+					<input type="button" class="btn btn-info" value="Cancel">
+				</div>
+				<div class="col-sm-3" style="background-color: white;"></div>
+				<button type="submit" class="btn" id="submit"
+					ng-click="holidayRecord()">Update</button>
+			</div>
+			<div>Response: {{testMsg}}</div>
+
+
+
+			were:{{holidayrecd.leaveSubject}}
+		</div>
 	</div>
 
 </body>

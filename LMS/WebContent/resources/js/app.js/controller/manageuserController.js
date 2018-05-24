@@ -1,6 +1,11 @@
-App.controller('manageuserController', [
+App
+.controller(
+		'manageuserController', 
+		[
 		'$scope',
+		'$timeout',
 		'$http',
+		'loginService',
 		'updateuserprofileService',
 		'manageuserService',
 		'OfficeService',
@@ -11,15 +16,17 @@ App.controller('manageuserController', [
 		'DropDownService',
 		'RoleService',
 		'WftroleService',
-		'$timeout',
 		'$filter',
 		'NgTableParams',
 		'$location',
+		'url',
 
-		function($scope, $http, updateuserprofileService, manageuserService,
+		function($scope, $timeout, $http, 
+				loginService, updateuserprofileService, manageuserService,
 				OfficeService, DivisionService, DesignationService,
-				MinistryService, SectionService, DropDownService, RoleService,
-				WftroleService, $timeout, $filter, NgTableParams, $location) {
+				MinistryService, SectionService, DropDownService, RoleService, WftroleService, 
+				$filter, NgTableParams, $location, url) {
+			
 			$scope.testMsg = "Test Message New";
 			$scope.user = {};
 			$scope.showUserDetails = false;
@@ -31,11 +38,15 @@ App.controller('manageuserController', [
 				$scope.statusFinal = "";
 
 				if ($scope.userName == null || $scope.userName == "") {
-					$scope.userName = "880";
+					$scope.userNameDummy = "880";
+				}else{
+					$scope.userNameDummy = $scope.userName;
 				}
 
 				if ($scope.mobile == null || $scope.mobile == "") {
-					$scope.mobile = "a";
+					$scope.mobileDummy = "a";
+				}else{
+					$scope.mobileDummy = $scope.mobile;
 				}
 
 				
@@ -49,7 +60,7 @@ App.controller('manageuserController', [
 				
 				//$scope.user.status= $scope.status.name;
 				
-				manageuserService.getmanageuser($scope.userName, $scope.mobile, $scope.statusFinal)
+				manageuserService.getmanageuser($scope.userNameDummy, $scope.mobileDummy, $scope.statusFinal)
 					.then(function(d) {
 						$scope.testMsg1 = "Test";
 						console.log("Success.", d.message);
@@ -66,21 +77,22 @@ App.controller('manageuserController', [
 
 			$scope.showEmpDetails = function(user) {
 
-				console.log("User", user);
+				//console.log("User", user);
 				$scope.showUserDetails = true;
 
 				$scope.user = user;
 			};
 
-			
+		
 			$scope.userprofile = function(ddlmsWftrole,ddlmsRole) {
 
 				//$scope.ddlmsRole = ddlmsRole;
 				$scope.ddlmsWftrole = ddlmsWftrole;
 				//console.log($scope.ddlmsRole);
 				//console.log($scope.ddlmsWftrole);
-				
-				updateuserprofileService.updateuserprofile($scope.user, ddlmsRole, $scope.ddlmsWftrole).then(
+				$scope.user.joiningDate = new Date($('#joiningDate').val());
+				//$scope.user.gender= $scope.gender.name;
+				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.user).then(
 						function(d) {
 							console.log(d.message);
 							console.log("Success.", d.message);
@@ -139,6 +151,23 @@ App.controller('manageuserController', [
 					console.log("Failed to get Drop Down.");
 				});
 			}
+			
+			$scope.getDropdownDataGender = function(dropdownname){
+				DropDownService.getGenderOption(dropdownname).then(function(d) {
+					$scope.dropdownGenderNames = d.listLmsDropdown;
+				}, function(errResponse) {
+					console.log("Failed to get Drop Down.");
+				});
+			}
+			
+			
+			$scope.getDropdownDataNationality = function(dropdownname){
+				DropDownService.getNationalityOption(dropdownname).then(function(d) {
+					$scope.dropdownNationalityNames = d.listLmsDropdown;
+				}, function(errResponse) {
+					console.log("Failed to get Drop Down.");
+				});
+			}
 
 			$scope.getRoleData = function() {
 				RoleService.getAllRole()
@@ -182,5 +211,21 @@ App.controller('manageuserController', [
 
 				window.location = url + "employeehomepage";
 			}
+			
+			$scope.userAuthentication = function(userid){
+				
+				// Validate from lms_pages table
+				$scope.pageid = 22;
+				
+				loginService.getauthorised(userid, $scope.pageid)
+				.then(function(d) {						
+					$scope.showSuccessMessage(d.message);
+					
+				}, 
+				function(e) {
+					$scope.showErrorMessage(e.data.message);
+					window.location = url + "unauthorised";
+				});					
+			};
 
 		} ]);
