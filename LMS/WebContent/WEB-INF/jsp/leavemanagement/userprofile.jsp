@@ -25,11 +25,9 @@
 	src="resources/js/app.js/service/officeService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/DropDownService.js"></script>
-
 <script type="text/javascript"
 	src="resources/js/app.js/service/userlistService.js"></script>
-
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
