@@ -345,7 +345,11 @@ public class Leaverule {
 					// int dateValidator1 = application.getFromDate().compareTo(startDate);					
 					// int dateValidator2 = application.getToDate().compareTo(startDate);					
 					// int dateValidator3 = application.getFromDate().compareTo(endDate);					
-					// int dateValidator4 = application.getToDate().compareTo(endDate);					
+					// int dateValidator4 = application.getToDate().compareTo(endDate);	
+					
+					startDate = getStartOfDay(startDate);
+					
+					endDate = getEndOfDay(endDate);
 									
 					if (application.getFromDate().compareTo(startDate)<=0 && application.getToDate().compareTo(startDate)>=0) {
 						
@@ -368,6 +372,26 @@ public class Leaverule {
 
 		return resWrapper;
 	}
+	
+	 private Date getStartOfDay(Date date) {
+		    Calendar calendar = Calendar.getInstance();
+		    calendar.setTime(date);
+		    int year = calendar.get(Calendar.YEAR);
+		    int month = calendar.get(Calendar.MONTH);
+		    int day = calendar.get(Calendar.DATE);
+		    calendar.set(year, month, day, 0, 0, 0);
+		    return calendar.getTime();
+		}
+
+		private Date getEndOfDay(Date date) {
+		    Calendar calendar = Calendar.getInstance();
+		    calendar.setTime(date);
+		    int year = calendar.get(Calendar.YEAR);
+		    int month = calendar.get(Calendar.MONTH);
+		    int day = calendar.get(Calendar.DATE);
+		    calendar.set(year, month, day, 23, 59, 59);
+		    return calendar.getTime();
+		}
 
 	private long calculateDateDifference(Date startdate, Date enddate) {
 
