@@ -145,9 +145,7 @@ public class Leaverule {
 			// 1 day added for start and end date are same
 			long numberOfDaysAppliedLong = calculateDateDifference(startDate, endDate) + 1;
 			Integer numberOfDaysApplied = (int) (long) numberOfDaysAppliedLong;
-			
-
-				
+					
 			// Validation 0.1 : Leave Balance is not found for this Leave Type. Leave Balance account may change for dependent leave account.
 			lmsLeaveBalance = findLeaveBalanceCurrent(user, leaveType);
 			
@@ -309,6 +307,8 @@ public class Leaverule {
 				}
 			}
 			
+			// Validation 10.0: Male is not eligible for Maternity Leave.
+			
 			if(user.getGender()!=null) {
 				if(user.getGender().equals(GENDER.MALE.toString()) && leaveType.getType().contains(LEAVETYPE.MATERNITY.toString())) {
 				
@@ -319,7 +319,47 @@ public class Leaverule {
 			}else {				
 				resWrapper.setMessage("Validation 10.1: Gender can not be empty.");
 				return resWrapper;				
-			}		
+			}	
+			
+			// Validation 11.0: Validation for overlap of leave date
+			
+			// get leave application(s) which end date is more than current date
+			
+			List<LmsLeaveApplication> lmsLeaveapplications = lmsLeaveApplicationHome.findAllLeaveApplicationsGeaterThanCurrentDate(user.getId());
+			
+			if(lmsLeaveapplications.size()>0) {
+				
+				for(LmsLeaveApplication application: lmsLeaveapplications) {
+				
+					// Validate Date : End date is advanced than start date
+					// Returns:the value 0 if the argument Date is equal to this Date; 
+					// a value less than 0 if this Date is before the Date argument; 
+					// and a value greater than 0 if this Date is after the Date argument.
+					// int dateValidator = startDate.compareTo(endDate);
+					// dateValidator > 0
+					
+					// 1 for after
+					// -1 for befor
+					// 0 for same
+					// for validation
+					// int dateValidator1 = application.getFromDate().compareTo(startDate);					
+					// int dateValidator2 = application.getToDate().compareTo(startDate);					
+					// int dateValidator3 = application.getFromDate().compareTo(endDate);					
+					// int dateValidator4 = application.getToDate().compareTo(endDate);					
+									
+					if (application.getFromDate().compareTo(startDate)<=0 && application.getToDate().compareTo(startDate)>=0) {
+						
+						resWrapper.setMessage("Start Date is overlap with other Approved or In-Progress application");
+						return resWrapper;
+					}
+					else if(application.getFromDate().compareTo(endDate)<=0 && application.getToDate().compareTo(endDate)>=0) {
+						
+						resWrapper.setMessage("End Date is overlap with other Approved or In-Progress application");
+						return resWrapper;						
+					}					
+				}
+			}
+			
 
 		} catch (Exception ex) {
 
