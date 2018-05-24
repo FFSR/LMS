@@ -156,7 +156,7 @@ public class LmsLeaveApplicationHome {
 			// CURDATE();
 
 			Query query = entityManager.createQuery(
-					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND t.toDate >=CURDATE()");
+					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND DATE(t.toDate) >= DATE(CURDATE())");
 
 			return (List<LmsLeaveApplication>) query.getResultList();
 		} catch (Exception ex) {
@@ -170,13 +170,12 @@ public class LmsLeaveApplicationHome {
 	public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate(Integer userid) {
 		try {
 
-			// Both return same data
-			// SELECT t.* FROM lms_leave_application t JOIN lms_wf_request r ON
-			// r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE >
-			// CURDATE();
-			// SELECT r.* FROM lms_wf_request r JOIN lms_leave_application t ON
-			// r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE >
-			// CURDATE();
+			// SELECT t.id, t.FROM_DATE,t.TO_DATE FROM lms_leave_application t
+			// JOIN lms_wf_request r ON r.LEAVE_APPLICATION_ID = t.ID
+			// WHERE t.USER_ID =11
+			// AND t.TO_DATE >= CURDATE()
+			// AND ( r.STATUS = 'APPROVED' OR r.STATUS = 'INPROGRESS' )
+			// ORDER BY t.FROM_DATE;
 
 			Query query = entityManager.createQuery(
 					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE t.lmsUserByUserId.id=:userid AND DATE(t.toDate) >= DATE(CURDATE()) AND ( e.status='APPROVED' OR e.status='INPROGRESS' )")
