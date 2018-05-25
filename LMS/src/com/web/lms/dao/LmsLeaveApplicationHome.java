@@ -15,11 +15,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsLeaveApplication;
-import com.web.lms.model.LmsLeaveBalance;
-import com.web.lms.model.LmsUser;
 
 /**
  * Home object for domain model class LmsLeaveApplication.
+ * 
  * @see GEN.LmsLeaveApplication
  * @author Hibernate Tools
  */
@@ -80,90 +79,114 @@ public class LmsLeaveApplicationHome {
 			throw re;
 		}
 	}
-	
-	public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {		
+
+	public List<LmsLeaveApplication> findLeaveApplicationByUserID(Integer userid) {
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid").setParameter("userid",userid);
-		
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid")
+					.setParameter("userid", userid);
+
 			List<LmsLeaveApplication> lmsLeaveApplications = query.getResultList();
-			
-			return lmsLeaveApplications;		
-		}
-		catch(Exception ex) {			
-			return null;			
+
+			return lmsLeaveApplications;
+		} catch (Exception ex) {
+			return null;
 		}
 	}
-	
-	public List<LmsLeaveApplication> findLeaveApplicationByUserandLeaveTypeandYear(Integer userid, Integer leaveTypeId, String year) {		
+
+	public List<LmsLeaveApplication> findLeaveApplicationByUserandLeaveTypeandYear(Integer userid, Integer leaveTypeId,
+			String year) {
 		try {
-			String sDate= year +"-01-01 00:00:00";
-			String eDate= year +"-12-31 23:59:59"; 
-			
-		    Date sdate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate); 
-		    Date edate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(eDate);
-			
-			
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND (e.fromDate BETWEEN :stDate AND :edDate OR e.toDate BETWEEN :stDate AND :edDate)")
-					.setParameter("userid", userid)
-					.setParameter("leaveTypeId", leaveTypeId)
-					.setParameter("stDate", sdate)
-					.setParameter("edDate", edate);
-		
+			String sDate = year + "-01-01 00:00:00";
+			String eDate = year + "-12-31 23:59:59";
+
+			Date sdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate);
+			Date edate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(eDate);
+
+			Query query = entityManager.createQuery(
+					"SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND (e.fromDate BETWEEN :stDate AND :edDate OR e.toDate BETWEEN :stDate AND :edDate)")
+					.setParameter("userid", userid).setParameter("leaveTypeId", leaveTypeId)
+					.setParameter("stDate", sdate).setParameter("edDate", edate);
+
 			List<LmsLeaveApplication> leaveApplications = query.getResultList();
-		
-			return leaveApplications;		
-		}
-		catch(Exception ex) {			
-			return null;			
-		}
-	}
-	
-	public List<LmsLeaveApplication> findLeaveApplicationByUserandLeaveType(Integer userid, Integer leaveTypeId) {		
-		try {			
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid AND e.lmsLeaveType.id=:leaveTypeId")
-					.setParameter("userid", userid)
-					.setParameter("leaveTypeId", leaveTypeId);
-		
-			List<LmsLeaveApplication> leaveApplications = query.getResultList();
-		
-			return leaveApplications;		
-		}
-		catch(Exception ex) {			
-			return null;			
+
+			return leaveApplications;
+		} catch (Exception ex) {
+			return null;
 		}
 	}
 
-@SuppressWarnings("unchecked")
-public List<LmsLeaveApplication> findAllLeaveApplications() {
-	try {
-		Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e");
-		
-		return (List<LmsLeaveApplication>) query.getResultList();
-	}
-	catch(Exception ex) {
-		ex.printStackTrace();
-		
-		return null;
-	}
-}
+	public List<LmsLeaveApplication> findLeaveApplicationByUserandLeaveType(Integer userid, Integer leaveTypeId) {
+		try {
+			Query query = entityManager.createQuery(
+					"SELECT e FROM LmsLeaveApplication e WHERE e.lmsUserByUserId.id=:userid AND e.lmsLeaveType.id=:leaveTypeId")
+					.setParameter("userid", userid).setParameter("leaveTypeId", leaveTypeId);
 
-@SuppressWarnings("unchecked")
-public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate() {
-	try {
-		
-		// Both return same data
-		// SELECT t.* FROM lms_leave_application t JOIN lms_wf_request r ON r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE > CURDATE();
-		// SELECT r.* FROM lms_wf_request r JOIN lms_leave_application t ON r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE > CURDATE();
-		
-		Query query = entityManager.createQuery("SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND t.toDate >=CURDATE()");
-		//Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e WHERE e.toDate >=CURDATE()");
-		
-		return (List<LmsLeaveApplication>) query.getResultList();
+			List<LmsLeaveApplication> leaveApplications = query.getResultList();
+
+			return leaveApplications;
+		} catch (Exception ex) {
+			return null;
+		}
 	}
-	catch(Exception ex) {
-		ex.printStackTrace();
-		
-		return null;
+
+	@SuppressWarnings("unchecked")
+	public List<LmsLeaveApplication> findAllLeaveApplications() {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveApplication e");
+
+			return (List<LmsLeaveApplication>) query.getResultList();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+
+			return null;
+		}
 	}
-}
+
+	@SuppressWarnings("unchecked")
+	public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate() {
+		try {
+
+			// Both return same data
+			// SELECT t.* FROM lms_leave_application t JOIN lms_wf_request r ON
+			// r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE >
+			// CURDATE();
+			// SELECT r.* FROM lms_wf_request r JOIN lms_leave_application t ON
+			// r.LEAVE_APPLICATION_ID = t.ID WHERE r.STATUS='APPROVED' AND t.TO_DATE >
+			// CURDATE();
+
+			Query query = entityManager.createQuery(
+					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND DATE(t.toDate) >= DATE(CURDATE())");
+
+			return (List<LmsLeaveApplication>) query.getResultList();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate(Integer userid) {
+		try {
+
+			// SELECT t.id, t.FROM_DATE,t.TO_DATE FROM lms_leave_application t
+			// JOIN lms_wf_request r ON r.LEAVE_APPLICATION_ID = t.ID
+			// WHERE t.USER_ID =11
+			// AND t.TO_DATE >= CURDATE()
+			// AND ( r.STATUS = 'APPROVED' OR r.STATUS = 'INPROGRESS' )
+			// ORDER BY t.FROM_DATE;
+
+			Query query = entityManager.createQuery(
+					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE t.lmsUserByUserId.id=:userid AND DATE(t.toDate) >= DATE(CURDATE()) AND ( e.status='APPROVED' OR e.status='INPROGRESS' )")
+					.setParameter("userid", userid);
+
+			return (List<LmsLeaveApplication>) query.getResultList();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+
+			return null;
+		}
+	}
+
 }

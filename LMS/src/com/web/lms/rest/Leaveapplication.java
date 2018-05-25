@@ -1,5 +1,8 @@
 package com.web.lms.rest;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +65,14 @@ public class Leaveapplication {
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 						
-			try {
+			try {				
+				// Convert to this time
+				// Start date = " 00:00:00";
+				// End Date = " 23:59:59";
+				
+				lmsLeaveApplication.setFromDate(getStartOfDay(lmsLeaveApplication.getFromDate()));
+				lmsLeaveApplication.setToDate(getEndOfDay(lmsLeaveApplication.getToDate()));
+				
 			int lmsleaveapplicationid = lmsLeaveApplicationHome.persist(lmsLeaveApplication);
 			}
 			catch(Exception ex) {
@@ -74,5 +84,25 @@ public class Leaveapplication {
 			responseWrapper.setMessage("Success. User has created");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 
-	}	
+	}
+	
+	 private Date getStartOfDay(Date date) {
+		    Calendar calendar = Calendar.getInstance();
+		    calendar.setTime(date);
+		    int year = calendar.get(Calendar.YEAR);
+		    int month = calendar.get(Calendar.MONTH);
+		    int day = calendar.get(Calendar.DATE);
+		    calendar.set(year, month, day, 0, 0, 0);
+		    return calendar.getTime();
+		}
+
+		private Date getEndOfDay(Date date) {
+		    Calendar calendar = Calendar.getInstance();
+		    calendar.setTime(date);
+		    int year = calendar.get(Calendar.YEAR);
+		    int month = calendar.get(Calendar.MONTH);
+		    int day = calendar.get(Calendar.DATE);
+		    calendar.set(year, month, day, 23, 59, 59);
+		    return calendar.getTime();
+		}
 }
