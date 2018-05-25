@@ -6,25 +6,26 @@ App
 			'$timeout',
 			'$http',
 			'updateprofileService',
+			'manageuserService',
 			'DivisionService',
 			'DepartmentService',
 			'DesignationService',
 			'MinistryService',
 			'SectionService',
 			'OfficeService',
-			'DropDownService',
-			//'registrationService',
+			'DropDownService',			
 			'userlistService',
 			'$filter',
 			'$location',
 			'NgTableParams',
 			'url',
 
-			function($scope, $timeout, $http, updateprofileService, DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, 
+			function($scope, $timeout, $http, updateprofileService, manageuserService, DivisionService, DepartmentService, DesignationService, MinistryService, SectionService, OfficeService, DropDownService, 
 					userlistService, $filter,$location, NgTableParams, url) {
 
 				$scope.testMsg = "Testing Message";
 				$scope.user={};
+				$scope.userID = "";
 				/*$scope.user = {
 						"office" : "",
 						"name" : "",
@@ -62,6 +63,43 @@ App
 
 
 					};*/
+				
+				
+				$scope.getSessionUserDetails = function(userID) {
+
+					$scope.userID = userID;				
+				
+				manageuserService.manageuser($scope.userID)
+				.then(function(d) {
+					$scope.testMsg1 = "Test";
+					console.log("Success.", d.message);
+					var data = d.listLmsuser;
+					$scope.tableParams = new NgTableParams({}, {
+						dataset : data
+					});
+
+					}, function(errResponse) {
+
+						console.error("Error while fetching Currencies");
+					});
+				
+				
+				$scope.showEmpDetails = function(user) {
+
+					//console.log("User", user);
+					$scope.showUserDetails = true;
+
+					$scope.user = user;
+				};
+				
+				
+				};
+				
+				
+			
+				
+				
+				
 
 
 				$scope.userprofile = function(){
@@ -113,6 +151,11 @@ App
 
 							});
 				};
+				
+				
+			
+				
+				
 
 				$scope.getDivisionData = function(){
 					DivisionService.getAllDivision().then(
