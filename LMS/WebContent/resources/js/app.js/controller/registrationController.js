@@ -89,7 +89,7 @@ App
 					$scope.user.status = "PENDING";
 					$scope.user.lmsUser= $scope.ddReliever;
 					$scope.user.joiningDate = new Date($('#joiningDate').val());
-					
+					$scope.user.dateofbirth = new Date($('#dateofbirth').val());
 					
 					$scope.user.gender= $scope.gender.name;
 					
@@ -234,6 +234,24 @@ App
 					$scope.user.name = "";
 					$scope.user.lmsDivision = '0';
 					$scope.user.email = "";
+					$scope.user.lmsDepartment = '0';
+					$scope.user.lmsSection = '0';
+					$scope.user.lmsDesignation = '0';
+					$scope.user.lmsMinistry = '0';
+					$scope.nationality = "";
+					$scope.user.lmsOfficeLocation = '0';
+					$scope.user.mobilePersonal = "";
+					$scope.user.mobileOffice = "";
+					$scope.user.fax = "";
+					$scope.joiningDate = '0';
+					$scope.gender = '0';
+					$scope.ddReliever = '0';
+					$scope.user.address = "";
+					$scope.user.passport = "";
+					$scope.user.password = "";
+					$scope.user.nid = "";
+					$scope.dateofbirth = "";
+					
 					
 				};
 				

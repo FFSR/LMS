@@ -31,7 +31,8 @@
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
-
+<script type="text/javascript"
+	src="resources/js/app.js/service/manageuserService.js"></script>
 
 </head>
 
@@ -47,11 +48,17 @@
 		<div ng-init="getDropdownDataNationality('Nationality')"></div>
 		<div ng-init="getDropdownDataGender('Sex')"></div>
 		<div ng-init="loadUserListDropDown()"></div>
-	
+		<div ng-init="getSessionUserDetails('${sessionScope.user.id}');"></div>
 		<div class="container-fluid">
+		
+		
+		
+		
+			
 
 			<div class="row">
-				<!--		<div class="col-sm-3" style="background-color: white;">User ID</div>
+			
+							<!--		<div class="col-sm-3" style="background-color: white;">User ID</div>
 				<div class="col-sm-3" style="background-color: white;">
 					<input type="text" ng-model="userid" class="form-control"
 						placeholder="User ID">-->
@@ -318,9 +325,43 @@
 				<button type="button" class="btn btn-inverse waves-effect waves-light" ng-click="gotoHomePage()">Cancel</button>
 			</div>
 			
+						
 		</div>
 		
 		</form>
+		
+		
+		<div>
+			<table class="table table-sm">
+				<div>
+					<table ng-table="tableParams" class="table" show-filter="true">
+						<tr ng-repeat="user in $data">
+							<td title="'Employee ID'" filter="{ name: 'text'}"
+								sortable="'name'">{{user.id}}</td>
+							<td title="'Employee name'" filter="{ name: 'text'}"
+								sortable="'name'">{{user.name}}</td>
+							<td title="'Division'" filter="{ type: 'text'}"
+								sortable="'lmsLeaveType.type'">{{user.lmsDivision.name}}</td>
+							<td title="'Section'" filter="{ leaveTotal: 'text'}"
+								sortable="'totalleave'">{{user.lmsSection.name}}</td>
+							<td title="'mobile'" filter="{ leavetaken: 'text'}"
+								sortable="'takenleave'">{{user.mobilePersonal}}</td>
+							<td title="'Status'" filter="{ Remainingleave: 'text'}"
+								sortable="'remainingTotal'">{{user.status}}</td>
+							<td title="'Action'">
+								<button type="button" class="btn-primary" ng-click="showEmpDetails(user)">Details</button>
+								
+							</td>
+					</table>
+				</div>
+			</table>
+		</div>
+		
+		
+		
+		
+		
+		
 		<br><br>
 		<div class="row">
 			<div class="col-md-4">
