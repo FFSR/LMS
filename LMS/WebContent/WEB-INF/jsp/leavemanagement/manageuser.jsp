@@ -6,10 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Manage User</title>
 
-<script type="text/javascript"
-	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
-<link rel="stylesheet"
-	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+
 <script type="text/javascript"
 	src="resources/js/app.js/service/loginService.js"></script>
 <script type="text/javascript"
@@ -34,6 +31,10 @@
 	src="resources/js/app.js/service/RoleService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/WftroleService.js"></script>
+	<script type="text/javascript"
+	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
+<link rel="stylesheet"
+	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 	
 </head>
 
@@ -175,14 +176,15 @@
 					<br>
 					<div class="row">
 						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Joining Date</label>
-								<div class="col-md-9">
-									<input type="text" id="joiningDate" class="form-control"
-										ng-required="false" placeholder="Joining Date">
-								</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">To Date</label>
+							<div class="col-md-9">
+								<input type="text" id="jonDate" ng-model="jonDate" class="form-control"/>
+								
 							</div>
+
 						</div>
+					</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label col-md-3">Telephone</label>
@@ -193,7 +195,7 @@
 							</div>
 						</div>
 					</div>
-					<br>
+					<br> <br><br>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
@@ -335,8 +337,8 @@
 								<label class="control-label col-md-3">Status</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
-										ng-model="user.lmsDropdown"
-										ng-options="x as x.name for x in dropdownNames track by x.id">
+										ng-model="status"
+										ng-options="x as x.name for x in dropdownNames track by x.name">
 										<option value="">Select</option>
 									</select>
 								</div>
@@ -390,7 +392,7 @@
 </body>
 
 <script>
-	$('#joiningDate').datetimepicker(
+	$('#jonDate').datetimepicker(
 			{
 				allowTimes : [ '1:00', '1:01', '1:02', '1:03', '1:04', '1:05',
 						'1:06', '1:07', '1:08', '1:09', '1:010', '1:011',

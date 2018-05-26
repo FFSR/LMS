@@ -167,7 +167,7 @@ public class LmsLeaveApplicationHome {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate(Integer userid) {
+	public List<LmsLeaveApplication> findAllLeaveApplicationsGeaterThanCurrentDate(Integer userid, Date startDate) {
 		try {
 
 			// SELECT t.id, t.FROM_DATE,t.TO_DATE FROM lms_leave_application t
@@ -178,8 +178,9 @@ public class LmsLeaveApplicationHome {
 			// ORDER BY t.FROM_DATE;
 
 			Query query = entityManager.createQuery(
-					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE t.lmsUserByUserId.id=:userid AND DATE(t.toDate) >= DATE(CURDATE()) AND ( e.status='APPROVED' OR e.status='INPROGRESS' )")
-					.setParameter("userid", userid);
+					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE t.lmsUserByUserId.id=:userid AND DATE(t.toDate) >= DATE(:startDate) AND ( e.status='APPROVED' OR e.status='INPROGRESS' )")
+					.setParameter("userid", userid)
+					.setParameter("startDate", startDate);
 
 			return (List<LmsLeaveApplication>) query.getResultList();
 		} catch (Exception ex) {
