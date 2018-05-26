@@ -78,9 +78,19 @@ App
 			$scope.showEmpDetails = function(user) {
 
 				//console.log("User", user);
+				
+				
+				//= user.joiningDate;
+				
 				$scope.showUserDetails = true;
 
 				$scope.user = user;
+				new Date($('#joiningDate').val($scope.user));
+				
+				//Feroj: Tried to show joining date. 24.05.2018 23:00 
+				//new Date($('#joiningDate').val())= $scope.user.joiningDate;
+				//new Date($('#joiningDate').val())=$scope.user.joiningDate;
+			
 			};
 
 		
@@ -90,8 +100,13 @@ App
 				$scope.ddlmsWftrole = ddlmsWftrole;
 				//console.log($scope.ddlmsRole);
 				//console.log($scope.ddlmsWftrole);
+				//$scope.user.joiningDate = new Date($('#joiningDate').val());
 				$scope.user.joiningDate = new Date($('#joiningDate').val());
 				//$scope.user.gender= $scope.gender.name;
+				$scope.user.status=$scope.status.name;
+				//$scope.user.gender= $scope.gender.name;
+				$scope.user.nationality = $scope.nationality.name;
+				
 				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.user).then(
 						function(d) {
 							console.log(d.message);
