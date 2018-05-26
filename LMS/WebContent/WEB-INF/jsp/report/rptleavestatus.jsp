@@ -87,6 +87,9 @@
 
 							<td title="'Status'" filter="{ Remainingleave: 'text'}"
 								sortable="'remainingTotal'">{{wfRequestHop.status}}</td>
+							
+							<td title="'Remarks'" filter="{ Remainingleave: 'text'}"
+								sortable="'remainingTotal'">{{wfRequestHop.lmsLeaveApplication.remarks}}</td>
 
 							<td title="'Action'"><button class="btn-primary"
 									ng-click="showLeaveApplicationDetails(wfRequestHop)">Details</button></td>

@@ -247,7 +247,7 @@
 							<div class="form-group">
 								<div class="col-md-12">
 									<input type="text"
-										ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.remarks"
+										ng-model="remarks"
 										class="form-control" ng-required="status == 'REJECTED'"
 										placeholder="Please write your remarks for rejection." />
 								</div>

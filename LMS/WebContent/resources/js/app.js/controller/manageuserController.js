@@ -94,7 +94,7 @@ App
                 $scope.nationality.name = user.nationality;
                 
                 
-                $scope.status={};
+               $scope.status={};
                 $scope.status.name= user.status;
                 
                 // End
@@ -108,6 +108,24 @@ App
 			};
 
 		
+			$scope.setnewStatus = function(user,name){
+				
+				$scope.user.status = name;
+					
+			}
+			
+             $scope.setnewNationality = function(user,name){
+				
+				$scope.user.nationality = name;
+					
+			 }
+             
+             $scope.setnewGender = function(user,name){
+ 				
+ 				$scope.user.gender = name;
+ 					
+ 			 }
+			
 			$scope.userprofile = function(ddlmsWftrole,ddlmsRole,user) {
 
 				$scope.ddlmsRole = ddlmsRole;
@@ -116,9 +134,9 @@ App
 				//console.log($scope.ddlmsWftrole);
 				
 				
-				$scope.user.gender= $scope.gender.name;
-				$scope.user.nationality = $scope.nationality.name;
-				$scope.user.status = $scope.status.name;
+				//$scope.user.gender= $scope.gender.name;
+				//$scope.user.nationality = $scope.nationality.name;
+				//$scope.user.status = $scope.status.name;
 				
 				//$scope.user.status=$scope.status.name;
 				//$scope.user.gender= $scope.gender.name;

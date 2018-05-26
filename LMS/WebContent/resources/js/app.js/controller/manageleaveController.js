@@ -153,6 +153,8 @@ App
 						
 						$scope.lmsLeaveApplicationReturn = d.lmsLeaveApplication;
 						
+						$scope.lmsLeaveApplicationReturn.remarks= $scope.remarks;
+						
 						if(d.lmsWfRequest.status == 'APPROVED'){
 						
 						leavehistoryService.leavebalanceforapprove($scope.lmsLeaveApplicationReturn.lmsUserByUserId.id, $scope.lmsLeaveApplicationReturn.lmsLeaveType.id, $scope.lmsLeaveApplicationReturn.totalDayCount)
@@ -171,11 +173,21 @@ App
 							.then(
 									function(d){
 										$scope.showSuccessMessage(d.message);
+										$scope.stayMyPage();
 									},
 									function(e){
 										$scope.showErrorMessage(e.data.message);
 									}
 							);
+							// added to update remarks while rejection. By Feroj: 26th May,18
+							updateuserleaveService.updateuserleave($scope.lmsLeaveApplicationReturn).then(
+									function(d){
+										console.log(d.message);
+									},
+									function(errResponse){
+										console.log("Failed to Update User Profile.");
+									}
+								);
 							
 						}
 					
