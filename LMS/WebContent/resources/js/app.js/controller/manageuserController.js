@@ -85,7 +85,21 @@ App
 				$scope.showUserDetails = true;
 
 				$scope.user = user;
-				new Date($('#joiningDate').val($scope.user));
+				
+				//Feroj: Worked to show below values. 26.05.2018 15:43
+				$scope.gender = {};
+                $scope.gender.name = user.gender;
+                
+                $scope.nationality={};
+                $scope.nationality.name = user.nationality;
+                
+                
+                $scope.status={};
+                $scope.status.name= user.status;
+                
+                // End
+                
+                //new Date($('#joiningDate').val($scope.user));
 				
 				//Feroj: Tried to show joining date. 24.05.2018 23:00 
 				//new Date($('#joiningDate').val())= $scope.user.joiningDate;
@@ -94,18 +108,21 @@ App
 			};
 
 		
-			$scope.userprofile = function(ddlmsWftrole,ddlmsRole) {
+			$scope.userprofile = function(ddlmsWftrole,ddlmsRole,user) {
 
-				//$scope.ddlmsRole = ddlmsRole;
+				$scope.ddlmsRole = ddlmsRole;
 				$scope.ddlmsWftrole = ddlmsWftrole;
 				//console.log($scope.ddlmsRole);
 				//console.log($scope.ddlmsWftrole);
-				//$scope.user.joiningDate = new Date($('#joiningDate').val());
-				$scope.user.joiningDate = new Date($('#joiningDate').val());
-				//$scope.user.gender= $scope.gender.name;
-				$scope.user.status=$scope.status.name;
-				//$scope.user.gender= $scope.gender.name;
+				
+				
+				$scope.user.gender= $scope.gender.name;
 				$scope.user.nationality = $scope.nationality.name;
+				$scope.user.status = $scope.status.name;
+				
+				//$scope.user.status=$scope.status.name;
+				//$scope.user.gender= $scope.gender.name;
+				//$scope.user.nationality = $scope.nationality.name;*/
 				
 				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.user).then(
 						function(d) {

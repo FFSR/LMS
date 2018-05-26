@@ -368,7 +368,7 @@
 						<div class="col-sm-3">
 							<button type="submit"
 								class="btn btn-success waves-effect waves-light m-r-10"
-								id="submit" ng-click="userprofile(ddlmsWftrole,ddlmsRole)">Update</button>
+								id="submit" ng-click="userprofile(ddlmsWftrole,ddlmsRole,user)">Update</button>
 						</div>
 						<div class="col-sm-9">
 							<button type="button"
