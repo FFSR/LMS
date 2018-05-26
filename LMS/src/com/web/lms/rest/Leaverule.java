@@ -325,7 +325,7 @@ public class Leaverule {
 			
 			// get leave application(s) which end date is more than current date
 			
-			List<LmsLeaveApplication> lmsLeaveapplications = lmsLeaveApplicationHome.findAllLeaveApplicationsGeaterThanCurrentDate(user.getId());
+			List<LmsLeaveApplication> lmsLeaveapplications = lmsLeaveApplicationHome.findAllLeaveApplicationsGeaterThanCurrentDate(user.getId(), startDate);
 			
 			if(lmsLeaveapplications.size()>0) {
 				

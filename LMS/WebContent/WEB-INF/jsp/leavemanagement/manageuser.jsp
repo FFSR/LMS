@@ -138,7 +138,7 @@
 								<label class="control-label col-md-3">Name</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="user.name" class="form-control"
-										placeholder="mobile no">
+										placeholder="name">
 								</div>
 							</div>
 						</div>
