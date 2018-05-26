@@ -81,6 +81,9 @@ App
 				$scope.showUserDetails = true;
 
 				$scope.user = user;
+				
+				$scope.user.lmsDropdown= user.status;
+				
 			};
 
 		

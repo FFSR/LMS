@@ -230,7 +230,7 @@
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Joining Date</label>
 						  <div class="col-md-9">		
-							<input type="text" id="joiningDate" class="form-control" ng-required="true"
+							<input type="text" id="joiningDate" class="form-control" ng-required="true" ng-model="joiningDate"
 					         placeholder="Joining Date">
 						</div>
 					</div>
@@ -356,7 +356,7 @@
 		           <div class="form-group">
 						<label class="control-label col-md-3" >Date of Birth</label>
 						  <div class="col-md-9">		
-							<input type="text" id="dateofbirth" class="form-control" ng-required="true"
+							<input type="text" id="dateofbirth" class="form-control" ng-required="true" ng-model="dateofbirth"
 					         placeholder="Date of Birth">
 						</div>
 					</div>

@@ -305,7 +305,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Nationality</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddAppStatus"
+									<select class="form-control" id="ddAppStatus" 
 										ng-model="nationality"
 										ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
 										<option value="">Select</option>
