@@ -108,10 +108,10 @@ App
 					}, 6000);
 				};
 				
-				$scope.showConfirmationMessage = function(status) {
+				$scope.showConfirmationMessage = function(status,approverid) {
 					var result = confirm("Do your want to submit?");
 	                if (result) {
-	                	$scope.submitHops(status);
+	                	$scope.submitHops(status,approverid);
 	                } else {
 	                    return false;
 	                }
@@ -144,10 +144,10 @@ App
 					);
 				};
 				
-				$scope.submitHops = function(status){
+				$scope.submitHops = function(status,approverid){
 					$scope.status = status;
 					console.log("Status:", $scope.status);
-					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status, $scope.wfRequestHop).then(
+					manageleaveService.updateWFRequestHop(approverid, $scope.wfRequestHopid, $scope.status, $scope.wfRequestHop).then(
 					function(d){
 						console.log(d);
 						

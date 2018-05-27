@@ -92,7 +92,7 @@
 								sortable="'remainingTotal'">{{wfRequestHop.lmsLeaveApplication.remarks}}</td>
 
 							<td title="'Action'"><button class="btn-primary"
-									ng-click="showLeaveApplicationDetails(wfRequestHop)">Details</button></td>
+									ng-click="showApprovalFlowDetails(wfRequestHop.lmsWfRequest.id)">Approval Flow</button></td>
 					</table>
 				</div>
 			</table>

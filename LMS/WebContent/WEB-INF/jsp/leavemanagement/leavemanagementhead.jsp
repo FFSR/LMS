@@ -272,7 +272,7 @@
 						<div class="col-md-2"></div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-danger" id="submit"
-								ng-click="showConfirmationMessage(status)"
+								ng-click="showConfirmationMessage(status,'${sessionScope.userID}')"
 								ng-disabled="approvalForm.$invalid">Submit</button>
 						</div>
 						<div class="col-md-2">
