@@ -94,10 +94,11 @@ App
                 $scope.nationality.name = user.nationality;
                 
                 
-               $scope.status={};
+                $scope.status={};
                 $scope.status.name= user.status;
                 
-                // End
+                
+                // End--26.05.2018
                 
                 //new Date($('#joiningDate').val($scope.user));
 				
@@ -107,7 +108,7 @@ App
 			
 			};
 
-		
+			    //Feroj: Worked to show set below values. 26.05.2018 15:43
 			$scope.setnewStatus = function(user,name){
 				
 				$scope.user.status = name;
@@ -125,7 +126,8 @@ App
  				$scope.user.gender = name;
  					
  			 }
-			
+               //End 26.05.2018 15:43
+             
 			$scope.userprofile = function(ddlmsWftrole,ddlmsRole,user) {
 
 				$scope.ddlmsRole = ddlmsRole;
@@ -219,6 +221,15 @@ App
 				});
 			}
 
+			$scope.getRoleData = function() {
+				RoleService.getAllRole()
+				.then(function(d) {
+					$scope.roleNames = d;
+				}, function(errResponse) {
+					console.log("Failed to get Drop Down.");
+				});
+			}
+			
 			$scope.getRoleData = function() {
 				RoleService.getAllRole()
 				.then(function(d) {

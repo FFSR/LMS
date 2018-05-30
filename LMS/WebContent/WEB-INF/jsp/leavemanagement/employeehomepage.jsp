@@ -25,11 +25,33 @@
 </head>
 
 <body ng-controller="homepagegridshowController">
-	<div ng-init="homepagegridshow();"></div>
+    <div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
+	
+	<div ng-init="homepagegridshow();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.lmsSection.name}')"></div>
 
 	<div class="container-fluid">
 
 		<div>
+		     <div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">User Name</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="name_n" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Section Name</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="sec_n" class="form-control">
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			<br><br><br>
 			<table class="table table-sm">
 				<div>
 					

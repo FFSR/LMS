@@ -323,7 +323,7 @@
 								<label class="control-label col-md-3">Workflow Role</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddlmsWftrole"
-										ng-required="true" ng-model="ddlmsWftrole"
+										ng-model="ddlmsWftrole"
 										ng-options="x as x.roleName for x in wftroleNames track by x.id">
 										<option value="">Select</option>
 									</select>
@@ -353,7 +353,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Application Role</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddlmsRole" ng-required="true"
+									<select class="form-control" id="ddlmsRole" 
 										ng-model="ddlmsRole"
 										ng-options="x as x.name for x in roleNames track by x.id">
 										<option value="">Select</option>

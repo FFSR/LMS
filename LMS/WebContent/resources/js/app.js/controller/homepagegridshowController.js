@@ -42,5 +42,11 @@ App
 					});
 				};
 				
+				$scope.getSessionUserDetails =function(name,section){
+					$scope.name_n = name;
+					$scope.sec_n=section;
+					
+				};
+				
 				
 			} ]);
