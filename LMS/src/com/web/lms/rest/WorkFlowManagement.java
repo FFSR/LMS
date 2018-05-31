@@ -1,5 +1,6 @@
 package com.web.lms.rest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,7 @@ import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRole;
 import com.web.lms.model.LmsWftRoleUserMap;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
+import com.web.lms.wrapper.ResponseWrapper;
 
 @RestController
 public class WorkFlowManagement {
@@ -285,8 +287,8 @@ public class WorkFlowManagement {
 				lmsUser = lmsUserHome.findById(delegateuserid);
 
 				lmsWftRoleUserMap.setLmsWftRole(lmsWftRole);
-				lmsWftRoleUserMap.setLmsUser(lmsUser);
-				lmsWftRoleUserMap.setDelegateBy(userid);
+				lmsWftRoleUserMap.setLmsUserByUserId(lmsUser);
+				lmsWftRoleUserMap.setLmsUserByDelegateBy(lmsUser);
 				lmsWftRoleUserMap.setInsertBy(userid);
 				lmsWftRoleUserMap.setInsertDate(new Date());
 
@@ -357,7 +359,7 @@ public class WorkFlowManagement {
 			lmsWfRequest.setLmsWftRequestType(lmsWftRequestSelector.getLmsWftRequestType());
 			lmsWfRequest.setStartDate(currentDate);
 			lmsWfRequest.setStatus(WFSTATUS.APPLIED.toString());
-			lmsWfRequest.setLmsUser(user);
+			lmsWfRequest.setLmsUserByUserId(user);
 			lmsWfRequest.setLmsLeaveApplication(leaveApplication);
 			lmsWfRequest.setInsertDate(currentDate);
 			lmsWfRequest.setInsertBy(user.getId());
@@ -375,6 +377,24 @@ public class WorkFlowManagement {
 		}
 		return null;
 	}
+	
+	@RequestMapping(value = "/getHopsinfo/{wfrequestid}/", method = RequestMethod.GET)
+	/*public ResponseEntity<ResponseWrapper> findhopsbywfrequestid(@PathVariable("wfrequestid") Integer wfrequestid) {
+	//public ResponseEntity<List<LmsUser>> getlog() {
+		List<LmsWfRequestHop> listLmsWfRequestHops = new ArrayList<LmsWfRequestHop>();
+	try {
+			listLmsWfRequestHops = lmsWfRequestHopHome.findWfhopsBywfrequestID(wfrequestid);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return new ResponseEntity<List<LmsWfRequestHop>>(listLmsWfRequestHops, HttpStatus.EXPECTATION_FAILED);
+		}
+		if (listLmsWfRequestHops == null) {
+			return new ResponseEntity<List<LmsUser>>(listLmsWfRequestHops, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
+
+	}*/
 
 	private void saveHops(LmsWfRequest lmsWfRequest, LmsUser user) {
 		try {
@@ -426,7 +446,7 @@ public class WorkFlowManagement {
 			
 			lmsWfRequestHop.setEndDate(new Date());			
 			lmsWfRequestHop.setUpdateDate(new Date());
-			lmsWfRequestHop.setUpdateBy(user.getId());
+			lmsWfRequestHop.setLmsUser(user);
 
 			lmsWfRequestHopHome.merge(lmsWfRequestHop);
 
@@ -520,7 +540,7 @@ public class WorkFlowManagement {
 			}
 			lmsWfRequest.setStatus(requestStatus);
 			lmsWfRequest.setUpdateDate(new Date());
-			lmsWfRequest.setUpdateBy(user.getId());
+			lmsWfRequest.setLmsUserByUpdateBy(user);
 			
 			if (requestStatus.equals(WFSTATUS.APPROVED.toString())
 					|| requestStatus.equals(WFSTATUS.REJECTED.toString())) {

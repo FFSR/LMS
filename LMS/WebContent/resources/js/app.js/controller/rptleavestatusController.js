@@ -5,12 +5,13 @@ App
 			'$scope',
 			'$http',
 			'rptleavestatusService',
+			'wfrequesthopService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http, rptleavestatusService,
+			function($scope, $http, rptleavestatusService,wfrequesthopService,
 				$timeout, $filter,NgTableParams,$location) {
 				
 				$scope.startdate="";
@@ -57,6 +58,21 @@ App
 					);
 				};
 				
+				
+                   $scope.showApprovalFlowDetails= function(wfrequestID){	
+					
+                	$scope.wfrequestID=wfrequestID;
+					wfrequesthopService.getHopsinfo( $scope.wfrequestID)
+					.then(
+							function(d){
+						var dataHopsStatus = d.listLmsWfRequesthop;
+						$scope.tableParams = new NgTableParams({}, { dataset: dataHopsStatus});
+					},
+					function(errResponse){
+						
+					}
+					);
+				};
 				
 				$scope.gomyPage = function(){	
 					location.reload();

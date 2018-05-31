@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated May 11, 2018 8:29:30 PM by Hibernate Tools 5.2.8.Final
+// Generated May 31, 2018 6:04:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -28,8 +28,9 @@ public class LmsLeaveApplication implements java.io.Serializable {
 
 	private Integer id;
 	private LmsLeaveType lmsLeaveType;
-	private LmsUser lmsUserByReliverEmailAddressUserId;
 	private LmsUser lmsUserByUserId;
+	private LmsUser lmsUserByReliverEmailAddressUserId;
+	private LmsUser lmsUserByUpdateBy;
 	private Date year;
 	private Integer leaveAvailable;
 	private Integer leaveTaken;
@@ -44,7 +45,6 @@ public class LmsLeaveApplication implements java.io.Serializable {
 	private Date insertDate;
 	private Integer insertBy;
 	private Date updateDate;
-	private Integer updateBy;
 	private String inStation;
 	private String remarks;
 	private Set<LmsAttachment> lmsAttachments = new HashSet<LmsAttachment>(0);
@@ -53,15 +53,16 @@ public class LmsLeaveApplication implements java.io.Serializable {
 	public LmsLeaveApplication() {
 	}
 
-	public LmsLeaveApplication(LmsLeaveType lmsLeaveType, LmsUser lmsUserByReliverEmailAddressUserId,
-			LmsUser lmsUserByUserId, Date year, Integer leaveAvailable, Integer leaveTaken, Integer leaveBalance,
-			String eligibility, Date fromDate, Date toDate, Integer totalDayCount, String totalDayText,
-			String reasonForLeave, String taskNeedToPerformed, Date insertDate, Integer insertBy, Date updateDate,
-			Integer updateBy, String inStation, String remarks, Set<LmsAttachment> lmsAttachments,
-			Set<LmsWfRequest> lmsWfRequests) {
+	public LmsLeaveApplication(LmsLeaveType lmsLeaveType, LmsUser lmsUserByUserId,
+			LmsUser lmsUserByReliverEmailAddressUserId, LmsUser lmsUserByUpdateBy, Date year, Integer leaveAvailable,
+			Integer leaveTaken, Integer leaveBalance, String eligibility, Date fromDate, Date toDate,
+			Integer totalDayCount, String totalDayText, String reasonForLeave, String taskNeedToPerformed,
+			Date insertDate, Integer insertBy, Date updateDate, String inStation, String remarks,
+			Set<LmsAttachment> lmsAttachments, Set<LmsWfRequest> lmsWfRequests) {
 		this.lmsLeaveType = lmsLeaveType;
-		this.lmsUserByReliverEmailAddressUserId = lmsUserByReliverEmailAddressUserId;
 		this.lmsUserByUserId = lmsUserByUserId;
+		this.lmsUserByReliverEmailAddressUserId = lmsUserByReliverEmailAddressUserId;
+		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
 		this.year = year;
 		this.leaveAvailable = leaveAvailable;
 		this.leaveTaken = leaveTaken;
@@ -76,7 +77,6 @@ public class LmsLeaveApplication implements java.io.Serializable {
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
-		this.updateBy = updateBy;
 		this.inStation = inStation;
 		this.remarks = remarks;
 		this.lmsAttachments = lmsAttachments;
@@ -106,6 +106,16 @@ public class LmsLeaveApplication implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID")
+	public LmsUser getLmsUserByUserId() {
+		return this.lmsUserByUserId;
+	}
+
+	public void setLmsUserByUserId(LmsUser lmsUserByUserId) {
+		this.lmsUserByUserId = lmsUserByUserId;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "RELIVER_EMAIL_ADDRESS_USER_ID")
 	public LmsUser getLmsUserByReliverEmailAddressUserId() {
 		return this.lmsUserByReliverEmailAddressUserId;
@@ -116,13 +126,13 @@ public class LmsLeaveApplication implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID")
-	public LmsUser getLmsUserByUserId() {
-		return this.lmsUserByUserId;
+	@JoinColumn(name = "UPDATE_BY")
+	public LmsUser getLmsUserByUpdateBy() {
+		return this.lmsUserByUpdateBy;
 	}
 
-	public void setLmsUserByUserId(LmsUser lmsUserByUserId) {
-		this.lmsUserByUserId = lmsUserByUserId;
+	public void setLmsUserByUpdateBy(LmsUser lmsUserByUpdateBy) {
+		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -254,15 +264,6 @@ public class LmsLeaveApplication implements java.io.Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
-	}
-
-	@Column(name = "UPDATE_BY")
-	public Integer getUpdateBy() {
-		return this.updateBy;
-	}
-
-	public void setUpdateBy(Integer updateBy) {
-		this.updateBy = updateBy;
 	}
 
 	@Column(name = "IN_STATION", length = 50)

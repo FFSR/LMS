@@ -280,7 +280,7 @@ public class User {
 				lmsWftRoleUserMapInsert = new LmsWftRoleUserMap();
 
 				lmsWftRoleUserMapInsert.setLmsWftRole(lmsWftrole);
-				lmsWftRoleUserMapInsert.setLmsUser(lmsUser);
+				lmsWftRoleUserMapInsert.setLmsUserByUserId(lmsUser);
 				lmsWftRoleUserMapInsert.setInsertBy(lmsUser.getId());
 				lmsWftRoleUserMapInsert.setInsertDate(new Date());
 
