@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated May 31, 2018 6:04:48 PM by Hibernate Tools 5.2.8.Final
+// Generated May 31, 2018 11:22:07 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -67,7 +67,11 @@ public class LmsUser implements java.io.Serializable {
 			0);
 	private Set<LmsWfRequestHop> lmsWfRequestHops = new HashSet<LmsWfRequestHop>(0);
 	private Set<LmsAttachment> lmsAttachments = new HashSet<LmsAttachment>(0);
+	private Set<LmsWftRoleUserMapHistory> lmsWftRoleUserMapHistoriesForDelegateBy = new HashSet<LmsWftRoleUserMapHistory>(
+			0);
 	private Set<LmsLeaveApplication> lmsLeaveApplicationsForUpdateBy = new HashSet<LmsLeaveApplication>(0);
+	private Set<LmsWftRoleUserMapHistory> lmsWftRoleUserMapHistoriesForUserId = new HashSet<LmsWftRoleUserMapHistory>(
+			0);
 	private Set<LmsWfRequest> lmsWfRequestsForUserId = new HashSet<LmsWfRequest>(0);
 
 	public LmsUser() {
@@ -85,7 +89,10 @@ public class LmsUser implements java.io.Serializable {
 			Set<LmsHolidayRecord> lmsHolidayRecords,
 			Set<LmsLeaveApplication> lmsLeaveApplicationsForReliverEmailAddressUserId,
 			Set<LmsWfRequestHop> lmsWfRequestHops, Set<LmsAttachment> lmsAttachments,
-			Set<LmsLeaveApplication> lmsLeaveApplicationsForUpdateBy, Set<LmsWfRequest> lmsWfRequestsForUserId) {
+			Set<LmsWftRoleUserMapHistory> lmsWftRoleUserMapHistoriesForDelegateBy,
+			Set<LmsLeaveApplication> lmsLeaveApplicationsForUpdateBy,
+			Set<LmsWftRoleUserMapHistory> lmsWftRoleUserMapHistoriesForUserId,
+			Set<LmsWfRequest> lmsWfRequestsForUserId) {
 		this.lmsDepartment = lmsDepartment;
 		this.lmsDesignation = lmsDesignation;
 		this.lmsDivision = lmsDivision;
@@ -124,7 +131,9 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsLeaveApplicationsForReliverEmailAddressUserId = lmsLeaveApplicationsForReliverEmailAddressUserId;
 		this.lmsWfRequestHops = lmsWfRequestHops;
 		this.lmsAttachments = lmsAttachments;
+		this.lmsWftRoleUserMapHistoriesForDelegateBy = lmsWftRoleUserMapHistoriesForDelegateBy;
 		this.lmsLeaveApplicationsForUpdateBy = lmsLeaveApplicationsForUpdateBy;
+		this.lmsWftRoleUserMapHistoriesForUserId = lmsWftRoleUserMapHistoriesForUserId;
 		this.lmsWfRequestsForUserId = lmsWfRequestsForUserId;
 	}
 
@@ -200,7 +209,7 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsSection = lmsSection;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER) 
 	@JoinColumn(name = "SUPERVISOR_ID") @JsonBackReference
 	public LmsUser getLmsUser() {
 		return this.lmsUser;
@@ -432,7 +441,6 @@ public class LmsUser implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUser") @JsonIgnore
-	//@JsonManagedReference
 	public Set<LmsUser> getLmsUsers() {
 		return this.lmsUsers;
 	}
@@ -496,6 +504,16 @@ public class LmsUser implements java.io.Serializable {
 		this.lmsAttachments = lmsAttachments;
 	}
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByDelegateBy") @JsonIgnore
+	public Set<LmsWftRoleUserMapHistory> getLmsWftRoleUserMapHistoriesForDelegateBy() {
+		return this.lmsWftRoleUserMapHistoriesForDelegateBy;
+	}
+
+	public void setLmsWftRoleUserMapHistoriesForDelegateBy(
+			Set<LmsWftRoleUserMapHistory> lmsWftRoleUserMapHistoriesForDelegateBy) {
+		this.lmsWftRoleUserMapHistoriesForDelegateBy = lmsWftRoleUserMapHistoriesForDelegateBy;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByUpdateBy") @JsonIgnore
 	public Set<LmsLeaveApplication> getLmsLeaveApplicationsForUpdateBy() {
 		return this.lmsLeaveApplicationsForUpdateBy;
@@ -503,6 +521,16 @@ public class LmsUser implements java.io.Serializable {
 
 	public void setLmsLeaveApplicationsForUpdateBy(Set<LmsLeaveApplication> lmsLeaveApplicationsForUpdateBy) {
 		this.lmsLeaveApplicationsForUpdateBy = lmsLeaveApplicationsForUpdateBy;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByUserId") @JsonIgnore
+	public Set<LmsWftRoleUserMapHistory> getLmsWftRoleUserMapHistoriesForUserId() {
+		return this.lmsWftRoleUserMapHistoriesForUserId;
+	}
+
+	public void setLmsWftRoleUserMapHistoriesForUserId(
+			Set<LmsWftRoleUserMapHistory> lmsWftRoleUserMapHistoriesForUserId) {
+		this.lmsWftRoleUserMapHistoriesForUserId = lmsWftRoleUserMapHistoriesForUserId;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsUserByUserId") @JsonIgnore
