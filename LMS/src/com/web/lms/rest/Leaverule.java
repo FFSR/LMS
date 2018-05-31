@@ -518,7 +518,7 @@ public class Leaverule {
 		resWrapper.setForwardHolidayCount(forwardCount);
 		
 		// minimum holiday part will be added with original applied leave
-		if(forwardCount == 0 && backwardCount == 0 ) {
+/*		if(forwardCount == 0 && backwardCount == 0 ) {
 			
 			resWrapper.setMinimumHolidayConsider(forwardCount);					
 		}
@@ -531,8 +531,15 @@ public class Leaverule {
 			resWrapper.setMinimumHolidayConsider(forwardCount);			
 		}else {
 			resWrapper.setMinimumHolidayConsider(Math.min(backwardCount, forwardCount));
-		}		
+		}	*/	
 		
+		if(forwardCount < backwardCount ) {
+			
+			resWrapper.setMinimumHolidayConsider(forwardCount);					
+		}else {
+			resWrapper.setMinimumHolidayConsider(backwardCount);	
+		}
+			
 		return resWrapper;
 	}
 		

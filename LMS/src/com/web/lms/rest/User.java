@@ -288,7 +288,7 @@ public class User {
 			for (LmsWftRoleUserMap lmsWftRoleUserMap : listLmsWftRoleUserMap) {
 
 				lmsWftRoleUserMap.setLmsWftRole(lmsWftrole);
-				lmsWftRoleUserMap.setUndateBy(lmsUser.getId());
+				lmsWftRoleUserMap.setUpdateBy(lmsUser.getId());
 				lmsWftRoleUserMap.setUpdateDate(new Date());
 
 				lmsWftRoleUserMapHome.merge(lmsWftRoleUserMap);
