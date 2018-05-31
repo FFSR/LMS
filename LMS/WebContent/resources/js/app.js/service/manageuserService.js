@@ -22,6 +22,17 @@ App.factory('manageuserService', [
 				},
 				
 				manageuser: function(userid){
+					return $http.get(url+'manageuser/'+ userid)
+					.then(function(response) {
+						return response.data;
+					},
+					function(errResponse) {
+						return $q
+								.reject(errResponse);
+					});
+				},
+				
+				urmanageuser: function(userid){
 					return $http.get(url+'manageuserid/'+ userid)
 					.then(function(response) {
 						return response.data;

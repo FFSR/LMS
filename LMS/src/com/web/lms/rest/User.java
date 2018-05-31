@@ -200,14 +200,16 @@ public class User {
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
 	
-	@RequestMapping(value="/manageuserid/{userid}", method=RequestMethod.GET)
+	@RequestMapping(value="/manageuser/{userid}", method=RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userid") int uID){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-	//	List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(userid);
+		//LmsUser lmsUser = lmsUserHome.findById(uID);
 		
 		List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(uID );
-		if(lmsUser.size()>0) {
+		if(lmsUser!=null) {
+			
+			//responseWrapper.setLmsuser(lmsUser);
 			
 			responseWrapper.setListLmsuser(lmsUser);
 			
@@ -381,4 +383,27 @@ public class User {
 		
 
 	} 
+	
+	
+	
+	@RequestMapping(value="/manageuserid/{userid}", method=RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> manageuserid(@PathVariable("userid") int uID){
+		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		
+		LmsUser lmsUser = lmsUserHome.findById(uID);
+		
+	//	List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(uID );
+		if(lmsUser!=null) {
+			
+			responseWrapper.setLmsuser(lmsUser);
+			
+			//responseWrapper.setListLmsuser(lmsUser);
+			
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+		
+		responseWrapper.setMessage("Fail. Data not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+	}
 }
