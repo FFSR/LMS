@@ -86,7 +86,18 @@ App
 
 				$scope.user = user;
 				
-				$scope.user.lmsDropdown= user.status;
+				$scope.gender = {};
+				$scope.gender.name= user.gender;
+				
+				
+				$scope.status = {};
+				$scope.status.name= user.status;
+				
+				$scope.nationality = {};
+				$scope.nationality.name= user.nationality;
+				
+				$scope.ddlmsRole = {};
+				$scope.ddlmsRole.name= user.ddlmsRole;
 				
 				new Date($('#joiningDate').val($scope.user));
 				

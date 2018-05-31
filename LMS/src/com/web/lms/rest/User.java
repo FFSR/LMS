@@ -200,7 +200,7 @@ public class User {
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
 	
-	@RequestMapping(value="/manageuser/{userid}", method=RequestMethod.GET)
+	@RequestMapping(value="/manageuserid/{userid}", method=RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userid") int uID){
 		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
@@ -347,39 +347,28 @@ public class User {
 	}
 	
 	
-
 	
-	@RequestMapping(value = "/updateprofile", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> doupdateprofile(@RequestBody LmsUser lmsUser) {
+	@RequestMapping(value = "/updateprofile/{userID}/", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> doupdateprofile(@PathVariable("userID") Integer userID, @RequestBody LmsUser lmsUser) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();		
 		
-		LmsUser lmsUserValidate=null;		
-		
-		try {
-			
-			lmsUserValidate = lmsUserHome.findByNID(lmsUser.getNid());
-						
-			if (lmsUserValidate!=null) {
-				
-				responseWrapper.setMessage("User is available with this NID.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-			}		
-			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			responseWrapper.setMessage("Registration failed. Same NID created.");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}		
-		
-		try {
-
-			lmsUser.setPassword(ProtectedConfigFile.encrypt(lmsUser.getPassword()));
-			lmsUser.setInsertDate(new Date());
-			
 			try {
-
-				int lmsuserid = lmsUserHome.persist(lmsUser);
+				
+				LmsUser lmsUsers = lmsUserHome.findById(userID);
+				if (lmsUsers!=null) {					
+				
+					lmsUsers.setAddress(lmsUser.getAddress());
+					lmsUsers.setEmail(lmsUser.getEmail());
+					lmsUsers.setFax(lmsUser.getFax());
+					lmsUsers.setPassport(lmsUser.getPassport());					
+					lmsUsers.setMobilePersonal(lmsUser.getMobilePersonal());
+					lmsUsers.setMobileOffice(lmsUser.getMobileOffice());
+					lmsUsers.setUpdateDate(new Date());
+					lmsUsers.setUpdateBy(lmsUser.getId());
+					lmsUserHome.merge(lmsUsers);
+							
+				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				responseWrapper.setMessage("Failed to create User.");
@@ -389,11 +378,7 @@ public class User {
 			responseWrapper.setMessage("Success. User has created");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 
-		} catch (Exception ex) {
-
-			responseWrapper.setMessage("Fail." + ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}
+		
 
 	} 
 }

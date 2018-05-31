@@ -10,10 +10,9 @@ App.factory('updateprofileService', [
 	function($http, $q, url) {
 		return {
 
-			updateprofile : function(user) {
-				// console.log(user);
-				// , lmsWftrole user, , user lmsWftrole
-				return $http.post(url + 'updateprofile/', user).then(
+			updateprofile : function(userID,user) {
+				
+				return $http.post(url+'updateprofile/'+userID+'/',user).then(
 						function(response) {
 							return response.data;
 						}, function(errResponse) {
