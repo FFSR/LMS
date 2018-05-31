@@ -252,7 +252,7 @@ App
 					$scope.user.mobilePersonal = "";
 					$scope.user.mobileOffice = "";
 					$scope.user.fax = "";
-					$scope.joiningDate = '0';
+					$scope.joiningDate = "";
 					$scope.gender = '0';
 					$scope.ddReliever = '0';
 					$scope.user.address = "";

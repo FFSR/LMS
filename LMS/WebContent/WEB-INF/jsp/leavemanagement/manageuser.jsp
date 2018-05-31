@@ -86,6 +86,24 @@
 						</div>
 					</div>
 				</div>
+				
+				
+				<div class="col-md-6">
+						<div class="form-group">
+							<label class="col-md-3 control-label">To Date</label>
+							<div class="col-md-9">
+								<input type="text" id="jonDate" ng-model="jonDate" class="form-control"/>
+								
+							</div>
+
+						</div>
+					</div>
+				
+				
+				
+				
+				
+				
 				<div class="col-md-6">
 					<div class="form-group">
 						<div class="col-md-6">
@@ -309,11 +327,12 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Nationality</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddAppStatus"
+									<select class="form-control" id="ddAppStatus" 
 										ng-model="nationality"
 										ng-change="setnewNationality(user,nationality.name)"
 										ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
 										<option value="">Select</option>
+										
 									</select>
 								</div>
 							</div>

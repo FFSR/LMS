@@ -86,21 +86,20 @@ App
 
 				$scope.user = user;
 				
-				//Feroj: Worked to show below values. 26.05.2018 15:43
 				$scope.gender = {};
-                $scope.gender.name = user.gender;
-                
-                $scope.nationality={};
-                $scope.nationality.name = user.nationality;
-                
-                
-                $scope.status={};
-                $scope.status.name= user.status;
-                
-                
-                // End--26.05.2018
-                
-                //new Date($('#joiningDate').val($scope.user));
+				$scope.gender.name= user.gender;
+				
+				
+				$scope.status = {};
+				$scope.status.name= user.status;
+				
+				$scope.nationality = {};
+				$scope.nationality.name= user.nationality;
+				
+				$scope.ddlmsRole = {};
+				$scope.ddlmsRole.name= user.ddlmsRole;
+				
+				new Date($('#joiningDate').val($scope.user));
 				
 				//Feroj: Tried to show joining date. 24.05.2018 23:00 
 				//new Date($('#joiningDate').val())= $scope.user.joiningDate;
