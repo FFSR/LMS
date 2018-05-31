@@ -195,9 +195,10 @@
 					<div class="row">
 						<div class="col-md-6">
 						<div class="form-group">
-							<label class="col-md-3 control-label">To Date</label>
+							<label class="col-md-3 control-label">Joining Date</label>
 							<div class="col-md-9">
-								<input type="text" id="jonDate" ng-model="jonDate" class="form-control"/>
+								<input type="text" ng-model="user.joiningDate| date: YYYY-MM-dd" class="form-control"
+										placeholder="Joining Date">
 								
 							</div>
 
@@ -242,6 +243,7 @@
 								<label class="control-label col-md-3">Gender</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus" ng-model="gender"
+									    ng-change="setnewGender(user,gender.name)"
 										ng-options="x as x.name for x in dropdownGenderNames track by x.name">
 										<option value="">Select</option>
 									</select>
@@ -327,6 +329,7 @@
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus" 
 										ng-model="nationality"
+										ng-change="setnewNationality(user,nationality.name)"
 										ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
 										<option value="">Select</option>
 										
@@ -339,7 +342,7 @@
 								<label class="control-label col-md-3">Workflow Role</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddlmsWftrole"
-										ng-required="true" ng-model="ddlmsWftrole"
+										ng-model="ddlmsWftrole"
 										ng-options="x as x.roleName for x in wftroleNames track by x.id">
 										<option value="">Select</option>
 									</select>
@@ -357,6 +360,7 @@
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
 										ng-model="status"
+										ng-change="setnewStatus(user,status.name)"
 										ng-options="x as x.name for x in dropdownNames track by x.name">
 										<option value="">Select</option>
 									</select>
@@ -368,7 +372,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Application Role</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddlmsRole" ng-required="true"
+									<select class="form-control" id="ddlmsRole" 
 										ng-model="ddlmsRole"
 										ng-options="x as x.name for x in roleNames track by x.id">
 										<option value="">Select</option>
@@ -387,7 +391,7 @@
 						<div class="col-sm-3">
 							<button type="submit"
 								class="btn btn-success waves-effect waves-light m-r-10"
-								id="submit" ng-click="userprofile(ddlmsWftrole,ddlmsRole)">Update</button>
+								id="submit" ng-click="userprofile(ddlmsWftrole,ddlmsRole,user)">Update</button>
 						</div>
 						<div class="col-sm-9">
 							<button type="button"

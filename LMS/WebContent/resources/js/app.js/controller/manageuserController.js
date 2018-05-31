@@ -107,19 +107,41 @@ App
 			
 			};
 
-		
-			$scope.userprofile = function(ddlmsWftrole,ddlmsRole) {
+			    //Feroj: Worked to show set below values. 26.05.2018 15:43
+			$scope.setnewStatus = function(user,name){
+				
+				$scope.user.status = name;
+					
+			}
+			
+             $scope.setnewNationality = function(user,name){
+				
+				$scope.user.nationality = name;
+					
+			 }
+             
+             $scope.setnewGender = function(user,name){
+ 				
+ 				$scope.user.gender = name;
+ 					
+ 			 }
+               //End 26.05.2018 15:43
+             
+			$scope.userprofile = function(ddlmsWftrole,ddlmsRole,user) {
 
-				//$scope.ddlmsRole = ddlmsRole;
+				$scope.ddlmsRole = ddlmsRole;
 				$scope.ddlmsWftrole = ddlmsWftrole;
 				//console.log($scope.ddlmsRole);
 				//console.log($scope.ddlmsWftrole);
-				//$scope.user.joiningDate = new Date($('#joiningDate').val());
-				$scope.user.joiningDate = new Date($('#joiningDate').val());
+				
+				
 				//$scope.user.gender= $scope.gender.name;
-				$scope.user.status=$scope.status.name;
+				//$scope.user.nationality = $scope.nationality.name;
+				//$scope.user.status = $scope.status.name;
+				
+				//$scope.user.status=$scope.status.name;
 				//$scope.user.gender= $scope.gender.name;
-				$scope.user.nationality = $scope.nationality.name;
+				//$scope.user.nationality = $scope.nationality.name;*/
 				
 				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.user).then(
 						function(d) {
@@ -198,6 +220,15 @@ App
 				});
 			}
 
+			$scope.getRoleData = function() {
+				RoleService.getAllRole()
+				.then(function(d) {
+					$scope.roleNames = d;
+				}, function(errResponse) {
+					console.log("Failed to get Drop Down.");
+				});
+			}
+			
 			$scope.getRoleData = function() {
 				RoleService.getAllRole()
 				.then(function(d) {

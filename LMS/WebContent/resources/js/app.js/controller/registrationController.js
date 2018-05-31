@@ -91,6 +91,15 @@ App
 					$scope.user.joiningDate = new Date($('#joiningDate').val());
 					$scope.user.dateofbirth = new Date($('#dateofbirth').val());
 					
+					/* Addiing 57 years for resignationdate. By Feroj: 26th May,18 1:46 pm */
+					
+				    var d = new Date($('#dateofbirth').val());;
+                    var year = d.getFullYear();
+                    var month = d.getMonth();
+                    var day = d.getDate();
+                    var c = new Date(year + 57, month, day)
+                    $scope.user.resigndate = c;
+					
 					$scope.user.gender= $scope.gender.name;
 					
 					registrationService.registration($scope.user).then(

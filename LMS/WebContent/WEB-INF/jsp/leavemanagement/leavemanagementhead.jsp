@@ -247,7 +247,7 @@
 							<div class="form-group">
 								<div class="col-md-12">
 									<input type="text"
-										ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.remarks"
+										ng-model="remarks"
 										class="form-control" ng-required="status == 'REJECTED'"
 										placeholder="Please write your remarks for rejection." />
 								</div>
@@ -272,7 +272,7 @@
 						<div class="col-md-2"></div>
 						<div class="col-md-2">
 							<button type="submit" class="btn btn-danger" id="submit"
-								ng-click="showConfirmationMessage(status)"
+								ng-click="showConfirmationMessage(status,'${sessionScope.userID}')"
 								ng-disabled="approvalForm.$invalid">Submit</button>
 						</div>
 						<div class="col-md-2">

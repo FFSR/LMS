@@ -108,10 +108,10 @@ App
 					}, 6000);
 				};
 				
-				$scope.showConfirmationMessage = function(status) {
+				$scope.showConfirmationMessage = function(status,approverid) {
 					var result = confirm("Do your want to submit?");
 	                if (result) {
-	                	$scope.submitHops(status);
+	                	$scope.submitHops(status,approverid);
 	                } else {
 	                    return false;
 	                }
@@ -144,14 +144,16 @@ App
 					);
 				};
 				
-				$scope.submitHops = function(status){
+				$scope.submitHops = function(status,approverid){
 					$scope.status = status;
 					console.log("Status:", $scope.status);
-					manageleaveService.updateWFRequestHop($scope.userID, $scope.wfRequestHopid, $scope.status, $scope.wfRequestHop).then(
+					manageleaveService.updateWFRequestHop(approverid, $scope.wfRequestHopid, $scope.status, $scope.wfRequestHop).then(
 					function(d){
 						console.log(d);
 						
 						$scope.lmsLeaveApplicationReturn = d.lmsLeaveApplication;
+						
+						$scope.lmsLeaveApplicationReturn.remarks= $scope.remarks;
 						
 						if(d.lmsWfRequest.status == 'APPROVED'){
 						
@@ -171,11 +173,21 @@ App
 							.then(
 									function(d){
 										$scope.showSuccessMessage(d.message);
+										$scope.stayMyPage();
 									},
 									function(e){
 										$scope.showErrorMessage(e.data.message);
 									}
 							);
+							// added to update remarks while rejection. By Feroj: 26th May,18
+							updateuserleaveService.updateuserleave($scope.lmsLeaveApplicationReturn).then(
+									function(d){
+										console.log(d.message);
+									},
+									function(errResponse){
+										console.log("Failed to Update User Profile.");
+									}
+								);
 							
 						}
 					
