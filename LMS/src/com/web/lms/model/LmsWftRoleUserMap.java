@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated May 4, 2018 5:18:14 PM by Hibernate Tools 5.2.8.Final
+// Generated May 31, 2018 6:04:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,26 +22,26 @@ import javax.persistence.TemporalType;
 public class LmsWftRoleUserMap implements java.io.Serializable {
 
 	private Integer id;
-	private LmsUser lmsUser;
+	private LmsUser lmsUserByDelegateBy;
+	private LmsUser lmsUserByUserId;
 	private LmsWftRole lmsWftRole;
 	private Date insertDate;
 	private Integer insertBy;
 	private Date updateDate;
 	private Integer undateBy;
-	private Integer delegateBy;
 
 	public LmsWftRoleUserMap() {
 	}
 
-	public LmsWftRoleUserMap(LmsUser lmsUser, LmsWftRole lmsWftRole, Date insertDate, Integer insertBy, Date updateDate,
-			Integer undateBy, Integer delegateBy) {
-		this.lmsUser = lmsUser;
+	public LmsWftRoleUserMap(LmsUser lmsUserByDelegateBy, LmsUser lmsUserByUserId, LmsWftRole lmsWftRole,
+			Date insertDate, Integer insertBy, Date updateDate, Integer undateBy) {
+		this.lmsUserByDelegateBy = lmsUserByDelegateBy;
+		this.lmsUserByUserId = lmsUserByUserId;
 		this.lmsWftRole = lmsWftRole;
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
 		this.undateBy = undateBy;
-		this.delegateBy = delegateBy;
 	}
 
 	@Id
@@ -57,13 +57,23 @@ public class LmsWftRoleUserMap implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID")
-	public LmsUser getLmsUser() {
-		return this.lmsUser;
+	@JoinColumn(name = "DELEGATE_BY")
+	public LmsUser getLmsUserByDelegateBy() {
+		return this.lmsUserByDelegateBy;
 	}
 
-	public void setLmsUser(LmsUser lmsUser) {
-		this.lmsUser = lmsUser;
+	public void setLmsUserByDelegateBy(LmsUser lmsUserByDelegateBy) {
+		this.lmsUserByDelegateBy = lmsUserByDelegateBy;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID")
+	public LmsUser getLmsUserByUserId() {
+		return this.lmsUserByUserId;
+	}
+
+	public void setLmsUserByUserId(LmsUser lmsUserByUserId) {
+		this.lmsUserByUserId = lmsUserByUserId;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -112,15 +122,6 @@ public class LmsWftRoleUserMap implements java.io.Serializable {
 
 	public void setUndateBy(Integer undateBy) {
 		this.undateBy = undateBy;
-	}
-
-	@Column(name = "DELEGATE_BY")
-	public Integer getDelegateBy() {
-		return this.delegateBy;
-	}
-
-	public void setDelegateBy(Integer delegateBy) {
-		this.delegateBy = delegateBy;
 	}
 
 }

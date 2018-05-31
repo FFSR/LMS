@@ -1,12 +1,15 @@
 package com.web.lms.model;
-// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
+// Generated May 31, 2018 6:04:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,31 +21,27 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_holiday_record", catalog = "supremet_lmsdb")
 public class LmsHolidayRecord implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer id;
+	private LmsUser lmsUser;
 	private String leaveSubject;
 	private Date leaveDate;
 	private String optional;
 	private String subjectToMoon;
 	private Date insertDate;
-	private Integer insertBy;
 	private Date updateDate;
 	private Integer updateBy;
 
 	public LmsHolidayRecord() {
 	}
 
-	public LmsHolidayRecord(String leaveSubject, Date leaveDate, String optional, String subjectToMoon, Date insertDate,
-			Integer insertBy, Date updateDate, Integer updateBy) {
+	public LmsHolidayRecord(LmsUser lmsUser, String leaveSubject, Date leaveDate, String optional, String subjectToMoon,
+			Date insertDate, Date updateDate, Integer updateBy) {
+		this.lmsUser = lmsUser;
 		this.leaveSubject = leaveSubject;
 		this.leaveDate = leaveDate;
 		this.optional = optional;
 		this.subjectToMoon = subjectToMoon;
 		this.insertDate = insertDate;
-		this.insertBy = insertBy;
 		this.updateDate = updateDate;
 		this.updateBy = updateBy;
 	}
@@ -57,6 +56,16 @@ public class LmsHolidayRecord implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "INSERT_BY")
+	public LmsUser getLmsUser() {
+		return this.lmsUser;
+	}
+
+	public void setLmsUser(LmsUser lmsUser) {
+		this.lmsUser = lmsUser;
 	}
 
 	@Column(name = "LEAVE_SUBJECT", length = 50)
@@ -104,15 +113,6 @@ public class LmsHolidayRecord implements java.io.Serializable {
 
 	public void setInsertDate(Date insertDate) {
 		this.insertDate = insertDate;
-	}
-
-	@Column(name = "INSERT_BY")
-	public Integer getInsertBy() {
-		return this.insertBy;
-	}
-
-	public void setInsertBy(Integer insertBy) {
-		this.insertBy = insertBy;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

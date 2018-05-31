@@ -106,8 +106,7 @@ public class LmsWftRole implements java.io.Serializable {
 		this.updateBy = updateBy;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRole")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRole")	@JsonIgnore
 	public Set<LmsWftRoleUserMap> getLmsWftRoleUserMaps() {
 		return this.lmsWftRoleUserMaps;
 	}
@@ -116,8 +115,7 @@ public class LmsWftRole implements java.io.Serializable {
 		this.lmsWftRoleUserMaps = lmsWftRoleUserMaps;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRole")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWftRole") @JsonIgnore
 	public Set<LmsWftRequestHopRolePageMap> getLmsWftRequestHopRolePageMaps() {
 		return this.lmsWftRequestHopRolePageMaps;
 	}

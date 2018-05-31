@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Mar 27, 2018 11:06:48 PM by Hibernate Tools 5.2.8.Final
+// Generated May 31, 2018 6:04:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -21,11 +21,8 @@ import javax.persistence.TemporalType;
 @Table(name = "lms_wf_request_hop", catalog = "supremet_lmsdb")
 public class LmsWfRequestHop implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer id;
+	private LmsUser lmsUser;
 	private LmsWfRequest lmsWfRequest;
 	private LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap;
 	private Integer wftRoleId;
@@ -36,15 +33,15 @@ public class LmsWfRequestHop implements java.io.Serializable {
 	private Date insertDate;
 	private Integer insertBy;
 	private Date updateDate;
-	private Integer updateBy;
 	private Integer pageId;
 
 	public LmsWfRequestHop() {
 	}
 
-	public LmsWfRequestHop(LmsWfRequest lmsWfRequest, LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap,
-			Integer wftRoleId, Date startDate, Date endDate, String status, Integer userId, Date insertDate,
-			Integer insertBy, Date updateDate, Integer updateBy, Integer pageId) {
+	public LmsWfRequestHop(LmsUser lmsUser, LmsWfRequest lmsWfRequest,
+			LmsWftRequestHopRolePageMap lmsWftRequestHopRolePageMap, Integer wftRoleId, Date startDate, Date endDate,
+			String status, Integer userId, Date insertDate, Integer insertBy, Date updateDate, Integer pageId) {
+		this.lmsUser = lmsUser;
 		this.lmsWfRequest = lmsWfRequest;
 		this.lmsWftRequestHopRolePageMap = lmsWftRequestHopRolePageMap;
 		this.wftRoleId = wftRoleId;
@@ -55,7 +52,6 @@ public class LmsWfRequestHop implements java.io.Serializable {
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
-		this.updateBy = updateBy;
 		this.pageId = pageId;
 	}
 
@@ -69,6 +65,16 @@ public class LmsWfRequestHop implements java.io.Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "UPDATE_BY")
+	public LmsUser getLmsUser() {
+		return this.lmsUser;
+	}
+
+	public void setLmsUser(LmsUser lmsUser) {
+		this.lmsUser = lmsUser;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -165,15 +171,6 @@ public class LmsWfRequestHop implements java.io.Serializable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
-	}
-
-	@Column(name = "UPDATE_BY")
-	public Integer getUpdateBy() {
-		return this.updateBy;
-	}
-
-	public void setUpdateBy(Integer updateBy) {
-		this.updateBy = updateBy;
 	}
 
 	@Column(name = "PAGE_ID")
