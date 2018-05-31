@@ -287,8 +287,8 @@ public class WorkFlowManagement {
 				lmsUser = lmsUserHome.findById(delegateuserid);
 
 				lmsWftRoleUserMap.setLmsWftRole(lmsWftRole);
-				lmsWftRoleUserMap.setLmsUser(lmsUser);
-				lmsWftRoleUserMap.setDelegateBy(userid);
+				lmsWftRoleUserMap.setLmsUserByUserId(lmsUser);
+				lmsWftRoleUserMap.setLmsUserByDelegateBy(lmsUser);
 				lmsWftRoleUserMap.setInsertBy(userid);
 				lmsWftRoleUserMap.setInsertDate(new Date());
 
@@ -359,7 +359,7 @@ public class WorkFlowManagement {
 			lmsWfRequest.setLmsWftRequestType(lmsWftRequestSelector.getLmsWftRequestType());
 			lmsWfRequest.setStartDate(currentDate);
 			lmsWfRequest.setStatus(WFSTATUS.APPLIED.toString());
-			lmsWfRequest.setLmsUser(user);
+			lmsWfRequest.setLmsUserByUserId(user);
 			lmsWfRequest.setLmsLeaveApplication(leaveApplication);
 			lmsWfRequest.setInsertDate(currentDate);
 			lmsWfRequest.setInsertBy(user.getId());
@@ -446,7 +446,7 @@ public class WorkFlowManagement {
 			
 			lmsWfRequestHop.setEndDate(new Date());			
 			lmsWfRequestHop.setUpdateDate(new Date());
-			lmsWfRequestHop.setUpdateBy(user.getId());
+			lmsWfRequestHop.setLmsUser(user);
 
 			lmsWfRequestHopHome.merge(lmsWfRequestHop);
 
@@ -540,7 +540,7 @@ public class WorkFlowManagement {
 			}
 			lmsWfRequest.setStatus(requestStatus);
 			lmsWfRequest.setUpdateDate(new Date());
-			lmsWfRequest.setUpdateBy(user.getId());
+			lmsWfRequest.setLmsUserByUpdateBy(user);
 			
 			if (requestStatus.equals(WFSTATUS.APPROVED.toString())
 					|| requestStatus.equals(WFSTATUS.REJECTED.toString())) {

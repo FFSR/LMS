@@ -1,5 +1,5 @@
 package com.web.lms.model;
-// Generated Apr 25, 2018 8:57:44 PM by Hibernate Tools 5.2.8.Final
+// Generated May 31, 2018 6:04:48 PM by Hibernate Tools 5.2.8.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -28,7 +28,8 @@ public class LmsWfRequest implements java.io.Serializable {
 
 	private Integer id;
 	private LmsLeaveApplication lmsLeaveApplication;
-	private LmsUser lmsUser;
+	private LmsUser lmsUserByUpdateBy;
+	private LmsUser lmsUserByUserId;
 	private LmsWftRequestType lmsWftRequestType;
 	private Date startDate;
 	private Date endDate;
@@ -36,17 +37,17 @@ public class LmsWfRequest implements java.io.Serializable {
 	private Date insertDate;
 	private Integer insertBy;
 	private Date updateDate;
-	private Integer updateBy;
 	private Set<LmsWfRequestHop> lmsWfRequestHops = new HashSet<LmsWfRequestHop>(0);
 
 	public LmsWfRequest() {
 	}
 
-	public LmsWfRequest(LmsLeaveApplication lmsLeaveApplication, LmsUser lmsUser, LmsWftRequestType lmsWftRequestType,
-			Date startDate, Date endDate, String status, Date insertDate, Integer insertBy, Date updateDate,
-			Integer updateBy, Set<LmsWfRequestHop> lmsWfRequestHops) {
+	public LmsWfRequest(LmsLeaveApplication lmsLeaveApplication, LmsUser lmsUserByUpdateBy, LmsUser lmsUserByUserId,
+			LmsWftRequestType lmsWftRequestType, Date startDate, Date endDate, String status, Date insertDate,
+			Integer insertBy, Date updateDate, Set<LmsWfRequestHop> lmsWfRequestHops) {
 		this.lmsLeaveApplication = lmsLeaveApplication;
-		this.lmsUser = lmsUser;
+		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
+		this.lmsUserByUserId = lmsUserByUserId;
 		this.lmsWftRequestType = lmsWftRequestType;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -54,7 +55,6 @@ public class LmsWfRequest implements java.io.Serializable {
 		this.insertDate = insertDate;
 		this.insertBy = insertBy;
 		this.updateDate = updateDate;
-		this.updateBy = updateBy;
 		this.lmsWfRequestHops = lmsWfRequestHops;
 	}
 
@@ -81,13 +81,23 @@ public class LmsWfRequest implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "USER_ID")
-	public LmsUser getLmsUser() {
-		return this.lmsUser;
+	@JoinColumn(name = "UPDATE_BY")
+	public LmsUser getLmsUserByUpdateBy() {
+		return this.lmsUserByUpdateBy;
 	}
 
-	public void setLmsUser(LmsUser lmsUser) {
-		this.lmsUser = lmsUser;
+	public void setLmsUserByUpdateBy(LmsUser lmsUserByUpdateBy) {
+		this.lmsUserByUpdateBy = lmsUserByUpdateBy;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "USER_ID")
+	public LmsUser getLmsUserByUserId() {
+		return this.lmsUserByUserId;
+	}
+
+	public void setLmsUserByUserId(LmsUser lmsUserByUserId) {
+		this.lmsUserByUserId = lmsUserByUserId;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -158,17 +168,7 @@ public class LmsWfRequest implements java.io.Serializable {
 		this.updateDate = updateDate;
 	}
 
-	@Column(name = "UPDATE_BY")
-	public Integer getUpdateBy() {
-		return this.updateBy;
-	}
-
-	public void setUpdateBy(Integer updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWfRequest")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "lmsWfRequest") @JsonIgnore
 	public Set<LmsWfRequestHop> getLmsWfRequestHops() {
 		return this.lmsWfRequestHops;
 	}
