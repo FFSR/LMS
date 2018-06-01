@@ -308,10 +308,11 @@ App.controller(
 					.then(
 							function(d) {
 								// $scope.usersList = d;
-								$scope.q = d;
-								$scope.userData=d;
+								//$scope.q = d;
+								//$scope.userData=d;
 								// console.log($scope.usersList);
 								// $scope.userData = d.listLmsUser;
+								$scope.userData=d;
 							}, function(errResponse) {
 								console.log("Failed to get User Drop Down.");
 

@@ -10,6 +10,9 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/rptleavestatusService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/wfrequesthopService.js"></script>
+	
+<script type="text/javascript"
 	src="resources/js/app.js/controller/rptleavestatusController.js"></script>
 	
 <script type="text/javascript"

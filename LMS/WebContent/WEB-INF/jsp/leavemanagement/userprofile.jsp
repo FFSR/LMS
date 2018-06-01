@@ -266,7 +266,7 @@
 					<label class="control-label col-md-3">Gender</label>
 					<div class="col-md-9">
 						<input type="text" ng-model="gender" class="form-control" ng-disabled="true" 
-							placeholder="NID">
+							placeholder="">
 					</div>
 				</div>
 			</div>
