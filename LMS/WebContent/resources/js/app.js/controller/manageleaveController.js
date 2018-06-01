@@ -54,7 +54,7 @@ App
 					
 					$scope.wfRequestHop = wfRequestHop;
 					
-					$scope.userID = $scope.wfRequestHop.lmsWfRequest.lmsUser.id;
+					$scope.userID = $scope.wfRequestHop.lmsWfRequest.lmsUserByUserId.id;
 					$scope.wfRequestHopid = $scope.wfRequestHop.id;
 					console.log("wfRequestHop", wfRequestHop );
 					manageleaveService.getAttachment($scope.wfRequestHop.lmsWfRequest.lmsLeaveApplication.id).then(
