@@ -75,7 +75,7 @@
 							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
 							<td title="'Employee name'"
 								filter="{ 'lmsUserByUserId.name': 'text'}"
-								sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUser.name}}</td>
+								sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUserByUserId.name}}</td>
 
 							<td title="'From Date'" filter="{ type: 'text'}"
 								sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.fromDate
