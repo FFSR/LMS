@@ -82,7 +82,7 @@ public class LmsWftRoleUserMapHome {
 	public List<LmsWftRoleUserMap> findByUserID(Integer userID ) {
 		Query query;
 		try {
-			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser.id=:userID").setParameter("userID", userID);
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUserByUserId.id=:userID").setParameter("userID", userID);
 			
 			return (List<LmsWftRoleUserMap>) query.getResultList();
 		}catch(Exception ex) {
@@ -96,7 +96,7 @@ public class LmsWftRoleUserMapHome {
 	public List<LmsWftRoleUserMap> findDelegationByUser(Integer userID ) {
 		Query query;
 		try {
-			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.delegateBy=:userID").setParameter("userID", userID);
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUserByDelegateBy.id =:userID").setParameter("userID", userID);
 			
 			return (List<LmsWftRoleUserMap>) query.getResultList();
 		}catch(Exception ex) {
@@ -107,7 +107,7 @@ public class LmsWftRoleUserMapHome {
 	}
 	public List<LmsWftRoleUserMap> findRoleByUser(LmsUser user) {		
 		try { 			
-			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser=:user")
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUserByUserId=:user")
 					.setParameter("user", user);
 		
 			List<LmsWftRoleUserMap> listLmsWftRoleUserMap =  query.getResultList();
@@ -121,7 +121,7 @@ public class LmsWftRoleUserMapHome {
 	
 	public List<LmsWftRoleUserMap> findRoleByDelegateUser(Integer delegateBy ) {		
 		try { 			
-			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.delegateBy=:delegateBy")
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUserByDelegateBy.id=:delegateBy")
 					.setParameter("delegateBy", delegateBy);
 		
 			List<LmsWftRoleUserMap> listLmsWftRoleUserMap =  query.getResultList();
@@ -136,7 +136,7 @@ public class LmsWftRoleUserMapHome {
 	public List<LmsWftRoleUserMap> findByUserIDAndDelegateID(Integer userID, Integer delegateBy) {
 		Query query;
 		try {
-			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUser.id=:userID AND e.delegateBy=:delegateBy")
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUserByUserId.id=:userID AND e.lmsUserByDelegateBy.id=:delegateBy")
 					.setParameter("userID", userID)
 					.setParameter("delegateBy", delegateBy);
 			
