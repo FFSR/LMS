@@ -30,7 +30,7 @@
 							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.id}}</td>
 							<td title="'Employee name'"
 								filter="{ 'lmsUserByUserId.name': 'text'}"
-								sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsWfRequest.lmsUser.name}}</td>
+								sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsWfRequest.lmsUserByUserId.name}}</td>
 
 							<td title="'From Date'" filter="{ type: 'text'}"
 								sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsWfRequest.lmsLeaveApplication.fromDate
@@ -63,7 +63,7 @@
 							<label class="control-label col-md-3">User ID</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true"
-									ng-model="wfRequestHop.lmsWfRequest.lmsUser.id"
+									ng-model="wfRequestHop.lmsWfRequest.lmsUserByUserId.id"
 									class="form-control">
 							</div>
 						</div>
@@ -74,7 +74,7 @@
 							<label class="control-label col-md-3">Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true"
-									ng-model="wfRequestHop.lmsWfRequest.lmsUser.name"
+									ng-model="wfRequestHop.lmsWfRequest.lmsUserByUserId.name"
 									class="form-control">
 							</div>
 						</div>
