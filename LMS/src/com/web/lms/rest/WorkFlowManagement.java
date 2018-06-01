@@ -112,10 +112,17 @@ public class WorkFlowManagement {
 				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
-			generateWorkRequest(lmsWftRequestSelector, user, leaveApplication);
+			if(generateWorkRequest(lmsWftRequestSelector, user, leaveApplication)) {
+				
+				responseWrapper.setMessage("Success. Your request is successfully generated.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+				
+			}else {
+				responseWrapper.setMessage("Fail. Your request is not generated.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
 
-			responseWrapper.setMessage("Success. Your request is successfully generated.");
-			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+
 		} catch (Exception ex) {
 			responseWrapper.setMessage("Fail." + ex.getMessage());
 			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
@@ -330,23 +337,28 @@ public class WorkFlowManagement {
 	}
 	
 	
-	public void generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user, LmsLeaveApplication leaveApplication) {
+	public boolean generateWorkRequest(LmsWftRequestSelector lmsWftRequestSelector, LmsUser user, LmsLeaveApplication leaveApplication) {
 
 		// Insert Request
 		LmsWfRequest lmsWfRequest = saveRequest(lmsWftRequestSelector, user, leaveApplication);
 
 		// Insert Request Hop
-		saveHops(lmsWfRequest, user);
+		if (lmsWfRequest != null) {
+			saveHops(lmsWfRequest, user);
 
-		// Find First Hop of this WorkRequest
-		LmsWfRequestHop lmsWfRequestHop = findFirstHopForRequest(lmsWfRequest);
-		// UpdateHopStatus for First Hop
-		if (lmsWfRequestHop != null) {
-			
-			// Only for first Hop
-			lmsWfRequestHop.setStartDate(new Date());
-			
-			updateHopDoneStatus(lmsWfRequestHop, WFSTATUS.DONE.toString(), user);
+			// Find First Hop of this WorkRequest
+			LmsWfRequestHop lmsWfRequestHop = findFirstHopForRequest(lmsWfRequest);
+			// UpdateHopStatus for First Hop
+			if (lmsWfRequestHop != null) {
+
+				// Only for first Hop
+				lmsWfRequestHop.setStartDate(new Date());
+
+				updateHopDoneStatus(lmsWfRequestHop, WFSTATUS.DONE.toString(), user);
+			}
+			return true;
+		}else {
+			return false;
 		}
 		
 	}
@@ -364,10 +376,11 @@ public class WorkFlowManagement {
 			lmsWfRequest.setInsertDate(currentDate);
 			lmsWfRequest.setInsertBy(user.getId());
 
-			lmsWfRequestHome.persist(lmsWfRequest);
+			int requestid = lmsWfRequestHome.persist(lmsWfRequest);
 			//lmsWfRequestHome.persist(lmsWfRequest);
 
-			lmsWfRequest = lmsWfRequestHome.findRequestByUserAndDate(user.getId(), currentDate);
+			lmsWfRequest = lmsWfRequestHome.findById(requestid);
+			//lmsWfRequest = lmsWfRequestHome.findRequestByUserAndDate(user.getId(), currentDate);
 
 			if (lmsWfRequest != null) {
 				return lmsWfRequest;
@@ -378,7 +391,7 @@ public class WorkFlowManagement {
 		return null;
 	}
 	
-	@RequestMapping(value = "/getHopsinfo/{wfrequestid}/", method = RequestMethod.GET)
+	//@RequestMapping(value = "/getHopsinfo/{wfrequestid}/", method = RequestMethod.GET)
 	/*public ResponseEntity<ResponseWrapper> findhopsbywfrequestid(@PathVariable("wfrequestid") Integer wfrequestid) {
 	//public ResponseEntity<List<LmsUser>> getlog() {
 		List<LmsWfRequestHop> listLmsWfRequestHops = new ArrayList<LmsWfRequestHop>();

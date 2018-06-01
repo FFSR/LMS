@@ -254,8 +254,8 @@ App.controller(
 					manageuserService.manageuser(userID).then(
 							function(d) {
 								console.log("Success.",d.message);
-								var data = d.listLmsuser;
-								$scope.lmsuser=d.listLmsuser[0];
+								var data = d.lmsuser;
+								$scope.lmsuser=d.lmsuser;
 							},
 							function(errResponse) {								
 								console.error(errResponse.message);
