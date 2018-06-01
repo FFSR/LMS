@@ -206,12 +206,12 @@ public class User {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		//LmsUser lmsUser = lmsUserHome.findById(uID);
 		
-		List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(uID );
+		LmsUser lmsUser = lmsUserHome.findById(uID);
 		if(lmsUser!=null) {
 			
 			//responseWrapper.setLmsuser(lmsUser);
 			
-			responseWrapper.setListLmsuser(lmsUser);
+			responseWrapper.setLmsuser(lmsUser);
 			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}

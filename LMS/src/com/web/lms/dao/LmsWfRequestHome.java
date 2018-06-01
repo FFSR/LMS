@@ -30,11 +30,14 @@ public class LmsWfRequestHome {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public void persist(LmsWfRequest transientInstance) {
+	public int persist(LmsWfRequest transientInstance) {
 		log.debug("persisting LmsWfRequest instance");
 		try {
 			entityManager.persist(transientInstance);
-			log.debug("persist successful");
+			entityManager.flush();
+			int requestId = transientInstance.getId();			
+			log.debug("persist successful");			
+			return requestId;
 		} catch (RuntimeException re) {
 			log.error("persist failed", re);
 			throw re;

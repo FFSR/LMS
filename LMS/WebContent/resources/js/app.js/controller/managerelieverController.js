@@ -41,18 +41,18 @@ App
 							function(d) {
 								$scope.testMsg1 = "Test";
 								//console.log("Success.",d.message);
-								var data = d.listLmsuser;
-								$scope.userlist=d.listLmsuser;
-								$scope.name=d.listLmsuser[0].name;								
+								var data = d.lmsuser;
+								$scope.userlist=d.lmsuser;
+								$scope.name=d.lmsuser.name;								
 								
-								if(d.listLmsuser[0].mobilePersonal !=null){
-									$scope.mobilePersonal=d.listLmsuser[0].mobilePersonal;
+								if(d.lmsuser.mobilePersonal !=null){
+									$scope.mobilePersonal=d.lmsuser.mobilePersonal;
 								}
-								if(d.listLmsuser[0].lmsDepartment !=null){
-									$scope.departmentname=d.listLmsuser[0].lmsDepartment.name;
+								if(d.lmsuser.lmsDepartment !=null){
+									$scope.departmentname=d.lmsuser.lmsDepartment.name;
 								}
-								if(d.listLmsuser[0].lmsSection !=null){
-									$scope.sectionname=d.listLmsuser[0].lmsSection.name;
+								if(d.lmsuser.lmsSection !=null){
+									$scope.sectionname=d.lmsuser.lmsSection.name;
 								}
 								
 							$scope.getUserwiseRoleInfo();
