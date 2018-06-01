@@ -26,6 +26,7 @@ App
 				$scope.testMsg = "Testing Message";
 				$scope.user={};
 				$scope.userID = "";
+				
 				/*$scope.user = {
 						"office" : "",
 						"name" : "",
@@ -64,40 +65,47 @@ App
 
 					};*/
 				
-				$scope.showEmpDetails = function(user) {
-
-					//console.log("User", user);
-					$scope.showUserDetails = true;
-					$scope.user = user;
-				};
 				
 				
-				
-			$scope.getSessionUserDetails = function(userID) {
-
-					$scope.userID = userID;				
-				
-					manageuserService.manageuser($scope.userID)
+				$scope.showEmpDetails = function(userID) {
+					
+					
+					manageuserService.urmanageuser(userID)
 					.then(function(d) {
 						$scope.testMsg1 = "Test";
 						console.log("Success.", d.message);
-						var data = d.listLmsuser;
-						$scope.tableParams = new NgTableParams({}, {
-							dataset : data
-						});
+						var data = d;						
+						$scope.user = data;
+						
+						$scope.user.name=data.lmsuser.name;
+						$scope.user.lmsDivision=data.lmsuser.lmsDivision;
+						$scope.user.lmsDepartment=data.lmsuser.lmsDepartment;
+						$scope.user.lmsSection=data.lmsuser.lmsSection;
+						$scope.user.lmsDesignation=data.lmsuser.lmsDesignation;
+						$scope.user.lmsMinistry=data.lmsuser.lmsMinistry;						
+						$scope.nationality=data.lmsuser.nationality;
+						$scope.user.lmsOfficeLocation=data.lmsuser.lmsOfficeLocation;
+						$scope.user.mobilePersonal=data.lmsuser.mobilePersonal;
+						$scope.user.mobileOffice=data.lmsuser.mobileOffice;
+						$scope.user.email=data.lmsuser.email;
+						$scope.user.fax=data.lmsuser.fax;
+						$scope.user.passport=data.lmsuser.passport;
+						$scope.user.address=data.lmsuser.address;
+						$scope.joiningDate=data.lmsuser.joiningDate;
+						$scope.gender=data.lmsuser.gender;
+						$scope.user.password=data.lmsuser.password;
+						$scope.ddReliever=data.lmsuser.ddReliever;
+						$scope.user.nid=data.lmsuser.nid;
+						
 
 				}, function(errResponse) {
 
 					console.error("Error while fetching Currencies");
 				});
-				
-				
-			};
-				
-			
-				
-				
-				
+					
+					
+					
+				};
 				
 				
 				
@@ -112,34 +120,6 @@ App
 
 				$scope.userprofile = function(){
 
-					/*$scope.user.name = $scope.username;
-					$scope.user.nid = $scope.nid;
-					$scope.user.office = $scope.office;
-					$scope.user.division = $scope.division;
-					$scope.user.designation = $scope.designation;
-					$scope.user.ministry = $scope.ministry;
-					$scope.user.section = $scope.section;
-					$scope.user.nationality = $scope.nationality;
-					$scope.user.passport = $scope.passport;
-					$scope.user.mobile = $scope.mobile;
-					$scope.user.telephone = $scope.telephone;
-					$scope.user.email = $scope.email;
-					$scope.user.fax = $scope.fax;
-					$scope.user.joiningdate = new Date($('#joiningDate').val());
-					$scope.user.gender = $scope.gender;
-					$scope.user.supervisoremail = $scope.supervisoremail;
-					$scope.user.address = $scope.address;*/
-
-					//console.log($scope.user.username);
-
-					//$scope.user.nationality = $scope.nationality.name;
-					//$scope.user.status = "PENDING";
-					//$scope.user.lmsUser= $scope.ddReliever;
-					//$scope.user.joiningDate = new Date($('#joiningDate').val());
-
-
-					//$scope.user.gender= $scope.gender.name;
-					
 					
 
 					updateprofileService.updateprofile($scope.userID, $scope.user).then(

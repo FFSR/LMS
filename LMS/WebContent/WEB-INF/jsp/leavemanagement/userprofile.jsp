@@ -33,6 +33,9 @@
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 <script type="text/javascript"
 	src="resources/js/app.js/service/manageuserService.js"></script>
+	
+<script type="text/javascript"
+	src="resources/js/app.js/service/managedelegationService.js"></script>
 
 </head>
 
@@ -48,9 +51,11 @@
 		<div ng-init="getDropdownDataNationality('Nationality')"></div>
 		<div ng-init="getDropdownDataGender('Sex')"></div>
 		<div ng-init="loadUserListDropDown()"></div>
-		<div ng-init="getSessionUserDetails('${sessionScope.userID}');"></div>
-				
-			
+		<div ng-init="getSessionUserDetails('${sessionScope.userID}');"></div>				
+		<div ng-init="showEmpDetails('${sessionScope.userID}')"></div>  
+		
+	<!--	<div ng-init="getUserInfo('${sessionScope.user.id}')"></div> -->
+		
 		<div class="container-fluid">
 
 
@@ -181,6 +186,7 @@
 
 		</div>
 		<br>
+		
 
 		<div class="row">
 			<div class="col-md-6">
@@ -315,6 +321,8 @@
 			</div>
 
 		</div>
+
+
 
 		<br>
 		<div class="row">

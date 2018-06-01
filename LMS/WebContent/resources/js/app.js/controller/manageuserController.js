@@ -148,6 +148,7 @@ App
 							console.log(d.message);
 							console.log("Success.", d.message);
 							$scope.showSuccessMessage("Update successful");
+							$scope.clearAll();
 						}, function(errResponse) {
 							console.log("Failed to Update User Profile.");
 							$scope.showErrorMessage("Update Fail");
@@ -287,5 +288,45 @@ App
 					window.location = url + "unauthorised";
 				});					
 			};
+			
+			
+			
+			$scope.clearAll = function(){
+				// for dropdown set to zero
+				//$scope.mobileNoDropDown = '0';
+				// for text filed set to empty
+				//$scope.mobileNoText = "";
+				// for check button set false;
+				//$scope.formSignVerified = false;
+				$scope.user.name = "";
+				$scope.user.lmsDivision = '0';
+				$scope.user.email = "";
+				$scope.user.lmsDepartment = '0';
+				$scope.user.lmsSection = '0';
+				$scope.user.lmsDesignation = '0';
+				$scope.user.lmsMinistry = '0';
+				$scope.nationality = "";
+				$scope.user.lmsOfficeLocation = '0';
+				$scope.user.mobilePersonal = "";
+				$scope.user.mobileOffice = "";
+				$scope.user.fax = "";
+				$scope.joiningDate = "";
+				$scope.gender = '0';
+				$scope.ddReliever = '0';
+				$scope.user.address = "";
+				$scope.user.passport = "";
+				$scope.user.password = "";
+				$scope.user.nid = "";
+				$scope.dateofbirth = "";
+				
+				
+			};
+			
+			
+			
+			
+			
+			
+			
 
 		} ]);

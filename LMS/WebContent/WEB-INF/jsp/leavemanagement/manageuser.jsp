@@ -89,22 +89,6 @@
 				
 				
 				<div class="col-md-6">
-						<div class="form-group">
-							<label class="col-md-3 control-label">To Date</label>
-							<div class="col-md-9">
-								<input type="text" id="jonDate" ng-model="jonDate" class="form-control"/>
-								
-							</div>
-
-						</div>
-					</div>
-				
-				
-				
-				
-				
-				
-				<div class="col-md-6">
 					<div class="form-group">
 						<div class="col-md-6">
 						</div>
@@ -208,7 +192,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Telephone</label>
 								<div class="col-md-9">
-									<input type="text" ng-model="user.phone" class="form-control"
+									<input type="text" ng-model="user.mobileOffice" class="form-control"
 										placeholder="Telephone">
 								</div>
 							</div>
