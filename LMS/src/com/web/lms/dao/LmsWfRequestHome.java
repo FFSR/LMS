@@ -80,7 +80,7 @@ public class LmsWfRequestHome {
 
 		try {
 			Query query = entityManager
-					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate=:date")
+					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate)=:date")
 					.setParameter("userid", userid).setParameter("date", date);
 
 			LmsWfRequest lmsWfRequest = (LmsWfRequest) query.getSingleResult();

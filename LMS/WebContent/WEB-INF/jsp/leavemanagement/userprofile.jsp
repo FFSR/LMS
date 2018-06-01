@@ -160,11 +160,8 @@
 				<div class="form-group">
 					<label class="control-label col-md-3">Nationality</label>
 					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="nationality" ng-disabled="true"
-							ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
-							<option value="">Select</option>
-						</select>
+						<input type="text" ng-model="nationality" ng-required="true" ng-disabled="true"
+							class="form-control" placeholder="User Name">
 					</div>
 				</div>
 			</div>
@@ -258,8 +255,8 @@
 				<div class="form-group">
 					<label class="control-label col-md-3">Joining Date</label>
 					<div class="col-md-9">
-						<input type="text" id="joiningDate" class="form-control" ng-disabled="true"
-							ng-required="false" placeholder="Joining Date">
+						<input type="text" ng-model="joiningDate" class="form-control"
+							placeholder="Passport No">
 
 					</div>
 				</div>
@@ -268,46 +265,13 @@
 				<div class="form-group">
 					<label class="control-label col-md-3">Gender</label>
 					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus" ng-model="gender" ng-disabled="true"
-							ng-options="x as x.name for x in dropdownGenderNames track by x.name">
-							<option value="">Select</option>
-						</select>
+						<input type="text" ng-model="gender" class="form-control" ng-disabled="true" 
+							placeholder="NID">
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<br>
-
-		<div class=row>
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Password</label>
-					<div class="col-md-9">
-						<input type="password" ng-model="user.password" ng-required="true" ng-disabled="true"
-							class="form-control" placeholder="Password">
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Supervisor</label>
-					<div class="col-md-9">
-
-						<select class="form-control" id="ddReliever" ng-model="ddReliever" ng-disabled="true"
-							ng-options="x as x.name for x in userData track by x.id">
-							<option value="">Select</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<br>
-		
-
 		<div class="row">
 			<br> <br>
 			<div class="col-md-6">
