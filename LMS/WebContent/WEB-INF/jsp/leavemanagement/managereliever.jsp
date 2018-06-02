@@ -91,6 +91,15 @@
 									<td title="'Role Name'"
 										sortable="'listLmsWftRoleUserMap.lmsWftRole.roleName'">{{listLmsWftRoleUserMap.lmsWftRole.roleName}}
 									</td>
+									<td title="'Delegate By'"
+										sortable="'listLmsWftRoleUserMap.lmsUserByDelegateBy.name'">{{listLmsWftRoleUserMap.lmsUserByDelegateBy.name}}
+									</td>
+									<td title="'Delegate From'"
+										sortable="'listLmsWftRoleUserMap.delegationFrom'">{{listLmsWftRoleUserMap.delegationFrom |date: YYYY-MM-dd}}
+									</td>
+									<td title="'Delegate To'"
+										sortable="'listLmsWftRoleUserMap.delegationTo'">{{listLmsWftRoleUserMap.delegationTo |date: YYYY-MM-dd}}
+									</td>
 								</tr>
 							</table>
 						</div>

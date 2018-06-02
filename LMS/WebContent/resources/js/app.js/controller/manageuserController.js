@@ -229,15 +229,7 @@ App
 					console.log("Failed to get Drop Down.");
 				});
 			}
-			
-			$scope.getRoleData = function() {
-				RoleService.getAllRole()
-				.then(function(d) {
-					$scope.roleNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+			// Removed duplicate method of $scope.getRoleData on 02.06.18
 
 			$scope.getWftroleData = function() {
 				WftroleService.getAllWftrole()
