@@ -120,8 +120,11 @@ App
 					       };
 					       
 					$scope.addReliever = function(){
+						
+						      $scope.delegationFrom=new Date($('#fromDate').val());
+						      $scope.delegationTo=new Date($('#toDate').val());
 										
-								managedelegationService.addReliever($scope.loginUserID, $scope.releiverid,$scope.userlist).then(
+								managedelegationService.addReliever($scope.loginUserID, $scope.releiverid,$scope.delegationFrom,$scope.delegationTo,$scope.userlist).then(
 										function(d){
 											
 											console.log(d);

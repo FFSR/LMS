@@ -201,6 +201,7 @@ public class WorkFlowManagement {
 		}
 	}
 	
+	
 	@RequestMapping(value = "/wftdelegationbyuser/{userid}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> findwftdelagationbyuser(@PathVariable("userid") Integer userid) {
 
@@ -274,9 +275,9 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateuserid}/", method = RequestMethod.POST)
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateuserid}/{fromDate}/{toDate}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid,
-			@RequestBody List<LmsWftRoleUserMap> listLmsWftRoleUserMap) 
+	 @PathVariable("fromDate") Date fromDate, @PathVariable("toDate") Date toDate, @RequestBody List<LmsWftRoleUserMap> listLmsWftRoleUserMap) 
 	{
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
@@ -286,18 +287,23 @@ public class WorkFlowManagement {
 			LmsWftRoleUserMap lmsWftRoleUserMap = null;
 			LmsWftRole lmsWftRole = null;
 			LmsUser lmsUser = null;
+			LmsUser lmsUserDelegatedBy = null;
 
 			for (LmsWftRoleUserMap role : listLmsWftRoleUserMap) {
 
 				lmsWftRoleUserMap = new LmsWftRoleUserMap();
 				lmsWftRole = lmsWftRoleHome.findById(role.getLmsWftRole().getId());
 				lmsUser = lmsUserHome.findById(delegateuserid);
-
+				lmsUserDelegatedBy=lmsUserHome.findById(userid);
+				
 				lmsWftRoleUserMap.setLmsWftRole(lmsWftRole);
 				lmsWftRoleUserMap.setLmsUserByUserId(lmsUser);
-				lmsWftRoleUserMap.setLmsUserByDelegateBy(lmsUser);
+				lmsWftRoleUserMap.setLmsUserByDelegateBy(lmsUserDelegatedBy);
 				lmsWftRoleUserMap.setInsertBy(userid);
 				lmsWftRoleUserMap.setInsertDate(new Date());
+				lmsWftRoleUserMap.setDelegationFrom(fromDate);
+				lmsWftRoleUserMap.setDelegationTo(toDate);
+				
 
 				lmsWftRoleUserMapHome.persist(lmsWftRoleUserMap);
 			}
