@@ -161,45 +161,46 @@
 			value="/WEB-INF/jsp/leavemanagement/divisioninfo.jsp" />
 
 	</definition>
-	
+
 	<definition name="managereliever" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/managereliever.jsp" />
 
 	</definition>
-	
+
 	<definition name="delegateemployee" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/delegateemployee.jsp" />
 
 	</definition>
-	
+
 	<definition name="userprofile" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/userprofile.jsp" />
 
 	</definition>
-	
+
 	<definition name="menu" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/Menu.jsp" />
+		<put-attribute name="body" value="/WEB-INF/jsp/Menu.jsp" />
 
 	</definition>
-	
+
 	<definition name="requestDetails" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
-		<put-attribute name="body" value="/WEB-INF/jsp/leavemanagement/wfDetails.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/wfDetails.jsp" />
 	</definition>
-	
-	
-	
+
+
+
 	<definition name="unauthorised" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
-		<put-attribute name="body" value="/WEB-INF/jsp/security/unauthorised.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/security/unauthorised.jsp" />
 	</definition>
 
 

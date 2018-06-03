@@ -95,11 +95,11 @@
 										sortable="'listLmsWftRoleUserMap.lmsUserByDelegateBy.name'">{{listLmsWftRoleUserMap.lmsUserByDelegateBy.name}}
 									</td>
 									<td title="'Delegate From'"
-										sortable="'listLmsWftRoleUserMap.delegationFrom'">{{listLmsWftRoleUserMap.delegationFrom |date: YYYY-MM-dd}}
-									</td>
+										sortable="'listLmsWftRoleUserMap.delegationFrom'">{{listLmsWftRoleUserMap.delegationFrom
+										|date: YYYY-MM-dd}}</td>
 									<td title="'Delegate To'"
-										sortable="'listLmsWftRoleUserMap.delegationTo'">{{listLmsWftRoleUserMap.delegationTo |date: YYYY-MM-dd}}
-									</td>
+										sortable="'listLmsWftRoleUserMap.delegationTo'">{{listLmsWftRoleUserMap.delegationTo
+										|date: YYYY-MM-dd}}</td>
 								</tr>
 							</table>
 						</div>
@@ -149,13 +149,14 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Delegation From</label>
 							<div class="col-md-9">
-								<input type="text" id="fromDate" ng-model="fromDate" class="form-control" />
+								<input type="text" id="fromDate" ng-model="fromDate"
+									class="form-control" />
 							</div>
 						</div>
 					</div>
@@ -163,7 +164,8 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Delegation To</label>
 							<div class="col-md-9">
-								<input type="text" id="toDate" ng-model="toDate" class="form-control"/>
+								<input type="text" id="toDate" ng-model="toDate"
+									class="form-control" />
 							</div>
 						</div>
 					</div>
@@ -191,11 +193,11 @@
 										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.lmsWftRole.roleName}}
 									</td>
 									<td title="'Delegation From'"
-										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.delegationFrom |date: YYYY-mm-dd}}
-									</td>
+										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.delegationFrom
+										|date: YYYY-mm-dd}}</td>
 									<td title="'Delegation To'"
-										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.delegationTo | date: YYYY-mm-dd}}
-									</td>
+										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.delegationTo
+										| date: YYYY-mm-dd}}</td>
 									<td title="'Action'"><button class="btn-primary"
 											ng-click="deleteReliever(RoleUserMap.lmsUserByUserId.id,RoleUserMap.lmsUserByDelegateBy.id)">Delete</button></td>
 								</tr>

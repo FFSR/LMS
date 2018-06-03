@@ -1,42 +1,44 @@
 <!-- Basic idea of such build tool is stolen from modernizr.com -->
 <div id="mfp-build-tool" class="mfp-hide">
-  <h2>Magnific Popup v{{site.mfpversion}} Build Tool</h2>
-  <form id="mfp-build-form">
-    <p class="help-block">Here you can generate optimized version of main JS file. Please note that CSS you should download directly: <a target="_blank"  href="https://raw.github.com/dimsemenov/Magnific-Popup/master/src/css/main.scss">Sass version</a> or <a target="_blank" href="https://raw.github.com/dimsemenov/Magnific-Popup/master/dist/magnific-popup.css">CSS version</a>.</p>
-     <label class="checkbox">
-      <input type="checkbox" name="inline" checked> Inline
-    </label>
-    <label class="checkbox">
-      <input type="checkbox" name="image" checked> Image
-    </label>
-    <label class="checkbox">
-      <input type="checkbox" name="ajax" checked> Ajax
-    </label>
-    <label class="checkbox">
-      <input type="checkbox" name="iframe" checked> Iframe
-    </label>
-    <label class="checkbox">
-      <input type="checkbox" name="gallery" checked> Gallery
-    </label>
-    <label class="checkbox">
-      <input type="checkbox" name="retina" checked> High-DPI (retina) support for image type
-    </label>
-    <label class="checkbox">
-      <input type="checkbox" name="imagezoom" checked> Image zoom animation
-    </label>
-  </form> 
-     
-  <br/>
-  <div>
-    <button id="mfp-build-button">Generate build</button>  
-  	<label class="checkbox">
-      <input id="mfp-minify" type="checkbox" name="minify" checked="checked"> Minify code
-    </label> 
-  </div>
-  <br/>
-  <p id="mfp-build-status" style="display:none"></p>
-  <br/>
-  <textarea id="mfp-build-tool-out" style="width: 100%; height: 300px; display:none;"></textarea>
+	<h2>Magnific Popup v{{site.mfpversion}} Build Tool</h2>
+	<form id="mfp-build-form">
+		<p class="help-block">
+			Here you can generate optimized version of main JS file. Please note
+			that CSS you should download directly: <a target="_blank"
+				href="https://raw.github.com/dimsemenov/Magnific-Popup/master/src/css/main.scss">Sass
+				version</a> or <a target="_blank"
+				href="https://raw.github.com/dimsemenov/Magnific-Popup/master/dist/magnific-popup.css">CSS
+				version</a>.
+		</p>
+		<label class="checkbox"> <input type="checkbox" name="inline"
+			checked> Inline
+		</label> <label class="checkbox"> <input type="checkbox" name="image"
+			checked> Image
+		</label> <label class="checkbox"> <input type="checkbox" name="ajax"
+			checked> Ajax
+		</label> <label class="checkbox"> <input type="checkbox" name="iframe"
+			checked> Iframe
+		</label> <label class="checkbox"> <input type="checkbox"
+			name="gallery" checked> Gallery
+		</label> <label class="checkbox"> <input type="checkbox" name="retina"
+			checked> High-DPI (retina) support for image type
+		</label> <label class="checkbox"> <input type="checkbox"
+			name="imagezoom" checked> Image zoom animation
+		</label>
+	</form>
+
+	<br />
+	<div>
+		<button id="mfp-build-button">Generate build</button>
+		<label class="checkbox"> <input id="mfp-minify"
+			type="checkbox" name="minify" checked="checked"> Minify code
+		</label>
+	</div>
+	<br />
+	<p id="mfp-build-status" style="display: none"></p>
+	<br />
+	<textarea id="mfp-build-tool-out"
+		style="width: 100%; height: 300px; display: none;"></textarea>
 </div>
 
 

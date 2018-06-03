@@ -217,7 +217,7 @@ public class HomeController {
 	public String forgetpasswd(Model model) {
 		
 		try {
-			if("" != httpSession.getAttribute("userName").toString()) {
+			if("" != httpSession.getAttribute("userName").toString()) { 
 				return "forgetpasswd";
 			}else {
 			

@@ -13,8 +13,11 @@ body {
 }
 /* Logo */
 .header {
-	background: #247201 url(http://filamentgroup.com/images/headerbg-new.jpg) no-repeat bottom left;
+	background: #247201
+		url(http://filamentgroup.com/images/headerbg-new.jpg) no-repeat bottom
+		left;
 }
+
 #fg-logo {
 	text-indent: -9999px;
 	margin: 0 auto;
@@ -22,23 +25,26 @@ body {
 	height: 52px;
 	background-image: url(http://filamentgroup.com/images/fg-logo-icon.png);
 }
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5){
+
+@media ( -webkit-min-device-pixel-ratio : 1.5) , ( min-device-pixel-ratio
+	: 1.5) {
 	#fg-logo {
 		background-size: 287px 52px;
-		background-image: url(http://filamentgroup.com/images/fg-logo-icon-lrg.png);
+		background-image:
+			url(http://filamentgroup.com/images/fg-logo-icon-lrg.png);
 	}
 }
 
 /* Customized Demo CSS for our Demo Tables */
-.tablesaw-columntoggle td.title a,
-.tablesaw-swipe td.title a {
+.tablesaw-columntoggle td.title a, .tablesaw-swipe td.title a {
 	display: block;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 10em;
 }
-@media (min-width: 40em) {
+
+@media ( min-width : 40em) {
 	td.title {
 		max-width: 12em;
 	}

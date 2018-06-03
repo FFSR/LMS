@@ -1,43 +1,43 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html>
-  <head>
-    <title></title>
-    <script src="../../bower_components/jquery/jquery.js"></script>
-    <script src="../../dist/typeahead.bundle.js"></script>
+<head>
+<title></title>
+<script src="../../bower_components/jquery/jquery.js"></script>
+<script src="../../dist/typeahead.bundle.js"></script>
 
-    <style>
-      .container {
-        width: 800px;
-        margin: 50px auto;
-      }
+<style>
+.container {
+	width: 800px;
+	margin: 50px auto;
+}
 
-      .typeahead-wrapper {
-        display: block;
-        margin: 50px 0;
-      }
+.typeahead-wrapper {
+	display: block;
+	margin: 50px 0;
+}
 
-      .tt-menu {
-        background-color: #fff;
-        border: 1px solid #000;
-      }
+.tt-menu {
+	background-color: #fff;
+	border: 1px solid #000;
+}
 
-      .tt-suggestion.tt-cursor {
-        background-color: #ccc;
-      }
-    </style>
-  </head>
+.tt-suggestion.tt-cursor {
+	background-color: #ccc;
+}
+</style>
+</head>
 
-  <body>
-    <div class="container">
-      <form action="/where" method="GET">
-        <div class="typeahead-wrapper">
-          <input id="states" name="states" type="text">
-          <input type="submit">
-        </div>
-      </form>
-    </div>
+<body>
+	<div class="container">
+		<form action="/where" method="GET">
+			<div class="typeahead-wrapper">
+				<input id="states" name="states" type="text"> <input
+					type="submit">
+			</div>
+		</form>
+	</div>
 
-    <script>
+	<script>
       var states = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('val'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -104,5 +104,5 @@
         source: states
       });
     </script>
-  </body>
+</body>
 </html>

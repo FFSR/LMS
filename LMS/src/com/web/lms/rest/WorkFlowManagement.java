@@ -325,8 +325,6 @@ public class WorkFlowManagement {
 				
 				lmsWftRoleUserMapistoryHome.persist(lmsWftRoleUserMapHistory);// insertion in history table
 				
-				
-				
 			}
 
 			responseWrapper.setMessage("Success. Work Flow Role User Map has inserted successfully.");
@@ -418,23 +416,35 @@ public class WorkFlowManagement {
 		return null;
 	}
 	
-	//@RequestMapping(value = "/getHopsinfo/{wfrequestid}/", method = RequestMethod.GET)
-	/*public ResponseEntity<ResponseWrapper> findhopsbywfrequestid(@PathVariable("wfrequestid") Integer wfrequestid) {
-	//public ResponseEntity<List<LmsUser>> getlog() {
-		List<LmsWfRequestHop> listLmsWfRequestHops = new ArrayList<LmsWfRequestHop>();
-	try {
-			listLmsWfRequestHops = lmsWfRequestHopHome.findWfhopsBywfrequestID(wfrequestid);
+	// This is useed to show detail hop information for leave request in rptstatusreport
+	// Feroj: 03.06.18
+	//service: wfrequesthopService controller: rptleavestatusController
+	@RequestMapping(value = "getHopsinfo/{wfrequestid}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("wfrequestid") Integer wfrequestid) {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+		try {
+
+			List<LmsWfRequestHop> listLmsWfRequestHops = lmsWfRequestHopHome.findWfRequestHopByRequestId(wfrequestid);
+		//	List<LmsWfRequestHop> listLmsWfRequestHops;
+			if (listLmsWfRequestHops.size() > 0) {
+				
+				responseWrapper.setMessage("Success. Leave request found.");
+				responseWrapper.setListLmsWfRequestHops(listLmsWfRequestHops);
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+				
+			} else {
+				
+				responseWrapper.setMessage("Fail. No record found.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			return new ResponseEntity<List<LmsWfRequestHop>>(listLmsWfRequestHops, HttpStatus.EXPECTATION_FAILED);
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
-		if (listLmsWfRequestHops == null) {
-			return new ResponseEntity<List<LmsUser>>(listLmsWfRequestHops, HttpStatus.EXPECTATION_FAILED);
-		}
-
-		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
-
-	}*/
+	}
 
 	private void saveHops(LmsWfRequest lmsWfRequest, LmsUser user) {
 		try {

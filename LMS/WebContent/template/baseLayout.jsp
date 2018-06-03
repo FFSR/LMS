@@ -23,7 +23,7 @@
     <!-- animation CSS -->
     <link href="resources/css/animate.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="resources/css/style.css" rel="stylesheet"> 
+     <link href="resources/css/style.css" rel="stylesheet"> 
     <!-- <link href="resources/css/style_n2.css" rel="stylesheet"> -->
     <!-- color CSS -->
     <link href="resources/css/colors/green.css" id="theme" rel="stylesheet">
