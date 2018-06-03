@@ -155,7 +155,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Delegation From</label>
 							<div class="col-md-9">
-								<input type="text" id="fromDate" ng-model="fromDate" class="form-control" ng-required="true"/>
+								<input type="text" id="fromDate" ng-model="fromDate" class="form-control" />
 							</div>
 						</div>
 					</div>
@@ -163,7 +163,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Delegation To</label>
 							<div class="col-md-9">
-								<input type="text" id="toDate" ng-model="toDate" class="form-control" ng-required="true"/>
+								<input type="text" id="toDate" ng-model="toDate" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -185,13 +185,19 @@
 								<tr ng-repeat="RoleUserMap in $data">
 
 									<td title="'Relievr Name'"
-										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.lmsUser.name}}
+										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.lmsUserByUserId.name}}
 									</td>
 									<td title="'Role Name'"
 										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.lmsWftRole.roleName}}
 									</td>
+									<td title="'Delegation From'"
+										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.delegationFrom |date: YYYY-mm-dd}}
+									</td>
+									<td title="'Delegation To'"
+										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.delegationTo | date: YYYY-mm-dd}}
+									</td>
 									<td title="'Action'"><button class="btn-primary"
-											ng-click="deleteReliever(RoleUserMap.lmsUser.id,RoleUserMap.delegateBy)">Delete</button></td>
+											ng-click="deleteReliever(RoleUserMap.lmsUserByUserId.id,RoleUserMap.lmsUserByDelegateBy.id)">Delete</button></td>
 								</tr>
 							</table>
 						</div>

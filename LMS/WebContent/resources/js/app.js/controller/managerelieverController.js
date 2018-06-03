@@ -89,6 +89,26 @@ App
 							});
 				};	
 				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+				
 				$scope.getUserDelegationInfo= function(){
 					var dataUserDelegationInfo={};
 					$scope.testMessage = "Test Message";
@@ -128,11 +148,11 @@ App
 										function(d){
 											
 											console.log(d);
-											//$scope.showSuccessMessage("Reliever Added");
+											$scope.showSuccessMessage("Reliever Added");
 											$scope.getUserDelegationInfo();
 										},
 										function(errResponse){
-											//$scope.showErrorMessage("Reliever not Added");
+											$scope.showErrorMessage("Reliever not Added");
 											
 										}
 										);
@@ -145,11 +165,12 @@ App
 						.then( 
 								function(d){
 									console.log(d.message);
+									$scope.showSuccessMessage("Reliever Removed");
 									$scope.getUserDelegationInfo();
 								},
 								function(errResponse){
 									console.log("Failed to Update User Profile.");
-									$scope.getUserDelegationInfo();
+									$scope.showErrorMessage("Reliever Not Removed");
 								}
 							);
 						

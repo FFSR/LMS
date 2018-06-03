@@ -23,6 +23,7 @@ import com.web.lms.dao.LmsWftRequestHopRolePageMapHome;
 import com.web.lms.dao.LmsWftRequestSelectorHome;
 import com.web.lms.dao.LmsWftRoleHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
+import com.web.lms.dao.LmsWftRoleUserMapHistoryHome;
 import com.web.lms.enumcollection.WFSTATUS;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveType;
@@ -31,9 +32,11 @@ import com.web.lms.model.LmsWfRequest;
 import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsWftFlowControl;
 import com.web.lms.model.LmsWftRequestHopRolePageMap;
+
 import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRole;
 import com.web.lms.model.LmsWftRoleUserMap;
+import com.web.lms.model.LmsWftRoleUserMapHistory;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
 import com.web.lms.wrapper.ResponseWrapper;
 
@@ -58,6 +61,8 @@ public class WorkFlowManagement {
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
 	@Autowired
 	private LmsWftRoleUserMapHome lmsWftRoleUserMapHome;
+	@Autowired
+	private LmsWftRoleUserMapHistoryHome lmsWftRoleUserMapistoryHome;
 	@Autowired
 	private LmsWftRoleHome lmsWftRoleHome;
 
@@ -285,6 +290,7 @@ public class WorkFlowManagement {
 		try {
 
 			LmsWftRoleUserMap lmsWftRoleUserMap = null;
+			LmsWftRoleUserMapHistory lmsWftRoleUserMapHistory = null;
 			LmsWftRole lmsWftRole = null;
 			LmsUser lmsUser = null;
 			LmsUser lmsUserDelegatedBy = null;
@@ -303,9 +309,24 @@ public class WorkFlowManagement {
 				lmsWftRoleUserMap.setInsertDate(new Date());
 				lmsWftRoleUserMap.setDelegationFrom(fromDate);
 				lmsWftRoleUserMap.setDelegationTo(toDate);
+				// for insertion in history table
+				lmsWftRoleUserMapHistory = new LmsWftRoleUserMapHistory();
+				
+				lmsWftRoleUserMapHistory.setLmsWftRole(lmsWftRole);
+				lmsWftRoleUserMapHistory.setLmsUserByUserId(lmsUser);
+				lmsWftRoleUserMapHistory.setLmsUserByDelegateBy(lmsUserDelegatedBy);
+				lmsWftRoleUserMapHistory.setInsertBy(userid);
+				lmsWftRoleUserMapHistory.setInsertDate(new Date());
+				lmsWftRoleUserMapHistory.setDelegationFrom(fromDate);
+				lmsWftRoleUserMapHistory.setDelegationTo(toDate);
 				
 
 				lmsWftRoleUserMapHome.persist(lmsWftRoleUserMap);
+				
+				lmsWftRoleUserMapistoryHome.persist(lmsWftRoleUserMapHistory);// insertion in history table
+				
+				
+				
 			}
 
 			responseWrapper.setMessage("Success. Work Flow Role User Map has inserted successfully.");
