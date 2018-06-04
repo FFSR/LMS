@@ -123,8 +123,8 @@ App
 								function(errResponse) {
 									
 									console
-											.error("Error while fetching Currencies");
-									$scope.tableParams = new NgTableParams({}, { dataset: dataUserDelegationInfo});
+									.error("Error while fetching Currencies");
+									$scope.tableParams2 = new NgTableParams({}, { dataset: dataUserDelegationInfo});
 								});
 					};
 					
