@@ -91,7 +91,7 @@ App
 						$scope.user.fax=data.lmsuser.fax;
 						$scope.user.passport=data.lmsuser.passport;
 						$scope.user.address=data.lmsuser.address;
-						$scope.joiningDate=data.lmsuser.joiningDate ;
+					//	$scope.joiningDate=data.lmsuser.joiningDate ;
 						$scope.gender=data.lmsuser.gender;
 						$scope.user.password=data.lmsuser.password;
 						//$scope.ddReliever=data.lmsuser.lmsuser.name;
