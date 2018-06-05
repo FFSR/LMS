@@ -209,7 +209,17 @@ public class User {
 
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-
+		/* -------Try-----
+		LmsUser lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, status);
+		if(lmsUser!=null) {
+			
+			//responseWrapper.setLmsuser(lmsUser);
+			
+			responseWrapper.setLmsuser(lmsUser);
+			
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+		 -------end-----*/
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}

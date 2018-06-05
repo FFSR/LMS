@@ -7,6 +7,7 @@ App
 		'$http',
 		'loginService',
 		'updateuserprofileService',
+		'userlistService',
 		'manageuserService',
 		'OfficeService',
 		'DivisionService',
@@ -22,7 +23,7 @@ App
 		'url',
 
 		function($scope, $timeout, $http, 
-				loginService, updateuserprofileService, manageuserService,
+				loginService, updateuserprofileService,userlistService, manageuserService,
 				OfficeService, DivisionService, DesignationService,
 				MinistryService, SectionService, DropDownService, RoleService, WftroleService, 
 				$filter, NgTableParams, $location, url) {
@@ -65,6 +66,7 @@ App
 						$scope.testMsg1 = "Test";
 						console.log("Success.", d.message);
 						var data = d.listLmsuser;
+						//var data = d;
 						$scope.tableParams = new NgTableParams({}, {
 							dataset : data
 						});
@@ -95,6 +97,11 @@ App
 				
 				$scope.nationality = {};
 				$scope.nationality.name= user.nationality;
+				
+				$scope.nationality = {};
+				$scope.nationality.name= user.nationality;
+				
+				$scope.user.lmsUser= user.lmsUser.name;
 				
 				$scope.ddlmsRole = {};
 				$scope.ddlmsRole.name= user.ddlmsRole;
@@ -239,6 +246,24 @@ App
 					console.log("Failed to get Drop Down.");
 				});
 			}
+			
+			$scope.loadUserListDropDown = function(){
+				$scope.dDName = "";
+
+				userlistService.getUserList()
+				.then(
+						function(d) {
+							// $scope.usersList = d;
+							//$scope.q = d;
+							//$scope.userData=d;
+							// console.log($scope.usersList);
+							// $scope.userData = d.listLmsUser;
+							$scope.userData=d;
+						}, function(errResponse) {
+							console.log("Failed to get User Drop Down.");
+
+						});
+			};
 
 			/* Show Success Message */
 			$scope.showSuccessMessage = function(message) {
