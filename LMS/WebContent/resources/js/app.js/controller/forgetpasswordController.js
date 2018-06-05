@@ -26,6 +26,9 @@ App
 							});
 				}
 				
-                  
+                   $scope.gotoHomePage = function(){
+					
+					window.location = "login";
+				}
 				
 			} ]);

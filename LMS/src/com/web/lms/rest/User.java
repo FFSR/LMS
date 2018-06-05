@@ -1,5 +1,7 @@
 package com.web.lms.rest;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,6 +71,18 @@ public class User {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsUser lmsUser = lmsUserHome.findByEmailID(emailid);
+		
+		try {
+			lmsUser.setPassword(ProtectedConfigFile.decrypt(lmsUser.getPassword()));
+		} catch (GeneralSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 
 		if (lmsUser != null) {
 			responseWrapper
