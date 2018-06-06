@@ -219,8 +219,9 @@
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"
-									ng-model="user.lmsUser" ng-required="true"
-									ng-options="x as x.name for x in userData track by x.id">
+									ng-model="lmssupervisor" ng-required="true"
+									ng-change="setnewReleiver(user,lmssupervisor)"
+									ng-options="x as x.name for x in userData track by x.name">
 									<option value="">Select</option>
 								</select>
 							</div>

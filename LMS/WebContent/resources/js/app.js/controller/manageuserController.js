@@ -29,7 +29,126 @@ App
 				$filter, NgTableParams, $location, url) {
 			
 			$scope.testMsg = "Test Message New";
-			$scope.user = {};
+		    $scope.user = {};
+		    $scope.supervisor={};
+			/*--------------
+			$scope.user= {					
+						"id": 0,
+						"lmsDepartment": {
+							"id": 0,
+							"lmsMinistry": {
+								"id": 0,
+								"name": "",
+								"insertDate": "",
+								"insertBy": "",
+								"updateDate": "",
+								"updateBy": ""
+							},
+							"name": "",
+							"insertDate": "",
+							"insertBy": "",
+							"updateDate": "",
+							"updateBy": ""
+						},
+						"lmsDesignation": {
+							"id": 0,
+							"lmsClass": {
+								"id": 0,
+								"name": ""
+							},
+							"name": "",
+							"insertDate": "",
+							"insertBy": "",
+							"updateDate": "",
+							"updateBy": ""
+						},
+						"lmsDivision": {
+							"id": 0,
+							"lmsDepartment": {
+								"id": 0,
+								"lmsMinistry": {
+									"id": 0,
+									"name": "",
+									"insertDate": "",
+									"insertBy": "",
+									"updateDate": "",
+									"updateBy": ""
+								},
+								"name": "",
+								"insertDate": "",
+								"insertBy": "",
+								"updateDate": "",
+								"updateBy": ""
+							},
+							"name": "",
+							"insertDate": "",
+							"insertBy": "",
+							"updateDate": "",
+							"updateBy": ""
+						},
+						"lmsMinistry": {
+							"id": 0,
+							"name": "",
+							"insertDate": "",
+							"insertBy": "",
+							"updateDate": "",
+							"updateBy": ""
+						},
+						"lmsOfficeLocation": {
+							"id": 0,
+							"name": "",
+							"address": "",
+							"insertDate": "",
+							"insertBy": "",
+							"updateDate": "",
+							"updateBy": ""
+						},
+						"lmsSection": {
+							"id": 0,
+							"lmsDepartment": {
+								"id": 1,
+								"lmsMinistry": {
+									"id": 0,
+									"name": "",
+									"insertDate": "",
+									"insertBy": "",
+									"updateDate": "",
+									"updateBy": ""
+								},
+								"name": "",
+								"insertDate": "",
+								"insertBy": "",
+								"updateDate": "",
+								"updateBy": ""
+							},
+							"name": "",
+							"insertDate": "",
+							"insertBy": "",
+							"updateDate": "",
+							"updateBy": ""
+						},
+						"lmsUser": "",
+						"name": "",
+						"email": "",
+						"phone": "",
+						"passport": "",
+						"fax": "",
+						"mobilePersonal": "",
+						"mobileOffice": "",
+						"gender": "",
+						"address": "",
+						"nid": "",
+						"nationality": "",
+						"joiningDate": "",
+						"status": "",
+						"password": "",
+						"insertDate": "",
+						"insertBy": "",
+						"updateDate": "",
+						"updateBy": "",
+			};
+
+			/*-------------*/
 			$scope.showUserDetails = false;
 			
 			
@@ -65,7 +184,10 @@ App
 					.then(function(d) {
 						$scope.testMsg1 = "Test";
 						console.log("Success.", d.message);
-						var data = d.listLmsuser;
+						
+						$scope.supervisor=d.lmssupervisor;
+						
+							var data = d.listLmsuser;
 						//var data = d;
 						$scope.tableParams = new NgTableParams({}, {
 							dataset : data
@@ -101,7 +223,8 @@ App
 				$scope.nationality = {};
 				$scope.nationality.name= user.nationality;
 				
-				$scope.user.lmsUser= user.lmsUser.name;
+				$scope.lmssupervisor={};
+				$scope.lmssupervisor.name= $scope.supervisor.name;
 				
 				$scope.ddlmsRole = {};
 				$scope.ddlmsRole.name= user.ddlmsRole;
@@ -120,6 +243,15 @@ App
 				$scope.user.status = name;
 					
 			}
+			
+                $scope.setnewReleiver = function(user,lmssupervisor){
+                	
+                $scope.lmssupervisor=lmssupervisor;
+				
+				//$scope.user.lmsuser = $scope.lmssupervisor;
+					
+			}
+			
 			
              $scope.setnewNationality = function(user,name){
 				
@@ -150,7 +282,7 @@ App
 				//$scope.user.gender= $scope.gender.name;
 				//$scope.user.nationality = $scope.nationality.name;*/
 				
-				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.user).then(
+				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.lmssupervisor,$scope.user).then(
 						function(d) {
 							console.log(d.message);
 							console.log("Success.", d.message);
