@@ -216,16 +216,16 @@ public class HomeController {
 	@RequestMapping("/forgetpasswd")
 	public String forgetpasswd(Model model) {
 		
-		try {
-			if("" != httpSession.getAttribute("userName").toString()) {
+	/*	try {
+			if("" != httpSession.getAttribute("userName").toString()) { */
 				return "forgetpasswd";
-			}else {
+		/*	}else {
 			
 				return "login";
-			}
-		}catch(Exception ex) {
+			/* } 
+	/*	}catch(Exception ex) {
 			return "login";
-		}
+		}*/
 	}
 	
 	@RequestMapping("/employeehomepage")

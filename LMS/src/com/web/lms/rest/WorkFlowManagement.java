@@ -23,6 +23,7 @@ import com.web.lms.dao.LmsWftRequestHopRolePageMapHome;
 import com.web.lms.dao.LmsWftRequestSelectorHome;
 import com.web.lms.dao.LmsWftRoleHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
+import com.web.lms.dao.LmsWftRoleUserMapHistoryHome;
 import com.web.lms.enumcollection.WFSTATUS;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveType;
@@ -31,9 +32,11 @@ import com.web.lms.model.LmsWfRequest;
 import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsWftFlowControl;
 import com.web.lms.model.LmsWftRequestHopRolePageMap;
+
 import com.web.lms.model.LmsWftRequestSelector;
 import com.web.lms.model.LmsWftRole;
 import com.web.lms.model.LmsWftRoleUserMap;
+import com.web.lms.model.LmsWftRoleUserMapHistory;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
 import com.web.lms.wrapper.ResponseWrapper;
 
@@ -58,6 +61,8 @@ public class WorkFlowManagement {
 	private LmsLeaveApplicationHome lmsLeaveApplicationHome;
 	@Autowired
 	private LmsWftRoleUserMapHome lmsWftRoleUserMapHome;
+	@Autowired
+	private LmsWftRoleUserMapHistoryHome lmsWftRoleUserMapistoryHome;
 	@Autowired
 	private LmsWftRoleHome lmsWftRoleHome;
 
@@ -201,6 +206,7 @@ public class WorkFlowManagement {
 		}
 	}
 	
+	
 	@RequestMapping(value = "/wftdelegationbyuser/{userid}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> findwftdelagationbyuser(@PathVariable("userid") Integer userid) {
 
@@ -274,9 +280,9 @@ public class WorkFlowManagement {
 		}
 	}
 	
-	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateuserid}/", method = RequestMethod.POST)
+	@RequestMapping(value = "/wftrolebydelegateuser/{userid}/{delegateuserid}/{fromDate}/{toDate}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> insertwftrolebydelegateuser(@PathVariable("userid") Integer userid, @PathVariable("delegateuserid") Integer delegateuserid,
-			@RequestBody List<LmsWftRoleUserMap> listLmsWftRoleUserMap) 
+	 @PathVariable("fromDate") Date fromDate, @PathVariable("toDate") Date toDate, @RequestBody List<LmsWftRoleUserMap> listLmsWftRoleUserMap) 
 	{
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
@@ -284,22 +290,41 @@ public class WorkFlowManagement {
 		try {
 
 			LmsWftRoleUserMap lmsWftRoleUserMap = null;
+			LmsWftRoleUserMapHistory lmsWftRoleUserMapHistory = null;
 			LmsWftRole lmsWftRole = null;
 			LmsUser lmsUser = null;
+			LmsUser lmsUserDelegatedBy = null;
 
 			for (LmsWftRoleUserMap role : listLmsWftRoleUserMap) {
 
 				lmsWftRoleUserMap = new LmsWftRoleUserMap();
 				lmsWftRole = lmsWftRoleHome.findById(role.getLmsWftRole().getId());
 				lmsUser = lmsUserHome.findById(delegateuserid);
-
+				lmsUserDelegatedBy=lmsUserHome.findById(userid);
+				
 				lmsWftRoleUserMap.setLmsWftRole(lmsWftRole);
 				lmsWftRoleUserMap.setLmsUserByUserId(lmsUser);
-				lmsWftRoleUserMap.setLmsUserByDelegateBy(lmsUser);
+				lmsWftRoleUserMap.setLmsUserByDelegateBy(lmsUserDelegatedBy);
 				lmsWftRoleUserMap.setInsertBy(userid);
 				lmsWftRoleUserMap.setInsertDate(new Date());
+				lmsWftRoleUserMap.setDelegationFrom(fromDate);
+				lmsWftRoleUserMap.setDelegationTo(toDate);
+				// for insertion in history table
+				lmsWftRoleUserMapHistory = new LmsWftRoleUserMapHistory();
+				
+				lmsWftRoleUserMapHistory.setLmsWftRole(lmsWftRole);
+				lmsWftRoleUserMapHistory.setLmsUserByUserId(lmsUser);
+				lmsWftRoleUserMapHistory.setLmsUserByDelegateBy(lmsUserDelegatedBy);
+				lmsWftRoleUserMapHistory.setInsertBy(userid);
+				lmsWftRoleUserMapHistory.setInsertDate(new Date());
+				lmsWftRoleUserMapHistory.setDelegationFrom(fromDate);
+				lmsWftRoleUserMapHistory.setDelegationTo(toDate);
+				
 
 				lmsWftRoleUserMapHome.persist(lmsWftRoleUserMap);
+				
+				lmsWftRoleUserMapistoryHome.persist(lmsWftRoleUserMapHistory);// insertion in history table
+				
 			}
 
 			responseWrapper.setMessage("Success. Work Flow Role User Map has inserted successfully.");
@@ -391,23 +416,35 @@ public class WorkFlowManagement {
 		return null;
 	}
 	
-	//@RequestMapping(value = "/getHopsinfo/{wfrequestid}/", method = RequestMethod.GET)
-	/*public ResponseEntity<ResponseWrapper> findhopsbywfrequestid(@PathVariable("wfrequestid") Integer wfrequestid) {
-	//public ResponseEntity<List<LmsUser>> getlog() {
-		List<LmsWfRequestHop> listLmsWfRequestHops = new ArrayList<LmsWfRequestHop>();
-	try {
-			listLmsWfRequestHops = lmsWfRequestHopHome.findWfhopsBywfrequestID(wfrequestid);
+	// This is useed to show detail hop information for leave request in rptstatusreport
+	// Feroj: 03.06.18
+	//service: wfrequesthopService controller: rptleavestatusController
+	@RequestMapping(value = "getHopsinfo/{wfrequestid}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("wfrequestid") Integer wfrequestid) {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+		try {
+
+			List<LmsWfRequestHop> listLmsWfRequestHops = lmsWfRequestHopHome.findWfRequestHopByRequestId(wfrequestid);
+		//	List<LmsWfRequestHop> listLmsWfRequestHops;
+			if (listLmsWfRequestHops.size() > 0) {
+				
+				responseWrapper.setMessage("Success. Leave request found.");
+				responseWrapper.setListLmsWfRequestHops(listLmsWfRequestHops);
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+				
+			} else {
+				
+				responseWrapper.setMessage("Fail. No record found.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+
 		} catch (Exception ex) {
-			ex.printStackTrace();
-			return new ResponseEntity<List<LmsWfRequestHop>>(listLmsWfRequestHops, HttpStatus.EXPECTATION_FAILED);
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
-		if (listLmsWfRequestHops == null) {
-			return new ResponseEntity<List<LmsUser>>(listLmsWfRequestHops, HttpStatus.EXPECTATION_FAILED);
-		}
-
-		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
-
-	}*/
+	}
 
 	private void saveHops(LmsWfRequest lmsWfRequest, LmsUser user) {
 		try {

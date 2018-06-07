@@ -16,6 +16,8 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/manageuserService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/userlistService.js"></script>
+<script type="text/javascript"
 	src="resources/js/app.js/controller/manageuserController.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/officeService.js"></script>
@@ -31,15 +33,15 @@
 	src="resources/js/app.js/service/RoleService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/WftroleService.js"></script>
-	<script type="text/javascript"
+<script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
-	
+
 </head>
 
 <body ng-controller="manageuserController">
-	<div >
+	<div>
 		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 		<div ng-init="getDivisionData()"></div>
 		<div ng-init="getOfficeData()"></div>
@@ -51,6 +53,8 @@
 		<div ng-init="getWftroleData()"></div>
 		<div ng-init="getDropdownDataGender('Sex')"></div>
 		<div ng-init="getDropdownDataNationality('Nationality')"></div>
+		<div ng-init="loadUserListDropDown()"></div>
+		
 
 		<div class="container-fluid">
 			<div class="row">
@@ -86,12 +90,11 @@
 						</div>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="col-md-6">
 					<div class="form-group">
-						<div class="col-md-6">
-						</div>
+						<div class="col-md-6"></div>
 						<div class="col-md-6">
 							<button type="submit" class="btn btn-info" id="search"
 								ng-click="manageuser()">Search</button>
@@ -119,16 +122,15 @@
 							<td title="'Status'" filter="{ Remainingleave: 'text'}"
 								sortable="'remainingTotal'">{{user.status}}</td>
 							<td title="'Action'">
-								<button type="button" class="btn-primary" ng-click="showEmpDetails(user)">Details</button>
-								
+								<button type="button" class="btn-primary"
+									ng-click="showEmpDetails(user)">Details</button>
+
 							</td>
 					</table>
 				</div>
 			</table>
 		</div>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br>
 		<form class="form-horizontal" name="updateForm">
 
 			<div class="container-fluid">
@@ -178,27 +180,29 @@
 					<br>
 					<div class="row">
 						<div class="col-md-6">
-						<div class="form-group">
-							<label class="col-md-3 control-label">Joining Date</label>
-							<div class="col-md-9">
-								<input type="text" ng-model="user.joiningDate| date: YYYY-MM-dd" class="form-control"
-										placeholder="Joining Date">
-								
-							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label">Joining Date</label>
+								<div class="col-md-9">
+									<input type="text"
+										ng-model="user.joiningDate| date: YYYY-MM-dd"
+										class="form-control" placeholder="Joining Date">
 
+								</div>
+
+							</div>
 						</div>
-					</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label col-md-3">Telephone</label>
 								<div class="col-md-9">
-									<input type="text" ng-model="user.mobileOffice" class="form-control"
-										placeholder="Telephone">
+									<input type="text" ng-model="user.mobileOffice"
+										class="form-control" placeholder="Telephone">
 								</div>
 							</div>
 						</div>
 					</div>
-					<br> <br><br>
+					<br> <br>
+					<br>
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
@@ -209,15 +213,20 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Fax</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="user.fax" class="form-control"
-										placeholder="Fax">
-								</div>
+						<div class="col-sm-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Reliever</label>
+							<div class="col-md-9">
+								<!-- Drop Down list from table -->
+								<select class="form-control" id="ddReliever"
+									ng-model="lmssupervisor" ng-required="true"
+									ng-change="setnewReleiver(user,lmssupervisor)"
+									ng-options="x as x.name for x in userData track by x.name">
+									<option value="">Select</option>
+								</select>
 							</div>
 						</div>
+					</div>
 					</div>
 					<br>
 					<div class="row">
@@ -227,7 +236,7 @@
 								<label class="control-label col-md-3">Gender</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus" ng-model="gender"
-									    ng-change="setnewGender(user,gender.name)"
+										ng-change="setnewGender(user,gender.name)"
 										ng-options="x as x.name for x in dropdownGenderNames track by x.name">
 										<option value="">Select</option>
 									</select>
@@ -311,12 +320,12 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Nationality</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddAppStatus" 
+									<select class="form-control" id="ddAppStatus"
 										ng-model="nationality"
 										ng-change="setnewNationality(user,nationality.name)"
 										ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
 										<option value="">Select</option>
-										
+
 									</select>
 								</div>
 							</div>
@@ -342,8 +351,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Status</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddAppStatus"
-										ng-model="status"
+									<select class="form-control" id="ddAppStatus" ng-model="status"
 										ng-change="setnewStatus(user,status.name)"
 										ng-options="x as x.name for x in dropdownNames track by x.name">
 										<option value="">Select</option>
@@ -356,7 +364,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Application Role</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddlmsRole" 
+									<select class="form-control" id="ddlmsRole"
 										ng-model="ddlmsRole"
 										ng-options="x as x.name for x in roleNames track by x.id">
 										<option value="">Select</option>

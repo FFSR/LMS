@@ -37,6 +37,9 @@
 							</div>
 							<button type="submit" class="btn btn-default"
 								ng-click="forgetpassword(emailid)">Submit</button>
+						
+						     <button type="button" class="btn btn-inverse waves-effect waves-light"
+					         ng-click="gotoHomePage()">Cancel</button>
 						</form>
 						<div>Response: {{testMsg}}</div>
 					</div>

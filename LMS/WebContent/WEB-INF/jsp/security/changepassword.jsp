@@ -19,9 +19,8 @@
 		<div class="container-fluid">
 			<br>
 			<div class="row">
-				<div class="col-sm-2">Old
-					Password</div>
-				<div class="col-sm-2" >
+				<div class="col-sm-2">Old Password</div>
+				<div class="col-sm-2">
 					<input type="password" ng-model="oldpassword" class="form-control"
 						placeholder="Old Password">
 				</div>
@@ -29,9 +28,8 @@
 			<br>
 
 			<div class="row">
-				<div class="col-sm-2" >New
-					Password</div>
-				<div class="col-sm-2" >
+				<div class="col-sm-2">New Password</div>
+				<div class="col-sm-2">
 					<input type="password" ng-model="newpassword" class="form-control"
 						placeholder="New Password">
 				</div>
@@ -39,9 +37,8 @@
 			<br>
 
 			<div class="row">
-				<div class="col-sm-2" >Confirm
-					Password</div>
-				<div class="col-sm-2" >
+				<div class="col-sm-2">Confirm Password</div>
+				<div class="col-sm-2">
 					<input type="password" ng-model="confirmpassword"
 						class="form-control" placeholder="Confirm Password">
 				</div>
@@ -59,7 +56,7 @@
 					<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
 						data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>

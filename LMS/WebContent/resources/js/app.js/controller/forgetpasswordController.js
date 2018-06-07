@@ -25,4 +25,10 @@ App
 								console.error(e.data.message);
 							});
 				}
+				
+                   $scope.gotoHomePage = function(){
+					
+					window.location = "login";
+				}
+				
 			} ]);

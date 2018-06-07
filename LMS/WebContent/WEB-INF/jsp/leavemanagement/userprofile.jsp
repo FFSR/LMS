@@ -33,7 +33,7 @@
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 <script type="text/javascript"
 	src="resources/js/app.js/service/manageuserService.js"></script>
-	
+
 <script type="text/javascript"
 	src="resources/js/app.js/service/managedelegationService.js"></script>
 
@@ -51,11 +51,11 @@
 		<div ng-init="getDropdownDataNationality('Nationality')"></div>
 		<div ng-init="getDropdownDataGender('Sex')"></div>
 		<div ng-init="loadUserListDropDown()"></div>
-		<div ng-init="getSessionUserDetails('${sessionScope.userID}');"></div>				
-		<div ng-init="showEmpDetails('${sessionScope.userID}')"></div>  
-		
-	<!--	<div ng-init="getUserInfo('${sessionScope.user.id}')"></div> -->
-		
+		<div ng-init="getSessionUserDetails('${sessionScope.userID}');"></div>
+		<div ng-init="showEmpDetails('${sessionScope.userID}')"></div>
+
+		<!--	<div ng-init="getUserInfo('${sessionScope.user.id}')"></div> -->
+
 		<div class="container-fluid">
 
 
@@ -67,280 +67,244 @@
 						placeholder="User ID">-->
 			</div>
 
-		
-<form>
-		<br>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Name</label>
-					<div class="col-md-9">
-						<input type="text" ng-model="user.name" ng-required="true" ng-disabled="true"
-							class="form-control" placeholder="User Name">
+
+			<form>
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Name</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.name" ng-required="true"
+									ng-disabled="true" class="form-control" placeholder="User Name">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Division</label>
+							<div class="col-md-9">
+								<select class="form-control" id="ddAppStatus"
+									ng-model="user.lmsDivision" ng-disabled="true"
+									ng-options="x as x.name for x in divisionNames track by x.id">
+									<option value="">Select</option>
+
+								</select>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Division</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="user.lmsDivision" ng-disabled="true"
-							ng-options="x as x.name for x in divisionNames track by x.id">
-							<option value="">Select</option>
 
-						</select>
+				<br>
+				<div class="row">
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Department</label>
+							<div class="col-md-9">
+								<select class="form-control" id="ddAppStatus"
+									ng-model="user.lmsDepartment" ng-disabled="true"
+									ng-options="x as x.name for x in departmentNames track by x.id">
+									<option value="">Select</option>
+
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Section</label>
+							<div class="col-md-9">
+								<select class="form-control" id="ddAppStatus"
+									ng-model="user.lmsSection" ng-disabled="true"
+									ng-options="x as x.name for x in sectionNames track by x.id">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Designation</label>
+							<div class="col-md-9">
+								<select class="form-control" id="ddAppStatus"
+									ng-model="user.lmsDesignation" ng-disabled="true"
+									ng-options="x as x.name for x in designationNames track by x.id">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Ministry</label>
+							<div class="col-md-9">
+								<select class="form-control" id="ddAppStatus"
+									ng-model="user.lmsMinistry" ng-disabled="true"
+									ng-options="x as x.name for x in ministryNames track by x.id">
+									<option value="">Select</option>
+								</select>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
 
-		<br>
-		<div class="row">
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Nationality</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="nationality" ng-required="true"
+									ng-disabled="true" class="form-control" placeholder="User Name">
+							</div>
+						</div>
+					</div>
 
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Department</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="user.lmsDepartment" ng-disabled="true"
-							ng-options="x as x.name for x in departmentNames track by x.id">
-							<option value="">Select</option>
 
-						</select>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Office</label>
+							<div class="col-md-9">
+								<select class="form-control" id="ddAppStatus"
+									ng-model="user.lmsOfficeLocation" ng-disabled="true"
+									ng-options="x as x.name for x in officeNames track by x.id">
+									<option value="">Select</option>
+
+								</select>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<br>
+
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Mobile</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.mobilePersonal"
+									ng-required="true" class="form-control" placeholder="Mobile">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Telephone</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.mobileOffice"
+									class="form-control" placeholder="Telephone">
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Section</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="user.lmsSection" ng-disabled="true"
-							ng-options="x as x.name for x in sectionNames track by x.id">
-							<option value="">Select</option>
-						</select>
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Email</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.email" class="form-control"
+									ng-required="true" placeholder="Email">
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Fax</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.fax" class="form-control"
+									placeholder="Fax">
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
+				<br>
+				<div class="row">
 
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Designation</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="user.lmsDesignation" ng-disabled="true"
-							ng-options="x as x.name for x in designationNames track by x.id">
-							<option value="">Select</option>
-						</select>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Passport</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.passport" class="form-control"
+									placeholder="Passport No">
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Address</label>
+							<div class="col-md-9">
+								<textarea rows="3" type="textarea" ng-model="user.address"
+									class="form-control" placeholder="Address"></textarea>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Ministry</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="user.lmsMinistry" ng-disabled="true"
-							ng-options="x as x.name for x in ministryNames track by x.id">
-							<option value="">Select</option>
-						</select>
+				<br>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Joining Date</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.lmsuser.joiningDate|date : YYYY-mm-dd" class="form-control"
+									ng-disabled="true" placeholder="Passport No">
+
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Gender</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="gender" class="form-control"
+									ng-disabled="true" placeholder="">
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-
-		<br>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Nationality</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="nationality" ng-disabled="true"
-							ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
-							<option value="">Select</option>
-						</select>
+				<br>
+				<div class="row">
+					<br> <br>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">NID</label>
+							<div class="col-md-9">
+								<input type="text" ng-model="user.nid" class="form-control"
+									ng-disabled="true" placeholder="NID">
+							</div>
+						</div>
 					</div>
+
 				</div>
-			</div>
 
 
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Office</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus"
-							ng-model="user.lmsOfficeLocation" ng-disabled="true"
-							ng-options="x as x.name for x in officeNames track by x.id">
-							<option value="">Select</option>
 
-						</select>
+				<br>
+				<div class="row">
+					<button type="submit"
+						class="btn btn-success waves-effect waves-light m-r-10"
+						id="submit" ng-click="userprofile()">Submit</button>
+					<div class="col-sm-3"></div>
+					<div class="col-sm-3">
+						<button type="button"
+							class="btn btn-inverse waves-effect waves-light"
+							ng-click="gotoHomePage()">Cancel</button>
 					</div>
-				</div>
-			</div>
 
-		</div>
-		<br>
-		
-
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Mobile</label>
-					<div class="col-md-9">
-						<input type="text" ng-model="user.mobilePersonal"
-							ng-required="true" class="form-control" placeholder="Mobile">
-					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Telephone</label>
-					<div class="col-md-9">
-						<input type="text" ng-model="user.mobileOffice"
-							class="form-control" placeholder="Telephone">
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Email</label>
-					<div class="col-md-9">
-						<input type="text" ng-model="user.email" class="form-control"
-							ng-required="true" placeholder="Email">
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Fax</label>
-					<div class="col-md-9">
-						<input type="text" ng-model="user.fax" class="form-control"
-							placeholder="Fax">
-					</div>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="row">
 
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Passport</label>
-					<div class="col-md-9">
-						<input type="text" ng-model="user.passport" class="form-control"
-							placeholder="Passport No">
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Address</label>
-					<div class="col-md-9">
-						<textarea rows="3" type="textarea" ng-model="user.address"
-							class="form-control" placeholder="Address"></textarea>
-					</div>
-				</div>
-			</div>
-		</div>
-			<br>
-			<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Joining Date</label>
-					<div class="col-md-9">
-						<input type="text" id="joiningDate" class="form-control" ng-disabled="true"
-							ng-required="false" placeholder="Joining Date">
-
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Gender</label>
-					<div class="col-md-9">
-						<select class="form-control" id="ddAppStatus" ng-model="gender" ng-disabled="true"
-							ng-options="x as x.name for x in dropdownGenderNames track by x.name">
-							<option value="">Select</option>
-						</select>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<br>
-
-		<div class=row>
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Password</label>
-					<div class="col-md-9">
-						<input type="password" ng-model="user.password" ng-required="true" ng-disabled="true"
-							class="form-control" placeholder="Password">
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3">Supervisor</label>
-					<div class="col-md-9">
-
-						<select class="form-control" id="ddReliever" ng-model="ddReliever" ng-disabled="true"
-							ng-options="x as x.name for x in userData track by x.id">
-							<option value="">Select</option>
-						</select>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<br>
-		
-
-		<div class="row">
-			<br> <br>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-3" >NID</label>
-					<div class="col-md-9">
-						<input type="text" ng-model="user.nid" class="form-control" ng-disabled="true" 
-							placeholder="NID">
-					</div>
-				</div>
-			</div>
+			</form>
 
 		</div>
-
-
-
-		<br>
-		<div class="row">
-			<button type="submit"
-				class="btn btn-success waves-effect waves-light m-r-10" id="submit"
-				ng-click="userprofile()">Submit</button>
-			<div class="col-sm-3"></div>
-			<div class="col-sm-3">
-				<button type="button"
-					class="btn btn-inverse waves-effect waves-light"
-					ng-click="gotoHomePage()">Cancel</button>
-			</div>		
-			
-		</div>
-
-</form>
-
-</div>	
 
 		<br> <br>
 		<div class="row">

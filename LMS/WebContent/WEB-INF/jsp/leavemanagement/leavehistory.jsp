@@ -14,28 +14,30 @@
 </head>
 <body>
 	<div ng-controller="leavehistoryController">
-	<div ng-init="getSessionUserDetails('${sessionScope.user.id}');"></div>
+		<div ng-init="getSessionUserDetails('${sessionScope.user.id}');"></div>
 		<div class="container-fluid">
 			<div id="forgotModal">
 				<div class="dialog">
 					<!-- Modal content-->
 					<div class="content">
-						<div class="header">
-						</div>
+						<div class="header"></div>
 						<div class="modal-body">
 							<form role="form">
-						<!--  		<div class="form-group">
+								<!--  		<div class="form-group">
 									<label for="user_id">Employee ID:</label> <input type="text"
 										ng-model="user_id" class="form-control" id="user_id">
 								</div> -->
-                                <p style="font-family:Courier; color:#000; font-size: 20px;">My Leave Balance</p>
-								<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
-									ng-click="leavehistory()">Leave Balance</button>
-									
-									<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="cancel"
-									ng-click="gomyPage()">Cancel</button>
+								<p style="font-family: Courier; color: #000; font-size: 20px;">My
+									Leave Balance</p>
+								<button type="submit"
+									class="btn btn-success waves-effect waves-light m-r-10"
+									id="search" ng-click="leavehistory()">Leave Balance</button>
+
+								<button type="submit"
+									class="btn btn-success waves-effect waves-light m-r-10"
+									id="cancel" ng-click="gomyPage()">Cancel</button>
 							</form>
-							
+
 						</div>
 					</div>
 				</div>
@@ -44,7 +46,7 @@
 		<div>
 			<table class="table table-sm">
 				<div>
-					
+
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="lmsLeaveBalance in $data">
 

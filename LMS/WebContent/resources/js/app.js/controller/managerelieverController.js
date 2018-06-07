@@ -89,6 +89,26 @@ App
 							});
 				};	
 				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+				
 				$scope.getUserDelegationInfo= function(){
 					var dataUserDelegationInfo={};
 					$scope.testMessage = "Test Message";
@@ -103,8 +123,8 @@ App
 								function(errResponse) {
 									
 									console
-											.error("Error while fetching Currencies");
-									$scope.tableParams = new NgTableParams({}, { dataset: dataUserDelegationInfo});
+									.error("Error while fetching Currencies");
+									$scope.tableParams2 = new NgTableParams({}, { dataset: dataUserDelegationInfo});
 								});
 					};
 					
@@ -120,16 +140,19 @@ App
 					       };
 					       
 					$scope.addReliever = function(){
+						
+						      $scope.delegationFrom=new Date($('#fromDate').val());
+						      $scope.delegationTo=new Date($('#toDate').val());
 										
-								managedelegationService.addReliever($scope.loginUserID, $scope.releiverid,$scope.userlist).then(
+								managedelegationService.addReliever($scope.loginUserID, $scope.releiverid,$scope.delegationFrom,$scope.delegationTo,$scope.userlist).then(
 										function(d){
 											
 											console.log(d);
-											//$scope.showSuccessMessage("Reliever Added");
+											$scope.showSuccessMessage("Reliever Added");
 											$scope.getUserDelegationInfo();
 										},
 										function(errResponse){
-											//$scope.showErrorMessage("Reliever not Added");
+											$scope.showErrorMessage("Reliever not Added");
 											
 										}
 										);
@@ -142,11 +165,12 @@ App
 						.then( 
 								function(d){
 									console.log(d.message);
-									$scope.getUserDelegationInfo();
+									$scope.showSuccessMessage("Reliever Removed");
+									$scope.stayMyPage();
 								},
 								function(errResponse){
 									console.log("Failed to Update User Profile.");
-									$scope.getUserDelegationInfo();
+									$scope.showErrorMessage(d.message);
 								}
 							);
 						
@@ -154,6 +178,12 @@ App
 					
 					$scope.gotoHomePage = function(){	
 						window.location = url+"employeehomepage";
+					}
+					
+					$scope.stayMyPage = function(){	
+						
+						location.reload();
+						window.location = url+"managereliever";
 					}
 					
 					/* Show Error Message */

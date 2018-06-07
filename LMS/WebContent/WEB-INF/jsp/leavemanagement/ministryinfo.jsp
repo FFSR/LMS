@@ -21,12 +21,12 @@
 		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 		<div class="container-fluid">
 			<div class="row">
-			  <div class="col-md-6">
-					  <div class="form-group">
-						<label class="control-label col-md-3" >Ministry Name</label>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3">Ministry Name</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="name" class="form-control"
-						placeholder="Ministry Name" ng-required=true>
+								placeholder="Ministry Name" ng-required=true>
 						</div>
 					</div>
 				</div>

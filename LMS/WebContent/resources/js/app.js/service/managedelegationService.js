@@ -25,6 +25,7 @@ App.factory('managedelegationService', [
 				
 				getUserDelegationInfo: function(userID){
 					return $http.get(url+'wftdelegationbyuser/' + userID + '/')
+					
 					.then(function(response) {
 						return response.data;
 					},
@@ -36,8 +37,9 @@ App.factory('managedelegationService', [
 					});
 				},
 				
-				addReliever: function(loginUserID, releiverid, listLmsWftRoleUserMap){
-					return $http.post(url+'wftrolebydelegateuser/'+ loginUserID +'/'+ releiverid +'/', listLmsWftRoleUserMap)
+				addReliever: function(loginUserID, releiverid, fromDate,toDate,listLmsWftRoleUserMap){
+					//return $http.post(url+'wftrolebydelegateuser/'+ loginUserID +'/'+ releiverid +'/', listLmsWftRoleUserMap)
+					return $http.post(url+'wftrolebydelegateuser/'+ loginUserID +'/'+ releiverid +'/' + fromDate +'/' + toDate , listLmsWftRoleUserMap)
 					.then(function(response) {
 						return response.data;
 					},

@@ -45,7 +45,7 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-	<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
+		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 		<div
 			ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}')"></div>
 		<div
@@ -68,8 +68,8 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">User Name</label>
 							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="username" class="form-control"
-									placeholder="User Name">
+								<input type="text" ng-disabled="true" ng-model="username"
+									class="form-control" placeholder="User Name">
 							</div>
 						</div>
 					</div>
@@ -89,13 +89,13 @@
 								</select>
 							</div>
 						</div>
-					</div>					
+					</div>
 					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Leave Eligibility</label>
 							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="eligibility" class="form-control"
-									placeholder="Yearly Leave Eligibility">
+								<input type="text" ng-disabled="true" ng-model="eligibility"
+									class="form-control" placeholder="Yearly Leave Eligibility">
 							</div>
 						</div>
 					</div>
@@ -105,8 +105,8 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Total Leave</label>
 							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="leaveTotal" class="form-control"
-									placeholder="Total Leave">
+								<input type="text" ng-disabled="true" ng-model="leaveTotal"
+									class="form-control" placeholder="Total Leave">
 							</div>
 						</div>
 					</div>
@@ -114,10 +114,10 @@
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Leave	Taken</label>
+							<label class="control-label col-md-3">Leave Taken</label>
 							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="leaveTaken" class="form-control"
-									placeholder="Leave All ready Taken">
+								<input type="text" ng-disabled="true" ng-model="leaveTaken"
+									class="form-control" placeholder="Leave All ready Taken">
 							</div>
 						</div>
 					</div>
@@ -138,8 +138,7 @@
 							<label class="control-label col-md-3">Leave Applied</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveApplied"
-									 class="form-control"
-									placeholder="Leave Remaining">
+									class="form-control" placeholder="Leave Remaining">
 							</div>
 						</div>
 					</div>
@@ -149,7 +148,8 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">From Date</label>
 							<div class="col-md-9">
-								<input type="text" id="fromDate" ng-model="fromDate" class="form-control" ng-required="true"/>
+								<input type="text" id="fromDate" ng-model="fromDate"
+									class="form-control" ng-required="true" />
 							</div>
 						</div>
 					</div>
@@ -157,7 +157,8 @@
 						<div class="form-group">
 							<label class="col-md-3 control-label">To Date</label>
 							<div class="col-md-9">
-								<input type="text" id="toDate" ng-model="toDate" class="form-control" ng-required="true"/>
+								<input type="text" id="toDate" ng-model="toDate"
+									class="form-control" ng-required="true" />
 							</div>
 
 						</div>
@@ -182,7 +183,8 @@
 							<label class="control-label col-md-3">In Station</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddStation" ng-model="ddStation" ng-required="true"
+								<select class="form-control" id="ddStation" ng-model="ddStation"
+									ng-required="true"
 									ng-options="x as x.name for x in stationData track by x.name">
 									<option value="">Select</option>
 								</select>

@@ -10,8 +10,11 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/rptleavestatusService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/wfrequesthopService.js"></script>
+
+<script type="text/javascript"
 	src="resources/js/app.js/controller/rptleavestatusController.js"></script>
-	
+
 <script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
@@ -22,15 +25,19 @@
 
 	<div ng-controller="rptleavestatusController">
 
-		<div ng-init="loadrptleavestatus('${sessionScope.user.id}');"></div>
+			<div ng-init="loadrptleavestatus('${sessionScope.user.id}');"></div>
 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-6">
+
+		<form class="form-horizontal" name="rptleavestatusForm">
+			<div class="form-body">
+
+				<div class="row">
+					<div class="col-md-6">
 						<div class="form-group">
 							<label class="control-label col-md-3">Start Date</label>
 							<div class="col-md-9">
-								<input type="text" id="fromDate" ng-model="fromDate" class="form-control" ng-required="true"/>
+								<input type="text" id="fromDate" ng-model="fromDate"
+									class="form-control" />
 							</div>
 						</div>
 					</div>
@@ -38,70 +45,105 @@
 						<div class="form-group">
 							<label class="col-md-3 control-label">End Date</label>
 							<div class="col-md-9">
-								<input type="text" id="toDate" ng-model="toDate" class="form-control" ng-required="true"/>
+								<input type="text" id="toDate" ng-model="toDate"
+									class="form-control"  />
 							</div>
 
 						</div>
 					</div>
-			</div>
-			<br>
-			
-			
-			<br>
-			<div class="modal-body">
-			
-			<form role="form">
-				<div class="row">
-				<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="search"
-									ng-click="loadDatewiserptleavestatus('${sessionScope.user.id}')">Search</button>
+				</div>
+				<br> <br>
+				<div class="modal-body">
 
-				<button type="submit" class="btn btn-success waves-effect waves-light m-r-10" id="cancel"
-									ng-click="gomyPage()">Cancel</button>
-				</div>	</div>
-				</form>
-			</div>
-		
-			<!-- By Shourav 29th April 2018 -->
+					<form role="form">
+					<div class="row">
+						<button type="submit"
+							class="btn btn-success waves-effect waves-light m-r-10"
+							id="search"
+							ng-click="loadDatewiserptleavestatus('${sessionScope.user.id}')" ng-disabled="rptleavestatusForm.$invalid">Search</button>
 
-			<div>
-				<table class="table table-sm">
+						<button type="submit"
+							class="btn btn-success waves-effect waves-light m-r-10"
+							id="cancel" ng-click="gomyPage()">Cancel</button>
+					</div>
+						</form> 
+				</div>
+			
+
+				<!-- By Shourav 29th April 2018 -->
+
 				<div>
-					
-					<table ng-table="tableParams" class="table" show-filter="true">
-						<tr ng-repeat="wfRequestHop in $data">
-							<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
-							<td title="'Employee name'"
-								filter="{ 'lmsUserByUserId.name': 'text'}"
-								sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUser.name}}</td>
+					<table class="table table-sm">
+						<div>
 
-							<td title="'From Date'" filter="{ type: 'text'}"
-								sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.fromDate
-								| date: YYYY-MM-dd}}</td>
+							<table ng-table="tableParams" class="table" show-filter="true">
+								<tr ng-repeat="wfRequestHop in $data">
+									<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
+									<td title="'Employee name'"
+										filter="{ 'lmsUserByUserId.name': 'text'}"
+										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUserByUserId.name}}</td>
 
-							<td title="'To Date'" filter="{ leaveTotal: 'text'}"
-								sortable="'totalleave'">{{wfRequestHop.lmsLeaveApplication.toDate
-								|date: YYYY-MM-dd}}</td>
+									<td title="'From Date'" filter="{ type: 'text'}"
+										sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.fromDate
+										| date: YYYY-MM-dd}}</td>
 
-							<td title="'Leave Type'" filter="{ 'lmsLeaveType.type': 'text'}"
-								sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.lmsLeaveType.type}}</td>
+									<td title="'To Date'" filter="{ leaveTotal: 'text'}"
+										sortable="'totalleave'">{{wfRequestHop.lmsLeaveApplication.toDate
+										|date: YYYY-MM-dd}}</td>
 
-							<td title="'Status'" filter="{ Remainingleave: 'text'}"
-								sortable="'remainingTotal'">{{wfRequestHop.status}}</td>
-							
-							<td title="'Remarks'" filter="{ Remainingleave: 'text'}"
-								sortable="'remainingTotal'">{{wfRequestHop.lmsLeaveApplication.remarks}}</td>
+									<td title="'Leave Type'"
+										filter="{ 'lmsLeaveType.type': 'text'}"
+										sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.lmsLeaveType.type}}</td>
 
-							<td title="'Action'"><button class="btn-primary"
-									ng-click="showApprovalFlowDetails(wfRequestHop.lmsWfRequest.id)">Approval Flow</button></td>
+									<td title="'Status'" filter="{ Remainingleave: 'text'}"
+										sortable="'remainingTotal'">{{wfRequestHop.status}}</td>
+
+									<td title="'Remarks'" filter="{ Remainingleave: 'text'}"
+										sortable="'remainingTotal'">{{wfRequestHop.lmsLeaveApplication.remarks}}</td>
+
+									<td title="'Action'"><button type="submit" class="btn-primary" id="submit"
+											ng-click="showApprovalFlowDetails(wfRequestHop.id)">Approval
+											Flow</button></td>
+							</table>
+						</div>
 					</table>
 				</div>
-			</table>
+
+				<!-- By Shourav 29th April 2018 -->
+
+				<!-- By Feroj 03rd June 2018 -->
+				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Approval Flow Information</h2>
+				 
+				<div>
+					<table class="table table-sm">
+						<div>
+
+							<table ng-table="tableParams2" class="table" show-filter="true">
+								<tr ng-repeat="wfHop in $data">
+									<td title="'Status'" filter="{ id: 'text'}" sortable="'id'">{{wfHop.status}}</td>
+									<td title="'Updated By'"
+										filter="{ 'lmsUserByUserId.name': 'text'}"
+										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsUser.name}}</td>
+									<td title="'Role Name'"
+										filter="{ 'lmsUserByUserId.name': 'text'}"
+										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsWftRequestHopRolePageMap.lmsWftRole.roleName}}</td>
+
+									<td title="'Update Date'" filter="{ type: 'text'}"
+										sortable="'lmsLeaveType.type'">{{wfHop.updateDate
+										| date: YYYY-MM-dd}}</td>
+							</table>
+						</div>
+					</table>
+
+				</div>
+				
+
+				<!-- By Feroj 03, June 2018 -->
 			</div>
+		</form>
+		
+	   </div>
 
-			<!-- By Shourav 29th April 2018 -->
-
-		</div>
-	</div>
 </body>
 
 <script>

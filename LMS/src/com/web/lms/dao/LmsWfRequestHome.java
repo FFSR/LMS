@@ -83,7 +83,7 @@ public class LmsWfRequestHome {
 
 		try {
 			Query query = entityManager
-					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate=:date")
+					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate)=:date")
 					.setParameter("userid", userid).setParameter("date", date);
 
 			LmsWfRequest lmsWfRequest = (LmsWfRequest) query.getSingleResult();
@@ -102,7 +102,7 @@ public class LmsWfRequestHome {
 
 		try {
 			Query query = entityManager
-					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid AND e.startDate BETWEEN :startdate and :enddate")
+					.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUserByUserId.id=:userid AND e.startDate BETWEEN :startdate and :enddate")
 					.setParameter("userid", userid).setParameter("startdate", startdate).setParameter("enddate", enddate);
 
 			List<LmsWfRequest> listLmsWfRequest =  query.getResultList();
@@ -118,7 +118,7 @@ public class LmsWfRequestHome {
 	public List<LmsWfRequest> findRequestByUserID(Integer userid) {
 
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUser.id=:userid")
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUserByUserId.id=:userid")
 					.setParameter("userid", userid);
 
 			List<LmsWfRequest> listLmsWfRequest = query.getResultList();

@@ -41,7 +41,7 @@ App
 				};
 				
                    $scope.loadDatewiserptleavestatus = function(userID){	
-                
+                  var dataReportStatus ={};
                 	$scope.tableParams="";
 					$scope.userID = userID;
 					//$scope.startdate=new Date($('#fromDate').val());
@@ -60,13 +60,13 @@ App
 				
 				
                    $scope.showApprovalFlowDetails= function(wfrequestID){	
-					
+                	 var dataHopsStatus={};
                 	$scope.wfrequestID=wfrequestID;
 					wfrequesthopService.getHopsinfo( $scope.wfrequestID)
 					.then(
 							function(d){
-						var dataHopsStatus = d.listLmsWfRequesthop;
-						$scope.tableParams = new NgTableParams({}, { dataset: dataHopsStatus});
+						var dataHopsStatus = d.listLmsWfRequestHops;
+						$scope.tableParams2 = new NgTableParams({}, { dataset: dataHopsStatus});
 					},
 					function(errResponse){
 						
