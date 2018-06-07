@@ -81,7 +81,7 @@
 		<property name="password" value="root" />
 		
 	</bean>
- -->	
+ <!--  -->
 	<!-- Local Database Connection lmsdb -->	
 <!-- 	
 	<bean id="dataSource"
