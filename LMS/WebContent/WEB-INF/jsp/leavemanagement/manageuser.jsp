@@ -16,6 +16,8 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/manageuserService.js"></script>
 <script type="text/javascript"
+	src="resources/js/app.js/service/userlistService.js"></script>
+<script type="text/javascript"
 	src="resources/js/app.js/controller/manageuserController.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/officeService.js"></script>
@@ -51,6 +53,8 @@
 		<div ng-init="getWftroleData()"></div>
 		<div ng-init="getDropdownDataGender('Sex')"></div>
 		<div ng-init="getDropdownDataNationality('Nationality')"></div>
+		<div ng-init="loadUserListDropDown()"></div>
+		
 
 		<div class="container-fluid">
 			<div class="row">
@@ -208,15 +212,20 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Fax</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="user.fax" class="form-control"
-										placeholder="Fax">
-								</div>
+						<div class="col-sm-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Reliever</label>
+							<div class="col-md-9">
+								<!-- Drop Down list from table -->
+								<select class="form-control" id="ddReliever"
+									ng-model="lmssupervisor" ng-required="true"
+									ng-change="setnewReleiver(user,lmssupervisor)"
+									ng-options="x as x.name for x in userData track by x.name">
+									<option value="">Select</option>
+								</select>
 							</div>
 						</div>
+					</div>
 					</div>
 					<br>
 					<div class="row">

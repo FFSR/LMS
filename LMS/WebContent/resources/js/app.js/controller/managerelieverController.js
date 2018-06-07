@@ -123,8 +123,8 @@ App
 								function(errResponse) {
 									
 									console
-											.error("Error while fetching Currencies");
-									$scope.tableParams = new NgTableParams({}, { dataset: dataUserDelegationInfo});
+									.error("Error while fetching Currencies");
+									$scope.tableParams2 = new NgTableParams({}, { dataset: dataUserDelegationInfo});
 								});
 					};
 					
@@ -166,11 +166,11 @@ App
 								function(d){
 									console.log(d.message);
 									$scope.showSuccessMessage("Reliever Removed");
-									$scope.getUserDelegationInfo();
+									$scope.stayMyPage();
 								},
 								function(errResponse){
 									console.log("Failed to Update User Profile.");
-									$scope.showErrorMessage("Reliever Not Removed");
+									$scope.showErrorMessage(d.message);
 								}
 							);
 						
@@ -178,6 +178,12 @@ App
 					
 					$scope.gotoHomePage = function(){	
 						window.location = url+"employeehomepage";
+					}
+					
+					$scope.stayMyPage = function(){	
+						
+						location.reload();
+						window.location = url+"managereliever";
 					}
 					
 					/* Show Error Message */

@@ -25,7 +25,13 @@ public class ResponseWrapper {
 	
 	LmsUser lmsuser;
 	
+	LmsUser lmssupervisor;
+	
 	List<LmsUser> listLmsuser;
+	
+	List<LmsUser> listlmssupervisor;
+	
+	
 	
 	LmsLeaveApplication lmsLeaveApplication;
 	
@@ -86,7 +92,14 @@ public class ResponseWrapper {
 	public void setLmsuser(LmsUser lmsuser) {
 		this.lmsuser = lmsuser;
 	}
-
+	
+	public LmsUser getLmssupervisor() {
+		return lmssupervisor;
+	}
+	
+	public void setLmssupervisor(LmsUser lmssupervisor) {
+		this.lmssupervisor = lmssupervisor;
+	}
 	
 	public List<LmsUser> getListLmsuser() {
 		return listLmsuser;
@@ -96,6 +109,13 @@ public class ResponseWrapper {
 		this.listLmsuser = listLmsuser;
 	}
 
+	public List<LmsUser> getListLmssupervisor() {
+		return listlmssupervisor;
+	}
+	
+	public void setListLmssupervisor(List<LmsUser> listlmssupervisor) {
+		this.listlmssupervisor = listlmssupervisor;
+	}
 	public List<LmsLeaveApplication> getListLmsLeaveApplication() {
 		return listLmsLeaveApplication;
 	}

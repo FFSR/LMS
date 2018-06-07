@@ -266,7 +266,7 @@ App
 				
 				$scope.gotoHomePage = function(){
 					
-					window.location = "employeehomepage";
+					window.location = "login";
 				};
 
 				

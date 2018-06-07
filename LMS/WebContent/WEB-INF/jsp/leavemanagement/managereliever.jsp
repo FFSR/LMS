@@ -35,7 +35,7 @@
 		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 		<div
 			ng-init="loadUserListDropDown();getUserInfo('${sessionScope.user.id}')"></div>
-		<form class="form-horizontal">
+		<form class="form-horizontal" name="releiverform">
 			<div class="form-body">
 
 				<div class="row">
@@ -114,8 +114,10 @@
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"
 									ng-model="ddReliever"
+									ng-required="true"
 									ng-change="showUserInfo(ddReliever.id,ddReliever.name,ddReliever.lmsDepartment.name,ddReliever.lmsSection.name)"
 									ng-options="x as x.name for x in userlistInfo track by x.id">
+									
 									<option value="">Select</option>
 								</select>
 
@@ -156,7 +158,7 @@
 							<label class="control-label col-md-3">Delegation From</label>
 							<div class="col-md-9">
 								<input type="text" id="fromDate" ng-model="fromDate"
-									class="form-control" />
+									class="form-control" ng-required="true"/>
 							</div>
 						</div>
 					</div>
@@ -165,18 +167,28 @@
 							<label class="control-label col-md-3">Delegation To</label>
 							<div class="col-md-9">
 								<input type="text" id="toDate" ng-model="toDate"
-									class="form-control" />
+									class="form-control" ng-required="true"/>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="row">
-					<button type="submit" class="btn" id="submit"
-						ng-click="addReliever()">Add Reliever</button>
-					<div class="col-sm-3"></div>
+					<button type="submit" class="btn btn-primary" id="submit"
+						ng-click="addReliever()" ng-disabled="releiverForm.$invalid">Add Reliever</button>
+						
 					<div class="col-sm-3">
-						<input type="button" class="btn btn-info" value="Cancel">
+						<button type="submit" class="btn btn-info" id="cancel"
+						ng-click="stayMyPage()" >Cancel</button>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+							data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+						<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+							data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 					</div>
 				</div>
 				<br> <br> My Reliever
@@ -186,7 +198,7 @@
 							<table ng-table="tableParams2" class="table" show-filter="true">
 								<tr ng-repeat="RoleUserMap in $data">
 
-									<td title="'Relievr Name'"
+									<td title="'Reliever Name'"
 										sortable="'RoleUserMap.lmsWftRole.roleName'">{{RoleUserMap.lmsUserByUserId.name}}
 									</td>
 									<td title="'Role Name'"
@@ -204,8 +216,7 @@
 							</table>
 						</div>
 					</table>
-				</div>
-
+				</div>	
 				<div class="row">
 					<div class="col-md-12">
 						<div id="successMssages" class="p-3 mb-2 bg-success text-white"
@@ -214,9 +225,9 @@
 							data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 					</div>
 				</div>
-
+				
 			</div>
-		</form>
+		</form>	
 	</div>
 
 </body>

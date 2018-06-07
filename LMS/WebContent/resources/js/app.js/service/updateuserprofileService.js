@@ -13,17 +13,12 @@ App
 						function($http, $q, url) {
 							return {
 
-								updateuserprofile : function(lmsWftrole,
-										lmsRole, user) {
-									// console.log(user);
-									// , lmsWftrole user, , user lmsWftrole
-									return $http
-											.post(
-													url + 'updateuserprofile/'
-															+ lmsWftrole.id
-															+ '/' + lmsRole.id
-															+ '/', user)
-											.then(
+								updateuserprofile : function(lmsWftrole, lmsRole, lmssupervisor,user ) {
+									//console.log(user);
+									// , lmsWftrole  user,  , user lmsWftrole
+									//return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/', user,lmssupervisor)
+									return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/' + lmssupervisor.id , user)		
+									.then(
 													function(response) {
 														return response.data;
 													},

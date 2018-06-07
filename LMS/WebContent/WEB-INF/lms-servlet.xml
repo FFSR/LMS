@@ -64,7 +64,17 @@
 	<!-- Local Database Connection supremet_lmsdb -->
 <!-- 	
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://167.88.15.68/supremet_lmsdb" />
+		<property name="username" value="supremet_root" />
+		<property name="password" value="newpasswdforlmsdb" />
+	</bean> -->
+	
+	<!-- Simple implementation of the standard JDBC DataSource interface, configuring 
+		the plain old JDBC DriverManager via bean properties -->
+	<bean id="dataSource"
+		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/supremet_lmsdb" />
 		<property name="username" value="root" />

@@ -138,8 +138,8 @@ public class LmsUserHome {
     }
 	 
     
-    public List<LmsUser> findByUnameandMobile(String uName, String mobile, String status) {
-
+  //public List<LmsUser> findByUnameandMobile(String uName, String mobile, String status) {
+      public LmsUser findByUnameandMobile(String uName, String mobile, String status) {
 		try {
 			Query query = entityManager
 					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.status =:status")
@@ -147,7 +147,27 @@ public class LmsUserHome {
 					.setParameter("mobile", "%"+ mobile +"%")					
 					.setParameter("status", status);
 
-			List<LmsUser> lmsUser = query.getResultList();
+	//	List<LmsUser> lmsUser = query.getResultList();
+		LmsUser lmsUser = (LmsUser) query.getSingleResult();
+
+			return lmsUser;
+		} 
+		catch (Exception ex) {
+			return null;
+		}
+	}
+      
+    public List<LmsUser> findByUnameandMobileList(String uName, String mobile, String status) {
+    //  public LmsUser findByUnameandMobile(String uName, String mobile, String status) {
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.status =:status")
+					.setParameter("uName","%"+ uName +"%")
+					.setParameter("mobile", "%"+ mobile +"%")					
+					.setParameter("status", status);
+
+	List<LmsUser> lmsUser = query.getResultList();
+		//LmsUser lmsUser = (LmsUser) query.getSingleResult();
 
 			return lmsUser;
 		} 

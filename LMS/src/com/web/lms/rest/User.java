@@ -1,5 +1,7 @@
 package com.web.lms.rest;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,6 +71,18 @@ public class User {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsUser lmsUser = lmsUserHome.findByEmailID(emailid);
+		
+		try {
+			lmsUser.setPassword(ProtectedConfigFile.decrypt(lmsUser.getPassword()));
+		} catch (GeneralSecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 
 		if (lmsUser != null) {
 			responseWrapper
@@ -173,14 +187,28 @@ public class User {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
-		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobile(uName, mobile, status);
+		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobileList(uName, mobile, status);
 		if (lmsUser.size() > 0) {
 
 			responseWrapper.setListLmsuser(lmsUser);
+			//responseWrapper.setListLmssupervisor(lmsUser);
+			//responseWrapper.setLmssupervisor;
 
+			//return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+	/*-------Try-----*/
+		LmsUser lmsUser1 = lmsUserHome.findByUnameandMobile(uName, mobile, status);
+		if(lmsUser1!=null) {
+			
+			//responseWrapper.setLmsuser(lmsUser)
+			
+			//responseWrapper.setLmsuser(lmsUser1);
+			responseWrapper.setLmssupervisor(lmsUser1.getLmsUser());
+			
+			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-
+		/* -------end-----*/
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
@@ -206,24 +234,28 @@ public class User {
 	public void test() {
 		System.out.println("Test Methoid");
 	}
-
-	@RequestMapping(value = "/updateuserprofile/{wftroleid}/{roleid}/", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> updateuserprofile(@PathVariable("wftroleid") Integer wftroleid,
-			@PathVariable("roleid") Integer roleid, @RequestBody LmsUser lmsUser) {
+	
+	
+	@RequestMapping(value = "/updateuserprofile/{wftroleid}/{roleid}/{lmssupervisorid}", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> updateuserprofile( @PathVariable("wftroleid") Integer wftroleid, @PathVariable("roleid") Integer roleid,@PathVariable("lmssupervisorid") Integer lmssupervisorid, @RequestBody LmsUser lmsUser){
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsRole lmsRole;
 		LmsWftRole lmsWftrole;
-
+		LmsUser lmssupervisor;
+		
 		try {
 
 			lmsRole = lmsRoleHome.findById(roleid);
 			lmsWftrole = LmsWftRoleHome.findById(wftroleid);
+			lmssupervisor = lmsUserHome.findById(lmssupervisorid);
+			
 
 			if (lmsRole != null && lmsWftrole != null) {
 
 				lmsUser.setUpdateDate(new Date());
 				lmsUser.setUpdateBy(lmsUser.getId());
+				lmsUser.setLmsUser(lmssupervisor);
 
 				lmsUserHome.merge(lmsUser); // For Update
 

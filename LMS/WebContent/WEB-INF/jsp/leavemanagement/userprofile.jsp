@@ -244,8 +244,8 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Joining Date</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="joiningDate" class="form-control"
-									placeholder="Passport No">
+								<input type="text" ng-model="user.lmsuser.joiningDate|date : YYYY-mm-dd" class="form-control"
+									ng-disabled="true" placeholder="Passport No">
 
 							</div>
 						</div>
