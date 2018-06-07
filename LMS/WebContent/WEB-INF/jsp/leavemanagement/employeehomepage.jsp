@@ -59,8 +59,8 @@
 				<div>
 
 					<!-- <label class="control-label col-md-3">Leave Notice Board</label> -->
-					<p style="font-family: Courier; color: #000; font-size: 20px;">Leave
-						Notice Board</p>
+					<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Leave
+						Notice Board</h2>
 
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="leaveapplication in $data">
