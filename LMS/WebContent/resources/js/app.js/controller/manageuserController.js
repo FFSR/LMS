@@ -1,324 +1,373 @@
 App
-.controller(
-		'manageuserController', 
-		[
-		'$scope',
-		'$timeout',
-		'$http',
-		'loginService',
-		'updateuserprofileService',
-		'manageuserService',
-		'OfficeService',
-		'DivisionService',
-		'DesignationService',
-		'MinistryService',
-		'SectionService',
-		'DropDownService',
-		'RoleService',
-		'WftroleService',
-		'$filter',
-		'NgTableParams',
-		'$location',
-		'url',
+		.controller(
+				'manageuserController',
+				[
+						'$scope',
+						'$timeout',
+						'$http',
+						'loginService',
+						'updateuserprofileService',
+						'manageuserService',
+						'OfficeService',
+						'DivisionService',
+						'DesignationService',
+						'MinistryService',
+						'SectionService',
+						'DropDownService',
+						'RoleService',
+						'WftroleService',
+						'$filter',
+						'NgTableParams',
+						'$location',
+						'url',
 
-		function($scope, $timeout, $http, 
-				loginService, updateuserprofileService, manageuserService,
-				OfficeService, DivisionService, DesignationService,
-				MinistryService, SectionService, DropDownService, RoleService, WftroleService, 
-				$filter, NgTableParams, $location, url) {
-			
-			$scope.testMsg = "Test Message New";
-			$scope.user = {};
-			$scope.showUserDetails = false;
-			
-			
+						function($scope, $timeout, $http, loginService,
+								updateuserprofileService, manageuserService,
+								OfficeService, DivisionService,
+								DesignationService, MinistryService,
+								SectionService, DropDownService, RoleService,
+								WftroleService, $filter, NgTableParams,
+								$location, url) {
 
-			$scope.manageuser = function() {
+							$scope.testMsg = "Test Message New";
+							$scope.user = {};
+							$scope.showUserDetails = false;
 
-				$scope.statusFinal = "";
+							$scope.manageuser = function() {
 
-				if ($scope.userName == null || $scope.userName == "") {
-					$scope.userNameDummy = "880";
-				}else{
-					$scope.userNameDummy = $scope.userName;
-				}
+								$scope.statusFinal = "";
 
-				if ($scope.mobile == null || $scope.mobile == "") {
-					$scope.mobileDummy = "a";
-				}else{
-					$scope.mobileDummy = $scope.mobile;
-				}
+								if ($scope.userName == null
+										|| $scope.userName == "") {
+									$scope.userNameDummy = "880";
+								} else {
+									$scope.userNameDummy = $scope.userName;
+								}
 
-				
-				if ($scope.ddstatus == null) {
-					$scope.statusFinal = "880";
+								if ($scope.mobile == null
+										|| $scope.mobile == "") {
+									$scope.mobileDummy = "a";
+								} else {
+									$scope.mobileDummy = $scope.mobile;
+								}
 
-				} else {
-					$scope.statusFinal = $scope.ddstatus.text;
-				}
+								if ($scope.ddstatus == null) {
+									$scope.statusFinal = "880";
 
-				
-				//$scope.user.status= $scope.status.name;
-				
-				manageuserService.getmanageuser($scope.userNameDummy, $scope.mobileDummy, $scope.statusFinal)
-					.then(function(d) {
-						$scope.testMsg1 = "Test";
-						console.log("Success.", d.message);
-						var data = d.listLmsuser;
-						$scope.tableParams = new NgTableParams({}, {
-							dataset : data
-						});
+								} else {
+									$scope.statusFinal = $scope.ddstatus.text;
+								}
 
-				}, function(errResponse) {
+								// $scope.user.status= $scope.status.name;
 
-					console.error("Error while fetching Currencies");
-				});
-			};
+								manageuserService
+										.getmanageuser($scope.userNameDummy,
+												$scope.mobileDummy,
+												$scope.statusFinal)
+										.then(
+												function(d) {
+													$scope.testMsg1 = "Test";
+													console.log("Success.",
+															d.message);
+													var data = d.listLmsuser;
+													$scope.tableParams = new NgTableParams(
+															{}, {
+																dataset : data
+															});
 
-			$scope.showEmpDetails = function(user) {
+												},
+												function(errResponse) {
 
-				//console.log("User", user);
-				
-				
-				//= user.joiningDate;
-				
-				$scope.showUserDetails = true;
+													console
+															.error("Error while fetching Currencies");
+												});
+							};
 
-				$scope.user = user;
-				
-				$scope.gender = {};
-				$scope.gender.name= user.gender;
-				
-				
-				$scope.status = {};
-				$scope.status.name= user.status;
-				
-				$scope.nationality = {};
-				$scope.nationality.name= user.nationality;
-				
-				$scope.ddlmsRole = {};
-				$scope.ddlmsRole.name= user.ddlmsRole;
-				
-				new Date($('#joiningDate').val($scope.user));
-				
-				//Feroj: Tried to show joining date. 24.05.2018 23:00 
-				//new Date($('#joiningDate').val())= $scope.user.joiningDate;
-				//new Date($('#joiningDate').val())=$scope.user.joiningDate;
-			
-			};
+							$scope.showEmpDetails = function(user) {
 
-			    //Feroj: Worked to show set below values. 26.05.2018 15:43
-			$scope.setnewStatus = function(user,name){
-				
-				$scope.user.status = name;
-					
-			}
-			
-             $scope.setnewNationality = function(user,name){
-				
-				$scope.user.nationality = name;
-					
-			 }
-             
-             $scope.setnewGender = function(user,name){
- 				
- 				$scope.user.gender = name;
- 					
- 			 }
-               //End 26.05.2018 15:43
-             
-			$scope.userprofile = function(ddlmsWftrole,ddlmsRole,user) {
+								// console.log("User", user);
 
-				$scope.ddlmsRole = ddlmsRole;
-				$scope.ddlmsWftrole = ddlmsWftrole;
-				//console.log($scope.ddlmsRole);
-				//console.log($scope.ddlmsWftrole);
-				
-				
-				//$scope.user.gender= $scope.gender.name;
-				//$scope.user.nationality = $scope.nationality.name;
-				//$scope.user.status = $scope.status.name;
-				
-				//$scope.user.status=$scope.status.name;
-				//$scope.user.gender= $scope.gender.name;
-				//$scope.user.nationality = $scope.nationality.name;*/
-				
-				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.user).then(
-						function(d) {
-							console.log(d.message);
-							console.log("Success.", d.message);
-							$scope.showSuccessMessage("Update successful");
-							$scope.clearAll();
-						}, function(errResponse) {
-							console.log("Failed to Update User Profile.");
-							$scope.showErrorMessage("Update Fail");
-						});
+								// = user.joiningDate;
 
-			}
+								$scope.showUserDetails = true;
 
-			$scope.getDivisionData = function() {
-				DivisionService.getAllDivision().then(function(d) {
-					$scope.divisionNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+								$scope.user = user;
 
-			$scope.getOfficeData = function() {
-				OfficeService.getAllOffice().then(function(d) {
-					$scope.officeNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+								$scope.gender = {};
+								$scope.gender.name = user.gender;
 
-			$scope.getDesignationData = function() {
-				DesignationService.getAllDesignation().then(function(d) {
-					$scope.designationNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+								$scope.status = {};
+								$scope.status.name = user.status;
 
-			$scope.getMinistryData = function() {
-				MinistryService.getAllMinistry().then(function(d) {
-					$scope.ministryNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+								$scope.nationality = {};
+								$scope.nationality.name = user.nationality;
 
-			$scope.getSectionData = function() {
-				SectionService.getAllSection().then(function(d) {
-					$scope.sectionNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+								$scope.ddlmsRole = {};
+								$scope.ddlmsRole.name = user.ddlmsRole;
 
-			$scope.getDropdownData = function(userStatus) {
-				DropDownService.getAllDropdown(userStatus).then(function(d) {
-					$scope.dropdownNames = d.listLmsDropdown;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
-			
-			$scope.getDropdownDataGender = function(dropdownname){
-				DropDownService.getGenderOption(dropdownname).then(function(d) {
-					$scope.dropdownGenderNames = d.listLmsDropdown;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
-			
-			
-			$scope.getDropdownDataNationality = function(dropdownname){
-				DropDownService.getNationalityOption(dropdownname).then(function(d) {
-					$scope.dropdownNationalityNames = d.listLmsDropdown;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+								new Date($('#joiningDate').val($scope.user));
 
-			$scope.getRoleData = function() {
-				RoleService.getAllRole()
-				.then(function(d) {
-					$scope.roleNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
-			// Removed duplicate method of $scope.getRoleData on 02.06.18
+								// Feroj: Tried to show joining date. 24.05.2018
+								// 23:00
+								// new Date($('#joiningDate').val())=
+								// $scope.user.joiningDate;
+								// new
+								// Date($('#joiningDate').val())=$scope.user.joiningDate;
 
-			$scope.getWftroleData = function() {
-				WftroleService.getAllWftrole()
-				.then(function(d) {
-					$scope.wftroleNames = d;
-				}, function(errResponse) {
-					console.log("Failed to get Drop Down.");
-				});
-			}
+							};
 
-			/* Show Success Message */
-			$scope.showSuccessMessage = function(message) {
+							// Feroj: Worked to show set below values.
+							// 26.05.2018 15:43
+							$scope.setnewStatus = function(user, name) {
 
-				$scope.successMessages = message;
-				$timeout(function() {
-					$scope.successMessages = null;
-					$scope.errorMessages = null;
-				}, 6000);
-			}
+								$scope.user.status = name;
 
-			/* Show Error Message */
-			$scope.showErrorMessage = function(message) {
+							}
 
-				$scope.errorMessages = message;
-				$timeout(function() {
-					$scope.successMessages = null;
-					$scope.errorMessages = null;
-				}, 6000);
-			}
+							$scope.setnewNationality = function(user, name) {
 
-			$scope.gotoHomePage = function() {
+								$scope.user.nationality = name;
 
-				window.location = url + "employeehomepage";
-			}
-			
-			$scope.userAuthentication = function(userid){
-				
-				// Validate from lms_pages table
-				$scope.pageid = 22;
-				
-				loginService.getauthorised(userid, $scope.pageid)
-				.then(function(d) {						
-					$scope.showSuccessMessage(d.message);
-					
-				}, 
-				function(e) {
-					$scope.showErrorMessage(e.data.message);
-					window.location = url + "unauthorised";
-				});					
-			};
-			
-			
-			
-			$scope.clearAll = function(){
-				// for dropdown set to zero
-				//$scope.mobileNoDropDown = '0';
-				// for text filed set to empty
-				//$scope.mobileNoText = "";
-				// for check button set false;
-				//$scope.formSignVerified = false;
-				$scope.user.name = "";
-				$scope.user.lmsDivision = '0';
-				$scope.user.email = "";
-				$scope.user.lmsDepartment = '0';
-				$scope.user.lmsSection = '0';
-				$scope.user.lmsDesignation = '0';
-				$scope.user.lmsMinistry = '0';
-				$scope.nationality = "";
-				$scope.user.lmsOfficeLocation = '0';
-				$scope.user.mobilePersonal = "";
-				$scope.user.mobileOffice = "";
-				$scope.user.fax = "";
-				$scope.joiningDate = "";
-				$scope.gender = '0';
-				$scope.ddReliever = '0';
-				$scope.user.address = "";
-				$scope.user.passport = "";
-				$scope.user.password = "";
-				$scope.user.nid = "";
-				$scope.dateofbirth = "";
-				
-				
-			};
-			
-			
-			
-			
-			
-			
-			
+							}
 
-		} ]);
+							$scope.setnewGender = function(user, name) {
+
+								$scope.user.gender = name;
+
+							}
+							// End 26.05.2018 15:43
+
+							$scope.userprofile = function(ddlmsWftrole,
+									ddlmsRole, user) {
+
+								$scope.ddlmsRole = ddlmsRole;
+								$scope.ddlmsWftrole = ddlmsWftrole;
+								// console.log($scope.ddlmsRole);
+								// console.log($scope.ddlmsWftrole);
+
+								// $scope.user.gender= $scope.gender.name;
+								// $scope.user.nationality =
+								// $scope.nationality.name;
+								// $scope.user.status = $scope.status.name;
+
+								// $scope.user.status=$scope.status.name;
+								// $scope.user.gender= $scope.gender.name;
+								// $scope.user.nationality =
+								// $scope.nationality.name;*/
+
+								updateuserprofileService
+										.updateuserprofile($scope.ddlmsWftrole,
+												ddlmsRole, $scope.user)
+										.then(
+												function(d) {
+													console.log(d.message);
+													console.log("Success.",
+															d.message);
+													$scope
+															.showSuccessMessage("Update successful");
+													$scope.clearAll();
+												},
+												function(errResponse) {
+													console
+															.log("Failed to Update User Profile.");
+													$scope
+															.showErrorMessage("Update Fail");
+												});
+
+							}
+
+							$scope.getDivisionData = function() {
+								DivisionService
+										.getAllDivision()
+										.then(
+												function(d) {
+													$scope.divisionNames = d;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							$scope.getOfficeData = function() {
+								OfficeService.getAllOffice().then(function(d) {
+									$scope.officeNames = d;
+								}, function(errResponse) {
+									console.log("Failed to get Drop Down.");
+								});
+							}
+
+							$scope.getDesignationData = function() {
+								DesignationService
+										.getAllDesignation()
+										.then(
+												function(d) {
+													$scope.designationNames = d;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							$scope.getMinistryData = function() {
+								MinistryService
+										.getAllMinistry()
+										.then(
+												function(d) {
+													$scope.ministryNames = d;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							$scope.getSectionData = function() {
+								SectionService
+										.getAllSection()
+										.then(
+												function(d) {
+													$scope.sectionNames = d;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							$scope.getDropdownData = function(userStatus) {
+								DropDownService
+										.getAllDropdown(userStatus)
+										.then(
+												function(d) {
+													$scope.dropdownNames = d.listLmsDropdown;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							$scope.getDropdownDataGender = function(
+									dropdownname) {
+								DropDownService
+										.getGenderOption(dropdownname)
+										.then(
+												function(d) {
+													$scope.dropdownGenderNames = d.listLmsDropdown;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							$scope.getDropdownDataNationality = function(
+									dropdownname) {
+								DropDownService
+										.getNationalityOption(dropdownname)
+										.then(
+												function(d) {
+													$scope.dropdownNationalityNames = d.listLmsDropdown;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							$scope.getRoleData = function() {
+								RoleService.getAllRole().then(function(d) {
+									$scope.roleNames = d;
+								}, function(errResponse) {
+									console.log("Failed to get Drop Down.");
+								});
+							}
+							// Removed duplicate method of $scope.getRoleData on
+							// 02.06.18
+
+							$scope.getWftroleData = function() {
+								WftroleService
+										.getAllWftrole()
+										.then(
+												function(d) {
+													$scope.wftroleNames = d;
+												},
+												function(errResponse) {
+													console
+															.log("Failed to get Drop Down.");
+												});
+							}
+
+							/* Show Success Message */
+							$scope.showSuccessMessage = function(message) {
+
+								$scope.successMessages = message;
+								$timeout(function() {
+									$scope.successMessages = null;
+									$scope.errorMessages = null;
+								}, 6000);
+							}
+
+							/* Show Error Message */
+							$scope.showErrorMessage = function(message) {
+
+								$scope.errorMessages = message;
+								$timeout(function() {
+									$scope.successMessages = null;
+									$scope.errorMessages = null;
+								}, 6000);
+							}
+
+							$scope.gotoHomePage = function() {
+
+								window.location = url + "employeehomepage";
+							}
+
+							$scope.userAuthentication = function(userid) {
+
+								// Validate from lms_pages table
+								$scope.pageid = 22;
+
+								loginService.getauthorised(userid,
+										$scope.pageid).then(function(d) {
+									$scope.showSuccessMessage(d.message);
+
+								}, function(e) {
+									$scope.showErrorMessage(e.data.message);
+									window.location = url + "unauthorised";
+								});
+							};
+
+							$scope.clearAll = function() {
+								// for dropdown set to zero
+								//$scope.mobileNoDropDown = '0';
+								// for text filed set to empty
+								//$scope.mobileNoText = "";
+								// for check button set false;
+								//$scope.formSignVerified = false;
+								$scope.user.name = "";
+								$scope.user.lmsDivision = '0';
+								$scope.user.email = "";
+								$scope.user.lmsDepartment = '0';
+								$scope.user.lmsSection = '0';
+								$scope.user.lmsDesignation = '0';
+								$scope.user.lmsMinistry = '0';
+								$scope.nationality = "";
+								$scope.user.lmsOfficeLocation = '0';
+								$scope.user.mobilePersonal = "";
+								$scope.user.mobileOffice = "";
+								$scope.user.fax = "";
+								$scope.joiningDate = "";
+								$scope.gender = '0';
+								$scope.ddReliever = '0';
+								$scope.user.address = "";
+								$scope.user.passport = "";
+								$scope.user.password = "";
+								$scope.user.nid = "";
+								$scope.dateofbirth = "";
+
+							};
+
+						} ]);

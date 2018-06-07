@@ -54,19 +54,8 @@
 		<div ng-init="getSessionUserDetails('${sessionScope.userID}');"></div>
 		<div ng-init="showEmpDetails('${sessionScope.userID}')"></div>
 
-		<!--	<div ng-init="getUserInfo('${sessionScope.user.id}')"></div> -->
 
 		<div class="container-fluid">
-
-
-			<div class="row">
-
-				<!--		<div class="col-sm-3" style="background-color: white;">User ID</div>
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="text" ng-model="userid" class="form-control"
-						placeholder="User ID">-->
-			</div>
-
 
 			<form>
 				<br>
@@ -161,7 +150,7 @@
 							<label class="control-label col-md-3">Nationality</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="nationality" ng-required="true"
-									ng-disabled="true" class="form-control" placeholder="User Name">
+									ng-disabled="true" class="form-control" placeholder="Nationality">
 							</div>
 						</div>
 					</div>
