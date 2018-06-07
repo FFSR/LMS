@@ -41,7 +41,8 @@
 		the plain old JDBC DriverManager via bean properties -->
 		
 	<!-- LIVE Database Connection NEW -->
-				
+	
+<!-- 			
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -50,8 +51,8 @@
 		<property name="password" value="newpasswdforlmsdb" />
 	</bean> 
 	
-
-<!-- 	
+ -->
+	
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -59,7 +60,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
- -->	
+	
 	
 	<!-- Local Database Connection supremet_lmsdb -->
 <!-- 	
