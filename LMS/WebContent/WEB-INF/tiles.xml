@@ -119,6 +119,13 @@
 			value="/WEB-INF/jsp/report/rptleavestatus.jsp" />
 
 	</definition>
+	
+	<definition name="subordinatelvblnce" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/report/subordinatelvblnce.jsp" />
+
+	</definition>
 
 	<definition name="leavesearchresult" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />

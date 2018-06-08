@@ -98,31 +98,31 @@ public class User {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> doRegistration(@RequestBody LmsUser lmsUser) {
 
-		ResponseWrapper responseWrapper = new ResponseWrapper();		
-		
-		LmsUser lmsUserValidate=null;		
-		
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+		LmsUser lmsUserValidate = null;
+
 		try {
-			
+
 			lmsUserValidate = lmsUserHome.findByNID(lmsUser.getNid());
-						
-			if (lmsUserValidate!=null) {
-				
+
+			if (lmsUserValidate != null) {
+
 				responseWrapper.setMessage("User is available with this NID.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-			}		
-			
+			}
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			responseWrapper.setMessage("Registration failed. Same NID created.");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}		
-		
+		}
+
 		try {
 
 			lmsUser.setPassword(ProtectedConfigFile.encrypt(lmsUser.getPassword()));
 			lmsUser.setInsertDate(new Date());
-			
+
 			try {
 
 				int lmsuserid = lmsUserHome.persist(lmsUser);
@@ -181,24 +181,9 @@ public class User {
 
 	}
 
-	/*@RequestMapping(value = "/getUserList/", method = RequestMethod.GET)
-	public ResponseEntity<List<LmsUser>> getUserList() {
-
-		List<LmsUser> listLmsUser = new ArrayList<>();
-		listLmsUser = lmsUserHome.findAllUser();
-
-		if (listLmsUser == null) {
-			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
-		}
-
-		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
-
-	}*/
-
 	@RequestMapping(value = "/manageuser/{userName}/{mobile}/{status}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userName") String uName,
-			@PathVariable("mobile") String mobile,
-			@PathVariable("status") String status) {
+			@PathVariable("mobile") String mobile, @PathVariable("status") String status) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
@@ -227,30 +212,25 @@ public class User {
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
-	
-	@RequestMapping(value="/manageuser/{userid}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userid") int uID){
-		
+
+	@RequestMapping(value = "/manageuser/{userid}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> manageuser(@PathVariable("userid") int uID) {
+
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		//LmsUser lmsUser = lmsUserHome.findById(uID);
-		
+
 		LmsUser lmsUser = lmsUserHome.findById(uID);
-		if(lmsUser!=null) {
-			
-			//responseWrapper.setLmsuser(lmsUser);
-			
+		if (lmsUser != null) {
+
 			responseWrapper.setLmsuser(lmsUser);
-			
+
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-		
+
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
-		
 
-	
-	@RequestMapping(value="t", method=RequestMethod.POST)
+	@RequestMapping(value = "t", method = RequestMethod.POST)
 	public void test() {
 		System.out.println("Test Methoid");
 	}
@@ -272,7 +252,7 @@ public class User {
 			
 
 			if (lmsRole != null && lmsWftrole != null) {
-				
+
 				lmsUser.setUpdateDate(new Date());
 				lmsUser.setUpdateBy(lmsUser.getId());
 				lmsUser.setLmsUser(lmssupervisor);
@@ -282,7 +262,7 @@ public class User {
 				manageUserRoleMap(lmsUser, lmsRole);
 
 				manageWftRoleUserMap(lmsUser, lmsWftrole);
-				
+
 			} else {
 				responseWrapper.setMessage("Mentioned Role not found in database.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
@@ -379,63 +359,84 @@ public class User {
 		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
 
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/updateprofile/{userID}/", method = RequestMethod.POST)
-	public ResponseEntity<ResponseWrapper> doupdateprofile(@PathVariable("userID") Integer userID, @RequestBody LmsUser lmsUser) {
+	public ResponseEntity<ResponseWrapper> doupdateprofile(@PathVariable("userID") Integer userID,
+			@RequestBody LmsUser lmsUser) {
 
-		ResponseWrapper responseWrapper = new ResponseWrapper();		
-		
-			try {
-				
-				LmsUser lmsUsers = lmsUserHome.findById(userID);
-				if (lmsUsers!=null) {					
-				
-					lmsUsers.setAddress(lmsUser.getAddress());
-					lmsUsers.setEmail(lmsUser.getEmail());
-					lmsUsers.setFax(lmsUser.getFax());
-					lmsUsers.setPassport(lmsUser.getPassport());					
-					lmsUsers.setMobilePersonal(lmsUser.getMobilePersonal());
-					lmsUsers.setMobileOffice(lmsUser.getMobileOffice());
-					lmsUsers.setUpdateDate(new Date());
-					lmsUsers.setUpdateBy(lmsUser.getId());
-					lmsUserHome.merge(lmsUsers);
-							
-				}
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				responseWrapper.setMessage("Failed to create User.");
-				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-			}
-
-			responseWrapper.setMessage("Success. User has created");
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
-		
-
-	} 
-	
-	
-	
-	@RequestMapping(value="/manageuserid/{userid}", method=RequestMethod.GET)
-	public ResponseEntity<ResponseWrapper> manageuserid(@PathVariable("userid") int uID){
-		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		
+
+		try {
+
+			LmsUser lmsUsers = lmsUserHome.findById(userID);
+			if (lmsUsers != null) {
+
+				lmsUsers.setAddress(lmsUser.getAddress());
+				lmsUsers.setEmail(lmsUser.getEmail());
+				lmsUsers.setFax(lmsUser.getFax());
+				lmsUsers.setPassport(lmsUser.getPassport());
+				lmsUsers.setMobilePersonal(lmsUser.getMobilePersonal());
+				lmsUsers.setMobileOffice(lmsUser.getMobileOffice());
+				lmsUsers.setUpdateDate(new Date());
+				lmsUsers.setUpdateBy(lmsUser.getId());
+				lmsUserHome.merge(lmsUsers);
+
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			responseWrapper.setMessage("Failed to create User.");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		responseWrapper.setMessage("Success. User has created");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+
+	}
+
+	@RequestMapping(value = "/manageuserid/{userid}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> manageuserid(@PathVariable("userid") int uID) {
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
 		LmsUser lmsUser = lmsUserHome.findById(uID);
-		
-	//	List<LmsUser> lmsUser = lmsUserHome.findUserByUserID(uID );
-		if(lmsUser!=null) {
-			
+
+		if (lmsUser != null) {
+
 			responseWrapper.setLmsuser(lmsUser);
-			
-			//responseWrapper.setListLmsuser(lmsUser);
-			
+
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-		
+
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
+	
+	@RequestMapping(value = "/subordinate/{userid}", method = RequestMethod.GET)
+	public ResponseEntity<List<LmsUser>> subordinate(@PathVariable("userid") int uID) {
+		
+	//	LmsUser lmsUser = lmsUserHome.findById(uID);		
+		
+		List<LmsUser> listLmsUser = new ArrayList<LmsUser>();	
+		
+
+		try {
+			
+			listLmsUser = lmsUserHome.findSupervisorID(uID);			 				
+					
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
+		}
+		if (listLmsUser == null) {
+			return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		return new ResponseEntity<List<LmsUser>>(listLmsUser, HttpStatus.OK);
+
+	}
+	
+	
+	
+	
 }

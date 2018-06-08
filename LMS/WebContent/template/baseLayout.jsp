@@ -195,6 +195,7 @@ body, body td, body th {
                     <li> <a href="#" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="rptleavestatus">Leave Status</a></li>
+                             <li><a href="subordinatelvblnce">Subordinate Leave Balance</a></li>
                         </ul>
                     </li>
                     

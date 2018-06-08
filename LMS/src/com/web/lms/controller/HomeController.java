@@ -357,6 +357,25 @@ public class HomeController {
 			return "login";
 		}
 	}
+	
+	
+	
+	@RequestMapping("/subordinatelvblnce")
+	public String subordinatelvblnce(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "subordinatelvblnce";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}	
+	
+	
 	@RequestMapping("/applicationforleave")
 	public String applicationforleave(Model model) {
 		
