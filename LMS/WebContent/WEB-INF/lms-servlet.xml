@@ -52,7 +52,9 @@
 	</bean> 
 	-->
 	
+	<!-- Local Database Connection lmsdb -->
 	
+	<!-- 
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -60,10 +62,10 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
-	
+	 -->
 	
 	<!-- Local Database Connection supremet_lmsdb -->
-<!-- 	
+
 
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -73,7 +75,7 @@
 		<property name="password" value="root" />
 	</bean>
 
--->
+
 
 	<!-- JNDI DataSource Live -->
 	<!-- <jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/MySqlDS"/> -->
