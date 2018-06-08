@@ -1,98 +1,77 @@
-App
-		.controller(
-				'subordinatelvblnceController',
-				[
-						'$scope',
-						'$timeout',
-						'$http',						
-						'manageuserService',		
-						'$filter',
-						'$location',
-						'NgTableParams',
-						'url',
+App.controller('subordinatelvblnceController', [
+		'$scope',
+		'$timeout',
+		'$http',
+		'manageuserService',
+		'$filter',
+		'$location',
+		'NgTableParams',
+		'leavehistoryService',
+		'url',
 
-						function($scope, $timeout, $http, 
-								manageuserService, $filter,
-								$location, NgTableParams, url) {
+		function($scope, $timeout, $http, manageuserService, $filter,
+				$location, NgTableParams, leavehistoryService, url) {
 
-							$scope.testMsg = "Testing Message";
-							$scope.user = {};
-							$scope.userID = "";
-														
-							$scope.userAuthentication = function(userID) {
-								$scope.userID = userID;							
+			$scope.testMsg = "Testing Message";
+			$scope.user = {};
+			$scope.userID = "";
 
-								manageuserService
-										.subordinate(userID)
-										.then(
-												function(d) {
-													$scope.testMsg1 = "Test";
-													console.log("Success.",
-															d.message);
-													var data = d.listLmsuser;
-													$scope.tableParams = new NgTableParams(
-															{}, {
-																dataset : d
-															});													
+			$scope.userAuthentication = function(userID) {
 
-												},
-												function(errResponse) {
+				manageuserService.subordinate(userID).then(function(d) {
+					$scope.testMsg1 = "Test";
+					console.log("Success.", d.message);
+					//	var data = d.Listlmsuser;
+					$scope.tableParams1 = new NgTableParams({}, {
+						dataset : d
+					});
 
-													console
-															.error("Error while fetching Currencies");
-												});
+				}, function(errResponse) {
 
-							};
+					console.error("Error while fetching Currencies");
+				});
 
-														
-							$scope.showSuccessMessage = function(message) {
+			};
 
-								$scope.successMessages = message;
-								$timeout(function() {
-									$scope.successMessages = null;
-									$scope.errorMessages = null;
-								}, 6000);
-							};
+			$scope.leavehistoryinfo = function(user) {
+				$scope.userID = user.id;
+				leavehistoryService.leavehistory($scope.userID).then(function(d) {
+					//var data = d.listLmsLeaveBalance;
 
-							/* Show Error Message */
-							$scope.showErrorMessage = function(message) {
+					// change korte hobe d.listlsmLeae done
+					var data = d.listLmsLeaveBalance;
 
-								$scope.errorMessages = message;
-								$timeout(function() {
-									$scope.successMessages = null;
-									$scope.errorMessages = null;
-								}, 6000);
-							};
+					$scope.tableParams2 = new NgTableParams({}, {
+						dataset : data
+					});
+				}, function(errResponse) {
 
-							$scope.clearAll = function() {
+				});
+			};
 
-								$scope.formSignVerified = false;
-								$scope.user.name = "";
-								$scope.user.lmsDivision = '0';
-								$scope.user.email = "";
-								$scope.user.lmsDepartment = '0';
-								$scope.user.lmsSection = '0';
-								$scope.user.lmsDesignation = '0';
-								$scope.user.lmsMinistry = '0';
-								$scope.nationality = "";
-								$scope.user.lmsOfficeLocation = '0';
-								$scope.user.mobilePersonal = "";
-								$scope.user.mobileOffice = "";
-								$scope.user.fax = "";
-								$scope.joiningDate = "";
-								$scope.gender = '0';
-								$scope.ddReliever = '0';
-								$scope.user.address = "";
-								$scope.user.passport = "";
-								$scope.user.password = "";
-								$scope.user.nid = "";
-								$scope.dateofbirth = "";
+			$scope.showSuccessMessage = function(message) {
 
-							};
+				$scope.successMessages = message;
+				$timeout(function() {
+					$scope.successMessages = null;
+					$scope.errorMessages = null;
+				}, 6000);
+			};
 
-							$scope.gotoHomePage = function() {
+			/* Show Error Message */
+			$scope.showErrorMessage = function(message) {
 
-								window.location = "employeehomepage";
-							};
+				$scope.errorMessages = message;
+				$timeout(function() {
+					$scope.successMessages = null;
+					$scope.errorMessages = null;
+				}, 6000);
+			};
 
-						} ]);
+			
+			$scope.gotoHomePage = function() {
+
+				window.location = "employeehomepage";
+			};
+
+		} ]);

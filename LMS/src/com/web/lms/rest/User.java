@@ -203,7 +203,7 @@ public class User {
 			//responseWrapper.setLmsuser(lmsUser)
 			
 			//responseWrapper.setLmsuser(lmsUser1);
-			responseWrapper.setLmssupervisor(lmsUser1.getLmsUser());
+			//responseWrapper.setLmssupervisor(lmsUser1.getLmsUser());
 			
 			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);

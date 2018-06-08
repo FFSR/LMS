@@ -39,10 +39,15 @@ public class Leavebalance {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		List<LmsLeaveBalance> lmsLeaveBalances = lmsLeaveBalanceHome.findLeaveBalanceByUserID(userID);
+		
+		//LmsLeaveBalance lmsLeaveBalances = lmsLeaveBalanceHome.findById(userID);
 
 		if (lmsLeaveBalances.size() > 0) {
+			
+			//if (lmsLeaveBalances != null) {
 
 			responseWrapper.setListLmsLeaveBalance(lmsLeaveBalances);
+			//responseWrapper.setLmsLeaveBalance(lmsLeaveBalances);
 
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
