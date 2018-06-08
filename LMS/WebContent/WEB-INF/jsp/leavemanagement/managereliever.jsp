@@ -81,7 +81,8 @@
 					</div>
 				</div>
 
-				<br> My Roles
+				<br> 
+				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">My Roles</h2>
 				<div>
 					<table class="table table-sm">
 						<div>
@@ -105,7 +106,8 @@
 						</div>
 					</table>
 				</div>
-				<br> <br> <br>
+				<br> <br> 
+				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Assign Releiver</h2>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
@@ -191,7 +193,8 @@
 							data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 					</div>
 				</div>
-				<br> <br> My Reliever
+				<br> <br> 
+				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">My Reliever</h2>
 				<div class="row">
 					<table class="table table-sm">
 						<div>

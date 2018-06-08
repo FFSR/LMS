@@ -79,54 +79,6 @@
 body, body td, body th {
 	color: #000;
 }
-
-#side-menu ul {
-	list-style: none;
-}
-
-
-#side-menu ul li ul {
-	list-style: none;
-}
-
-.ls_menu li {
-	background: #f2f2f2;
-	background: -moz-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #f2f2f2));
-	background: -webkit-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -o-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -ms-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%);
-	border-bottom: thin solid #ccc;
-	box-shadow: 0px 1px 2px #666;
-	-webkit-box-shadow: 0px 1px 2px #666;
-	margin: 3px 0;
-	border: thin solid #ccc;
-}
-
-.ls_menu li:hover {
-	background: #fff;
-}
-
-.ls_menu li li {
-	padding-left: 30px;
-}
-
-.m_header {
-	background: #f2f2f2;
-	background: -moz-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #f2f2f2));
-	background: -webkit-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -o-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -ms-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%);
-	border-bottom: 5px solid #666;
-	
-}
-
-.top-left-part {
-	background: transparent;
-}
 </style>
 
 </head>
@@ -140,18 +92,18 @@ body, body td, body th {
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="resources/images/bd_logo.png" width="70" height="70" alt="home" class="light-logo" style="margin-left: 40px; margin-top: 5px;" /></b></a></div>
+                <div class="top-left-part"><a class="logo" href="index.html"><b><img src="resources/images/govt.jpg" alt="home" class="light-logo" style="margin-left: 40px; margin-top: 5px;" /></b></a></div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs waves-effect waves-light"><i class="icon-arrow-left-circle ti-menu"></i></a></li>
                 </ul>
-                <ul class="nav navbar-top-links m_header" style="text-align: center; display: block;">
+                <ul class="nav navbar-top-links" style="text-align: center; display: block;">
                     <!-- /.dropdown -->
                     <!-- /.dropdown -->
                     <!-- .Megamenu -->
                     <!-- /.Megamenu -->
                     <!-- /.dropdown -->
-                   <h3 style="align: center; color: #ff0000;"> OFFICE OF THE CONTROLLER OF CERTIFYING AUTHORITIES</h3>
-                   <h3 style="align: center; color: #ff0000;" font-wight: bold> LEAVE MANAGEMENT SYSTEM</h3>
+                   <h3 style="align: center; color: #ff0000;"> Leave Management System</h3>
+                   <h3 style="align: center; color: #ff0000;"> CCA Department, ICT Ministry</h3>
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -159,7 +111,7 @@ body, body td, body th {
             <!-- /.navbar-static-side -->
         </nav>
         <!-- Left navbar-header -->
-        <div class="navbar-default sidebar" role="navigation" style="z-index: 10; position: absolute; width: 290px; padding-top: 60px;
+        <div class="navbar-default sidebar" role="navigation" style="z-index: 10; position: absolute; width: 220px; padding-top: 60px;
 		height: 100%;">
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <div class="user-profile" style="margin-top: 60px;">
@@ -170,7 +122,7 @@ body, body td, body th {
                         </ul>
                     </div>
                 </div>
-                <ul  id="side-menu" class="nav2 ls_menu">
+                <ul class="nav" id="side-menu">
                     <li class="sidebar-search hidden-sm hidden-md hidden-lg">
                         <!-- input-group -->
                         <div class="input-group custom-search-form">
@@ -195,7 +147,6 @@ body, body td, body th {
                     <li> <a href="#" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="rptleavestatus">Leave Status</a></li>
-                             <li><a href="subordinatelvblnce">Subordinate Leave Balance</a></li>
                         </ul>
                     </li>
                     
@@ -220,13 +171,12 @@ body, body td, body th {
         </div>
         <!-- Left navbar-header end -->
         <!-- Page Content -->
-        <div id="page-wrapper" style="background: #BFFFCE; padding-left: 300px;">
+        <div id="page-wrapper" style="background: #F7F8E0;">
             <div class="container-fluid" >
                 <div class="row">
                 	<div class="col-md-12 col-lg-12 col-sm-12">
                 	<br/>
-                		 <!-- <div class="white-box" style="background: #f2f2f2;"> -->
-                		 <div class="white-box" style="background: #FCC496;">
+                		<div class="white-box" style="background: #F7F8E0;">
                     		<tiles:insertAttribute name="body"/>
                     	</div>
                     </div>

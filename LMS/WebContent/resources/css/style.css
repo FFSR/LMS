@@ -1023,7 +1023,8 @@ label {
 #page-wrapper {
 	padding: 0 0 60px;
 	min-height: 568px;
-	background: #3c4452
+	background: #3c4452;
+	padding-left: 300px;
 }
 
 .footer {
@@ -1074,7 +1075,8 @@ label {
 .top-left-part {
 	width: 220px;
 	float: left;
-	background: #fff
+	background: #000;
+	
 }
 
 .top-left-part a {
@@ -1085,7 +1087,8 @@ label {
 }
 
 .top-left-part .light-logo {
-	display: none
+	display: none;
+	display: hidden;
 }
 
 .navbar-header {
@@ -5758,7 +5761,7 @@ ul.list-icons li i {
 }
 
 .sidebar #side-menu .user-pro .nav-second-level a:hover {
-	color: #ff6849
+	color: #ff6849;
 }
 
 .sidebar #side-menu .user-pro .arrow {
@@ -5788,7 +5791,7 @@ ul.list-icons li i {
 }
 
 #side-menu li a {
-	color: #54667a;
+	color: #000;
 	border-left: 3px solid #353c48
 }
 
@@ -15402,8 +15405,8 @@ keyframes fa-spin { 0%{
 		overflow: hidden
 	}
 	.fix-sidebar .top-left-part {
-		position: fixed;
-		width: 220px
+		display: hidden;
+		width: 0px;
 	}
 	.fix-sidebar .navbar-left {
 		margin-left: 220px
@@ -15454,14 +15457,14 @@ keyframes fa-spin { 0%{
 		background: rgba(0, 0, 0, .1)
 	}
 	.content-wrapper .sidebar li:hover .hide-menu {
-		display: inline
+		display: inline;
 	}
 	.content-wrapper .sidebar #side-menu>li>a {
 		padding: 15px 17px 15px 20px
 	}
 	.content-wrapper .sidebar li:hover .nav-second-level, .content-wrapper .sidebar li:hover .nav-second-level.collapse li,
 		.content-wrapper .sidebar li:hover .nav-second-level.in {
-		display: block
+		display: block;
 	}
 	.content-wrapper .sidebar .nav-second-level {
 		position: absolute;
@@ -15908,8 +15911,8 @@ code {
 	transition: .5 easy-out
 }
 
-#side-menu .nav {
-	flex-direction: column
+#side-menu .nav2 {
+	flex-direction: column;
 }
 
 a.btn:not ([href] ):not ([tabindex] ){

@@ -112,7 +112,8 @@
 				<!-- By Shourav 29th April 2018 -->
 
 				<!-- By Feroj 03rd June 2018 -->
-				 Approval Flow Information
+				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Approval Flow Information</h2>
+				 
 				<div>
 					<table class="table table-sm">
 						<div>
