@@ -78,7 +78,8 @@ public class LmsLeaveBalanceHome {
 	
 	public List<LmsLeaveBalance> findLeaveBalanceByUserID(Integer userid) {		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid").setParameter("userid", userid);
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid")
+										.setParameter("userid", userid);
 		
 			List<LmsLeaveBalance> lmsLeaveBalances = query.getResultList();
 		
@@ -148,6 +149,42 @@ public class LmsLeaveBalanceHome {
 			LmsLeaveBalance lmsLeaveBalance = (LmsLeaveBalance) query.getSingleResult();
 		
 			return lmsLeaveBalance;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public List<LmsLeaveBalance> findLeavebalacebyUserAndACStatus(Integer userid, String acStatus) {		
+		try {			
+			
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.acstatus=:acStatus")
+					.setParameter("userid", userid)
+					.setParameter("acStatus", acStatus);
+		
+			List<LmsLeaveBalance> lmsLeaveBalances = query.getResultList();
+		
+			return lmsLeaveBalances;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
+	public Integer findSumOfLeaveTakenImpactOnEarnLeave(Integer userid) {		
+		try {	
+			
+			// select cat.weight + sum(kitten.weight)
+			// from Cat cat
+			//    join cat.kittens kitten
+			// group by cat.id, cat.weight
+			
+			Query query = entityManager.createQuery("SELECT sum(e.leaveTaken) FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.impactOnEarnedLeave='YES'")
+										.setParameter("userid", userid);
+		
+			Integer sumleaveTaken = (Integer) query.getSingleResult();
+		
+			return sumleaveTaken;		
 		}
 		catch(Exception ex) {			
 			return null;			
