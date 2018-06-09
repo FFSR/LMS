@@ -90,11 +90,12 @@ public class LmsLeaveBalanceHome {
 		}
 	}
 	
-	public LmsLeaveBalance findLeaveCountbyUserAndLeaveType(Integer userid, Integer leaveTypeId) {		
+	public LmsLeaveBalance findLeaveCountbyUserAndLeaveType(Integer userid, Integer leaveTypeId, String acStatus ) {		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.id=:leaveTypeId")
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND e.acstatus=:acStatus")
 					.setParameter("userid", userid)
-					.setParameter("leaveTypeId", leaveTypeId);
+					.setParameter("leaveTypeId", leaveTypeId)
+					.setParameter("acStatus", acStatus);
 		
 			LmsLeaveBalance lmsLeaveBalances = (LmsLeaveBalance) query.getSingleResult();
 		
@@ -105,29 +106,21 @@ public class LmsLeaveBalanceHome {
 		}
 	}
 	
-	public LmsLeaveBalance findLeaveCountbyUserAndLeaveTypeAndYear(Integer userid, Integer leaveTypeId, String year) {		
+	public LmsLeaveBalance findLeaveCountbyUserAndLeaveTypeAndYear(Integer userid, Integer leaveTypeId, String startyear, String endyear, String acStatus) {		
 		try {
+						
+			String sDate= startyear +"-01-01 00:00:00";
+			String eDate= endyear +"-12-31 23:59:59"; 
 			
-/*			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String frmDate = format.parse(startDate);
-			String enDate = format.parse(endDate);
-			sessionfactory.getCurrentSession()
-			.createQuery("FROM Customer AS c WHERE c.dateAdded BETWEEN :stDate AND :edDate ")
-			.setParameter("stDate", frmDate)
-			.setParameter("edDate", enDate)
-			.list();*/			
+		    Date sdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate); 
+		    Date edate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(eDate);			
 			
-			String sDate= year +"-01-01 00:00:00";
-			String eDate= year +"-12-31 23:59:59"; 
-			
-		    Date sdate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(sDate); 
-		    Date edate=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(eDate);			
-			
-			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND e.year BETWEEN :stDate AND :edDate ")
+			Query query = entityManager.createQuery("SELECT e FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.id=:leaveTypeId AND e.year BETWEEN :stDate AND :edDate AND e.acstatus=:acStatus")
 					.setParameter("userid", userid)
 					.setParameter("leaveTypeId", leaveTypeId)
 					.setParameter("stDate", sdate)
-					.setParameter("edDate", edate);
+					.setParameter("edDate", edate)
+					.setParameter("acStatus", acStatus);
 		
 			LmsLeaveBalance lmsLeaveBalance = (LmsLeaveBalance) query.getSingleResult();
 		
@@ -171,23 +164,24 @@ public class LmsLeaveBalanceHome {
 		}
 	}
 	
-	public Integer findSumOfLeaveTakenImpactOnEarnLeave(Integer userid) {		
+	public long findSumOfLeaveTakenImpactOnEarnLeave(Integer userid) {		
 		try {	
 			
-			// select cat.weight + sum(kitten.weight)
-			// from Cat cat
-			//    join cat.kittens kitten
-			// group by cat.id, cat.weight
+			// SELECT SUM(e.leave_taken) 
+			// FROM lms_leave_balance e
+			// JOIN lms_leave_type t ON e.leave_type_id = t.id
+			// WHERE t.impact_on_earned_leave ='YES'
+			// AND e.user_id=1;
 			
-			Query query = entityManager.createQuery("SELECT sum(e.leaveTaken) FROM LmsLeaveBalance e WHERE e.lmsUser.id=:userid AND e.lmsLeaveType.impactOnEarnedLeave='YES'")
+			Query query = entityManager.createQuery("SELECT SUM(e.leaveTaken) FROM LmsLeaveBalance e WHERE e.lmsUser.id =:userid AND e.lmsLeaveType.impactOnEarnedLeave ='YES'")
 										.setParameter("userid", userid);
 		
-			Integer sumleaveTaken = (Integer) query.getSingleResult();
+			long sumleaveTaken = (long) query.getSingleResult();
 		
 			return sumleaveTaken;		
 		}
 		catch(Exception ex) {			
-			return null;			
+			return 0;			
 		}
 	}
 }
