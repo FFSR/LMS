@@ -203,7 +203,7 @@ public class User {
 			//responseWrapper.setLmsuser(lmsUser)
 			
 			//responseWrapper.setLmsuser(lmsUser1);
-			//responseWrapper.setLmssupervisor(lmsUser1.getLmsUser());
+			responseWrapper.setLmssupervisor(lmsUser1.getLmsUser());
 			
 			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
@@ -236,7 +236,7 @@ public class User {
 	}
 	
 	
-	@RequestMapping(value = "/updateuserprofile/{wftroleid}/{roleid}/{lmssupervisorid}", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateuserprofile/{wftroleid}/{roleid}/{lmssupervisorid}/", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> updateuserprofile( @PathVariable("wftroleid") Integer wftroleid, @PathVariable("roleid") Integer roleid,@PathVariable("lmssupervisorid") Integer lmssupervisorid, @RequestBody LmsUser lmsUser){
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
