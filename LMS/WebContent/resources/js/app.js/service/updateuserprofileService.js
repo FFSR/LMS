@@ -3,7 +3,8 @@
  */
 'use strict';
 
-App.factory(
+App
+		.factory(
 				'updateuserprofileService',
 				[
 						'$http',
@@ -16,13 +17,14 @@ App.factory(
 									//console.log(user);
 									// , lmsWftrole  user,  , user lmsWftrole
 									//return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/', user,lmssupervisor)
-									return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/' + lmssupervisor.id , user)		
+									return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/' + lmssupervisor.id + '/', user)		
 									.then(
 													function(response) {
 														return response.data;
 													},
 													function(errResponse) {
-														console.error("Error while fetching user info list.");
+														console
+																.error("Error while fetching user info list.");
 														return $q
 																.reject(errResponse);
 													});

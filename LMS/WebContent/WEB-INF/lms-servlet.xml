@@ -36,6 +36,7 @@
 	<bean
 		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
+	<!--  Live Database Connection -->
 	<!-- Simple implementation of the standard JDBC DataSource interface, configuring 
 		the plain old JDBC DriverManager via bean properties -->
 		
@@ -51,10 +52,8 @@
 		<property name="password" value="newpasswdforlmsdb" />
 	</bean> 
 	-->
-	
-	<!-- Local Database Connection lmsdb -->
-	
-	<!-- 
+
+<!-- 	
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -62,21 +61,31 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
-	 -->
+ -->	
 	
 	<!-- Local Database Connection supremet_lmsdb -->
-
-
+ 	
 	<bean id="dataSource"
-		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost/supremet_lmsdb" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
+		
 	</bean>
-
-
-
+	 
+ 	
+	<!-- Local Database Connection lmsdb -->	
+<!-- 	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/lmsdb" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean> 
+-->
+	
 	<!-- JNDI DataSource Live -->
 	<!-- <jee:jndi-lookup id="dataSource" jndi-name="java:jboss/datasources/MySqlDS"/> -->
 
