@@ -60,7 +60,7 @@ public class SpringScheduleCronExample {
 		int jobId = counter.incrementAndGet();
 		System.out.println(new Date() + " Job @ cron Start, jobId: " + jobId);
 
-		YearlyAllowcated();
+		YearlyAllocated();
 
 		System.out.println(new Date() + " Job @ cron End, jobId: " + jobId);
 	}
@@ -92,7 +92,7 @@ public class SpringScheduleCronExample {
 		}
 	}
 
-	private void YearlyAllowcated() {
+	private void YearlyAllocated() {
 
 		try {
 
