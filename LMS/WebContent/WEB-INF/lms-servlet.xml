@@ -41,8 +41,6 @@
 		the plain old JDBC DriverManager via bean properties -->
 		
 	<!-- LIVE Database Connection NEW -->
-	
-			
 	<!--
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">

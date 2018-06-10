@@ -38,7 +38,7 @@
 		<div ng-init="getDepartmentData()"></div>
 		<div ng-init="getDesignationData()"></div>
 		<div ng-init="getMinistryData()"></div>
-		<div ng-init="getSectionData()"></div>
+		<!-- <div ng-init="getSectionData()"></div> -->
 		<div ng-init="getOfficeData()"></div>
 		<div ng-init="getDropdownData()"></div>
 		<div ng-init="getDropdownDataNationality('Nationality')"></div>
@@ -92,6 +92,7 @@
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
 								ng-model="user.lmsDepartment" ng-required="true"
+								ng-change="showSectionList(user.lmsDepartment.id)"
 								ng-options="x as x.name for x in departmentNames track by x.id">
 								<option value="">Select</option>
 

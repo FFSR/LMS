@@ -218,8 +218,8 @@
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"
-									ng-model="lmssupervisor" ng-required="true"
-									ng-change="setnewReleiver(user,lmssupervisor)"
+									ng-model="user.lmsUser" ng-required="true"
+									ng-change="setnewReleiver(user.lmsUser)"
 									ng-options="x as x.name for x in userData track by x.name">
 									<option value="">Select</option>
 								</select>

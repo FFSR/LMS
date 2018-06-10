@@ -24,6 +24,7 @@ App
 				
 				$scope.testMsg = "Testing Message";
 				$scope.user={};
+				$scope.deptid=0;
 				/*$scope.user = {
 						"office" : "",
 						"name" : "",
@@ -168,6 +169,15 @@ App
 					});
 				}
 				
+				// Added by Feroj on 10th June 2018. Deptwise section list will be shown.
+				$scope.showSectionList = function(deptid){
+					$scope.user.lmsSection ="";
+					SectionService.getDeptwiseSection(deptid).then(function(d) {
+						$scope.sectionNames = d;
+					}, function(errResponse) {
+						console.log("Failed to get Drop Down.");
+					});
+				}
 				
 				$scope.getOfficeData = function(){
 					OfficeService.getAllOffice().then(function(d) {

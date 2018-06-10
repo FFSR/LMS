@@ -88,5 +88,22 @@ public class LmsSectionHome {
 		}
 	}
 	
+	// Added by Feroj on 10th June 2018.
+	@SuppressWarnings("unchecked")
+	public List<LmsSection> getDeptwiseSection(Integer deptid){
+		Query query;
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsSection e where e.lmsDepartment.id=:deptid").
+					setParameter("deptid", deptid);
+			
+			return (List<LmsSection>) query.getResultList(); 
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	
 }

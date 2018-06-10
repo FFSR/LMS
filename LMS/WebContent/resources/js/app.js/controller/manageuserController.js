@@ -223,8 +223,11 @@ App
 				$scope.nationality = {};
 				$scope.nationality.name= user.nationality;
 				
-				$scope.lmssupervisor={};
-				$scope.lmssupervisor.name= $scope.supervisor.name;
+				//$scope.lmssupervisor={};
+				//$scope.lmssupervisor.name= $scope.supervisor.name;
+				$scope.user.lmsUser={};
+				$scope.user.lmsUser.name=$scope.supervisor.name;
+				$scope.user.lmsUser =$scope.supervisor;
 				
 				$scope.ddlmsRole = {};
 				$scope.ddlmsRole.name= user.ddlmsRole;
@@ -244,11 +247,15 @@ App
 					
 			}
 			
-                $scope.setnewReleiver = function(user,lmssupervisor){
+                $scope.setnewReleiver = function(newsupervisor){
                 	
-                $scope.lmssupervisor=lmssupervisor;
-				
-				//$scope.user.lmsuser = $scope.lmssupervisor;
+              //  $scope.lmssupervisor=lmssupervisor;
+                	/*if($scope.user.lmsUser!=null){
+                		$scope.user.lmsUser=lmssupervisor;
+                	}*/
+                 
+				$scope.user.lmsuser = newsupervisor;
+				$scope.user.lmsuser.name=newsupervisor.name;
 					
 			}
 			
@@ -270,6 +277,14 @@ App
 
 				$scope.ddlmsRole = ddlmsRole;
 				$scope.ddlmsWftrole = ddlmsWftrole;
+				
+			/*	if ($scope.user.lmsUser!=null)
+					{
+					$scope.user.lmsUser= $scope.supervisor;
+					}*/
+				
+				
+				//$scope.lmssupervisor=lmssupervisor;
 				//console.log($scope.ddlmsRole);
 				//console.log($scope.ddlmsWftrole);
 				
@@ -282,8 +297,9 @@ App
 				//$scope.user.gender= $scope.gender.name;
 				//$scope.user.nationality = $scope.nationality.name;*/
 				
-				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.lmssupervisor,$scope.user).then(
-						function(d) {
+			//	updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.lmssupervisor,$scope.user).then(
+				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole,  $scope.user.lmsUser,$scope.user).then(		
+				function(d) {
 							console.log(d.message);
 							console.log("Success.", d.message);
 							$scope.showSuccessMessage("Update successful");
