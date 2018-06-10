@@ -54,7 +54,7 @@ public class SpringScheduleCronExample {
 	// the 10th), but I don't care what day of the week that happens to be, I would
 	// put "10" in the day-of-month field and "?" in the day-of-week field.
 
-	@Scheduled(cron = "0 0 2 1 * ?")
+	@Scheduled(cron = "0 0 2 1 1 ?")
 	public void cronYearly() {
 
 		int jobId = counter.incrementAndGet();
@@ -128,13 +128,15 @@ public class SpringScheduleCronExample {
 						startyear = Integer.toString(startyearint);
 
 						for (LmsUser user : users) {
+							
+							System.out.println(new Date() + " Job @ YearlyAllowcated user: "+ user.getId() + " leaveType: "+leaveType.getId() +" startyear: "+startyear +" endyear: "+endyear+" ACSTATUS: " + ACSTATUS.CURRENT.toString());
 
 							leaveBalance = lmsLeaveBalanceHome.findLeaveCountbyUserAndLeaveTypeAndYear(user.getId(), leaveType.getId(), startyear, endyear, ACSTATUS.CURRENT.toString());
 
 							// Update Old Year Account
 							if (leaveBalance != null) {
 
-								System.out.println(new Date() + " Job @ YearlyAllowcated Current Year Data Available : "+ leaveBalance.getId());
+								System.out.println(new Date() + " Job @ YearlyAllowcated Current Year Data Available leaveBalance: "+ leaveBalance.getId());
 
 								// Record found and No Need to do any thing.
 
@@ -144,7 +146,8 @@ public class SpringScheduleCronExample {
 								leaveBalance = lmsLeaveBalanceHome.findLeaveCountbyUserAndLeaveType(user.getId(), leaveType.getId(), ACSTATUS.CURRENT.toString());
 
 								if (leaveBalance != null) {
-									System.out.println(new Date() + " Job @ YearlyAllowcated AC Status Set PAST for Old Records : " + leaveBalance.getId());
+									
+									System.out.println(new Date() + " Job @ YearlyAllowcated AC Status Set PAST for Old Records leaveBalance: " + leaveBalance.getId());
 									leaveBalance.setAcstatus(ACSTATUS.PAST.toString());
 									lmsLeaveBalanceHome.merge(leaveBalance);
 								}
@@ -152,7 +155,7 @@ public class SpringScheduleCronExample {
 								// Inserting New Record Leave Type into Leave Balance for Current Year Interval
 								leaveBalance = new LmsLeaveBalance();
 
-								System.out.println(new Date() + " Job @ YearlyAllowcated (NEW) : " + leaveBalance.getId());
+								System.out.println(new Date() + " Job @ YearlyAllowcated (NEW) user: " + user.getId());
 
 								leaveBalance.setAcstatus(ACSTATUS.CURRENT.toString());
 								leaveBalance.setEligibility(DECISION.YES.toString());
@@ -163,7 +166,7 @@ public class SpringScheduleCronExample {
 
 								if (leaveType.getIncremental() != null && leaveType.getIncremental().contains(DECISION.YES.toString())) {
 
-									System.out.println(new Date() + " Job @ YearlyAllowcated getIncremental = YES (NEW) : "+ leaveBalance.getId());
+									System.out.println(new Date() + " Job @ YearlyAllowcated getIncremental = YES (NEW) user: "+ user.getId() + " leaveType:" + leaveType);
 
 									finalLeaveCount = findMaximumDaysForEarnLeave(user, leaveType);
 									leaveBalance.setLeaveTotal(finalLeaveCount);
@@ -171,7 +174,7 @@ public class SpringScheduleCronExample {
 
 								} else {
 
-									System.out.println(new Date() + " Job @ YearlyAllowcated getIncremental = NO (NEW) : "+ leaveBalance.getId());
+									System.out.println(new Date() + " Job @ YearlyAllowcated getIncremental = NO (NEW) user: "+ user.getId() + " leaveType:" + leaveType);
 
 									leaveBalance.setLeaveTotal(leaveType.getMaximumDays());
 									leaveBalance.setLeaveBalance(leaveType.getMaximumDays());
@@ -182,11 +185,13 @@ public class SpringScheduleCronExample {
 
 								lmsLeaveBalanceHome.persist(leaveBalance);
 
-								System.out.println(new Date() + " Job @ YearlyAllowcated lmsLeaveBalanceHome.persist (NEW) : "+ leaveBalance.getId());
+								System.out.println(new Date() + " Job @ YearlyAllowcated lmsLeaveBalanceHome.persist (NEW) leaveBalance: "+ leaveBalance.getId());
 
 							}
-
 						}
+					}
+					else {
+						System.out.println(new Date() + " Job @ YearlyAllowcated Yearly Interval is not assigned leaveType: "+ leaveType.getId());
 					}
 				}
 			}
@@ -232,8 +237,7 @@ public class SpringScheduleCronExample {
 
 					System.out.println(new Date() + " Job @ leaveType : " + leaveType.getId());
 
-					if (leaveType.getStatus().contains("ACTIVE")
-							&& (leaveType.getDependentLeaveAc() == null || leaveType.getDependentLeaveAc() == 0)) {
+					if (leaveType.getStatus().contains("ACTIVE") && (leaveType.getDependentLeaveAc() == null || leaveType.getDependentLeaveAc() == 0)) {
 
 						leaveBalance = lmsLeaveBalanceHome.findLeaveCountbyUserAndLeaveType(user.getId(), leaveType.getId(), ACSTATUS.CURRENT.toString());
 
@@ -251,11 +255,9 @@ public class SpringScheduleCronExample {
 							leaveBalance.setLeaveApplied(0);
 							leaveBalance.setLeaveTaken(0);
 
-							if (leaveType.getIncremental() != null
-									&& leaveType.getIncremental().contains(DECISION.YES.toString())) {
+							if (leaveType.getIncremental() != null && leaveType.getIncremental().contains(DECISION.YES.toString())) {
 
-								System.out.println(
-										new Date() + " Job @ getIncremental = YES (NEW) : " + leaveBalance.getId());
+								System.out.println(new Date() + " Job @ getIncremental = YES (NEW) user : " + user.getId());
 
 								finalLeaveCount = findMaximumDaysForEarnLeave(user, leaveType);
 								leaveBalance.setLeaveTotal(finalLeaveCount);
@@ -263,8 +265,7 @@ public class SpringScheduleCronExample {
 
 							} else {
 
-								System.out.println(
-										new Date() + " Job @ getIncremental = NO (NEW) : " + leaveBalance.getId());
+								System.out.println(new Date() + " Job @ getIncremental = NO (NEW) user : " + user.getId());
 
 								leaveBalance.setLeaveTotal(leaveType.getMaximumDays());
 								leaveBalance.setLeaveBalance(leaveType.getMaximumDays());
@@ -275,72 +276,65 @@ public class SpringScheduleCronExample {
 
 							lmsLeaveBalanceHome.persist(leaveBalance);
 
-							System.out.println(
-									new Date() + " Job @ lmsLeaveBalanceHome.persist (NEW) : " + leaveBalance.getId());
-						} else if (leaveBalance.getAcstatus().contains(ACSTATUS.PAST.toString())
+							System.out.println(new Date() + " Job @ lmsLeaveBalanceHome.persist (NEW) leaveBalance: " + leaveBalance.getId());
+						} 
+						else if (leaveBalance.getAcstatus().contains(ACSTATUS.PAST.toString())
 								|| leaveBalance.getAcstatus().contains(ACSTATUS.CLOSED.toString())) {
 
-							System.out.println(
-									new Date() + " Job @ leaveBalance (PAST/CLOSED) : " + leaveBalance.getId());
+							System.out.println(new Date() + " Job @ leaveBalance (PAST/CLOSED) leaveBalance: " + leaveBalance.getId());
 							// Skip for those two type of leave
-						} else if (leaveBalance.getAcstatus().contains(ACSTATUS.INACTIVE.toString())) {
+						} 
+						else if (leaveBalance.getAcstatus().contains(ACSTATUS.INACTIVE.toString())) {
 
-							System.out.println(new Date() + " Job @ leaveBalance (INACTIVE) : " + leaveBalance.getId());
+							System.out.println(new Date() + " Job @ leaveBalance (INACTIVE) leaveBalance: " + leaveBalance.getId());
 
 							leaveBalance.setAcstatus(ACSTATUS.CURRENT.toString());
 							leaveBalance.setEligibility(DECISION.YES.toString());
 							leaveBalance.setUpdateBy(1);
 							leaveBalance.setUpdateDate(new Date());
 
-							if (leaveType.getIncremental() != null
-									&& leaveType.getIncremental().contains(DECISION.YES.toString())) {
+							if (leaveType.getIncremental() != null && leaveType.getIncremental().contains(DECISION.YES.toString())) {
 
 								// Incrementally set
 								finalLeaveCount = findMaximumDaysForEarnLeave(user, leaveType);
 								leaveBalance.setLeaveTotal(finalLeaveCount);
-								leaveBalance
-										.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
+								leaveBalance.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
 
 							} else {
 
 								leaveBalance.setLeaveTotal(leaveType.getMaximumDays());
-								leaveBalance
-										.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
+								leaveBalance.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
 							}
 
 							lmsLeaveBalanceHome.merge(leaveBalance);
 
-							System.out.println(new Date() + " Job @ lmsLeaveBalanceHome.merge (INACTIVE) : "
-									+ leaveBalance.getId());
-						} else if (leaveBalance.getAcstatus().contains(ACSTATUS.CURRENT.toString())) {
+							System.out.println(new Date() + " Job @ lmsLeaveBalanceHome.merge (INACTIVE) leaveBalance: " + leaveBalance.getId());
+						} 
+						else if (leaveBalance.getAcstatus().contains(ACSTATUS.CURRENT.toString())) {
 
-							System.out.println(new Date() + " Job @ leaveBalance (CURRENT) : " + leaveBalance.getId());
+							System.out.println(new Date() + " Job @ leaveBalance (CURRENT) leaveBalance: " + leaveBalance.getId());
 
 							// leaveBalance.setAcstatus(ACSTATUS.CURRENT.toString());
 							// leaveBalance.setEligibility(DECISION.YES.toString());
 							leaveBalance.setUpdateBy(1);
 							leaveBalance.setUpdateDate(new Date());
 
-							if (leaveType.getIncremental() != null
-									&& leaveType.getIncremental().contains(DECISION.YES.toString())) {
+							if (leaveType.getIncremental() != null && leaveType.getIncremental().contains(DECISION.YES.toString())) {
 
 								// Incrementally set
 								finalLeaveCount = findMaximumDaysForEarnLeave(user, leaveType);
 								leaveBalance.setLeaveTotal(finalLeaveCount);
-								leaveBalance
-										.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
+								leaveBalance.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
 
 							} else {
 
 								leaveBalance.setLeaveTotal(leaveType.getMaximumDays());
-								leaveBalance
-										.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
+								leaveBalance.setLeaveBalance(leaveBalance.getLeaveTotal() - leaveBalance.getLeaveTaken());
 							}
 
 							lmsLeaveBalanceHome.merge(leaveBalance);
 
-							System.out.println(
-									new Date() + " Job @ lmsLeaveBalanceHome.merge (ACTIVE) : " + leaveBalance.getId());
+							System.out.println(new Date() + " Job @ lmsLeaveBalanceHome.merge (ACTIVE) leaveBalance: " + leaveBalance.getId());
 						}
 					}
 
@@ -358,8 +352,8 @@ public class SpringScheduleCronExample {
 			List<LmsLeaveBalance> leaveBalances;
 
 			for (LmsUser user : users) {
-				leaveBalances = lmsLeaveBalanceHome.findLeavebalacebyUserAndACStatus(user.getId(),
-						ACSTATUS.CURRENT.toString());
+				
+				leaveBalances = lmsLeaveBalanceHome.findLeavebalacebyUserAndACStatus(user.getId(), ACSTATUS.CURRENT.toString());
 
 				for (LmsLeaveBalance leaveBalance : leaveBalances) {
 
@@ -382,8 +376,8 @@ public class SpringScheduleCronExample {
 			List<LmsLeaveBalance> leaveBalances;
 
 			for (LmsUser user : users) {
-				leaveBalances = lmsLeaveBalanceHome.findLeavebalacebyUserAndACStatus(user.getId(),
-						ACSTATUS.CURRENT.toString());
+				
+				leaveBalances = lmsLeaveBalanceHome.findLeavebalacebyUserAndACStatus(user.getId(), ACSTATUS.CURRENT.toString());
 
 				for (LmsLeaveBalance leaveBalance : leaveBalances) {
 
@@ -412,28 +406,22 @@ public class SpringScheduleCronExample {
 
 			Integer sumleaveTaken = (int) (long) sumleaveTakenLong;
 
-			System.out.println(new Date() + " Job @ findSumOfLeaveTakenImpactOnEarnLeave, User : " + user.getId()
-					+ " leaveType: " + leaveType.getId() + " tantativeDayCount: " + tantativeDayCount
-					+ " sumleaveTaken: " + sumleaveTaken);
+			System.out.println(new Date() + " Job @ findSumOfLeaveTakenImpactOnEarnLeave, User : " + user.getId() + " leaveType: " + leaveType.getId() + " tantativeDayCount: " + tantativeDayCount + " sumleaveTaken: " + sumleaveTaken);
 
 			if (leaveType.getType().contains("HALF")) {
 
 				finalDayCount = (int) ((tantativeDayCount - sumleaveTaken) / 12);
 
-				System.out.println(new Date() + " Job @ HALF AVERAGE SALARY, User : " + user.getId() + " leaveType: "
-						+ leaveType.getId() + " finalDayCount: " + finalDayCount);
+				System.out.println(new Date() + " Job @ HALF AVERAGE SALARY, User : " + user.getId() + " leaveType: " + leaveType.getId() + " finalDayCount: " + finalDayCount);
 			} else if (leaveType.getType().contains("AVERAGE")) {
 
 				finalDayCount = (int) ((tantativeDayCount - sumleaveTaken) / 11);
 
-				System.out.println(new Date() + " Job @ AVERAGE SALARY, User : " + user.getId() + " leaveType: "
-						+ leaveType.getId() + " finalDayCount: " + finalDayCount);
+				System.out.println(new Date() + " Job @ AVERAGE SALARY, User : " + user.getId() + " leaveType: " + leaveType.getId() + " finalDayCount: " + finalDayCount);
 
 			} else {
 
-				System.out.println(new Date() + " Job @ AVERAGE/HALF SALARY ELSE User : " + user.getId()
-						+ " leaveType: " + leaveType.getId() + " tantativeDayCount: " + tantativeDayCount
-						+ " sumleaveTaken: " + sumleaveTaken);
+				System.out.println(new Date() + " Job @ AVERAGE/HALF SALARY NO MATCH User : " + user.getId() + " leaveType: " + leaveType.getId() + " tantativeDayCount: " + tantativeDayCount + " sumleaveTaken: " + sumleaveTaken);
 
 			}
 
