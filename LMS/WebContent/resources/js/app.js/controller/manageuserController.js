@@ -278,16 +278,6 @@ App
 				$scope.ddlmsRole = ddlmsRole;
 				$scope.ddlmsWftrole = ddlmsWftrole;
 				
-			/*	if ($scope.user.lmsUser!=null)
-					{
-					$scope.user.lmsUser= $scope.supervisor;
-					}*/
-				
-				
-				//$scope.lmssupervisor=lmssupervisor;
-				//console.log($scope.ddlmsRole);
-				//console.log($scope.ddlmsWftrole);
-				
 				
 				//$scope.user.gender= $scope.gender.name;
 				//$scope.user.nationality = $scope.nationality.name;
@@ -475,7 +465,7 @@ App
 				$scope.user.mobilePersonal = "";
 				$scope.user.mobileOffice = "";
 				$scope.user.fax = "";
-				$scope.joiningDate = "";
+				$scope.user.joiningDate = "";
 				$scope.gender = '0';
 				$scope.ddReliever = '0';
 				$scope.user.address = "";
@@ -483,6 +473,9 @@ App
 				$scope.user.password = "";
 				$scope.user.nid = "";
 				$scope.dateofbirth = "";
+				$scope.ddlmsRole='0';
+				$scope.ddlmsWftrole='0';
+				
 				
 				
 			};

@@ -214,7 +214,7 @@
 						</div>
 						<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Reliever</label>
+							<label class="control-label col-md-3">Supervisor</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"

@@ -15,8 +15,13 @@ App
 
 								updateuserprofile : function(lmsWftrole, lmsRole, lmssupervisor,user ) {
 									//console.log(user);
-									// , lmsWftrole  user,  , user lmsWftrole
-									//return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/', user,lmssupervisor)
+									
+									// Added by Feroj on 12th June,2018. If supervisor is null, update shud be successfull
+								if (lmssupervisor.id== null || lmssupervisor.id=="undefined")
+									{
+									lmssupervisor.id=0;
+									}
+									
 									return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/' + lmssupervisor.id + '/', user)		
 									.then(
 													function(response) {

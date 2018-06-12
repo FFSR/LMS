@@ -66,7 +66,7 @@ public class SpringScheduleCronExample {
 	}
 
 	//@Scheduled(cron = "0 0 1 * * *")
-	@Scheduled(cron = "0 20 12 * * *")
+	@Scheduled(cron = "0 52 20 * * *")
 	public void cronJob() {
 
 		int jobId = counter.incrementAndGet();
