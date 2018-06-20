@@ -156,7 +156,7 @@ public class LmsLeaveApplicationHome {
 			// CURDATE();
 
 			Query query = entityManager.createQuery(
-					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND DATE(t.toDate) >= DATE(CURDATE())");
+					"SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND DATE(t.toDate) >= DATE(CURDATE()) and t.lmsLeaveType.id != 27");
 
 			return (List<LmsLeaveApplication>) query.getResultList();
 		} catch (Exception ex) {

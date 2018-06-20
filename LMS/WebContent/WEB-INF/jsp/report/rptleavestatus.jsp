@@ -65,6 +65,7 @@
 						<button type="submit"
 							class="btn btn-success waves-effect waves-light m-r-10"
 							id="cancel" ng-click="gomyPage()">Cancel</button>
+						
 					</div>
 						</form> 
 				</div>
@@ -133,11 +134,28 @@
 										| date: YYYY-MM-dd}}</td>
 							</table>
 						</div>
-					</table>
-
+					</table>      
+				</div>
+				<!-- testing check box -->
+				<div>
+					<table class="table table-sm">
+						<div>		
+						   <table ng-table="tableParams2" class="table" show-filter="true">				
+									<label ng-repeat="wfHop in $data">
+                                    <input type="checkbox" checklist-model="user.roles" checklist-value="wfHop"> {{wfHop.status}}
+                                     </label>
+								</table>		
+						</div>
+						</table>
+					 
 				</div>
 				
-
+				
+				<!-- testing check box -->
+               <p class="print-align-right">
+               <a href="#" onclick="javascript:window.print();" >Print this page</a>
+               </p>
+				
 				<!-- By Feroj 03, June 2018 -->
 			</div>
 		</form>

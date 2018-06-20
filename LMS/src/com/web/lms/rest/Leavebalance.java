@@ -136,8 +136,10 @@ public class Leavebalance {
 
 			if (lmsLeaveBalance != null) {
 				
+				if(leaveapprove > 0) {// added by Feroj on 18th June,2018 for leave balance adjustment while leave cancellation
 				// subtract from Leave Applied
 				lmsLeaveBalance.setLeaveApplied(lmsLeaveBalance.getLeaveApplied()-leaveapprove);
+				}
 				// Add to Leave Taken
 				lmsLeaveBalance.setLeaveTaken(lmsLeaveBalance.getLeaveTaken()+leaveapprove);
 				// Update from Leave Balance

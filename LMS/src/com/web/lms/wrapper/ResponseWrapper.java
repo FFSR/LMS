@@ -84,14 +84,15 @@ public class ResponseWrapper {
 	public void setListLmsLeaveBalance(List<LmsLeaveBalance> listLmsLeaveBalance) {
 		this.listLmsLeaveBalance = listLmsLeaveBalance;
 	}
-	
-	public LmsUser getLmsuser() {
-		return lmsuser;
+	// Added by Feroj on 15th June 2018.
+	public LmsLeaveApplication getLmsLeaveApplication() {
+		return lmsLeaveApplication;
 	}
 
-	public void setLmsuser(LmsUser lmsuser) {
-		this.lmsuser = lmsuser;
+	public void setLmsLeaveApplication(LmsLeaveApplication lmsLeaveApplication) {
+		this.lmsLeaveApplication = lmsLeaveApplication;
 	}
+	// Added by Feroj on 15th June 2018 End.
 	
 	public LmsUser getLmssupervisor() {
 		return lmssupervisor;
@@ -116,6 +117,16 @@ public class ResponseWrapper {
 	public void setListLmssupervisor(List<LmsUser> listlmssupervisor) {
 		this.listlmssupervisor = listlmssupervisor;
 	}
+	
+	public LmsUser getLmsuser() {
+		return lmsuser;
+	}
+
+	public void setLmsuser(LmsUser lmsuser) {
+		this.lmsuser = lmsuser;
+	}
+	
+	
 	public List<LmsLeaveApplication> getListLmsLeaveApplication() {
 		return listLmsLeaveApplication;
 	}

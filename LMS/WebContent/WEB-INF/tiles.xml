@@ -27,6 +27,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/leaveapplication.jsp" />
 	</definition>
+	
+	<definition name="leavecancelrequest" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/leavecancelrequest.jsp" />
+	</definition>
 
 	<definition name="login" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
@@ -97,6 +103,12 @@
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/leavemanagement/leavemanagementhead.jsp" />
+	</definition>
+	
+	<definition name="managecancelleave" extends="baseLayout">
+		<put-attribute name="title" value="HomePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/leavemanagement/managecancelleave.jsp" />
 	</definition>
 
 	<definition name="leaveapplicationdetails" extends="baseLayout">

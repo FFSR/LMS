@@ -257,6 +257,21 @@ public class HomeController {
 			return "login";
 		}
 	}
+	
+	@RequestMapping("/managecancelleave")
+	public String managecancelleave(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "managecancelleave";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}
 	@RequestMapping("/managereliever")
 	public String managereliever(Model model) {
 		
@@ -425,6 +440,21 @@ public class HomeController {
 		try {
 			if("" != httpSession.getAttribute("userName").toString()) {
 				return "divisioninfo";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}
+	// Added by Feroj on 14th June,2018
+	@RequestMapping("/leavecancelrequest")
+	public String leavecancelrequest(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "leavecancelrequest";
 			}else {
 			
 				return "login";

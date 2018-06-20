@@ -64,6 +64,26 @@ App
 										});
 					},
 					
+					// added by Feroj on 18th june,18
+					leavebalanceforcancelapprove : function(userid, leavetypeid, leaveapprove) {
+						return $http
+						.put(
+								url + 'leavebalanceforcancelapprove/'
+								+ userid +'/'+ leavetypeid +'/'+ leaveapprove +'/')
+								.then(
+										function(response) {
+											return response.data;
+										},
+										function(errResponse) {
+											console
+											.error("Error while fetching user info list.");
+											return $q
+											.reject(errResponse);
+										});
+					},
+					
+					
+					
 					leavebalanceforreject : function(userid, leavetypeid, leaverejected) {
 						return $http
 						.put(

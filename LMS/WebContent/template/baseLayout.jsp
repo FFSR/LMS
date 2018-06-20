@@ -186,6 +186,7 @@ body, body td, body th {
                             <li> <a href="applicationforleave">Leave Application</a> </li>
                             <li role="separator" class="divider"></li>
                             <li> <a href="leavemanagementhead">Leave Approval</a></li>
+                             <li> <a href="managecancelleave">Cancel Leave Approval</a></li>
                         </ul>
                     </li>
                     
@@ -212,6 +213,7 @@ body, body td, body th {
                             <li><a href="changepassword">Change Password</a></li>
                             <li><a href="userprofile">Update Profile</a></li>
                             <li><a href="managereliever">Manage Delegation</a></li>  
+                            <li><a href="leavecancelrequest">Leave Cancellation</a></li> 
                             
                         </ul>
                     </li>

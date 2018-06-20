@@ -225,6 +225,22 @@ public class Testleaveapplication {
 		}
 	}
 
+	// Added by Feroj on 15th June 2018
+	@RequestMapping(value = "/getleaveapplication/{applicationid}", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapper> getleaveapplication(@PathVariable("applicationid") Integer applicationid) {
 
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+
+		LmsLeaveApplication lmsLeaveApplication = lmsLeaveApplicationHome.findById(applicationid);
+		if (lmsLeaveApplication != null) {
+
+			responseWrapper.setLmsLeaveApplication(lmsLeaveApplication);
+
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
+
+		responseWrapper.setMessage("Fail. Data not matched.");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+	}
 
 }
