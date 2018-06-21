@@ -180,17 +180,7 @@
 				
 				
 				<br>
-				<div class="row" ng-show="showAttachment">
-					<div class="col-md-12 form-group">
-						<label class="col-md-2 control-label">Download Files: </label>
-						<div class="col-md-10" style="height: 150px; overflow: scroll;">
-							<ul class="list-group" ng-repeat="file in fileNames">
-								<li class="list-group-item"><a
-									href="download?fileName={{file}}">{{file}}</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
+				
 				<br> <br>
 				<div class="row">
 					<div class="col-md-12">

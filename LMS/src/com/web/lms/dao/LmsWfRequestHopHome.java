@@ -109,11 +109,31 @@ public class LmsWfRequestHopHome {
 		}
 	}
 	
+	
 	public List<LmsWfRequestHop> findByRoleMapAndStatus(String status, Integer wftRole){
 		Query query;
 		
 		try {
 			query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.wftRoleId=:wftRole AND e.status=:status");
+			query.setParameter("wftRole", wftRole);
+			query.setParameter("status", status);
+			
+			return (List<LmsWfRequestHop>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<LmsWfRequestHop> findByRoleMapAndStatusCancel(String status, Integer wftRole){
+		Query query;
+		
+		try {
+			// "SELECT t FROM LmsWfRequest e JOIN e.lmsLeaveApplication t WHERE e.status='APPROVED' AND DATE(t.toDate) >= DATE(CURDATE()) and t.lmsLeaveType.id != 27");
+			//SELECT emp_name, dept_name FROM Employee e JOIN Register r ON e.emp_id=r.emp_id JOIN Department d ON r.dept_id=d.dept_id;
+			
+			//query = entityManager.createQuery("SELECT f FROM LmsWfRequestHop e JOIN e.LmsWfRequest f ON e.lmsWfRequest.id=f.id JOIN LmsLeaveApplication l ON f.lmsLeaveApplication.id=l.id WHERE e.wftRoleId=:wftRole AND e.status=:status");
+			query = entityManager.createQuery("SELECT t FROM LmsWfRequestHop e JOIN e.LmsWfRequest t WHERE e.wftRoleId=:wftRole AND e.status=:status and t.lmsWftRequestType.id IN(49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64)");
 			query.setParameter("wftRole", wftRole);
 			query.setParameter("status", status);
 			

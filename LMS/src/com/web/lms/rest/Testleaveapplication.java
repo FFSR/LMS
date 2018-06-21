@@ -163,6 +163,56 @@ public class Testleaveapplication {
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 	}
 	
+	// Added by Feroj on 20th June,2018
+	@SuppressWarnings("null")
+	@RequestMapping(value="/loadCancelLeaveApplication/{userID}", method=RequestMethod.GET)// showing leave requests searching by name & id.
+	public ResponseEntity<ResponseWrapper> loadCancelLeaveApplication(@PathVariable("userID") Integer userID){
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		responseWrapper.setMessage("Test Message");
+		List<LmsWfRequestHop> listlmsWfRequestHop = new ArrayList<>();
+		List<LmsWfRequestHop> listlmsWfRequestHopFinal = new ArrayList<>();
+		List<LmsWftRoleUserMap> listlmsWftRoleUserMap = null;
+		List<LmsAttachment> listLmsAttachment = null;
+
+		try {			
+			listlmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserID(userID);
+		}
+		catch(Exception ex) {
+			
+			ex.printStackTrace();
+			responseWrapper.setMessage("Failed");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		List<LmsLeaveApplication> lmsLeaveApplication = new ArrayList<>();
+
+		/*if(manageLeaveSearchWrapper.getUser_name() != null && manageLeaveSearchWrapper.getUser_id() != 0) {
+			lmsLeaveApplication = lmsLeaveApplicationHome.findLeaveApplicationByUserID(manageLeaveSearchWrapper.getUser_name(),manageLeaveSearchWrapper.getUser_id());
+		}*/
+
+		lmsLeaveApplication = lmsLeaveApplicationHome.findCancelLeaveApplicationByUserID(userID);
+
+		for(LmsWftRoleUserMap lmsWftRoleUserMap: listlmsWftRoleUserMap) {
+
+			listlmsWfRequestHop = lmsWfRequestHopHome.findByRoleMapAndStatus("CURRENT", lmsWftRoleUserMap.getLmsWftRole().getId());
+			//listlmsWfRequestHop = lmsWfRequestHopHome.findByRoleMapAndStatusCancel("CURRENT", lmsWftRoleUserMap.getLmsWftRole().getId());
+
+			for(LmsWfRequestHop lmsWfRequestHop: listlmsWfRequestHop) {
+				listlmsWfRequestHopFinal.add(lmsWfRequestHop);
+				listLmsAttachment = lmsAttachmentHome.findByApplicationID(lmsWfRequestHop.getLmsWfRequest().getLmsLeaveApplication().getId());
+			}
+			responseWrapper.setListLmsAttatchment(listLmsAttachment);
+			listLmsAttachment = null;
+		}		
+
+		responseWrapper.setListLmsWfRequestHops(listlmsWfRequestHopFinal);
+		responseWrapper.setListLmsLeaveApplication(lmsLeaveApplication);
+
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+	}
+
+	
 	@RequestMapping(value = "/homepagegridshow/", method = RequestMethod.GET)// showing all persons who are on leave.
 	public ResponseEntity<ResponseWrapper> getlog() {
 

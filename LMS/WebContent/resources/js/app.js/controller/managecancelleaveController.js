@@ -190,11 +190,12 @@ App
 				
 				$scope.loadLeaveApplications = function(userID){
 					
-					manageleaveService.loadCurrentLeaveApplication(userID).then(
+					manageleaveService.loadCancelLeaveApplication(userID).then(
 					function(d){
 						
 						
-						$scope.listApplication=d.listLmsWfRequestHops;
+					   $scope.listApplication=d.listLmsWfRequestHops;
+						//$scope.listApplication=d.listLmsLeaveApplication;
 						var data = $scope.listApplication;
 						$scope.tableParams = new NgTableParams({}, { dataset: data});
 					},
