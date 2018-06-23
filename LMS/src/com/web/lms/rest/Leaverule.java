@@ -44,6 +44,26 @@ public class Leaverule {
 	@Autowired
 	private LmsHolidayRecordHome lmsHolidayRecordHome;
 
+	
+	@RequestMapping(value = "/sumofleavetaken/{userid}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapperLeaveRule> SumOfLeaveTaken(@PathVariable("userid") Integer userid){
+		
+		ResponseWrapperLeaveRule resWrapper = new ResponseWrapperLeaveRule();
+		
+		try {
+			long sumleaveTaken = lmsLeaveBalanceHome.findSumOfLeaveTakenImpactOnEarnLeave(userid);
+	
+			resWrapper.setMessage("sumofleavetaken : " + sumleaveTaken);
+			return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.OK);
+	
+		} catch (Exception ex) {
+			resWrapper.setMessage("Exception from Leave Rule : " + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperLeaveRule>(resWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+	
+	}
+	
+	
 	@RequestMapping(value = "/leaverule/{userid}/{leavetypeid}/{startdate}/{enddate}/", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapperLeaveRule> generateRequest(@PathVariable("userid") Integer userid,
 			@PathVariable("leavetypeid") Integer leavetypeid, @PathVariable("startdate") String strstartdate,

@@ -122,6 +122,20 @@ public class LmsUserHome {
 		}
 	}
 	
+	public List<LmsUser> findAllUserConditional(String status) {
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE LOWER(e.status) =:status")
+										.setParameter("status", status.toLowerCase());
+			
+			List<LmsUser> lmsUsers =  query.getResultList();
+			 return lmsUsers;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();			
+			return null;
+		}
+	}
+	
     public List<LmsUser> findUserByUserID(Integer userid) {
 		
 		try {
@@ -166,8 +180,9 @@ public class LmsUserHome {
 					.setParameter("mobile", "%"+ mobile +"%")					
 					.setParameter("status", status);
 
-	List<LmsUser> lmsUser = query.getResultList();
-		//LmsUser lmsUser = (LmsUser) query.getSingleResult();
+			List<LmsUser> lmsUser = query.getResultList();
+		
+			//LmsUser lmsUser = (LmsUser) query.getSingleResult();
 
 			return lmsUser;
 		} 

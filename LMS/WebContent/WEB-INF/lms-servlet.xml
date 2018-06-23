@@ -41,7 +41,9 @@
 		the plain old JDBC DriverManager via bean properties -->
 		
 	<!-- LIVE Database Connection NEW -->
-				
+	
+			
+	<!--
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -49,7 +51,7 @@
 		<property name="username" value="supremet_root" />
 		<property name="password" value="newpasswdforlmsdb" />
 	</bean> 
-	
+	-->
 
 <!-- 	
 	<bean id="dataSource"
@@ -62,7 +64,7 @@
  -->	
 	
 	<!-- Local Database Connection supremet_lmsdb -->
-<!-- 	
+ 	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -71,7 +73,8 @@
 		<property name="password" value="root" />
 		
 	</bean>
- -->	
+	 
+ 	
 	<!-- Local Database Connection lmsdb -->	
 <!-- 	
 	<bean id="dataSource"
@@ -129,5 +132,5 @@
 		<property name="maxUploadSize" value="20971520000" /> <!-- Size in byte (Currently 10MB) -->
 		<property name="defaultEncoding" value="utf-8" />
 	</bean>
-
+	
 </beans>
