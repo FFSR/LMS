@@ -38,7 +38,6 @@ App.controller('subordinatelvblnceController', [
 				leavehistoryService.leavehistory($scope.userID).then(function(d) {
 					//var data = d.listLmsLeaveBalance;
 
-					// change korte hobe d.listlsmLeae done
 					var data = d.listLmsLeaveBalance;
 
 					$scope.tableParams2 = new NgTableParams({}, {
