@@ -190,7 +190,8 @@ App
 				
 				$scope.loadLeaveApplications = function(userID){
 					
-					manageleaveService.loadCancelLeaveApplication(userID).then(
+					manageleaveService.loadCancelLeaveApplication(userID)
+					.then(
 					function(d){
 						
 						

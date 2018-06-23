@@ -110,11 +110,11 @@ public class LmsWfRequestHopHome {
 	}
 	
 	
-	public List<LmsWfRequestHop> findByRoleMapAndStatus(String status, Integer wftRole){
+	public List<LmsWfRequestHop> findByRoleMapAndStatusWithoutCancel(String status, Integer wftRole){
 		Query query;
 		
 		try {
-			query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.wftRoleId=:wftRole AND e.status=:status");
+			query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.wftRoleId=:wftRole AND e.status=:status AND e.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type NOT LIKE '%CANCEL%'");
 			query.setParameter("wftRole", wftRole);
 			query.setParameter("status", status);
 			
@@ -124,6 +124,23 @@ public class LmsWfRequestHopHome {
 			return null;
 		}
 	}
+	
+	public List<LmsWfRequestHop> findByRoleMapAndStatusWithCancel(String status, Integer wftRole){
+		Query query;
+		
+		try {
+			query = entityManager.createQuery("SELECT e FROM LmsWfRequestHop e WHERE e.wftRoleId=:wftRole AND e.status=:status AND e.lmsWfRequest.lmsLeaveApplication.lmsLeaveType.type LIKE '%CANCEL%'");
+			query.setParameter("wftRole", wftRole);
+			query.setParameter("status", status);
+			
+			return (List<LmsWfRequestHop>) query.getResultList();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
+	
 	
 	public List<LmsWfRequestHop> findByRoleMapAndStatusCancel(String status, Integer wftRole){
 		Query query;

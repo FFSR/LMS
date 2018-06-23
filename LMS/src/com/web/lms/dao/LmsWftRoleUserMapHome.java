@@ -82,7 +82,8 @@ public class LmsWftRoleUserMapHome {
 	public List<LmsWftRoleUserMap> findByUserID(Integer userID ) {
 		Query query;
 		try {
-			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUserByUserId.id=:userID").setParameter("userID", userID);
+			query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsUserByUserId.id=:userID")
+					.setParameter("userID", userID);
 			
 			return (List<LmsWftRoleUserMap>) query.getResultList();
 		}catch(Exception ex) {

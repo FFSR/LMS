@@ -133,7 +133,8 @@ App
 				
 				$scope.loadLeaveApplications = function(userID){
 					
-					manageleaveService.loadCurrentLeaveApplication(userID).then(
+					manageleaveService.loadCurrentLeaveApplication(userID)
+					.then(
 					function(d){
 						var data = d.listLmsWfRequestHops;
 						$scope.tableParams = new NgTableParams({}, { dataset: data});

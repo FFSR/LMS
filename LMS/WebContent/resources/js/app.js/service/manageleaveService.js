@@ -37,8 +37,8 @@ App.factory('manageleaveService', [
 				
 				//Added by Feroj on 20th June,2018
 				loadCancelLeaveApplication: function(userid){
-					//return $http.get(url+'loadCancelLeaveApplication/'+userid)
-					return $http.get(url+'loadCurrentLeaveApplication/'+userid)
+					return $http.get(url+'loadCancelLeaveApplication/'+userid)
+					//return $http.get(url+'loadCurrentLeaveApplication/'+userid)
 					.then(function(response) {
 						return response.data;
 					},
@@ -61,7 +61,7 @@ App.factory('manageleaveService', [
 								.error("Error while fetching WF Request Hops.");
 						return $q
 								.reject(errResponse);
-					});
+					});findByRoleMapAndStatusWithOutCancel
 				},
 				getAttachment: function(leaveapplicationid){
 					return $http.get(url+'getAttachment/'+ leaveapplicationid)

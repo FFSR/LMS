@@ -147,7 +147,7 @@ public class Testleaveapplication {
 
 		for(LmsWftRoleUserMap lmsWftRoleUserMap: listlmsWftRoleUserMap) {
 
-			listlmsWfRequestHop = lmsWfRequestHopHome.findByRoleMapAndStatus("CURRENT", lmsWftRoleUserMap.getLmsWftRole().getId());
+			listlmsWfRequestHop = lmsWfRequestHopHome.findByRoleMapAndStatusWithoutCancel("CURRENT", lmsWftRoleUserMap.getLmsWftRole().getId());
 
 			for(LmsWfRequestHop lmsWfRequestHop: listlmsWfRequestHop) {
 				listlmsWfRequestHopFinal.add(lmsWfRequestHop);
@@ -195,7 +195,7 @@ public class Testleaveapplication {
 
 		for(LmsWftRoleUserMap lmsWftRoleUserMap: listlmsWftRoleUserMap) {
 
-			listlmsWfRequestHop = lmsWfRequestHopHome.findByRoleMapAndStatus("CURRENT", lmsWftRoleUserMap.getLmsWftRole().getId());
+			listlmsWfRequestHop = lmsWfRequestHopHome.findByRoleMapAndStatusWithCancel("CURRENT", lmsWftRoleUserMap.getLmsWftRole().getId());
 			//listlmsWfRequestHop = lmsWfRequestHopHome.findByRoleMapAndStatusCancel("CURRENT", lmsWftRoleUserMap.getLmsWftRole().getId());
 
 			for(LmsWfRequestHop lmsWfRequestHop: listlmsWfRequestHop) {
