@@ -87,18 +87,6 @@
 					</div>
 				</div>
 
-				<!-- The Modal -->
-				<div id="id01" class="w3-modal">
-					<div class="w3-modal-content">
-						<div class="w3-container">
-							<span
-								onclick="document.getElementById('id01').style.display='none'"
-								class="w3-button w3-display-topright">&times;</span>
-							<p>Some text in the Modal..</p>
-							<p>Some text in the Modal..</p>
-						</div>
-					</div>
-				</div>
 
 				<div class="row">
 					<button type="submit" class="btn" id="submit"
@@ -159,19 +147,8 @@
 
 			</div>
 			<br>
-			<div class="row">
-				<div class="col-sm-3" style="background-color: white;">
-					<input type="button" class="btn btn-info" value="Cancel">
-				</div>
-				<div class="col-sm-3" style="background-color: white;"></div>
-				<button type="submit" class="btn" id="submit"
-					ng-click="holidayRecord()">Update</button>
-			</div>
-			<div>Response: {{testMsg}}</div>
-
-
-
-			were:{{holidayrecd.leaveSubject}}
+			
+			
 		</div>
 	</div>
 

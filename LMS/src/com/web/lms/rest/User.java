@@ -54,6 +54,7 @@ public class User {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsUser lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
+		
 
 		if (lmsUser != null) {
 			responseWrapper.setMessage("Success. UserName: " + uName + " Password: " + password);
