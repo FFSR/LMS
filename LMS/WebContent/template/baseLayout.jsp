@@ -192,6 +192,7 @@ body, body td, body th {
                     
                     <li> <a href="leavehistory" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >My Leave Balance</span></a> </li>
                      <li> <a href="rptleavestatus" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >My Leave Status</span></a> </li>
+                     <li> <a href="leaveapplicationdetails" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >My Leave Application Details</span></a> </li>
                     
                     <li> <a href="#" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">

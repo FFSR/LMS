@@ -115,10 +115,45 @@
                 
 				<!-- By Shourav 29th April 2018 -->
 				
-				<!-- Start By Feroj on 29th June,2018    -->
-				<br> <br> <br>
-		<form class="form-horizontal" name="statusForm">
+				
+				<!-- By Feroj 03rd June 2018 -->
+				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Approval Flow Information</h2>
+				 
+				<div>
+					<table class="table table-sm">
+						<div>
 
+							<table ng-table="tableParams2" class="table" show-filter="true">
+								<tr ng-repeat="wfHop in $data">
+									<td title="'Status'" filter="{ id: 'text'}" sortable="'id'">{{wfHop.status}}</td>
+									<td title="'Updated By'"
+										filter="{ 'lmsUserByUserId.name': 'text'}"
+										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsUser.name}}</td>
+									<td title="'Role Name'"
+										filter="{ 'lmsUserByUserId.name': 'text'}"
+										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsWftRequestHopRolePageMap.lmsWftRole.roleName}}</td>
+
+									<td title="'Update Date'" filter="{ type: 'text'}"
+										sortable="'lmsLeaveType.type'">{{wfHop.updateDate
+										| date: YYYY-MM-dd}}</td>
+							</table>
+						</div>
+					</table>      
+				</div>
+				<!-- testing check box -->
+				
+					<!-- testing check box -->
+               <p class="print-align-right">
+               <a href="#" onclick="javascript:window.print();" >Print this page</a>
+               </p>
+				
+				<!-- By Feroj 03, June 2018 -->
+			</div>
+		</form>
+		
+		<!-- Start By Feroj on 29th June,2018  -->  
+				<br> <br> <br>
+	<form class="form-horizontal" name="statusForm">
 			<div class="container-fluid">
 				<div ng-if="showLeaveDetails">
 					<div class="row">
@@ -202,51 +237,13 @@
 						This is a system generated document. It does not need any signature.
 						
 						</div>
-					  </div>
+					 </div>
 					  
 					</div>
-				</div>
-	      </form>
-					
-				
+					</form>
+				</div>			
 				
 				<!--  End By Feroj on 29th June 2018 -->
-
-				<!-- By Feroj 03rd June 2018 -->
-				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Approval Flow Information</h2>
-				 
-				<div>
-					<table class="table table-sm">
-						<div>
-
-							<table ng-table="tableParams2" class="table" show-filter="true">
-								<tr ng-repeat="wfHop in $data">
-									<td title="'Status'" filter="{ id: 'text'}" sortable="'id'">{{wfHop.status}}</td>
-									<td title="'Updated By'"
-										filter="{ 'lmsUserByUserId.name': 'text'}"
-										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsUser.name}}</td>
-									<td title="'Role Name'"
-										filter="{ 'lmsUserByUserId.name': 'text'}"
-										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsWftRequestHopRolePageMap.lmsWftRole.roleName}}</td>
-
-									<td title="'Update Date'" filter="{ type: 'text'}"
-										sortable="'lmsLeaveType.type'">{{wfHop.updateDate
-										| date: YYYY-MM-dd}}</td>
-							</table>
-						</div>
-					</table>      
-				</div>
-				<!-- testing check box -->
-				<!-- testing check box -->
-               <p class="print-align-right">
-               <a href="#" onclick="javascript:window.print();" >Print this page</a>
-               </p>
-				
-				<!-- By Feroj 03, June 2018 -->
-			</div>
-		</form>
-		
-	   </div>
 
 </body>
 

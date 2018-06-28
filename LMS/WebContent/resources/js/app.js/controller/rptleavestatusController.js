@@ -61,7 +61,9 @@ App
 				};
 				
 				
-                   $scope.showApprovalFlowDetails= function(wfrequestID){	
+                   $scope.showApprovalFlowDetails= function(wfrequestID){
+                	   
+                	 $scope.showLeaveDetails= false;  
                 	 var dataHopsStatus={};
                 	$scope.wfrequestID=wfrequestID;
 					wfrequesthopService.getHopsinfo( $scope.wfrequestID)
