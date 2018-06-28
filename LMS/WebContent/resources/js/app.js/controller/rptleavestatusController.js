@@ -19,6 +19,8 @@ App
 				
 				$scope.userID = "";
 				
+				$scope.showLeaveDetails = false;
+				
 				$scope.getSessionUserDetails = function(userID) {
 
 					$scope.userID = userID;
@@ -72,6 +74,13 @@ App
 						
 					}
 					);
+				};
+				
+				$scope.showLeaveInfo= function(wfRequestHop){
+					
+					$scope.showLeaveDetails= true;
+					$scope.wfRequestHop = wfRequestHop;
+					
 				};
 				
 				$scope.gomyPage = function(){	
