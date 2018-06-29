@@ -114,8 +114,13 @@
 				<!-- Start By Feroj on 29th June,2018  -->
 				<br> <br> <br>
 				<!--	<form class="form-horizontal" name="statusForm"> -->
+				
+				<div ID="DIVPRINT">
 				<div class="container-fluid">
+				
+			
 					<div ng-if="showLeaveDetails">
+						<h2 style="font-family: Arial; color: #000; font-size: 20px; align=left; font-wight: bold; ">Leave Application</h2>
 						<div class="row">
 
 							<div class="col-md-6">
@@ -124,7 +129,7 @@
 									<div class="col-md-9">
 										<input type="text"
 											ng-model="wfRequestHop.lmsUserByUserId.name"
-											class="form-control" placeholder="name">
+											class="form-control" placeholder="{{wfRequestHop.lmsUserByUserId.name}}">
 									</div>
 								</div>
 							</div>
@@ -134,7 +139,7 @@
 									<div class="col-md-9">
 										<input type="text"
 											ng-model="wfRequestHop.lmsUserByUserId.lmsDesignation.name"
-											class="form-control" placeholder="mobile no">
+											class="form-control" placeholder="{{wfRequestHop.lmsUserByUserId.lmsDesignation.name}}">
 									</div>
 								</div>
 							</div>
@@ -148,7 +153,7 @@
 									<div class="col-md-9">
 										<input type="text"
 											ng-model="wfRequestHop.lmsLeaveApplication.fromDate|date: YYYY-MM-dd"
-											class="form-control" placeholder="name">
+											class="form-control" placeholder="{{wfRequestHop.lmsLeaveApplication.fromDate|date: YYYY-MM-dd}}">
 									</div>
 								</div>
 							</div>
@@ -158,7 +163,7 @@
 									<div class="col-md-9">
 										<input type="text"
 											ng-model="wfRequestHop.lmsLeaveApplication.toDate|date: YYYY-MM-dd"
-											class="form-control" placeholder="mobile no">
+											class="form-control" placeholder="{{wfRequestHop.lmsLeaveApplication.toDate|date: YYYY-MM-dd}}">
 									</div>
 								</div>
 							</div>
@@ -173,7 +178,7 @@
 									<div class="col-md-9">
 										<input type="text"
 											ng-model="wfRequestHop.lmsLeaveApplication.insertDate|date: YYYY-MM-dd"
-											class="form-control" placeholder="name">
+											class="form-control" placeholder="{{wfRequestHop.lmsLeaveApplication.insertDate|date: YYYY-MM-dd}}">
 									</div>
 								</div>
 							</div>
@@ -183,7 +188,7 @@
 									<div class="col-md-9">
 										<input type="text"
 											ng-model="wfRequestHop.updateDate|date: YYYY-MM-dd"
-											class="form-control" placeholder="mobile no">
+											class="form-control" placeholder="{{wfRequestHop.updateDate|date: YYYY-MM-dd}}">
 									</div>
 								</div>
 							</div>
@@ -197,7 +202,18 @@
 									<div class="col-md-9">
 										<input type="text"
 											ng-model="wfRequestHop.lmsLeaveApplication.lmsUserByReliverEmailAddressUserId.name"
-											class="form-control" placeholder="name">
+											class="form-control" placeholder="{{wfRequestHop.lmsLeaveApplication.lmsUserByReliverEmailAddressUserId.name}}">
+									</div>
+								</div>
+							</div>
+							
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label col-md-3">Leave Type</label>
+									<div class="col-md-9">
+										<input type="text"
+											ng-model="wfRequestHop.lmsLeaveApplication.lmsLeaveType.type"
+											class="form-control" placeholder="{{wfRequestHop.lmsLeaveApplication.lmsLeaveType.type}}">
 									</div>
 								</div>
 							</div>
@@ -209,8 +225,17 @@
 					</div>
 
 				</div>
+				</div>
+				
+				<button type="submit"
+				 class="btn btn-success waves-effect waves-light m-r-10"
+				 id="cancel" ng-click="CallPrint('DIVPRINT')">Print</button>
 			</div>
+			
+			
 		</form>
+		
+		
 	</div>
 
 

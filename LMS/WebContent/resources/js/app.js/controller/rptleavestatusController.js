@@ -78,6 +78,26 @@ App
 					);
 				};
 				
+				$scope.CallPrint= function(strid) {
+				   
+				   /* var WinPrint = window.open('', '', 'letf=0,top=0,width=1,height=1,toolbar=0,scrollbars=0,status=0');
+				  //  var openWindow = window.open("", "title", "attributes");
+				   var prtContent = document.getElementById(strid.previousSibling.innerHTML);
+				  //  WinPrint.document.write(strid.previousSibling.innerHTML);
+				          WinPrint.document.write(prtContent.innerHTML);
+				   // WinPrint.document.write(prtContent.innerJSP);
+				    WinPrint.document.close();
+				    WinPrint.focus();
+				    WinPrint.print();
+				    WinPrint.close();
+				  //  prtContent.innerHTML = strOldOne;*/
+					var restorepage= document.body.innerHTML;
+					var printcontent=document.getElementById(strid).innerHTML;
+					document.body.innerHTML=printcontent;
+					window.print();
+					//document.body.innerHTML=printcontent=restorepage;
+				};
+				
 				$scope.showLeaveInfo= function(wfRequestHop){
 					
 					$scope.showLeaveDetails= true;

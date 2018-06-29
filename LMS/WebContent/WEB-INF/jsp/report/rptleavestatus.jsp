@@ -105,8 +105,7 @@
 									<td title="'Action'"><button type="submit" class="btn-primary" id="submit"
 											ng-click="showApprovalFlowDetails(wfRequestHop.id)">Approval
 											Flow</button></td>
-									<td title="'Action'"><button type="submit" class="btn-primary" id="submit"
-											ng-click="showLeaveInfo(wfRequestHop)">Details</button></td>
+									
 							</table>
 						</div>
 					</table>
@@ -143,9 +142,7 @@
 				<!-- testing check box -->
 				
 					<!-- testing check box -->
-               <p class="print-align-right">
-               <a href="#" onclick="javascript:window.print();" >Print this page</a>
-               </p>
+             
 				
 				<!-- By Feroj 03, June 2018 -->
 			</div>
@@ -153,96 +150,7 @@
 		
 		<!-- Start By Feroj on 29th June,2018  -->  
 				<br> <br> <br>
-	<form class="form-horizontal" name="statusForm">
-			<div class="container-fluid">
-				<div ng-if="showLeaveDetails">
-					<div class="row">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Name</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="wfRequestHop.lmsUserByUserId.name" class="form-control"
-										placeholder="name">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Designation</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="wfRequestHop.lmsUserByUserId.lmsDesignation.name"
-										class="form-control" placeholder="mobile no">
-								</div>
-							</div>
-						</div>
-					  </div>
-					  
-					  <div class="row">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">From Date</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="wfRequestHop.lmsLeaveApplication.fromDate|date: YYYY-MM-dd" class="form-control"
-										placeholder="name">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">To Date</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="wfRequestHop.lmsLeaveApplication.toDate|date: YYYY-MM-dd"
-										class="form-control" placeholder="mobile no">
-								</div>
-							</div>
-						</div>
-					  </div>
-					  
-					  <div class="row">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Date Of Application</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="wfRequestHop.lmsLeaveApplication.insertDate|date: YYYY-MM-dd" class="form-control"
-										placeholder="name">
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Date Of Approval</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="wfRequestHop.updateDate|date: YYYY-MM-dd"
-										class="form-control" placeholder="mobile no">
-								</div>
-							</div>
-						</div>
-					  </div>
-					  
-					  <div class="row">
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Reliever</label>
-								<div class="col-md-9">
-									<input type="text" ng-model="wfRequestHop.lmsLeaveApplication.lmsUserByReliverEmailAddressUserId.name" class="form-control"
-										placeholder="name">
-								</div>
-							</div>
-						</div>
-						
-						This is a system generated document. It does not need any signature.
-						
-						</div>
-					 </div>
-					  
-					</div>
-					</form>
-				</div>			
-				
+					
 				<!--  End By Feroj on 29th June 2018 -->
 
 </body>
