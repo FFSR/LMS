@@ -82,9 +82,13 @@ public class LmsUserHome {
 	public LmsUser findByUnameandPassword(String uName, String password) {
 
 		try {
-			Query query = entityManager
+			/*Query query = entityManager
 					.createQuery("SELECT e FROM LmsUser e WHERE e.name=:uName AND e.password=:password")
-					.setParameter("uName", uName).setParameter("password", password);
+					.setParameter("uName", uName).setParameter("password", password);*/
+			// Updated by Feroj on 28th June,2018 to log in  with email id and password
+			Query query = entityManager
+			.createQuery("SELECT e FROM LmsUser e WHERE SUBSTRING_INDEX(e.email,'@',1)=:uName AND e.password=:password")
+			.setParameter("uName", uName).setParameter("password", password);
 
 			LmsUser lmsUser = (LmsUser) query.getSingleResult();
 

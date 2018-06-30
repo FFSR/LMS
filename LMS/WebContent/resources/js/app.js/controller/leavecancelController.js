@@ -119,6 +119,9 @@ App
 							function(d) {
                                 wfManagementService.generaterequest(d.userid,d.leavetypeid,d.leaveapplicationid).then(
 										 function(d){
+											    $scope.showSuccessMessage(d.message);	
+												$scope.ClearAll();
+												$scope.validationLock = true;
 					//updateuserleaveService.updateuserleave($scope.leaveapplication).then(function(d) {
 						
 					                  }, function(errResponse) {
@@ -129,7 +132,61 @@ App
 								console.log("Failed to get Drop Down.");
 							});          
 				};
-                   				
+				
+				/* Show Success Message */
+				$scope.showSuccessMessage = function(message) {
+
+					$scope.successMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				/* Show Error Message */
+				$scope.showErrorMessage = function(message) {
+
+					$scope.errorMessages = message;
+					$timeout(function() {
+						$scope.successMessages = null;
+						$scope.errorMessages = null;
+					}, 6000);
+				};
+
+				$scope.ClearAll = function() {
+
+					$scope.wfRequestHop.lmsUserByUserId.id="";
+					$scope.wfRequestHop.lmsUserByUserId.name="";
+					$scope.wfRequestHop.lmsLeaveApplication.lmsLeaveType.type="";
+					$scope.wfRequestHop.lmsLeaveApplication.reasonForLeave="";
+					$scope.wfRequestHop.lmsLeaveApplication.fromDate="";
+					$scope.wfRequestHop.lmsLeaveApplication.toDate="";
+					$scope.CancelReason="";
+					$scope.EndDate="";
+					$scope.AdjustDays="";
+					$scope.leavetype='0';
+					
+
+				};   	
+				
+				$scope.validate = function(){
+					leaveapplicationservice.validateLeaveRule($scope.userid, $scope.leavetype.id, $scope.fromDate, $scope.toDate)
+					.then(
+							function(d) {
+
+								//$scope.totalDayCount = "APPLIED ( "+d.numberOfDaysApplied+" ) + IF IMPACT ON HOLIDAY THAN MIN ( "+d.minimumHolidayConsider+" ) OF BEFORE ( "+ d.backwardHolidayCount +" ) AND AFTER ( "+ d.forwardHolidayCount +" )  = TOTAL ( "+d.numberOfDayConsider+" )";	
+								$scope.finaltotalDayCount = d.numberOfDayConsider;
+								$scope.validationLock = false;
+								$scope.showSuccessMessage(d.message);
+							}, 
+							function(errResponse) {		
+
+								$scope.totalDayCount = errResponse.data.message
+								$scope.validationLock = true;						
+								$scope.showErrorMessage(errResponse.data.message);
+							});
+
+				};
 				$scope.gomyPage = function(){	
 					location.reload();
 					window.location = url+"rptleavestatus";

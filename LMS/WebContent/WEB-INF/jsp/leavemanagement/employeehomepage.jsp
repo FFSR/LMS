@@ -87,6 +87,9 @@
 							<td title="'Division'"
 								filter="{ 'lmsUserByUserId.lmsDivision.name': 'text'}"
 								sortable="'name'">{{leaveapplication.lmsUserByUserId.lmsDivision.name}}</td>
+							<td title="'Reliever'"
+								filter="{ 'leaveapplication.lmsUserByReliverEmailAddressUserId.name': 'text'}"
+								sortable="'name'">{{leaveapplication.lmsUserByReliverEmailAddressUserId.name}}</td>
 					</table>
 				</div>
 			</table>

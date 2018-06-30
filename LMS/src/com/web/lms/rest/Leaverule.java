@@ -301,7 +301,7 @@ public class Leaverule {
 
 			if (leaveType.getMinimumAtATime() != null && leaveType.getMinimumAtATime() != 0) {
 
-				if (leaveType.getMinimumAtATime() > resWrapper.getNumberOfDayConsider()) {
+				if (leaveType.getMinimumAtATime() < resWrapper.getNumberOfDayConsider()) {
 
 					resWrapper.setMessage("Validation 8.0: Minimum at a time limit is not fulfilled.");
 					return resWrapper;

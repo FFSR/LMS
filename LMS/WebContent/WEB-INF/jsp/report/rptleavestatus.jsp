@@ -105,13 +105,16 @@
 									<td title="'Action'"><button type="submit" class="btn-primary" id="submit"
 											ng-click="showApprovalFlowDetails(wfRequestHop.id)">Approval
 											Flow</button></td>
+									
 							</table>
 						</div>
 					</table>
 				</div>
-
+                
+                
 				<!-- By Shourav 29th April 2018 -->
-
+				
+				
 				<!-- By Feroj 03rd June 2018 -->
 				<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Approval Flow Information</h2>
 				 
@@ -137,30 +140,18 @@
 					</table>      
 				</div>
 				<!-- testing check box -->
-				<div>
-					<table class="table table-sm">
-						<div>		
-						   <table ng-table="tableParams2" class="table" show-filter="true">				
-									<label ng-repeat="wfHop in $data">
-                                    <input type="checkbox" checklist-model="user.roles" checklist-value="wfHop"> {{wfHop.status}}
-                                     </label>
-								</table>		
-						</div>
-						</table>
-					 
-				</div>
 				
-				
-				<!-- testing check box -->
-               <p class="print-align-right">
-               <a href="#" onclick="javascript:window.print();" >Print this page</a>
-               </p>
+					<!-- testing check box -->
+             
 				
 				<!-- By Feroj 03, June 2018 -->
 			</div>
 		</form>
 		
-	   </div>
+		<!-- Start By Feroj on 29th June,2018  -->  
+				<br> <br> <br>
+					
+				<!--  End By Feroj on 29th June 2018 -->
 
 </body>
 
