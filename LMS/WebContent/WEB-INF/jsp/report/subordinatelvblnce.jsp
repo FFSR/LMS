@@ -42,11 +42,11 @@
 								<td title="'Section'" filter="{ leaveTotal: 'text'}"
 									sortable="'totalleave'">{{user.lmsSection.name}}</td>
 
-								<!--	<td title="'mobile'" filter="{ leavetaken: 'text'}"
+									<td title="'mobile'" filter="{ leavetaken: 'text'}"
 								sortable="'takenleave'">{{user.mobilePersonal}}</td>
 								<td title="'Status'" filter="{ Remainingleave: 'text'}"
 								sortable="'remainingTotal'">{{user.status}}</td>
-							 	 -->
+							 	 
 
 								<td title="'Action'">
 									<button type="button" class="btn-primary"
