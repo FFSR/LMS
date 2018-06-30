@@ -72,6 +72,8 @@
 <!-- Angular Stuff -->
 <script type="text/javascript" src="resources/js/angular.min.js"></script>
 <script type="text/javascript" src="resources/js/ng-table.min.js"></script>
+<script type="text/javascript" src="resources/js/checklist-model.js"></script>
+
 <link href="resources/css/ng-table.min.css">
 
 <script type="text/javascript" src="resources/js/app.js/app.js"></script>

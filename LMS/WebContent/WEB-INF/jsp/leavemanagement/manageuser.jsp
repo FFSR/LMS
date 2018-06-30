@@ -37,7 +37,6 @@
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
-
 </head>
 
 <body ng-controller="manageuserController">
@@ -313,7 +312,6 @@
 						</div>
 					</div>
 					<br>
-
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
@@ -328,24 +326,7 @@
 									</select>
 								</div>
 							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Workflow Role</label>
-								<div class="col-md-9">
-									<select class="form-control" id="ddlmsWftrole"
-										ng-model="ddlmsWftrole"
-										ng-options="x as x.roleName for x in wftroleNames track by x.id">
-										<option value="">Select</option>
-									</select>
-
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<br>
-					<div class="row">
+						</div>						
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label col-md-3">Status</label>
@@ -357,8 +338,22 @@
 									</select>
 								</div>
 							</div>
-						</div>
-
+						</div>					
+					</div>
+					<br>
+					<div class="row">										
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="control-label col-md-3">Workflow Role</label>
+								<div class="col-md-9">
+									<select class="form-control" id="ddlmsWftrole"
+										ng-model="ddlmsWftrole"
+										ng-options="x as x.roleName for x in wftroleNames track by x.id">
+										<option value="">Select</option>
+									</select>
+								</div>
+							</div>
+						</div>						
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="control-label col-md-3">Application Role</label>
@@ -368,15 +363,36 @@
 										ng-options="x as x.name for x in roleNames track by x.id">
 										<option value="">Select</option>
 									</select>
-
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="row">					
+						<div class="col-md-6">
+							<div >
+								<label class="control-label col-md-3">Work Flow Role</label>
+								<div class="well">
+									<label ng-repeat="wfrole in wfroles">
+  										<input type="checkbox" checklist-model="user.wfroles" checklist-value="wfrole.id"> {{wfrole.roleName}}
+  										<br>
+									</label>
 								</div>
 							</div>
 						</div>
 
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="control-label col-md-3">Application Role</label>
+								<div class="well">
+									<label ng-repeat="approle in approles">
+  										<input type="checkbox" checklist-model="user.approles" checklist-value="approle.id"> {{approle.name}}
+										<br>
+									</label>
+								</div>
+							</div>
+						</div>					
 					</div>
-					<br>
-
-					<div class="row"></div>
 					<br>
 					<div class="row">
 						<div class="col-sm-3">

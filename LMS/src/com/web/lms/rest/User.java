@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.wrapper.ResponseWrapper;
+import com.web.lms.wrapper.UserWrapper;
 import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsRoleHome;
 import com.web.lms.dao.LmsUserHome;
@@ -252,6 +253,49 @@ public class User {
 			
 
 			if (lmsRole != null && lmsWftrole != null) {
+
+				lmsUser.setUpdateDate(new Date());
+				lmsUser.setUpdateBy(lmsUser.getId());
+				lmsUser.setLmsUser(lmssupervisor);
+
+				lmsUserHome.merge(lmsUser); // For Update
+
+				manageUserRoleMap(lmsUser, lmsRole);
+
+				manageWftRoleUserMap(lmsUser, lmsWftrole);
+
+			} else {
+				responseWrapper.setMessage("Mentioned Role not found in database.");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+		}
+
+		catch (Exception ex) {
+			ex.printStackTrace();
+			responseWrapper.setMessage("Failed to create User.");
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		responseWrapper.setMessage("Success. User has created");
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value = "/updateuserprofile/{lmssupervisorid}/", method = RequestMethod.POST)
+	public ResponseEntity<ResponseWrapper> updateuserprofile(@PathVariable("lmssupervisorid") Integer lmssupervisorid, @RequestBody UserWrapper userWrapper){
+
+		ResponseWrapper responseWrapper = new ResponseWrapper();
+		List<LmsRole> lmsRoles = userWrapper.getLmsRoles();
+		List<LmsWftRole> lmsWftroles = userWrapper.getLmsWftRoles();
+		LmsUser lmsUser = userWrapper.getLmsuser();
+		LmsUser lmssupervisor;
+		
+		try {
+
+			lmssupervisor = lmsUserHome.findById(lmssupervisorid);
+			
+
+			if (lmsRoles.size() !=0 && lmsWftroles.size() != 0) {
 
 				lmsUser.setUpdateDate(new Date());
 				lmsUser.setUpdateBy(lmsUser.getId());

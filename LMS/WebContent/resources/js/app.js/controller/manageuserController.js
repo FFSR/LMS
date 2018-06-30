@@ -158,7 +158,7 @@ App
 				$scope.statusFinal = "";
 
 				if ($scope.userName == null || $scope.userName == "") {
-					$scope.userNameDummy = "880";
+					$scope.userNameDummy = "shourav";
 				}else{
 					$scope.userNameDummy = $scope.userName;
 				}
@@ -288,7 +288,16 @@ App
 				//$scope.user.nationality = $scope.nationality.name;*/
 				
 			//	updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.lmssupervisor,$scope.user).then(
-				updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole,  $scope.user.lmsUser,$scope.user).then(		
+		    //  updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole,  $scope.user.lmsUser, $scope.user).then(
+				
+				//$scope.user.wfroles;
+				//$scope.user.approles;
+				
+				$scope.userWrapper.lmsuser = $scope.user;
+				$scope.userWrapper.lmsRoles = $scope.user.wfroles;
+				$scope.userWrapper.lmsWftRoles = $scope.user.approles;
+				
+				updateuserprofileService.updateuserprofile($scope.user.lmsUser, $scope.userWrapper).then(		
 				function(d) {
 							console.log(d.message);
 							console.log("Success.", d.message);
@@ -370,6 +379,9 @@ App
 				RoleService.getAllRole()
 				.then(function(d) {
 					$scope.roleNames = d;
+					
+					$scope.approles =d;
+					
 				}, function(errResponse) {
 					console.log("Failed to get Drop Down.");
 				});
@@ -380,6 +392,9 @@ App
 				WftroleService.getAllWftrole()
 				.then(function(d) {
 					$scope.wftroleNames = d;
+					
+					$scope.wfroles = d;
+					
 				}, function(errResponse) {
 					console.log("Failed to get Drop Down.");
 				});
@@ -443,9 +458,7 @@ App
 					window.location = url + "unauthorised";
 				});					
 			};
-			
-			
-			
+				
 			$scope.clearAll = function(){
 				// for dropdown set to zero
 				//$scope.mobileNoDropDown = '0';
@@ -475,16 +488,35 @@ App
 				$scope.dateofbirth = "";
 				$scope.ddlmsRole='0';
 				$scope.ddlmsWftrole='0';
-				
-				
-				
+						
 			};
 			
+			// User WF Role Manage Start
 			
+/*			$scope.wfroles = [
+			    {id: 1, name: 'Guest'},
+			    {id: 2, name: 'User'},
+			    {id: 3, name: 'Customer'},
+			    {id: 4, name: 'Admin'}
+			  ];*/
 			
+			  $scope.user = {
+					  wfroles: [2, 4]
+			  };
+			  
+			  $scope.checkAll = function() {
+			    $scope.user.wfroles = $scope.wfroles.map(function(item) { return item.id; });
+			  };
+			  
+			  $scope.uncheckAll = function() {
+			    $scope.user.wfroles = [];
+			  };
+			  
+			  $scope.checkFirst = function() {
+			    $scope.user.wfroles.splice(0, $scope.user.wfroles.length); 
+			    $scope.user.wfroles.push(1);
+			  };
 			
+			// User WF Role Manage End
 			
-			
-			
-
 		} ]);
