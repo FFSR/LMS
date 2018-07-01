@@ -177,7 +177,7 @@ App
 
 	                    
 	                    if (diffDays > $scope.AdjustDays){
-	                    	$scope.showSuccessMessage("Validation successful");
+	                    	//$scope.showSuccessMessage("Validation successful");
 	                    	$scope.validationLock = false;       	
 	                    }
 	                    else{
@@ -188,6 +188,11 @@ App
 	                    if ($scope.leavetype.id!=27){
 	                    	$scope.showErrorMessage("Validation fail, Please select Leave Cancel as leave type" );
 	                    	$scope.validationLock = true;       	
+	                    }
+	                    
+	                    if ($scope.validationLock = false){
+	                    	$scope.showSuccessMessage("Validation successful");
+	                    	;       	
 	                    }
 	                  
 

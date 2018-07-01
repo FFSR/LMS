@@ -23,6 +23,8 @@
 <body ng-controller="subordinatelvblnceController">
 	
 		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
+		
+		<div ng-init="userAccessAuthentication('${sessionScope.user.id}')"></div>
 
 		<div class="container-fluid">
 
@@ -59,10 +61,22 @@
 			</div>
 			<br> <br> <br>
 
-
+          <div ID="DIVPRINT">
 			<div class="container-fluid">
 				<div ng-if="leavehistoryinfo">
 					<form class="form-horizontal" name="updateForm">
+						
+						<div class="row">
+					        <div class="col-md-6">
+						        <div class="form-group">
+							       <label class="control-label col-md-3">Employee Name</label>
+							         <div class="col-md-9">
+								       <input type="text" ng-disabled="true" ng-model="employeename"
+									class="form-control" placeholder="User ID">
+							    </div>
+						   </div>
+					    </div>
+					  </div>
 						<table ng-table="tableParams2" class="table table-striped"
 							show-filter="true">
 							<tr ng-repeat="lmsLeaveBalance in $data"> 
@@ -88,7 +102,9 @@
 				</div>
 
 			</div>
+       </div>
 
+						
 		</div>
 	
 </body>

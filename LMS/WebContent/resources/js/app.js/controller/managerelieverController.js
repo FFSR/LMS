@@ -205,20 +205,6 @@ App
 		                }
 					};
 					
-					$scope.userAuthentication = function(userid){
-						
-						// Validate from lms_pages table
-						$scope.pageid = 20;
-						
-						loginService.getauthorised(userid, $scope.pageid)
-						.then(function(d) {						
-							$scope.showSuccessMessage(d.message);
-							
-						}, 
-						function(e) {
-							$scope.showErrorMessage(e.data.message);
-							window.location = url + "unauthorised";
-						});					
-					};
+					
 				
 			} ]);

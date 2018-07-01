@@ -45,7 +45,6 @@
 <body>
 	<br>
 	<div ng-controller="leaveapplicationController">
-		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 		<div
 			ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}')"></div>
 		<div

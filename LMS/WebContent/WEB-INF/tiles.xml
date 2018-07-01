@@ -81,10 +81,10 @@
 			value="/WEB-INF/jsp/leavemanagement/leavehistorysearch.jsp" />
 	</definition>
 
-	<definition name="leavehistoryresult" extends="baseLayout">
+	<definition name="rptsubordinateleavestatus" extends="baseLayout">
 		<put-attribute name="title" value="HomePage" />
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/leavemanagement/leavehistoryresult.jsp" />
+			value="/WEB-INF/jsp/report/rptsubordinateleavestatus.jsp" />
 	</definition>
 
 	<definition name="forgetpasswd" extends="baseLayout">

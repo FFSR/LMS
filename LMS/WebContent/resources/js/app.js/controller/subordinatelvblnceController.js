@@ -32,6 +32,22 @@ App.controller('subordinatelvblnceController', [
 				});
 
 			};
+			
+                $scope.userAccessAuthentication = function(userid){
+				
+				// Validate from lms_pages table
+				$scope.pageid = 30;
+				
+				loginService.getauthorised(userid, $scope.pageid)
+				.then(function(d) {						
+					$scope.showSuccessMessage(d.message);
+					
+				}, 
+				function(e) {
+					$scope.showErrorMessage(e.data.message);
+					window.location = url + "unauthorised";
+				});					
+			};
 
 			$scope.leavehistoryinfo = function(user) {
 				$scope.userID = user.id;
@@ -40,6 +56,8 @@ App.controller('subordinatelvblnceController', [
 
 					// change korte hobe d.listlsmLeae done
 					var data = d.listLmsLeaveBalance;
+					var lvbalance =d.listLmsLeaveBalance[0];
+					$scope.employeename=lvbalance.lmsUser.name;
 
 					$scope.tableParams2 = new NgTableParams({}, {
 						dataset : data
@@ -67,6 +85,15 @@ App.controller('subordinatelvblnceController', [
 					$scope.errorMessages = null;
 				}, 6000);
 			};
+			
+			$scope.CallPrint= function(strid) {
+				   
+					var restorepage= document.body.innerHTML;
+					var printcontent=document.getElementById(strid).innerHTML;
+					document.body.innerHTML=printcontent;
+					window.print();
+				    document.body.innerHTML=printcontent=restorepage;
+				};
 
 			
 			$scope.gotoHomePage = function() {

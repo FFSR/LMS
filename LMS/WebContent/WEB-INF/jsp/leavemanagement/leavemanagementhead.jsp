@@ -18,6 +18,7 @@
 </head>
 <body ng-controller="manageleaveController">
 	<div ng-init="loadLeaveApplications('${sessionScope.userID}');"></div>
+	<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 	<div>
 		<br>
 		<div>
