@@ -150,12 +150,25 @@ App
 											console.log(d);
 											$scope.showSuccessMessage("Reliever Added");
 											$scope.getUserDelegationInfo();
+											$scope.Clear();
 										},
 										function(errResponse){
 											$scope.showErrorMessage("Reliever not Added");
 											
 										}
 										);
+								$scope.Clear = function(){	
+									//$scope.Userid = 
+									   $scope.ddReliever=0;
+										$scope.name_n ="";
+										$scope.dep_name="";
+										$scope.sec_name="";
+										//$scope.releiverid="";
+										new Date($('#fromDate').val(''));
+										new Date($('#toDate').val(''));
+										//$scope.leaveBalance = d.lmsLeaveBalance.leaveBalance;
+										//$scope.leaveTotal = d.lmsLeaveBalance.leaveTotal;
+								       };
 										
 									} 
 					$scope.deleteReliever = function(userid,delegatebyid){	

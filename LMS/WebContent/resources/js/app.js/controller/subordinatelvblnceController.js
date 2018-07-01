@@ -56,8 +56,8 @@ App.controller('subordinatelvblnceController', [
 
 					// change korte hobe d.listlsmLeae done
 					var data = d.listLmsLeaveBalance;
-					var lvbalance =d.listLmsLeaveBalance[0];
-					$scope.employeename=lvbalance.lmsUser.name;
+					$scope.lvbalance =d.listLmsLeaveBalance[0];
+					$scope.employeename=$scope.lvbalance.lmsUser.name;
 
 					$scope.tableParams2 = new NgTableParams({}, {
 						dataset : data
@@ -93,7 +93,11 @@ App.controller('subordinatelvblnceController', [
 					document.body.innerHTML=printcontent;
 					window.print();
 				    document.body.innerHTML=printcontent=restorepage;
+				    location.reload();
+				    
 				};
+				
+				
 
 			
 			$scope.gotoHomePage = function() {

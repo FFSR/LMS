@@ -72,7 +72,7 @@
 							       <label class="control-label col-md-3">Employee Name</label>
 							         <div class="col-md-9">
 								       <input type="text" ng-disabled="true" ng-model="employeename"
-									class="form-control" placeholder="User ID">
+									class="form-control" placeholder="{{lvbalance.lmsUser.name}}">
 							    </div>
 						   </div>
 					    </div>
@@ -103,7 +103,9 @@
 
 			</div>
        </div>
-
+                 <button type="submit"
+				 class="btn btn-success waves-effect waves-light m-r-10"
+				 id="cancel" ng-click="CallPrint('DIVPRINT')">Print</button>
 						
 		</div>
 	
