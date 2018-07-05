@@ -19,10 +19,12 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
+								$scope.showSuccessMessage(d.message);
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
+								$scope.showErrorMessage(d.message);
 							});
 				}
 				
@@ -30,5 +32,26 @@ App
 					
 					window.location = "login";
 				}
+                   
+                   /* Show Success Message */
+   				$scope.showSuccessMessage = function(message) {
+
+   					$scope.successMessages = message;
+   					$timeout(function() {
+   						$scope.successMessages = null;
+   						$scope.errorMessages = null;
+   					}, 6000);
+   				};
+
+   				/* Show Error Message */
+   				$scope.showErrorMessage = function(message) {
+
+   					$scope.errorMessages = message;
+   					$timeout(function() {
+   						$scope.successMessages = null;
+   						$scope.errorMessages = null;
+   					}, 6000);
+   				};
+                   
 				
 			} ]);

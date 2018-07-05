@@ -31,12 +31,13 @@ App
 					
 					$scope.userID = userID;
 					
-					rptleavestatusService.getleavestatus($scope.userID)
+					//rptleavestatusService.getleavestatus($scope.userID)
+					rptleavestatusService.getsubordinateleavestatus($scope.userID)
 					.then(
 							function(d){
 						var dataReportStatus = d.listLmsWfRequest;
-						var wfRequest =d.listLmsWfRequest[0];
-						$scope.employeename=wfRequest.lmsUserByUserId.name;
+						//var wfRequest =d.listLmsWfRequest[0];
+					//	$scope.employeename=wfRequest.lmsUserByUserId.name;
 						$scope.tableParams = new NgTableParams({}, { dataset: dataReportStatus});
 					},
 					function(errResponse){
@@ -63,7 +64,6 @@ App
 
 				};
 				
-				
                    $scope.showApprovalFlowDetails= function(wfrequestID){
                 	 var dataHopsStatus={};
                 	$scope.wfrequestID=wfrequestID;
@@ -71,7 +71,9 @@ App
 					.then(
 							function(d){
 						var dataHopsStatus = d.listLmsWfRequestHops;
-						$scope.tableParams3 = new NgTableParams({}, { dataset: dataHopsStatus});
+						var wfhop =d.listLmsWfRequestHops[0];
+						$scope.employeename=wfhop.lmsUser.name;
+						$scope.tableParams2 = new NgTableParams({}, { dataset: dataHopsStatus});
 					},
 					function(errResponse){
 						

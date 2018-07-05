@@ -39,6 +39,13 @@
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+<link rel="stylesheet"
+	href="resources/css/icons/test.css" />
+
+<style>
+    .required:before { content:"** ";color: red; }
+</style>
+
 
 
 </head>
@@ -54,8 +61,8 @@
 			<div class="form-body">
 				<div class="row">
 					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-3">User ID</label>
+						<div class="form-group">	
+							<label >USER ID</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="userid"
 									class="form-control" placeholder="User ID">
@@ -65,7 +72,7 @@
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">User Name</label>
+							<label class="simple">User Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="username"
 									class="form-control" placeholder="User Name">
@@ -77,7 +84,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Leave Type</label>
+							<label class="required">Leave Type</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddleavetype" ng-required="true"
@@ -91,7 +98,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Leave Eligibility</label>
+							<label class="simple">Leave Eligibility</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="eligibility"
 									class="form-control" placeholder="Yearly Leave Eligibility">
@@ -102,7 +109,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Total Leave</label>
+							<label class="simple">Total Leave</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveTotal"
 									class="form-control" placeholder="Total Leave">
@@ -113,7 +120,7 @@
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Leave Taken</label>
+							<label class="simple">Leave Taken</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveTaken"
 									class="form-control" placeholder="Leave All ready Taken">
@@ -124,7 +131,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Leave Balance</label>
+							<label class="simple">Leave Balance</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveBalance"
 									restrict-input="{type: 'digitsOnly'}" class="form-control"
@@ -134,7 +141,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Leave Applied</label>
+							<label class="simple">Leave Applied</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveApplied"
 									class="form-control" placeholder="Leave Remaining">
@@ -145,7 +152,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">From Date</label>
+							<label class="required">From Date</label>
 							<div class="col-md-9">
 								<input type="text" id="fromDate" ng-model="fromDate"
 									class="form-control" ng-required="true" />
@@ -154,7 +161,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="col-md-3 control-label">To Date</label>
+							<label class="required">To Date</label>
 							<div class="col-md-9">
 								<input type="text" id="toDate" ng-model="toDate"
 									class="form-control" ng-required="true" />
@@ -179,7 +186,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">In Station</label>
+							<label class="required">In Station</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddStation" ng-model="ddStation"
@@ -192,7 +199,7 @@
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Reliever</label>
+							<label class="required">Leave Substitute</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"
@@ -207,7 +214,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Tasks TO DO</label>
+							<label class="simple">Tasks TO DO</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="taskNeedToPerformed"
 									class="form-control" placeholder="Tasks need to be performed">
@@ -216,7 +223,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Reason of Leave</label>
+							<label class="required">Reason of Leave</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="reasonForLeave" ng-required="true"
 									class="form-control" placeholder="Reason For Leave">

@@ -27,52 +27,15 @@
 
 	<div ng-controller="rptsubordinateleavestatusController">
 
-			<div ng-init="SubordinateuserList('${sessionScope.user.id}')"></div>
+			<!-- <div ng-init="SubordinateuserList('${sessionScope.user.id}')"></div> -->
+			<div ng-init="loadrptleavestatus('${sessionScope.user.id}')"></div>
 			
 
 		<form class="form-horizontal" name="rptleavestatusForm">
 			<div class="form-body">
-					
-				<div>
-				<table class="table table-sm">
-					<div>
-						<table ng-table="tableParams1" class="table table-striped"
-							show-filter="true">
-							<tr ng-repeat="user in $data">
-								<td title="'Employee ID'" filter="{ name: 'text'}"
-									sortable="'name'">{{user.id}}</td>
-								<td title="'Employee name'" filter="{ name: 'text'}"
-									sortable="'name'">{{user.name}}</td>
-								<td title="'Division'" filter="{ type: 'text'}"
-									sortable="'lmsLeaveType.type'">{{user.lmsDivision.name}}</td>
-								<td title="'Section'" filter="{ leaveTotal: 'text'}"
-									sortable="'totalleave'">{{user.lmsSection.name}}</td>
-
-
-								<td title="'Action'">
-									<button type="button" class="btn-primary"
-										ng-click="loadrptleavestatus(user.id)">Details</button>
-
-								</td>
-						</table>
-					</div>
-				</table>
-			</div>
-						
-				
+							
 				<div>
 				
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-3">Employee Name</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="employeename"
-									class="form-control" placeholder="User ID">
-							</div>
-						</div>
-					</div>
-					</div>
 					
 					<table class="table table-sm">
 						<div>
@@ -108,8 +71,40 @@
 							</table>
 						</div>
 					</table>
-				</div>
-				
+				</div>	
+				<div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Employee Name</label>
+							<div class="col-md-9">
+								<input type="text" ng-disabled="true" ng-model="employeename"
+									class="form-control" placeholder="User ID">
+							</div>
+						</div>
+					</div> 
+					</div>
+					
+					<table class="table table-sm">
+						<div>
+
+							<table ng-table="tableParams2" class="table" show-filter="true">
+								<tr ng-repeat="wfHop in $data">
+									<td title="'Status'" filter="{ id: 'text'}" sortable="'id'">{{wfHop.status}}</td>
+									<td title="'Updated By'"
+										filter="{ 'lmsUserByUserId.name': 'text'}"
+										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsUser.name}}</td>
+									<td title="'Role Name'"
+										filter="{ 'lmsUserByUserId.name': 'text'}"
+										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfHop.lmsWftRequestHopRolePageMap.lmsWftRole.roleName}}</td>
+
+									<td title="'Update Date'" filter="{ type: 'text'}"
+										sortable="'lmsLeaveType.type'">{{wfHop.updateDate
+										| date: YYYY-MM-dd}}</td>
+							</table>
+						</div>
+					</table>      
+					</div>
 			</div>
 		
 		</form>

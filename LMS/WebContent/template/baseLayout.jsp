@@ -150,8 +150,8 @@ body, body td, body th {
                     <!-- .Megamenu -->
                     <!-- /.Megamenu -->
                     <!-- /.dropdown -->
-                   <h3 style="align: center; color: #ff0000;"> OFFICE OF THE CONTROLLER OF CERTIFYING AUTHORITIES</h3>
-                   <h3 style="align: center; color: #ff0000;" font-wight: bold> LEAVE MANAGEMENT SYSTEM</h3>
+                   <h3 style="align: center;"> <font name="Andale Mono" size="+2" color="green">OFFICE OF THE CONTROLLER OF CERTIFYING AUTHORITIES</font></h3>
+                   <h3 style="align: center;"><font size="+2" color="red"> LEAVE MANAGEMENT SYSTEM</font></h3>
                 </ul>
             </div>
             <!-- /.navbar-header -->

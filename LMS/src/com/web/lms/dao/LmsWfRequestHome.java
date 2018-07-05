@@ -130,6 +130,23 @@ public class LmsWfRequestHome {
 		}
 	}
 	
+	// used to find subordinate leave status list for reporting.
+    // added by Feroj on 03.07.2018
+	public List<LmsWfRequest> findRequestBysupervisorID(Integer userid) {
+
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUserByUserId.lmsUser.id=:userid")
+					.setParameter("userid", userid);
+
+			List<LmsWfRequest> listLmsWfRequest = query.getResultList();
+
+			return listLmsWfRequest;
+
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<LmsWfRequest> findAllLeaveApplicationsGeaterThanCurrentDate() {
 		try {

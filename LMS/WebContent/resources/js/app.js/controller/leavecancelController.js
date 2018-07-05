@@ -190,7 +190,7 @@ App
 	                    	$scope.validationLock = true;       	
 	                    }
 	                    
-	                    if ($scope.validationLock = false){
+	                    if ($scope.validationLock == false){
 	                    	$scope.showSuccessMessage("Validation successful");
 	                    	;       	
 	                    }

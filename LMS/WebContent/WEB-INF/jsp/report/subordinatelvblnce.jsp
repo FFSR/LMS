@@ -93,6 +93,8 @@
 
 								<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
 									sortable="'lmsLeaveBalance.leaveBalance'">{{lmsLeaveBalance.leaveBalance}}</td>
+								<td title="'Leave Apllied'" filter="{ Remainingleave: 'text'}"
+									sortable="'lmsLeaveBalance.leaveBalance'">{{lmsLeaveBalance.leaveApplied}}</td>
 
 								<td title="'Eligibility'" filter="{ eligibility: 'text'}"
 									sortable="'lmsLeaveBalance.eligibility'">{{lmsLeaveBalance.eligibility}}</td>

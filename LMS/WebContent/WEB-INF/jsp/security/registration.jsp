@@ -30,9 +30,18 @@
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+	
+<link rel="stylesheet"
+	href="resources/css/icons/test.css" />
+
+<style>
+    .required:before { content:"** ";color: red; }
+</style>
 
 </head>
 <body>
+
+
 	<div ng-controller="registrationController">
 		<div ng-init="getDivisionData()"></div>
 		<div ng-init="getDepartmentData()"></div>
@@ -54,22 +63,24 @@
 						placeholder="User ID">-->
 			</div>
 
-
-
 			<br>
+	
+	<div class="modal-body">
+		<form role="form" name="myform">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Name</label>
+						<label class="required">Name</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.name" ng-required="true"
-								class="form-control" placeholder="User Name">
+								class="form-control" placeholder="Name">
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Division</label>
+						
+						<label class="required">Division</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
 								ng-model="user.lmsDivision" ng-required="true"
@@ -88,7 +99,8 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Department</label>
+						
+						<label class="required">Department</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
 								ng-model="user.lmsDepartment" ng-required="true"
@@ -103,7 +115,7 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Section</label>
+						<label class="required">Section</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
 								ng-model="user.lmsSection" ng-required="true"
@@ -119,7 +131,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Designation</label>
+						<label class="required">Designation</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
 								ng-model="user.lmsDesignation" ng-required="true"
@@ -131,7 +143,7 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Ministry</label>
+						<label class="required">Ministry</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
 								ng-model="user.lmsMinistry" ng-required="true"
@@ -162,7 +174,7 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Office</label>
+						<label class="required">Office</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
 								ng-model="user.lmsOfficeLocation" ng-required="true"
@@ -201,10 +213,12 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Email</label>
+							<label class="required">Email</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.email" class="form-control"
 								ng-required="true" placeholder="Email">
+							<span class="error" ng-show="regForm.input.$error.email">
+									Not valid email!</span>
 						</div>
 					</div>
 				</div>
@@ -222,7 +236,8 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Joining Date</label>
+						
+						<label class="required">Joining Date In Service</label>
 						<div class="col-md-9">
 							<input type="text" id="joiningDate" class="form-control"
 								ng-required="true" ng-model="joiningDate"
@@ -290,7 +305,7 @@
 			<div class=row>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Supervisor</label>
+							<label class="required">Supervisor</label>
 						<div class="col-md-9">
 							<!-- Drop Down list from table -->
 							<select class="form-control" id="ddReliever"
@@ -326,7 +341,7 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Password</label>
+							<label class="required">Password</label>
 						<div class="col-md-9">
 							<input type="password" ng-model="user.password"
 								ng-required="true" class="form-control" placeholder="Password">
@@ -350,7 +365,7 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Date of Birth</label>
+							<label class="required">Date of Birth</label>
 						<div class="col-md-9">
 							<input type="text" id="dateofbirth" class="form-control"
 								ng-required="true" ng-model="dateofbirth"
@@ -361,7 +376,7 @@
 
 
 			</div>
-		</div>
+		
 
 		<br>
 		<div class="row">
@@ -376,7 +391,9 @@
 			</div>
 
 		</div>
-
+		</form>
+		</div>
+	
 
 		<br>
 		<div class="row">
