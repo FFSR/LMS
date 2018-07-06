@@ -63,6 +63,7 @@ App
 				manageuserService.getmanageuser($scope.userNameDummy, $scope.mobileDummy, $scope.statusFinal)
 					.then(function(d) {
 								
+						//$scope.supervisor=d.lmssupervisor;
 						var data = d.listLmsuser;
 
 						$scope.tableParams = new NgTableParams({}, {
@@ -111,6 +112,8 @@ App
 				$scope.getUserwfRoleInfo(user.id);
 				
 				$scope.getUserAppRoleInfo(user.id);
+				
+				$scope.getSupervisor(user.id);
 			
 			};
 			
@@ -150,6 +153,23 @@ App
 								
 								$scope.user.approles.push(item.id);
 							}
+						},
+						function(errResponse) {
+							console.error("Error while fetching Currencies");
+						});
+			};
+			
+			$scope.getSupervisor = function(userid){	
+
+				manageuserService.manageuser(userid)
+				.then(
+						function(d) {
+
+							$scope.user.lmsUser={};
+							$scope.user.lmsUser.name = d.lmssupervisor.name;
+							//$scope.supervisor.name = $scope.supervisor.name;
+							//$scope.supervisor = $scope.user.lmsUser ;
+							
 						},
 						function(errResponse) {
 							console.error("Error while fetching Currencies");

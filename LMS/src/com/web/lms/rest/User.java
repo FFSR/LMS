@@ -198,8 +198,8 @@ public class User {
 
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-/*	-------Try-----
-		LmsUser lmsUser1 = lmsUserHome.findByUnameandMobile(uName, mobile, status);
+	
+	/*	LmsUser lmsUser1 = lmsUserHome.findByUnameandMobile(uName, mobile, status);
 		if(lmsUser1!=null) {
 			
 			//responseWrapper.setLmsuser(lmsUser)
@@ -209,8 +209,8 @@ public class User {
 			
 			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-		}
-		 -------end-----*/
+		}*/
+		 
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
@@ -224,6 +224,7 @@ public class User {
 		if (lmsUser != null) {
 
 			responseWrapper.setLmsuser(lmsUser);
+			responseWrapper.setLmssupervisor(lmsUser.getLmsUser());
 
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
