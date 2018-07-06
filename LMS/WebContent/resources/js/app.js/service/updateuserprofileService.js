@@ -13,7 +13,7 @@ App
 						function($http, $q, url) {
 							return {
 
-								updateuserprofile : function(lmsWftrole, lmsRole, lmssupervisor,user ) {
+								updateuserprofile : function(lmssupervisor, userWrapper ) {
 									//console.log(user);
 									
 									// Added by Feroj on 12th June,2018. If supervisor is null, update shud be successfull
@@ -22,7 +22,7 @@ App
 									lmssupervisor.id=0;
 									}
 									
-									return $http.post(url + 'updateuserprofile/'+ lmsWftrole.id +'/'+ lmsRole.id+'/' + lmssupervisor.id + '/', user)		
+									return $http.post(url + 'updateuserprofile/'+ lmssupervisor.id + '/', userWrapper)		
 									.then(
 													function(response) {
 														return response.data;

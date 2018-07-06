@@ -158,7 +158,7 @@ App
 				$scope.statusFinal = "";
 
 				if ($scope.userName == null || $scope.userName == "") {
-					$scope.userNameDummy = "shourav";
+					$scope.userNameDummy = "880";
 				}else{
 					$scope.userNameDummy = $scope.userName;
 				}
@@ -220,14 +220,16 @@ App
 				$scope.nationality = {};
 				$scope.nationality.name= user.nationality;
 				
-				$scope.nationality = {};
-				$scope.nationality.name= user.nationality;
+				//$scope.nationality = {};
+				//$scope.nationality.name= user.nationality;
 				
 				//$scope.lmssupervisor={};
 				//$scope.lmssupervisor.name= $scope.supervisor.name;
-				$scope.user.lmsUser={};
-				$scope.user.lmsUser.name=$scope.supervisor.name;
-				$scope.user.lmsUser =$scope.supervisor;
+				//$scope.user.lmsUser={};
+				if($scope.user.lmsUser!=null){
+					$scope.supervisor.name = $scope.user.lmsUser.name;
+					$scope.supervisor = $scope.user.lmsUser ;
+				}
 				
 				$scope.ddlmsRole = {};
 				$scope.ddlmsRole.name= user.ddlmsRole;
@@ -292,6 +294,8 @@ App
 				
 				//$scope.user.wfroles;
 				//$scope.user.approles;
+				
+				$scope.userWrapper ={};
 				
 				$scope.userWrapper.lmsuser = $scope.user;
 				$scope.userWrapper.lmsRoles = $scope.user.wfroles;
