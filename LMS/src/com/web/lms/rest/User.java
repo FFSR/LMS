@@ -47,7 +47,7 @@ public class User {
 	@Autowired
 	private LmsRoleHome lmsRoleHome;
 	@Autowired
-	private LmsWftRoleHome LmsWftRoleHome;
+	private LmsWftRoleHome lmsWftRoleHome;
 
 	@RequestMapping(value = "/log/{userName}/{password}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> getlog(@PathVariable("userName") String uName,
@@ -189,16 +189,16 @@ public class User {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
-		List<LmsUser> lmsUser = lmsUserHome.findByUnameandMobileList(uName, mobile, status);
-		if (lmsUser.size() > 0) {
+		List<LmsUser> lmsUsers = lmsUserHome.findByUnameandMobileList(uName, mobile, status);
+		if (lmsUsers.size() > 0) {
 
-			responseWrapper.setListLmsuser(lmsUser);
+			responseWrapper.setListLmsuser(lmsUsers);
 			//responseWrapper.setListLmssupervisor(lmsUser);
 			//responseWrapper.setLmssupervisor;
 
-			//return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-	/*-------Try-----*/
+/*	-------Try-----
 		LmsUser lmsUser1 = lmsUserHome.findByUnameandMobile(uName, mobile, status);
 		if(lmsUser1!=null) {
 			
@@ -210,7 +210,7 @@ public class User {
 			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
-		/* -------end-----*/
+		 -------end-----*/
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
@@ -249,7 +249,7 @@ public class User {
 		try {
 
 			lmsRole = lmsRoleHome.findById(roleid);
-			lmsWftrole = LmsWftRoleHome.findById(wftroleid);
+			lmsWftrole = lmsWftRoleHome.findById(wftroleid);
 			lmssupervisor = lmsUserHome.findById(lmssupervisorid);
 			
 
@@ -261,9 +261,9 @@ public class User {
 
 				lmsUserHome.merge(lmsUser); // For Update
 
-				manageUserRoleMap(lmsUser, lmsRole);
+				//manageUserRoleMap(lmsUser, lmsRole);
 
-				manageWftRoleUserMap(lmsUser, lmsWftrole);
+				//manageWftRoleUserMap(lmsUser, lmsWftrole);
 
 			} else {
 				responseWrapper.setMessage("Mentioned Role not found in database.");
@@ -286,8 +286,8 @@ public class User {
 	public ResponseEntity<ResponseWrapper> updateuserprofile(@PathVariable("lmssupervisorid") Integer lmssupervisorid, @RequestBody UserWrapper userWrapper){
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
-		List<LmsRole> lmsRoles = userWrapper.getLmsRoles();
-		List<LmsWftRole> lmsWftroles = userWrapper.getLmsWftRoles();
+		int[] lmsRoles = userWrapper.getLmsRoles();
+		int[] lmsWftroles = userWrapper.getLmsWftRoles();
 		LmsUser lmsUser = userWrapper.getLmsuser();
 		LmsUser lmssupervisor;
 		
@@ -296,7 +296,7 @@ public class User {
 			lmssupervisor = lmsUserHome.findById(lmssupervisorid);
 			
 
-			if (lmsRoles.size() !=0 && lmsWftroles.size() != 0) {
+			if (lmsUser!=null) {
 
 				lmsUser.setUpdateDate(new Date());
 				lmsUser.setUpdateBy(lmsUser.getId());
@@ -304,32 +304,157 @@ public class User {
 
 				lmsUserHome.merge(lmsUser); // For Update
 
-				manageUserRoleMap(lmsUser, lmsRole);
+				manageUserRoleMap(lmsUser, lmsRoles);
 
-				manageWftRoleUserMap(lmsUser, lmsWftrole);
+				manageWftRoleUserMap(lmsUser, lmsWftroles);
 
 			} else {
-				responseWrapper.setMessage("Mentioned Role not found in database.");
+				responseWrapper.setMessage("User not found in database.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 		}
 
 		catch (Exception ex) {
 			ex.printStackTrace();
-			responseWrapper.setMessage("Failed to create User.");
+			responseWrapper.setMessage("Failed to update User profile.");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 
-		responseWrapper.setMessage("Success. User has created");
+		responseWrapper.setMessage("User profile has successfully updated.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 	}
 
-	private void manageWftRoleUserMap(LmsUser lmsUser, LmsWftRole lmsWftrole) {
+	private void manageUserRoleMap(LmsUser lmsUser, int[] lmsRoles) {
+
+		LmsUserRoleMap lmsUserRoleMapInsert;
+		LmsRole lmsRole;
+		List<LmsUserRoleMap> listlmsUserRoleMap;
+		
+		boolean found=false;
+		
+		// Insert / Update User Role Map table
+		if (lmsUser != null && lmsRoles != null) {
+
+			listlmsUserRoleMap = lmsUserRoleMapHome.findByUserID(lmsUser.getId());
+			
+			// Inserting Missing roles into DB			
+			for(int roleid:lmsRoles) {
+				
+				for (LmsUserRoleMap lmsUserRoleMap : listlmsUserRoleMap) {					
+
+					if(roleid == lmsUserRoleMap.getLmsRole().getId()) {
+						found= true;
+						break;
+					}else {
+						found= false;
+					}
+				}
+				
+				if(!found) {
+					
+					lmsUserRoleMapInsert = new LmsUserRoleMap();
+					
+					lmsRole = lmsRoleHome.findById(roleid);
+					
+					if(lmsRole!=null) {
+
+						lmsUserRoleMapInsert.setLmsRole(lmsRole);
+						lmsUserRoleMapInsert.setLmsUser(lmsUser);
+						lmsUserRoleMapInsert.setInsertBy(lmsUser.getId());
+						lmsUserRoleMapInsert.setInsertDate(new Date());
+
+						lmsUserRoleMapHome.persist(lmsUserRoleMapInsert);
+					}
+				}		
+			}
+			
+
+			// Remove/Delete Missing roles into DB			
+			for(LmsUserRoleMap lmsUserRoleMap : listlmsUserRoleMap) {
+				
+				for (int roleid:lmsRoles) {					
+
+					if(roleid == lmsUserRoleMap.getLmsRole().getId()) {
+						found= true;
+						break;
+					}else {
+						found= false;
+					}
+				}
+				
+				if(!found) {					
+					lmsUserRoleMapHome.remove(lmsUserRoleMap);
+				}
+			}		
+		}
+	}
+	
+	private void manageWftRoleUserMap(LmsUser lmsUser, int[] lmsWftroles) {
 
 		List<LmsWftRoleUserMap> listLmsWftRoleUserMap;
 		LmsWftRoleUserMap lmsWftRoleUserMapInsert;
+		LmsWftRole lmsWftRole;
 
-		if (lmsWftrole != null) {
+		boolean found = false;
+
+		// Insert / Update User Role Map table
+		if (lmsUser != null && lmsWftroles != null) {
+
+			listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserID(lmsUser.getId());
+
+			// Inserting Missing roles into DB
+			for (int wfroleid : lmsWftroles) {
+
+				for (LmsWftRoleUserMap lmsWftRoleUserMap : listLmsWftRoleUserMap) {
+
+					if (wfroleid == lmsWftRoleUserMap.getLmsWftRole().getId()) {
+						found = true;
+						break;
+					} else {
+						found = false;
+					}
+				}
+
+				if (!found) {
+
+					lmsWftRoleUserMapInsert = new LmsWftRoleUserMap();
+
+					lmsWftRole = lmsWftRoleHome.findById(wfroleid);
+
+					if (lmsWftRole != null) {
+
+						lmsWftRoleUserMapInsert.setLmsWftRole(lmsWftRole);
+						lmsWftRoleUserMapInsert.setLmsUserByUserId(lmsUser);
+						lmsWftRoleUserMapInsert.setInsertBy(lmsUser.getId());
+						lmsWftRoleUserMapInsert.setInsertDate(new Date());
+
+						lmsWftRoleUserMapHome.persist(lmsWftRoleUserMapInsert);
+					}
+				}
+			}
+
+			// Remove/Delete Missing roles into DB
+			for (LmsWftRoleUserMap lmsWftRoleUserMap : listLmsWftRoleUserMap) {
+
+				for (int wfroleid : lmsWftroles) {
+
+					if (wfroleid == lmsWftRoleUserMap.getLmsWftRole().getId()) {
+						found = true;
+						break;
+					} else {
+						found = false;
+					}
+				}
+
+				if (!found) {
+					lmsWftRoleUserMapHome.remove(lmsWftRoleUserMap);
+				}
+			}
+		}
+		
+		
+
+/*		if (lmsUser != null && lmsWftroles != null) {
 
 			listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserID(lmsUser.getId());
 
@@ -352,39 +477,7 @@ public class User {
 
 				lmsWftRoleUserMapHome.merge(lmsWftRoleUserMap);
 			}
-		}
-	}
-
-	private void manageUserRoleMap(LmsUser lmsUser, LmsRole lmsRole) {
-
-		LmsUserRoleMap lmsUserRoleMapInsert;
-		List<LmsUserRoleMap> listlmsUserRoleMap;
-
-		// Insert / Update User Role Map table
-		if (lmsUser != null && lmsRole != null) {
-
-			listlmsUserRoleMap = lmsUserRoleMapHome.findByUserID(lmsUser.getId());
-
-			if (listlmsUserRoleMap.size() == 0) {
-				lmsUserRoleMapInsert = new LmsUserRoleMap();
-
-				lmsUserRoleMapInsert.setLmsRole(lmsRole);
-				lmsUserRoleMapInsert.setLmsUser(lmsUser);
-				lmsUserRoleMapInsert.setInsertBy(lmsUser.getId());
-				lmsUserRoleMapInsert.setInsertDate(new Date());
-
-				lmsUserRoleMapHome.persist(lmsUserRoleMapInsert);
-			}
-
-			for (LmsUserRoleMap lmsUserRoleMap : listlmsUserRoleMap) {
-
-				lmsUserRoleMap.setLmsRole(lmsRole);
-				lmsUserRoleMap.setUpdateBy(lmsUser.getId());
-				lmsUserRoleMap.setUpdateDate(new Date());
-
-				lmsUserRoleMapHome.merge(lmsUserRoleMap);
-			}
-		}
+		}*/
 	}
 
 	@RequestMapping(value = "/getUserlist/", method = RequestMethod.GET)

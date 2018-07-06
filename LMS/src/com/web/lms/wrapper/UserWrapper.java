@@ -1,16 +1,12 @@
 package com.web.lms.wrapper;
 
-import java.util.List;
-
-import com.web.lms.model.LmsRole;
 import com.web.lms.model.LmsUser;
-import com.web.lms.model.LmsWftRole;
 
 public class UserWrapper {
 	
 	LmsUser lmsuser;
-	List<LmsRole> lmsRoles;
-	List<LmsWftRole> lmsWftRoles;
+	int[] lmsRoles;
+	int[] lmsWftRoles;
 	
 	public LmsUser getLmsuser() {
 		return lmsuser;
@@ -18,16 +14,17 @@ public class UserWrapper {
 	public void setLmsuser(LmsUser lmsuser) {
 		this.lmsuser = lmsuser;
 	}
-	public List<LmsRole> getLmsRoles() {
+	public int[] getLmsRoles() {
 		return lmsRoles;
 	}
-	public void setLmsRoles(List<LmsRole> lmsRoles) {
+	public void setLmsRoles(int[] lmsRoles) {
 		this.lmsRoles = lmsRoles;
 	}
-	public List<LmsWftRole> getLmsWftRoles() {
+	public int[] getLmsWftRoles() {
 		return lmsWftRoles;
 	}
-	public void setLmsWftRoles(List<LmsWftRole> lmsWftRoles) {
+	public void setLmsWftRoles(int[] lmsWftRoles) {
 		this.lmsWftRoles = lmsWftRoles;
 	}
+
 }

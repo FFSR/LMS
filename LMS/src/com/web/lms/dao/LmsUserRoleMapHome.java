@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsUserRoleMap;
+import com.web.lms.model.LmsWftRoleUserMap;
 
 /**
  * Home object for domain model class LmsUserRoleMap.
@@ -43,6 +44,7 @@ public class LmsUserRoleMapHome {
 	public void remove(LmsUserRoleMap persistentInstance) {
 		log.debug("removing LmsUserRoleMap instance");
 		try {
+			persistentInstance = entityManager.merge(persistentInstance);
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
 		} catch (RuntimeException re) {
@@ -87,6 +89,20 @@ public class LmsUserRoleMapHome {
 		} 
 		catch (Exception ex) {
 			return null;
+		}
+	}
+    
+	public List<LmsUserRoleMap> findRoleByUser(LmsUser user) {		
+		try { 			
+			Query query = entityManager.createQuery("SELECT e FROM LmsUserRoleMap e WHERE e.lmsUser=:user")
+					.setParameter("user", user);
+		
+			List<LmsUserRoleMap> listLmsUserRoleMap =  query.getResultList();
+		
+			return listLmsUserRoleMap;
+		}
+		catch(Exception ex) {			
+			return null;			
 		}
 	}
 }

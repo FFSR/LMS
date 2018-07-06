@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.dao.LmsLeaveApplicationHome;
 import com.web.lms.dao.LmsLeaveTypeHome;
 import com.web.lms.dao.LmsUserHome;
+import com.web.lms.dao.LmsUserRoleMapHome;
 import com.web.lms.dao.LmsWfRequestHome;
 import com.web.lms.dao.LmsWfRequestHopHome;
 import com.web.lms.dao.LmsWftFlowControlHome;
@@ -28,6 +29,7 @@ import com.web.lms.enumcollection.WFSTATUS;
 import com.web.lms.model.LmsLeaveApplication;
 import com.web.lms.model.LmsLeaveType;
 import com.web.lms.model.LmsUser;
+import com.web.lms.model.LmsUserRoleMap;
 import com.web.lms.model.LmsWfRequest;
 import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsWftFlowControl;
@@ -65,6 +67,8 @@ public class WorkFlowManagement {
 	private LmsWftRoleUserMapHistoryHome lmsWftRoleUserMapistoryHome;
 	@Autowired
 	private LmsWftRoleHome lmsWftRoleHome;
+	@Autowired
+	private LmsUserRoleMapHome lmsUserRoleMapHome;
 
 	@RequestMapping(value = "/generaterequest/{userid}/{leavetypeid}/{leaveapplicationid}", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapperWorkFlowManagement> generateRequest(@PathVariable("userid") Integer userid,
@@ -189,7 +193,44 @@ public class WorkFlowManagement {
 
 			if (listLmsWftRoleUserMap.size() > 0) {
 				responseWrapper.setListLmsWftRoleUserMap(listLmsWftRoleUserMap);
-				responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
+				responseWrapper.setMessage("Success. User Work Flow Role Data Found.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
+				
+			} else {
+				responseWrapper.setMessage("Fail. No record found");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+
+			}
+
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+					HttpStatus.EXPECTATION_FAILED);
+		}
+	}
+	
+	
+	@RequestMapping(value = "/approlebyuser/{userid}/", method = RequestMethod.GET)
+	public ResponseEntity<ResponseWrapperWorkFlowManagement> findapprolebyuser(@PathVariable("userid") Integer userid) {
+
+		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+
+		try {
+
+			// Validate User
+			LmsUser user = lmsUserHome.findById(userid);
+			if (user == null) {
+				responseWrapper.setMessage("This userid is not available in database.");
+				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper,
+						HttpStatus.EXPECTATION_FAILED);
+			}
+
+			List<LmsUserRoleMap> listLmsUserRoleMap = lmsUserRoleMapHome.findRoleByUser(user);
+
+			if (listLmsUserRoleMap.size() > 0) {
+				responseWrapper.setListLmsUserRoleMap(listLmsUserRoleMap);
+				responseWrapper.setMessage("Success. User Application Role Data Found.");
 				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
 				
 			} else {

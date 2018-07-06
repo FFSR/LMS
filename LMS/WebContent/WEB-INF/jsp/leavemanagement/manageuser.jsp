@@ -33,11 +33,14 @@
 	src="resources/js/app.js/service/RoleService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/WftroleService.js"></script>
+<script type="text/javascript" 
+	src="resources/js/app.js/service/managedelegationService.js" ></script>
 <script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 </head>
+
 
 <body ng-controller="manageuserController">
 	<div>
@@ -233,7 +236,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3">Gender</label>
 								<div class="col-md-9">
-									<select class="form-control" id="ddAppStatus" ng-model="gender"
+									<select class="form-control" id="ddAppStatus" ng-model="user.gender"
 										ng-change="setnewGender(user,gender.name)"
 										ng-options="x as x.name for x in dropdownGenderNames track by x.name">
 										<option value="">Select</option>
@@ -339,33 +342,6 @@
 								</div>
 							</div>
 						</div>					
-					</div>
-					<br>
-					<div class="row">										
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Workflow Role</label>
-								<div class="col-md-9">
-									<select class="form-control" id="ddlmsWftrole"
-										ng-model="ddlmsWftrole"
-										ng-options="x as x.roleName for x in wftroleNames track by x.id">
-										<option value="">Select</option>
-									</select>
-								</div>
-							</div>
-						</div>						
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Application Role</label>
-								<div class="col-md-9">
-									<select class="form-control" id="ddlmsRole"
-										ng-model="ddlmsRole"
-										ng-options="x as x.name for x in roleNames track by x.id">
-										<option value="">Select</option>
-									</select>
-								</div>
-							</div>
-						</div>
 					</div>
 					<br>
 					<div class="row">					

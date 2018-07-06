@@ -179,7 +179,7 @@ public class LmsUserHome {
     //  public LmsUser findByUnameandMobile(String uName, String mobile, String status) {
 		try {
 			Query query = entityManager
-					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.status =:status")
+					.createQuery("SELECT e FROM LmsUser e WHERE lower(e.name) like :uName OR lower(e.phone) like :mobile OR lower(e.mobilePersonal) like :mobile OR lower(e.mobileOffice) like :mobile OR e.status =:status")
 					.setParameter("uName","%"+ uName +"%")
 					.setParameter("mobile", "%"+ mobile +"%")					
 					.setParameter("status", status);

@@ -17,7 +17,7 @@ App
 									//console.log(user);
 									
 									// Added by Feroj on 12th June,2018. If supervisor is null, update shud be successfull
-								if (lmssupervisor.id== null || lmssupervisor.id=="undefined")
+								if (lmssupervisor == null || lmssupervisor=="undefined")
 									{
 									lmssupervisor.id=0;
 									}

@@ -17,6 +17,7 @@ App
 		'DropDownService',
 		'RoleService',
 		'WftroleService',
+		'managedelegationService',
 		'$filter',
 		'NgTableParams',
 		'$location',
@@ -25,134 +26,14 @@ App
 		function($scope, $timeout, $http, 
 				loginService, updateuserprofileService,userlistService, manageuserService,
 				OfficeService, DivisionService, DesignationService,
-				MinistryService, SectionService, DropDownService, RoleService, WftroleService, 
+				MinistryService, SectionService, DropDownService, RoleService, WftroleService, managedelegationService,
 				$filter, NgTableParams, $location, url) {
 			
 			$scope.testMsg = "Test Message New";
 		    $scope.user = {};
 		    $scope.supervisor={};
-			/*--------------
-			$scope.user= {					
-						"id": 0,
-						"lmsDepartment": {
-							"id": 0,
-							"lmsMinistry": {
-								"id": 0,
-								"name": "",
-								"insertDate": "",
-								"insertBy": "",
-								"updateDate": "",
-								"updateBy": ""
-							},
-							"name": "",
-							"insertDate": "",
-							"insertBy": "",
-							"updateDate": "",
-							"updateBy": ""
-						},
-						"lmsDesignation": {
-							"id": 0,
-							"lmsClass": {
-								"id": 0,
-								"name": ""
-							},
-							"name": "",
-							"insertDate": "",
-							"insertBy": "",
-							"updateDate": "",
-							"updateBy": ""
-						},
-						"lmsDivision": {
-							"id": 0,
-							"lmsDepartment": {
-								"id": 0,
-								"lmsMinistry": {
-									"id": 0,
-									"name": "",
-									"insertDate": "",
-									"insertBy": "",
-									"updateDate": "",
-									"updateBy": ""
-								},
-								"name": "",
-								"insertDate": "",
-								"insertBy": "",
-								"updateDate": "",
-								"updateBy": ""
-							},
-							"name": "",
-							"insertDate": "",
-							"insertBy": "",
-							"updateDate": "",
-							"updateBy": ""
-						},
-						"lmsMinistry": {
-							"id": 0,
-							"name": "",
-							"insertDate": "",
-							"insertBy": "",
-							"updateDate": "",
-							"updateBy": ""
-						},
-						"lmsOfficeLocation": {
-							"id": 0,
-							"name": "",
-							"address": "",
-							"insertDate": "",
-							"insertBy": "",
-							"updateDate": "",
-							"updateBy": ""
-						},
-						"lmsSection": {
-							"id": 0,
-							"lmsDepartment": {
-								"id": 1,
-								"lmsMinistry": {
-									"id": 0,
-									"name": "",
-									"insertDate": "",
-									"insertBy": "",
-									"updateDate": "",
-									"updateBy": ""
-								},
-								"name": "",
-								"insertDate": "",
-								"insertBy": "",
-								"updateDate": "",
-								"updateBy": ""
-							},
-							"name": "",
-							"insertDate": "",
-							"insertBy": "",
-							"updateDate": "",
-							"updateBy": ""
-						},
-						"lmsUser": "",
-						"name": "",
-						"email": "",
-						"phone": "",
-						"passport": "",
-						"fax": "",
-						"mobilePersonal": "",
-						"mobileOffice": "",
-						"gender": "",
-						"address": "",
-						"nid": "",
-						"nationality": "",
-						"joiningDate": "",
-						"status": "",
-						"password": "",
-						"insertDate": "",
-						"insertBy": "",
-						"updateDate": "",
-						"updateBy": "",
-			};
-
-			/*-------------*/
 			$scope.showUserDetails = false;
 			
-			
-
 			$scope.manageuser = function() {
 
 				$scope.statusFinal = "";
@@ -176,19 +57,14 @@ App
 				} else {
 					$scope.statusFinal = $scope.ddstatus.text;
 				}
-
-				
+	
 				//$scope.user.status= $scope.status.name;
 				
 				manageuserService.getmanageuser($scope.userNameDummy, $scope.mobileDummy, $scope.statusFinal)
 					.then(function(d) {
-						$scope.testMsg1 = "Test";
-						console.log("Success.", d.message);
-						
-						$scope.supervisor=d.lmssupervisor;
-						
-							var data = d.listLmsuser;
-						//var data = d;
+								
+						var data = d.listLmsuser;
+
 						$scope.tableParams = new NgTableParams({}, {
 							dataset : data
 						});
@@ -200,11 +76,6 @@ App
 			};
 
 			$scope.showEmpDetails = function(user) {
-
-				//console.log("User", user);
-				
-				
-				//= user.joiningDate;
 				
 				$scope.showUserDetails = true;
 
@@ -213,33 +84,76 @@ App
 				$scope.gender = {};
 				$scope.gender.name= user.gender;
 				
-				
 				$scope.status = {};
 				$scope.status.name= user.status;
 				
 				$scope.nationality = {};
 				$scope.nationality.name= user.nationality;
+								
+/*				$scope.lmssupervisor={};
+				$scope.lmssupervisor.name= user.lmsUser.name;*/
 				
-				//$scope.nationality = {};
-				//$scope.nationality.name= user.nationality;
-				
-				//$scope.lmssupervisor={};
-				//$scope.lmssupervisor.name= $scope.supervisor.name;
 				//$scope.user.lmsUser={};
 				if($scope.user.lmsUser!=null){
 					$scope.supervisor.name = $scope.user.lmsUser.name;
 					$scope.supervisor = $scope.user.lmsUser ;
 				}
 				
-				$scope.ddlmsRole = {};
-				$scope.ddlmsRole.name= user.ddlmsRole;
+				//$scope.ddlmsRole = {};
+				//$scope.ddlmsRole.name= user.ddlmsRole;
 				
 				new Date($('#joiningDate').val($scope.user));
 				
 				//Feroj: Tried to show joining date. 24.05.2018 23:00 
 				//new Date($('#joiningDate').val())= $scope.user.joiningDate;
 				//new Date($('#joiningDate').val())=$scope.user.joiningDate;
+				
+				$scope.getUserwfRoleInfo(user.id);
+				
+				$scope.getUserAppRoleInfo(user.id);
 			
+			};
+			
+			$scope.getUserwfRoleInfo = function(userid){	
+
+				managedelegationService.getUserwiseRoleInfo(userid)
+				.then(
+						function(d) {
+
+							var items = d.listLmsWftRoleUserMap;
+							$scope.user.wfroles = [];
+
+							for(var i=0;i<items.length;i++){
+
+								var item = items[i].lmsWftRole;
+
+								$scope.user.wfroles.push(item.id);
+							}
+						},
+						function(errResponse) {
+							console.error("Error while fetching Currencies");
+						});
+			};	
+			
+			$scope.getUserAppRoleInfo = function(userid){	
+
+				managedelegationService.getUserAppRoleInfo(userid)
+				.then(
+						function(d) {
+
+							var items = d.listLmsUserRoleMap;
+							$scope.user.approles = [];
+
+							for(var i=0;i<items.length;i++){
+
+								var item = items[i].lmsRole;
+								
+								$scope.user.approles.push(item.id);
+							}
+						},
+						function(errResponse) {
+							console.error("Error while fetching Currencies");
+						});
 			};
 
 			    //Feroj: Worked to show set below values. 26.05.2018 15:43
@@ -276,40 +190,22 @@ App
                //End 26.05.2018 15:43
              
 			$scope.userprofile = function(ddlmsWftrole,ddlmsRole,user) {
-
-				$scope.ddlmsRole = ddlmsRole;
-				$scope.ddlmsWftrole = ddlmsWftrole;
-				
-				
-				//$scope.user.gender= $scope.gender.name;
-				//$scope.user.nationality = $scope.nationality.name;
-				//$scope.user.status = $scope.status.name;
-				
-				//$scope.user.status=$scope.status.name;
-				//$scope.user.gender= $scope.gender.name;
-				//$scope.user.nationality = $scope.nationality.name;*/
-				
-			//	updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole, $scope.lmssupervisor,$scope.user).then(
-		    //  updateuserprofileService.updateuserprofile($scope.ddlmsWftrole, ddlmsRole,  $scope.user.lmsUser, $scope.user).then(
-				
-				//$scope.user.wfroles;
-				//$scope.user.approles;
-				
+		
 				$scope.userWrapper ={};
 				
 				$scope.userWrapper.lmsuser = $scope.user;
-				$scope.userWrapper.lmsRoles = $scope.user.wfroles;
-				$scope.userWrapper.lmsWftRoles = $scope.user.approles;
+				$scope.userWrapper.lmsRoles = $scope.user.approles;
+				$scope.userWrapper.lmsWftRoles = $scope.user.wfroles;
 				
 				updateuserprofileService.updateuserprofile($scope.user.lmsUser, $scope.userWrapper).then(		
 				function(d) {
-							console.log(d.message);
-							console.log("Success.", d.message);
-							$scope.showSuccessMessage("Update successful");
+
+							$scope.showSuccessMessage(d.message);
 							$scope.clearAll();
-						}, function(errResponse) {
-							console.log("Failed to Update User Profile.");
-							$scope.showErrorMessage("Update Fail");
+						}, 
+						function(errResponse) {
+
+							$scope.showErrorMessage("Failed to Update User Profile.");
 						});
 
 			}
@@ -382,8 +278,7 @@ App
 			$scope.getRoleData = function() {
 				RoleService.getAllRole()
 				.then(function(d) {
-					$scope.roleNames = d;
-					
+										
 					$scope.approles =d;
 					
 				}, function(errResponse) {
@@ -395,8 +290,7 @@ App
 			$scope.getWftroleData = function() {
 				WftroleService.getAllWftrole()
 				.then(function(d) {
-					$scope.wftroleNames = d;
-					
+									
 					$scope.wfroles = d;
 					
 				}, function(errResponse) {
@@ -410,11 +304,7 @@ App
 				userlistService.getUserList()
 				.then(
 						function(d) {
-							// $scope.usersList = d;
-							//$scope.q = d;
-							//$scope.userData=d;
-							// console.log($scope.usersList);
-							// $scope.userData = d.listLmsUser;
+
 							$scope.userData=d;
 						}, function(errResponse) {
 							console.log("Failed to get User Drop Down.");
@@ -464,12 +354,10 @@ App
 			};
 				
 			$scope.clearAll = function(){
-				// for dropdown set to zero
-				//$scope.mobileNoDropDown = '0';
-				// for text filed set to empty
-				//$scope.mobileNoText = "";
-				// for check button set false;
-				//$scope.formSignVerified = false;
+				
+				// close open panel
+				$scope.showUserDetails = false;
+				
 				$scope.user.name = "";
 				$scope.user.lmsDivision = '0';
 				$scope.user.email = "";
@@ -495,32 +383,5 @@ App
 						
 			};
 			
-			// User WF Role Manage Start
-			
-/*			$scope.wfroles = [
-			    {id: 1, name: 'Guest'},
-			    {id: 2, name: 'User'},
-			    {id: 3, name: 'Customer'},
-			    {id: 4, name: 'Admin'}
-			  ];*/
-			
-			  $scope.user = {
-					  wfroles: [2, 4]
-			  };
-			  
-			  $scope.checkAll = function() {
-			    $scope.user.wfroles = $scope.wfroles.map(function(item) { return item.id; });
-			  };
-			  
-			  $scope.uncheckAll = function() {
-			    $scope.user.wfroles = [];
-			  };
-			  
-			  $scope.checkFirst = function() {
-			    $scope.user.wfroles.splice(0, $scope.user.wfroles.length); 
-			    $scope.user.wfroles.push(1);
-			  };
-			
-			// User WF Role Manage End
 			
 		} ]);
