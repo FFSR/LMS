@@ -23,6 +23,8 @@
 <body ng-controller="subordinatelvblnceController">
 	
 		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
+		
+		<div ng-init="userAccessAuthentication('${sessionScope.user.id}')"></div>
 
 		<div class="container-fluid">
 
@@ -59,10 +61,22 @@
 			</div>
 			<br> <br> <br>
 
-
+          <div ID="DIVPRINT">
 			<div class="container-fluid">
 				<div ng-if="leavehistoryinfo">
 					<form class="form-horizontal" name="updateForm">
+						
+						<div class="row">
+					        <div class="col-md-6">
+						        <div class="form-group">
+							       <label class="control-label col-md-3">Employee Name</label>
+							         <div class="col-md-9">
+								       <input type="text" ng-disabled="true" ng-model="employeename"
+									class="form-control" placeholder="{{lvbalance.lmsUser.name}}">
+							    </div>
+						   </div>
+					    </div>
+					  </div>
 						<table ng-table="tableParams2" class="table table-striped"
 							show-filter="true">
 							<tr ng-repeat="lmsLeaveBalance in $data"> 
@@ -79,6 +93,8 @@
 
 								<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
 									sortable="'lmsLeaveBalance.leaveBalance'">{{lmsLeaveBalance.leaveBalance}}</td>
+								<td title="'Leave Apllied'" filter="{ Remainingleave: 'text'}"
+									sortable="'lmsLeaveBalance.leaveBalance'">{{lmsLeaveBalance.leaveApplied}}</td>
 
 								<td title="'Eligibility'" filter="{ eligibility: 'text'}"
 									sortable="'lmsLeaveBalance.eligibility'">{{lmsLeaveBalance.eligibility}}</td>
@@ -88,7 +104,11 @@
 				</div>
 
 			</div>
-
+       </div>
+                 <button type="submit"
+				 class="btn btn-success waves-effect waves-light m-r-10"
+				 id="cancel" ng-click="CallPrint('DIVPRINT')">Print</button>
+						
 		</div>
 	
 </body>

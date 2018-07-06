@@ -54,10 +54,18 @@
 								<button type="submit"
 									class="btn btn-inverse waves-effect waves-light">Cancel</button>
 							</form>
-							<br /> <a href="http://www.supremetechnolab.com/LMS/forgetpasswd">Forget
-								Password</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="http://www.supremetechnolab.com/LMS/registration">Registration</a>
-							&nbsp;&nbsp;&nbsp;&nbsp;
+							<br /> 
+							    <a href="http://www.supremetechnolab.com/LMS/forgetpasswd">Forget
+								Password
+								</a> &nbsp;&nbsp;&nbsp;&nbsp; 
+							 <!--	 <a href="http://localhost:8080/LMS/forgetpasswd">Forget
+								Password
+								</a> &nbsp;&nbsp;&nbsp;&nbsp; -->
+								 <a href="http://www.supremetechnolab.com/LMS/registration">Registration</a> 
+							    &nbsp;&nbsp;&nbsp;&nbsp; 
+							
+						<!--	<a href="http://localhost:8080/LMS/registration">Registration</a> 
+							&nbsp;&nbsp;&nbsp;&nbsp;-->
 
 						</div>
 					</div>

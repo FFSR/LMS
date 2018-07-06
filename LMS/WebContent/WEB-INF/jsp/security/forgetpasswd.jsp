@@ -41,11 +41,23 @@
 						     <button type="button" class="btn btn-inverse waves-effect waves-light"
 					         ng-click="gotoHomePage()">Cancel</button>
 						</form>
-						<div>Response: {{testMsg}}</div>
+					
 					</div>
+					
+			
 				</div>
 
 			</div>
+			<div class="row">
+			   <div class="col-md-4">
+				<div id="successMssages" class="p-3 mb-2 bg-success text-white"
+					data-ng-show="successMessages" data-ng-bind="successMessages"></div>
+				<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
+					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+			   </div>
+
+		   </div>
+			
 		</div>
 
 

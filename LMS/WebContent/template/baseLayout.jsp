@@ -152,8 +152,8 @@ body, body td, body th {
                     <!-- .Megamenu -->
                     <!-- /.Megamenu -->
                     <!-- /.dropdown -->
-                   <h3 style="align: center; color: #ff0000;"> OFFICE OF THE CONTROLLER OF CERTIFYING AUTHORITIES</h3>
-                   <h3 style="align: center; color: #ff0000;" font-wight: bold> LEAVE MANAGEMENT SYSTEM</h3>
+                   <h3 style="align: center;"> <font name="Andale Mono" size="+2" color="green">OFFICE OF THE CONTROLLER OF CERTIFYING AUTHORITIES</font></h3>
+                   <h3 style="align: center;"><font size="+2" color="red"> LEAVE MANAGEMENT SYSTEM</font></h3>
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -198,7 +198,7 @@ body, body td, body th {
                     
                     <li> <a href="#" class="waves-effect"><i data-icon=")" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Reports<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="rptleavestatus">Leave Status</a></li>
+                            <li><a href="rptsubordinateleavestatus">Subordinate Leave Status</a></li>
                              <li><a href="subordinatelvblnce">Subordinate Leave Balance</a></li>
                         </ul>
                     </li>

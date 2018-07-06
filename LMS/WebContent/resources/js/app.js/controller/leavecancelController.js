@@ -26,6 +26,7 @@ App
 				$scope.showAttachment = false;
 				$scope.wfRequestHopid = 0;
 				$scope.status = "";
+				$scope.validationLock = true;
 				
 				$scope.getSessionUserDetails = function(userID) {
 
@@ -170,21 +171,30 @@ App
 				};   	
 				
 				$scope.validate = function(){
-					leaveapplicationservice.validateLeaveRule($scope.userid, $scope.leavetype.id, $scope.fromDate, $scope.toDate)
-					.then(
-							function(d) {
+					    var d = new Date($('#EndDate').val());;
+					    var e = new Date();
+					    var diffDays = parseInt((d - e) / (1000 * 60 * 60 * 24)); 
 
-								//$scope.totalDayCount = "APPLIED ( "+d.numberOfDaysApplied+" ) + IF IMPACT ON HOLIDAY THAN MIN ( "+d.minimumHolidayConsider+" ) OF BEFORE ( "+ d.backwardHolidayCount +" ) AND AFTER ( "+ d.forwardHolidayCount +" )  = TOTAL ( "+d.numberOfDayConsider+" )";	
-								$scope.finaltotalDayCount = d.numberOfDayConsider;
-								$scope.validationLock = false;
-								$scope.showSuccessMessage(d.message);
-							}, 
-							function(errResponse) {		
-
-								$scope.totalDayCount = errResponse.data.message
-								$scope.validationLock = true;						
-								$scope.showErrorMessage(errResponse.data.message);
-							});
+	                    
+	                    if (diffDays > $scope.AdjustDays){
+	                    	//$scope.showSuccessMessage("Validation successful");
+	                    	$scope.validationLock = false;       	
+	                    }
+	                    else{
+	                    	$scope.showErrorMessage("Validation fail, Such amount of days can't be adjsuted" );
+	                    	$scope.validationLock = true;  
+	                    }
+	                    
+	                    if ($scope.leavetype.id!=27){
+	                    	$scope.showErrorMessage("Validation fail, Please select Leave Cancel as leave type" );
+	                    	$scope.validationLock = true;       	
+	                    }
+	                    
+	                    if ($scope.validationLock == false){
+	                    	$scope.showSuccessMessage("Validation successful");
+	                    	;       	
+	                    }
+	                  
 
 				};
 				$scope.gomyPage = function(){	

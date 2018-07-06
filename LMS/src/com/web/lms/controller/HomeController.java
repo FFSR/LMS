@@ -198,12 +198,12 @@ public class HomeController {
 		}
 	}
 	
-	@RequestMapping("/leavehistoryresult")
-	public String leavehistoryresult(Model model) {
+	@RequestMapping("/rptsubordinateleavestatus")
+	public String rptsubordinateleavestatus(Model model) {
 		
 		try {
 			if("" != httpSession.getAttribute("userName").toString()) {
-				return "leavehistoryresult";
+				return "rptsubordinateleavestatus";
 			}else {
 			
 				return "login";

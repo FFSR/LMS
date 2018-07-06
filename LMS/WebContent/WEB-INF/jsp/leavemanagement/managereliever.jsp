@@ -32,7 +32,7 @@
 <body>
 	<br>
 	<div ng-controller="managerelieverController">
-		<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
+		
 		<div
 			ng-init="loadUserListDropDown();getUserInfo('${sessionScope.user.id}')"></div>
 		<form class="form-horizontal" name="releiverform">

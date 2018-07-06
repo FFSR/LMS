@@ -35,6 +35,20 @@ App
 																.reject(errResponse);
 													});
 								},
+								
+								getsubordinateleavestatus : function(userID) {
+									return $http.get(url + 'reportSubordinate/'+ userID)
+											.then(
+													function(response) {
+														return response.data;
+													},
+													function(errResponse) {
+														console
+																.log("Error while fetching user info list.");
+														return $q
+																.reject(errResponse);
+													});
+								},
 
 							}
 						} ]);
