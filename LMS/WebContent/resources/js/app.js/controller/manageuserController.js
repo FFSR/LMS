@@ -62,14 +62,16 @@ App
 				
 				manageuserService.getmanageuser($scope.userNameDummy, $scope.mobileDummy, $scope.statusFinal)
 					.then(function(d) {
-								
+						
 						//$scope.supervisor=d.lmssupervisor;
+						
+						if (d.message =="No Data"){
+						window.location = url + "manageuser";
+						}
 						var data = d.listLmsuser;
-
-						$scope.tableParams = new NgTableParams({}, {
-							dataset : data
-						});
-
+						$scope.tableParams = new NgTableParams({}, {dataset : data});
+						
+						
 				}, function(errResponse) {
 
 					console.error("Error while fetching Currencies");

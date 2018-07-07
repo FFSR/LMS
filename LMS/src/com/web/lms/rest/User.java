@@ -211,8 +211,9 @@ public class User {
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}*/
 		 
-		responseWrapper.setMessage("Fail. Data not matched.");
-		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		responseWrapper.setMessage("No Data");
+		//return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/manageuser/{userid}", method = RequestMethod.GET)
