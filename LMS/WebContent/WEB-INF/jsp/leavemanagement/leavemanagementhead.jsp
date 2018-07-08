@@ -172,7 +172,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Total Days Count</label>
 							<div class="col-md-9">
-								<input type="text" ng-disabled="true"
+								<input type="text" ng-disabled="false"
 									ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.totalDayCount"
 									class="form-control">
 							</div>

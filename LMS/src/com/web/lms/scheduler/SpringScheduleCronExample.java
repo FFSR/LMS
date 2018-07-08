@@ -55,7 +55,7 @@ public class SpringScheduleCronExample {
 	// put "10" in the day-of-month field and "?" in the day-of-week field.
 
 	//@Scheduled(cron = "0 0 12 1 1 ?")
-	@Scheduled(cron = "0 32 16 * * *")
+	@Scheduled(cron = "0 32 02 * * *")
 	public void cronYearly() {
 
 		int jobId = counter.incrementAndGet();
@@ -67,7 +67,7 @@ public class SpringScheduleCronExample {
 	}
 
 	//@Scheduled(cron = "0 0 1 * * *")
-	@Scheduled(cron = "0 35 16 * * *")
+	@Scheduled(cron = "0 35 02 * * *")
 	public void cronJob() {
 
 		int jobId = counter.incrementAndGet();

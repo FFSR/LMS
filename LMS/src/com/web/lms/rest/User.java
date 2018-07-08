@@ -210,10 +210,11 @@ public class User {
 			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}*/
-		 
+		else {
 		responseWrapper.setMessage("No Data");
 		//return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
+		}
 	}
 
 	@RequestMapping(value = "/manageuser/{userid}", method = RequestMethod.GET)
