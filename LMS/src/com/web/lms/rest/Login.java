@@ -1,5 +1,6 @@
 package com.web.lms.rest;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.wrapper.ResponseWrapperAuthorization;
+import com.web.lms.dao.LmsEventLogHome;
 import com.web.lms.dao.LmsPageRoleMapHome;
 import com.web.lms.dao.LmsUserHome;
 import com.web.lms.dao.LmsUserRoleMapHome;
 import com.web.lms.dao.LmsWftRoleUserMapHome;
+import com.web.lms.model.LmsEventLog;
 import com.web.lms.model.LmsPageRoleMap;
 import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsUserRoleMap;
@@ -32,6 +35,8 @@ public class Login {
 	private LmsPageRoleMapHome lmsPageRoleMapHome;
 	@Autowired
 	private LmsUserRoleMapHome lmsUserRoleMapHome;
+	@Autowired
+	private LmsEventLogHome lmsEventLogHome;
 	@Autowired
 	private HttpSession httpSession;
 	
@@ -52,6 +57,7 @@ public class Login {
 		}
 		try {
 			lmsUser = lmsUserHome.findByUnameandPassword(uName, password);
+			LmsEventLog eventLog;
 			if(lmsUser != null) {
 				
 				//lmsWftRoleUserMap = lmsWftRoleUserMapHome.findByUserID(lmsUser.getId());
@@ -65,6 +71,18 @@ public class Login {
 				httpSession.setAttribute("userID", lmsUser.getId());
 				//httpSession.setAttribute("userRole", lmsUser.get);
 				responseWrapper.setMessage("Login Success.");
+				
+				// Set event log table
+				eventLog = new LmsEventLog();
+				
+				eventLog.setUserId(lmsUser.getId());
+				eventLog.setUserName(lmsUser.getEmail());
+				eventLog.setPageName("LOGIN");
+				eventLog.setEventDescription("User LOGIN into LMS");
+				eventLog.setEventTime(new Date());
+				
+				lmsEventLogHome.persist(eventLog);
+				
 			}
 			else {
 				responseWrapper.setMessage("Failed to Login. User Name or Password Wrong.");

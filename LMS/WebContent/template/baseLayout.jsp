@@ -217,7 +217,7 @@ body, body td, body th {
                             <li><a href="userprofile">Update Profile</a></li>
                             <li><a href="managereliever">Manage Delegation</a></li>  
                             <li><a href="leavecancelrequest">Leave Cancellation</a></li> 
-                            
+                            <li><a href="resources/manuals/UserManual.docx">User Manual</a></li>                                                    
                         </ul>
                     </li>
                 </ul>
