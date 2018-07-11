@@ -111,7 +111,7 @@
 						<div class="form-group">
 							<label class="simple">Total Leave</label>
 							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="leaveTotal"
+								<input type="text" ng-disabled="false" ng-model="leaveTotal"
 									class="form-control" placeholder="Total Leave">
 							</div>
 						</div>

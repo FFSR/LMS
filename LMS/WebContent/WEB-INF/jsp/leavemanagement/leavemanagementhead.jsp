@@ -142,6 +142,17 @@
 							</div>
 						</div>
 					</div>
+					
+					<div class="col-md-6">
+						<div class="form-group">
+							<label class="control-label col-md-3">Leave Approved</label>
+							<div class="col-md-9">
+								<input type="text" ng-disabled="false"
+									ng-model="approvedleave"
+									class="form-control">
+							</div>
+						</div>
+					</div>
 				</div>
 				<br>
 				<div class="row">
@@ -172,7 +183,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3">Total Days Count</label>
 							<div class="col-md-9">
-								<input type="text" ng-disabled="false"
+								<input type="text" ng-disabled="true"
 									ng-model="wfRequestHop.lmsWfRequest.lmsLeaveApplication.totalDayCount"
 									class="form-control">
 							</div>

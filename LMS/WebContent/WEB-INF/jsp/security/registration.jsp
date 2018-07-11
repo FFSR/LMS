@@ -79,24 +79,49 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						
-						<label class="required">Division</label>
+						<label class="required">Ministry</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsDivision" ng-required="true"
-								ng-options="x as x.name for x in divisionNames track by x.id">
+								ng-model="user.lmsMinistry" ng-required="true"
+								ng-options="x as x.name for x in ministryNames track by x.id">
 								<option value="">Select</option>
-								<!-- <option value="">Hospital</option>
-									<option value="">Casual</option> -->
 							</select>
 						</div>
 					</div>
 				</div>
 			</div>
-
 			<br>
 			<div class="row">
+				<div class="col-md-6">
+                   <div class="form-group">	
+                      <label class="required">Division</label>
+	                     <div class="col-md-9">
+	                       <select class="form-control" id="ddAppStatus"
+	                       ng-model="user.lmsDivision" ng-required="true"
+	                       ng-options="x as x.name for x in divisionNames track by x.id">
+	                       <option value="">Select</option>
+	                        <!-- <option value="">Hospital</option>
+	                        <option value="">Casual</option> -->
+	                      </select>
+	                    </div>
+                    </div>
+                </div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="required">Office</label>
+						<div class="col-md-9">
+							<select class="form-control" id="ddAppStatus"
+								ng-model="user.lmsOfficeLocation" ng-required="true"
+								ng-options="x as x.name for x in officeNames track by x.id">
+								<option value="">Select</option>
 
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<br>
+			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
 						
@@ -112,7 +137,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="col-md-6">
 					<div class="form-group">
 						<label class="required">Section</label>
@@ -125,9 +149,8 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-			<br>
+			
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
@@ -143,22 +166,6 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="required">Ministry</label>
-						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsMinistry" ng-required="true"
-								ng-options="x as x.name for x in ministryNames track by x.id">
-								<option value="">Select</option>
-							</select>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<br>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
 						<label class="control-label col-md-3">Nationality</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
@@ -170,25 +177,9 @@
 						</div>
 					</div>
 				</div>
-
-
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="required">Office</label>
-						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsOfficeLocation" ng-required="true"
-								ng-options="x as x.name for x in officeNames track by x.id">
-								<option value="">Select</option>
-
-							</select>
-						</div>
-					</div>
-				</div>
-
+					
 			</div>
 			<br>
-
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">

@@ -54,6 +54,7 @@ App
 					
 					$scope.wfRequestHop = wfRequestHop;
 					
+					$scope.approvedleave=wfRequestHop.lmsWfRequest.lmsLeaveApplication.totalDayCount;
 					$scope.userID = $scope.wfRequestHop.lmsWfRequest.lmsUserByUserId.id;
 					$scope.wfRequestHopid = $scope.wfRequestHop.id;
 					console.log("wfRequestHop", wfRequestHop );
@@ -155,6 +156,7 @@ App
 						$scope.lmsLeaveApplicationReturn = d.lmsLeaveApplication;
 						
 						$scope.lmsLeaveApplicationReturn.remarks= $scope.remarks;
+						$scope.lmsLeaveApplicationReturn.totalDayCount=$scope.approvedleave;
 						
 						if(d.lmsWfRequest.status == 'APPROVED'){
 						

@@ -40,7 +40,8 @@
 	<div ng-controller="leavecancelController">
 
 			<div ng-init="loadrptleavestatus('${sessionScope.user.id}');"></div>
-			<div ng-init="loadLeaveTypeDownDown();"></div>
+			 <div ng-init="loadLeaveTypeDownDown();"></div> 
+			<!-- <div ng-init="loadCancelLeaveType();"></div> -->
 
 
 		<form class="form-horizontal" name="leavecancelForm">
@@ -227,19 +228,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-3">Leave Type</label>
-							<div class="col-md-9">
-								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddleavetype" ng-required="true"
-									ng-model="leavetype"
-									ng-options="x as x.type for x in dropdownData track by x.id">
-									<option value="">Select</option>
-								</select>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 				
 				<div class="row">
@@ -253,7 +242,7 @@
 					</div>
 					<div class="col-sm-4">
 						<input type="button" class="btn btn-info" value="Cancel"
-							id="Cancel" ng-click="gotoHomePage()">
+							id="Cancel" ng-click="gomyPage()">
 					</div>
 				</div>
 				

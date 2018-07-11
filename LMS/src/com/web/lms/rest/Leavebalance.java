@@ -87,7 +87,8 @@ public class Leavebalance {
 			if (lmsLeaveBalance != null) {
 				
 				// update with Leave taken
-				lmsLeaveBalance.setLeaveApplied(lmsLeaveBalance.getLeaveApplied()+leavetaken);				
+				lmsLeaveBalance.setLeaveApplied(lmsLeaveBalance.getLeaveApplied()+leavetaken);
+				
 
 				lmsLeaveBalanceHome.merge(lmsLeaveBalance);
 				
@@ -138,7 +139,9 @@ public class Leavebalance {
 				
 				if(leaveapprove > 0) {// added by Feroj on 18th June,2018 for leave balance adjustment while leave cancellation
 				// subtract from Leave Applied
-				lmsLeaveBalance.setLeaveApplied(lmsLeaveBalance.getLeaveApplied()-leaveapprove);
+				//lmsLeaveBalance.setLeaveApplied(lmsLeaveBalance.getLeaveApplied()-leaveapprove);
+				// Feroj on 10th July,2018
+				lmsLeaveBalance.setLeaveApplied(0);// since leave taken may be changed by final approver, leave applied will be set 0 after approval.
 				}
 				// Add to Leave Taken
 				lmsLeaveBalance.setLeaveTaken(lmsLeaveBalance.getLeaveTaken()+leaveapprove);

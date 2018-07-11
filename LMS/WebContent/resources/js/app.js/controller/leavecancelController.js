@@ -21,6 +21,7 @@ App
 				$scope.enddate="";
 				$scope.userID = "";
 				$scope.leaveapplication = {};
+				$scope.cancelLeaveType={};
 				$scope.leaveapplication_new={};
 				$scope.showLeaveDetails = false;
 				$scope.showAttachment = false;
@@ -70,7 +71,6 @@ App
 				
                    $scope.showLeaveApplicationDetails = function(wfRequestHop){
                 	                                  
-					
 					console.log("wfRequestHop", wfRequestHop );
 					$scope.showLeaveDetails = true;
 					
@@ -87,10 +87,12 @@ App
 					$scope.dDName = "";
 					leavetypeService.getLeaveType().then(function(d) {
 						$scope.dropdownData = d;
+						$scope.cancelLeaveType= d[26];
 					}, function(errResponse) {
 						console.log("Failed to get Drop Down.");
 					});
 				};
+				
 				
 				$scope.cancelLeave = function(){
 					
@@ -99,7 +101,8 @@ App
 					//leavetypeService.getLeaveType().then(function(d) {
 					$scope.leaveapplication_new.leaveAvailable=	$scope.leaveapplication.leaveAvailable ;
 					$scope.leaveapplication_new.leaveTaken=$scope.leaveapplication.leaveTaken ;
-					$scope.leaveapplication_new.lmsLeaveType=$scope.leavetype;
+					//$scope.leaveapplication_new.lmsLeaveType=$scope.leavetype;
+					$scope.leaveapplication_new.lmsLeaveType=$scope.cancelLeaveType;
 					$scope.leaveapplication_new.lmsUserByUserId=$scope.leaveapplication.lmsUserByUserId;
 					$scope.leaveapplication_new.leaveBalance=$scope.leaveapplication.id;
 					$scope.leaveapplication_new.eligibility=$scope.leaveapplication.eligibility ;
@@ -173,10 +176,13 @@ App
 				$scope.validate = function(){
 					    var d = new Date($('#EndDate').val());;
 					    var e = new Date();
-					    var diffDays = parseInt((d - e) / (1000 * 60 * 60 * 24)); 
-
-	                    
-	                    if (diffDays > $scope.AdjustDays){
+					///    var diffDays = parseInt((d - e) / (1000 * 60 * 60 * 24)); 
+					    //var difference =0;
+					    //difference = dateDiffInDays(e, d);
+					    
+					    var diffDays= Math.floor((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(e.getFullYear(), 
+					    		e.getMonth(), e.getDate()) ) /(1000 * 60 * 60 * 24)); 
+	                    if (diffDays >= $scope.AdjustDays){
 	                    	//$scope.showSuccessMessage("Validation successful");
 	                    	$scope.validationLock = false;       	
 	                    }
@@ -185,10 +191,10 @@ App
 	                    	$scope.validationLock = true;  
 	                    }
 	                    
-	                    if ($scope.leavetype.id!=27){
+	                 /*   if ($scope.leavetype.id!=27){
 	                    	$scope.showErrorMessage("Validation fail, Please select Leave Cancel as leave type" );
 	                    	$scope.validationLock = true;       	
-	                    }
+	                    }*/
 	                    
 	                    if ($scope.validationLock == false){
 	                    	$scope.showSuccessMessage("Validation successful");
@@ -199,7 +205,7 @@ App
 				};
 				$scope.gomyPage = function(){	
 					location.reload();
-					window.location = url+"rptleavestatus";
+					window.location = url+"leavecancelrequest";
 				}
 				
 
