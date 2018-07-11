@@ -5,12 +5,13 @@ App
 			'$scope',
 			'$http',
 			'homepagegridshowService',
+			'manageleaveService',
 			'$timeout',
 			'$filter',
 			'NgTableParams',
 			'$location',
 
-			function($scope, $http, homepagegridshowService,
+			function($scope, $http, homepagegridshowService,manageleaveService,
 				$timeout, $filter,NgTableParams,$location) {
 				$scope.testMsg = "Test Message New";
 				$scope.leaveapplication = {};
@@ -46,6 +47,21 @@ App
 					$scope.name_n = name;
 					$scope.sec_n=section;
 					
+				};
+				
+                   $scope.loadLeaveApplications = function(userID){	
+				   manageleaveService.loadCurrentLeaveApplication(userID)
+					.then(
+					function(d){
+						var data = d.listLmsWfRequestHops;
+						//$scope.length=data.length +1
+						$scope.Aproval_Pending=data.length;
+						//$scope.tableParams = new NgTableParams({}, { dataset: data});
+					},
+					function(errResponse){
+						
+					}
+					);
 				};
 				
 				

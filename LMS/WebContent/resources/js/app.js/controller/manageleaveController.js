@@ -138,6 +138,7 @@ App
 					.then(
 					function(d){
 						var data = d.listLmsWfRequestHops;
+						$scope.length=data.length;
 						$scope.tableParams = new NgTableParams({}, { dataset: data});
 					},
 					function(errResponse){

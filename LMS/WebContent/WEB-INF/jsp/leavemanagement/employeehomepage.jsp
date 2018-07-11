@@ -13,6 +13,9 @@
 	src="resources/js/app.js/service/homepagegridshowService.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/controller/homepagegridshowController.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/service/manageleaveService.js"></script>
+	
 
 <style type="text/css">
 .custom {
@@ -29,6 +32,7 @@
 
 	<div
 		ng-init="homepagegridshow();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.lmsSection.name}')"></div>
+		<div ng-init="loadLeaveApplications('${sessionScope.userID}');"></div>
 
 	<div class="container-fluid">
 
@@ -50,6 +54,18 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label col-md-3">Approval Pending Count</label>
+						<div class="col-md-9">
+							<input type="text" ng-model="Aproval_Pending" class="form-control">
+						</div>
+					</div>
+				</div>
+				
 			</div>
 
 			<br>
