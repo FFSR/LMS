@@ -32,6 +32,7 @@ import com.web.lms.model.LmsWftRoleUserMap;
 import com.web.lms.model.LmsRole;
 import com.web.lms.utility.ProtectedConfigFile;
 import com.web.lms.wrapper.ResponseWrapper;
+import com.web.lms.utility.SendMail;
 
 @RestController
 public class User {

@@ -10,7 +10,7 @@ import com.web.lms.model.LmsWfRequestHop;
 import com.web.lms.model.LmsHolidayRecord;
 import com.web.lms.model.LmsDropdown;
 import com.web.lms.model.LmsAttachment;
-
+import com.web.lms.model.LmsEventLog;
 
 public class ResponseWrapper {
 	String message;
@@ -31,7 +31,7 @@ public class ResponseWrapper {
 	
 	List<LmsUser> listlmssupervisor;
 	
-	
+	List<LmsEventLog> listLmsEventLog;
 	
 	LmsLeaveApplication lmsLeaveApplication;
 	
@@ -55,6 +55,14 @@ public class ResponseWrapper {
 
 	public void setListLmsWfRequest(List<LmsWfRequest> listLmsWfRequest) {
 		this.listLmsWfRequest = listLmsWfRequest;
+	}
+	
+	public List<LmsEventLog> getListLmsEventLog() {
+		return listLmsEventLog;
+	}
+
+	public void setListLmsEventLog(List<LmsEventLog> listLmsEventLog) {
+		this.listLmsEventLog = listLmsEventLog;
 	}
 
 	public List<LmsDropdown> getListLmsDropdown() {

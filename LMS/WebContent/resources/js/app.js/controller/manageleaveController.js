@@ -166,6 +166,8 @@ App
 								function(d){	
 									 $scope.stayMyPage();
 									 $scope.showSuccessMessage(d.message);
+									// window.open('mailto:ferojmahmood@gmail.com?subject=Leave Approval&body= Your leave request is approved');
+									 $scope.sendMail(d.message);
 								},
 								function(e){
 									$scope.showErrorMessage(e.data.message);
@@ -178,6 +180,7 @@ App
 									function(d){
 										$scope.showSuccessMessage(d.message);
 										$scope.stayMyPage();
+										$scope.sendMail(d.message);
 									},
 									function(e){
 										$scope.showErrorMessage(e.data.message);
@@ -206,6 +209,22 @@ App
 					);
 					
 				}
+				
+				
+			   $scope.sendMail= function(info) {
+				var service_id = 'my_mandrill';
+                var template_id = 'feedback';
+                var template_params = {
+                name: 'Feroj',
+                reply_email: 'ferojmahmood@gmail.com',
+                message: info
+                };
+
+               emailjs.send(service_id,template_id,template_params);
+               
+               }
+				
+				
 				
 				$scope.userAuthentication = function(userid){
 					

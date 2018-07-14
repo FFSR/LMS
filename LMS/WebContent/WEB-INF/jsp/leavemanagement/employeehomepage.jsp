@@ -23,6 +23,35 @@
 	color: red;
 	font-size: 20px;
 }
+
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.ng-table-header {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.line_hight h4 {
+	font-family:  Arial;
+	color: #000;
+	line-height: 35px;
+	padding-top: 25px;
+}
+
+
+
 </style>
 
 </head>
@@ -39,32 +68,62 @@
 		<div>
 			<div class="row">
 				<div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3">User Name</label>
-						<div class="col-md-9">
-							<input type="text" ng-model="name_n" class="form-control">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="control-label col-md-3">User Name</label>
+								<div class="col-md-9">
+									<input type="text" ng-model="name_n" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="control-label col-md-3">Section Name</label>
+								<div class="col-md-9">
+									<input type="text" ng-model="sec_n" class="form-control">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<label class="control-label col-md-3">Approval Pending Count</label>
+								<div class="col-md-9">
+									<input type="text" ng-model="Aproval_Pending" class="form-control">
+								</div>
+							</div>
 						</div>
 					</div>
+					
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3">Section Name</label>
-						<div class="col-md-9">
-							<input type="text" ng-model="sec_n" class="form-control">
+				
+					<div class="col-md-6">
+						<div class="row">
+							<div class="col-md-6 line_hight">
+								<h4>
+								<strong>Technical Support</strong><br>
+								Md.  Feroj Mahmood<br>
+								 Contact: 01711503404 <br>								 
+								 Web: <a href="https://ict.technosisinternational.com" target="new">technoSiS Ltd.</a></h4>
+								 
+							</div>
+							<div class="col-md-6">
+								
+								<a href="resources/manuals/UserManual.docx"><img src="resources/images/manual_icon_001.png" width="" height=""></a>
+
+							</div>
+							<div class="col-md-12">
+							
+								
+
+							</div>
 						</div>
+						
 					</div>
-				</div>
+			
 			</div>
 			
 			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="control-label col-md-3">Approval Pending Count</label>
-						<div class="col-md-9">
-							<input type="text" ng-model="Aproval_Pending" class="form-control">
-						</div>
-					</div>
-				</div>
 				
 			</div>
 

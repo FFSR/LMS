@@ -12,11 +12,58 @@
 <script type="text/javascript"
 	src="resources/js/app.js/controller/loginController.js"></script>
 
+<style type="text/css">
 
+
+.btn_tf {
+	border-radius: 0px;
+	border: thin solid #027C05;
+	color: #027C05;
+	padding: 0 30px;
+    transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	padding: 5px 20px;
+}
+
+.btn_tf:focus {
+	border-radius: 30px;
+	background: #02C800;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf:hover {
+	border-radius: 30px;
+	background: #084301;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf_red {
+	background: #ffo;
+}
+
+.link_black a {
+	color: #000;
+}
+
+</style>
 </head>
 
 <body>
-	<div ng-controller="loginController">
+	<div ng-controller="loginController" style="backgroung: #fff;"">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
 				<div class="white-box">
@@ -26,7 +73,7 @@
 			<h2 style="font-family: Arial; color: #000; font-size: 20px; font-wight: bold; ">Please provide your
 						details to login</h2>
 					<div class="row">
-						<div class="col-sm-12 col-xs-12">
+						<div class="col-sm-12 col-xs-12 link_black">
 							<form>
 								<div class="form-group">
 									<label for="">User Name</label>
@@ -50,9 +97,9 @@
 									</div>
 								</div>
 								<button type="submit" ng-click="login(username,password)"
-									class="btn btn-success waves-effect waves-light m-r-10">Login</button>
+									class="btn btn_tf btn-success waves-effect waves-light m-r-10">Login</button>
 								<button type="submit"
-									class="btn btn-inverse waves-effect waves-light">Cancel</button>
+									class="btn btn_tf btn-denger waves-effect waves-light">Cancel</button>
 							</form>
 							<br /> 
 							    <a href="http://www.supremetechnolab.com/LMS/forgetpasswd">Forget
@@ -71,6 +118,11 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="col-md-6">
+				<img src="resources/images/login_support_img.png" width="" height="">
+				
+			</div>
 
 		</div>
 
@@ -82,6 +134,7 @@
 					data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

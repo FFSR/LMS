@@ -6,6 +6,15 @@
 
 @import "spinners.css";
 
+
+
+
+.home_p_bg {
+	background: url(resources/images/bg.png);
+	background-size: cover;
+	background-attachment: fixed;
+	
+}
 .preloader {
 	width: 100%;
 	height: 100%;
@@ -61,10 +70,10 @@
 
 body {
 	background: #353c48;
-	font-family: Poppins, sans-serif;
+	font-family:  Arial /*Poppins, sans-serif*/;
 	margin: 0;
 	overflow-x: hidden;
-	color: #96a2b4;
+	color: #000;
 	font-weight: 300
 }
 
@@ -5788,7 +5797,12 @@ ul.list-icons li i {
 }
 
 #side-menu li.active>a {
-	background: rgba(0, 0, 0, .02)
+	background: -moz-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #BBEFFE));
+	background: -webkit-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -o-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -ms-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: linear-gradient(to bottom, #fff 0%, #BBEFFE 100%);
 }
 
 #side-menu li a {
@@ -6010,6 +6024,9 @@ keyframes fa-spin { 0%{
 :rotate(359deg)
 }
 }
+
+
+
 .fa-rotate-90 {
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 	-webkit-transform: rotate(90deg);

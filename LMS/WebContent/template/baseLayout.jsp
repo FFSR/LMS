@@ -91,14 +91,36 @@ body, body td, body th {
 	list-style: none;
 }
 
-.ls_menu li {
+.ls_menu li a {
 	background: #f2f2f2;
-	background: -moz-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #f2f2f2));
-	background: -webkit-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -o-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -ms-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%);
+	background: -moz-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #BBEFFE));
+	background: -webkit-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -o-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -ms-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: linear-gradient(to bottom, #fff 0%, #BBEFFE 100%);
+	box-shadow: 0px 1px 2px #666;
+	-webkit-box-shadow: 0px 1px 2px #666;
+	border: thin solid #ccc;
+	display: block;
+}
+
+.ls_menu li a:hover {
+	background: #f2f2f2;
+	background: -moz-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #BBEFFE));
+	background: -webkit-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -o-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -ms-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: linear-gradient(to bottom, #fff 0%, #BBEFFE 100%);
+	box-shadow: 0px 1px 2px #666;
+	-webkit-box-shadow: 0px 1px 2px #666;
+	border: thin solid #ccc;
+	display: block;
+}
+
+.active a {
+	background: #ff0;
 	border-bottom: thin solid #ccc;
 	box-shadow: 0px 1px 2px #666;
 	-webkit-box-shadow: 0px 1px 2px #666;
@@ -111,17 +133,17 @@ body, body td, body th {
 }
 
 .ls_menu li li {
-	padding-left: 30px;
+	padding-left: 5px;
 }
 
 .m_header {
 	background: #f2f2f2;
-	background: -moz-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #f2f2f2));
-	background: -webkit-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -o-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: -ms-linear-gradient(top, #fff 0%, #f2f2f2 100%);
-	background: linear-gradient(to bottom, #fff 0%, #f2f2f2 100%);
+	background: -moz-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #BBEFFE));
+	background: -webkit-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -o-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: -ms-linear-gradient(top, #fff 0%, #BBEFFE 100%);
+	background: linear-gradient(to bottom, #fff 0%, #BBEFFE 100%);
 	border-bottom: 5px solid #666;
 	
 }
@@ -129,6 +151,29 @@ body, body td, body th {
 .top-left-part {
 	background: transparent;
 }
+
+.menu_li li {
+	list style: none;
+	margin: 5px 20px;
+	padding: 0;
+}
+
+.logOut img {
+	width: 200px;
+	height: auto;
+}
+
+.left_side_bar {
+	
+  background: #001c4e;
+  background: -moz-linear-gradient(left, #001c4e 0%, #1fa9f4 100%);
+  background: -webkit-gradient(linear, left, right, color-stop(0%, #001c4e), color-stop(100%, #1fa9f4));
+  background: -webkit-linear-gradient(left, #001c4e 0%, #1fa9f4 100%);
+  background: -o-linear-gradient(left, #001c4e 0%, #1fa9f4 100%);
+  background: -ms-linear-gradient(left, #001c4e 0%, #1fa9f4 100%);
+  background: linear-gradient(to right, #001c4e 0%, #1fa9f4 100%);
+}
+
 </style>
 
 </head>
@@ -152,8 +197,8 @@ body, body td, body th {
                     <!-- .Megamenu -->
                     <!-- /.Megamenu -->
                     <!-- /.dropdown -->
-                   <h3 style="align: center;"> <font name="Andale Mono" size="+2" color="green">OFFICE OF THE CONTROLLER OF CERTIFYING AUTHORITIES</font></h3>
-                   <h3 style="align: center;"><font size="+2" color="red"> LEAVE MANAGEMENT SYSTEM</font></h3>
+                   <h3 style="align: center; font-family: Arial; font-weight: bold; font-size: 50px;"> <font name="Andale Mono" size="+2" color="green">OFFICE OF THE CONTROLLER OF CERTIFYING AUTHORITIES</font></h3>
+                   <h3 style="align: center; font-family: Arial;"><font size="+2" color="red"> LEAVE MANAGEMENT SYSTEM</font></h3>
                 </ul>
             </div>
             <!-- /.navbar-header -->
@@ -161,18 +206,10 @@ body, body td, body th {
             <!-- /.navbar-static-side -->
         </nav>
         <!-- Left navbar-header -->
-        <div class="navbar-default sidebar" role="navigation" style="z-index: 10; position: absolute; width: 290px; padding-top: 60px;
-		height: 100%;">
-            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                <div class="user-profile" style="margin-top: 60px;">
-                    <div class="dropdown user-pro-body">
-                         <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout <span class="caret"></span></a>
-                        <ul class="dropdown-menu animated flipInY">
-                            <li><a href="logout"><i class="fa fa-power-off"></i> Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <ul  id="side-menu" class="nav2 ls_menu">
+        <div class="navbar-default sidebar" role="navigation" style="z-index: 10; position: absolute; width: 290px; padding-top: 5px;
+		height: 100%; background: #BBEFFE;">
+            
+                <ul  id="side-menu" class="menu_li nav2 ls_menu" style="list-style: none; margin: 0; padding: 0;">
                     <li class="sidebar-search hidden-sm hidden-md hidden-lg">
                         <!-- input-group -->
                         <div class="input-group custom-search-form">
@@ -209,6 +246,8 @@ body, body td, body th {
                             <li><a href="divisioninfo">Division</a></li>
                             <li><a href="ministryinfo">Ministry</a></li>
                             <li><a href="holidaymanagement">Holiday</a></li>
+                             <li><a href="eventlog">Event Log</a></li>
+                            
                         </ul>
                     </li>
                     <li> <a href="forms.html" class="waves-effect"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">User Management<span class="fa arrow"></span></span></a>
@@ -221,21 +260,37 @@ body, body td, body th {
                         </ul>
                     </li>
                 </ul>
+                
+                
+            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+                <div class="user-profile" style="margin-top: 5px;">
+                    <div class="dropdown user-pro-body">
+                         <a href="#" class="dropdown-toggle logOut u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img alt="" src="resources/images/LO_images.png" width="150" height="auto"> <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated flipInY">
+                            <li><a href="logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
+            
         </div>
         <!-- Left navbar-header end -->
         <!-- Page Content -->
-        <div id="page-wrapper" style="background: #BFFFCE; padding-left: 300px;">
-            <div class="container-fluid" >
+        <div id="page-wrapper" class="home_p_bg" style="background: url(resources/images/bg.png); background-size: cover; background-attachment: fixed; padding-left: 300px;">
+        
+            <div class="container-fluid">
                 <div class="row">
                 	<div class="col-md-12 col-lg-12 col-sm-12">
                 	<br/>
                 		 <!-- <div class="white-box" style="background: #f2f2f2;"> -->
-                		 <div class="white-box" style="background: #FCC496;">
+                		 <div class="white-box" style="background: url(resources/images/white_tp_90_001.png);">
                     		<tiles:insertAttribute name="body"/>
                     	</div>
                     </div>
                 </div>
+                
+                
                 <!-- /.row -->
                 <!--row -->
                 <!-- /.row -->
@@ -250,6 +305,9 @@ body, body td, body th {
             <!-- /.container-fluid -->
             <footer class="footer text-center"> 2018 &copy; Technosis </footer>
         </div>
+        
+        
+        
         <!-- /#page-wrapper -->
     </div>
     <!-- /#wrapper -->

@@ -201,7 +201,8 @@ App.controller(
 					$scope.leaveapplication.eligibility = $scope.eligibility;
 					$scope.leaveapplication.fromDate = new Date($('#fromDate').val());
 					$scope.leaveapplication.toDate = new Date($('#toDate').val());
-					$scope.leaveapplication.totalDayCount = $scope.finaltotalDayCount;
+					//$scope.leaveapplication.totalDayCount = $scope.finaltotalDayCount;
+					$scope.leaveapplication.totalDayCount = $scope.totalDayCount;
 					$scope.leaveapplication.totalDayText = $scope.totalDayText;
 					$scope.leaveapplication.reasonForLeave = $scope.reasonForLeave;
 					$scope.leaveapplication.taskNeedToPerformed = $scope.taskNeedToPerformed;
@@ -219,7 +220,7 @@ App.controller(
 										
 										function(d){
 																						
-											leavehistoryService.leavebalanceforapply($scope.lmsuser.id, $scope.leavetype.id, $scope.finaltotalDayCount)
+											leavehistoryService.leavebalanceforapply($scope.lmsuser.id, $scope.leavetype.id, $scope.totalDayCount)
 											.then(
 													function(d){
 														$scope.showSuccessMessage(d.message);	
@@ -377,8 +378,10 @@ App.controller(
 					.then(
 							function(d) {
 
-								$scope.totalDayCount = "APPLIED ( "+d.numberOfDaysApplied+" ) + IF IMPACT ON HOLIDAY THAN MIN ( "+d.minimumHolidayConsider+" ) OF BEFORE ( "+ d.backwardHolidayCount +" ) AND AFTER ( "+ d.forwardHolidayCount +" )  = TOTAL ( "+d.numberOfDayConsider+" )";	
+							//	$scope.totalDayCount = "APPLIED ( "+d.numberOfDaysApplied+" ) + IF IMPACT ON HOLIDAY THAN MIN ( "+d.minimumHolidayConsider+" ) OF BEFORE ( "+ d.backwardHolidayCount +" ) AND AFTER ( "+ d.forwardHolidayCount +" )  = TOTAL ( "+d.numberOfDayConsider+" )";	
+								
 								$scope.finaltotalDayCount = d.numberOfDayConsider;
+								$scope.totalDayCount=$scope.finaltotalDayCount;
 								$scope.validationLock = false;
 								$scope.showSuccessMessage(d.message);
 							}, 
@@ -391,6 +394,13 @@ App.controller(
 
 				};
 				
-				
+				$scope.validateBalance = function(){
+					
+					if($scope.totalDayCount > ($scope.leaveBalance-$scope.leaveApplied)){
+						$scope.validationLock = true;						
+					    $scope.showErrorMessage("You have not sufficient balance");
+					}
+					
+				}
 			} 
 			]);

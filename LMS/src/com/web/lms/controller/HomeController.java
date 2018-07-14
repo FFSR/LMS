@@ -123,6 +123,21 @@ public class HomeController {
 		}
 	}
 	
+	@RequestMapping("/eventlog")
+	public String eventlog(Model model) {
+		
+		try {
+			if("" != httpSession.getAttribute("userName").toString()) {
+				return "eventlog";
+			}else {
+			
+				return "login";
+			}
+		}catch(Exception ex) {
+			return "login";
+		}
+	}
+	
 	@RequestMapping("/manageuser")
 	public String manageuser(Model model) {
 		

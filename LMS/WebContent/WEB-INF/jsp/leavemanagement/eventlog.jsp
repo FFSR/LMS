@@ -1,276 +1,101 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Ministry Information</title>
-<script type="text/javascript"
-	src="resources/js/app.js/service/leavetypeService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/loginService.js"> </script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/userlistService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/DropDownService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/wfManagementService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/manageuserService.js"></script>
+<title>Insert title here</title>
+
 
 <script type="text/javascript"
-	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/service/userlistService.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/controller/leaveapplicationController.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/directives/RestrictInput.js"></script>
-<link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
-	rel="stylesheet" />
-<script src="resources/js/app.js/service/leavehistoryService.js"></script>
+	src="resources/js/app.js/service/eventlogService.js"></script>
 
-<script src="resources/file-upload/js/dropzone/dropzone.js"></script>
 <script type="text/javascript"
-	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/controller/FIleUploadController.js"></script>
+	src="resources/js/app.js/controller/eventlogController.js"></script>
+
 <script type="text/javascript"
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
-<link rel="stylesheet"
-	href="resources/css/icons/test.css" />
-
-<style>
-    .required:before { content:"** ";color: red; }
-</style>
-
-
 
 </head>
 <body>
-	<br>
-	<div ng-controller="leaveapplicationController">
-		<div
-			ng-init="loadLeaveTypeDownDown();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.id}')"></div>
-		<div
-			ng-init="loadDropDownStation('Station');loadUserListDropDown();getUserInfo('${sessionScope.user.id}')"></div>
-
-		<form class="form-horizontal" name="applicationForm">
+	<div ng-controller="eventlogController">			
+		<form class="form-horizontal" name="eventlogForm">
 			<div class="form-body">
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">	
-							<label >USER ID</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="userid"
-									class="form-control" placeholder="User ID">
-							</div>
-						</div>
-					</div>
-
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="simple">User Name</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="username"
-									class="form-control" placeholder="User Name">
-							</div>
-						</div>
-					</div>
-				</div>
 
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="required">Leave Type</label>
-							<div class="col-md-9">
-								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddleavetype" ng-required="true"
-									ng-model="leavetype"
-									ng-change="showLeaveBalance(userid,leavetype.id)"
-									ng-options="x as x.type for x in dropdownData track by x.id">
-									<option value="">Select</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="simple">Leave Eligibility</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="eligibility"
-									class="form-control" placeholder="Yearly Leave Eligibility">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="simple">Total Leave</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="false" ng-model="leaveTotal"
-									class="form-control" placeholder="Total Leave">
-							</div>
-						</div>
-					</div>
-
-
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="simple">Leave Taken</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="leaveTaken"
-									class="form-control" placeholder="Leave All ready Taken">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="simple">Leave Balance</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="leaveBalance"
-									restrict-input="{type: 'digitsOnly'}" class="form-control"
-									placeholder="Leave Remaining">
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="simple">Leave Applied</label>
-							<div class="col-md-9">
-								<input type="text" ng-disabled="true" ng-model="leaveApplied"
-									class="form-control" placeholder="Leave Remaining">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="required">From Date</label>
+							<label class="control-label col-md-3">Start Date</label>
 							<div class="col-md-9">
 								<input type="text" id="fromDate" ng-model="fromDate"
-									class="form-control" ng-required="true" />
+									class="form-control" />
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="required">To Date</label>
+							<label class="col-md-3 control-label">End Date</label>
 							<div class="col-md-9">
 								<input type="text" id="toDate" ng-model="toDate"
-									class="form-control" ng-required="true" />
+									class="form-control"  />
 							</div>
 
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							<div class="col-md-3 control-label">
-								<label>Total Day Count</label>
-							</div>
-							<div class="col-md-9">
-								<input type="text" ng-model="totalDayCount" ng-change="validateBalance()" class="form-control"
-									placeholder="Total Days Count">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label class="required">In Station</label>
-							<div class="col-md-9">
-								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddStation" ng-model="ddStation"
-									ng-required="true"
-									ng-options="x as x.name for x in stationData track by x.name">
-									<option value="">Select</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label class="required">Leave Substitute</label>
-							<div class="col-md-9">
-								<!-- Drop Down list from table -->
-								<select class="form-control" id="ddReliever"
-									ng-model="ddReliever" ng-required="true"
-									ng-options="x as x.name for x in userData track by x.id">
-									<option value="">Select</option>
-								</select>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<label class="simple">Tasks TO DO</label>
-							<div class="col-md-9">
-								<input type="text" ng-model="taskNeedToPerformed"
-									class="form-control" placeholder="Tasks need to be performed">
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="required">Reason of Leave</label>
-							<div class="col-md-9">
-								<input type="text" ng-model="reasonForLeave" ng-required="true"
-									class="form-control" placeholder="Reason For Leave">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12 form-group">
-						<label class="col-md-2 control-label">Attach Files:</label>
-						<div class="col-md-10 dropzone" dropzone=""
-							id="my-awesome-dropzone">
-							<div class="dz-message" data-dz-message>
-								<span class="text-primary"> Drop Files Here to Upload <br />OR<br />
-									<button type="button" class="btn btn-info">Click Here</button>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-4">
-						<button type="submit" class="btn btn-primary" id="btnValidate"
-							ng-click="validate()" ng-disabled="applicationForm.$invalid">Validate</button>
-					</div>
-					<div class="col-sm-4">
-						<button type="submit" class="btn btn-danger" id="submit"
-							ng-click="applicationforleave()" ng-disabled="validationLock">Submit</button>
-					</div>
-					<div class="col-sm-4">
-						<input type="button" class="btn btn-info" value="Cancel"
-							id="Cancel" ng-click="gotoHomePage()">
-					</div>
-				</div>
+				<div class="modal-body">
 
-				<div class="row">
-					<div class="col-md-12">
-						<div id="successMssages" class="p-3 mb-2 bg-success text-white"
-							data-ng-show="successMessages" data-ng-bind="successMessages"></div>
-						<div id="errorMessages" class="p-3 mb-2 bg-danger text-white"
-							data-ng-show="errorMessages" data-ng-bind="errorMessages"></div>
+					<form role="form">
+					<div class="row">
+						<button type="submit"
+							class="btn btn-success waves-effect waves-light m-r-10"
+							id="search"
+							ng-click="loadDatewiseeventlog()" ng-disabled="eventlogForm.$invalid">Search</button>
+
+						<button type="submit"
+							class="btn btn-success waves-effect waves-light m-r-10"
+							id="cancel" ng-click="gomyPage()">Cancel</button>
+						
 					</div>
+						</form> 
 				</div>
+			
+
+				<!-- By Shourav 29th April 2018 -->
+
+				<div>
+					<table class="table table-sm">
+						<div>
+
+							<table ng-table="tableParams" class="table" show-filter="true">
+								<tr ng-repeat="eventlog in $data">
+									<td title="'User ID'" filter="{ id: 'text'}" sortable="'id'">{{eventlog.userId}}</td>
+									<td title="'Employee Email'"
+										filter="{ 'eventlog.userName': 'text'}"
+										sortable="'eventlog.userName'">{{eventlog.userName}}</td>
+									<td title="'Log In Time'" filter="{ type: 'text'}"
+										sortable="'lmsLeaveType.type'">{{eventlog.eventTime
+										| date: "y-MM-dd-HH-mm-ss"}}</td>
+									
+							</table>
+						</div>
+					</table>
+				</div>
+                
+				<!-- By Feroj 03, June 2018 -->
 			</div>
 		</form>
-	</div>
+		
+		<!-- Start By Feroj on 29th June,2018  -->  
+				<br> <br> <br>
+					
+				<!--  End By Feroj on 29th June 2018 -->
+
 </body>
+
 <script>
 	$('#fromDate').datetimepicker(
 			{
@@ -792,4 +617,5 @@
 				timepickerScrollbar : false
 			});
 </script>
+
 </html>

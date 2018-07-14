@@ -41,6 +41,7 @@ import com.web.lms.model.LmsWftRoleUserMap;
 import com.web.lms.model.LmsWftRoleUserMapHistory;
 import com.web.lms.wrapper.ResponseWrapperWorkFlowManagement;
 import com.web.lms.wrapper.ResponseWrapper;
+import com.web.lms.utility.SendMail;
 
 @RestController
 public class WorkFlowManagement {
@@ -75,6 +76,7 @@ public class WorkFlowManagement {
 			@PathVariable("leavetypeid") Integer leavetypeid,@PathVariable("leaveapplicationid") Integer leaveapplicationid) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+		SendMail sendmail= new SendMail();
 		LmsWftRequestSelector lmsWftRequestSelector = null;
 
 		try {
@@ -122,8 +124,9 @@ public class WorkFlowManagement {
 			}
 
 			if(generateWorkRequest(lmsWftRequestSelector, user, leaveApplication)) {
-				
+				//sendmail.SendMail();
 				responseWrapper.setMessage("Success. Your request is successfully generated.");
+			
 				return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
 				
 			}else {
@@ -143,6 +146,7 @@ public class WorkFlowManagement {
 			@PathVariable("WfRequestHopid") Integer WfRequestHopid, @PathVariable("hopStatus") String hopStatus, @RequestBody LmsWfRequestHop wfRequestHop) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
+		SendMail sendmail= new SendMail();
 
 		try {
 
@@ -167,6 +171,7 @@ public class WorkFlowManagement {
 			responseWrapper.setLmsWfRequest(lmsWfRequestHop.getLmsWfRequest());
 			responseWrapper.setLmsLeaveApplication(lmsWfRequestHop.getLmsWfRequest().getLmsLeaveApplication());
 			responseWrapper.setMessage("Success. Your request Hop is successfully submitted.");
+		//	sendmail.SendMail();
 			return new ResponseEntity<ResponseWrapperWorkFlowManagement>(responseWrapper, HttpStatus.OK);
 		} catch (Exception ex) {
 			responseWrapper.setMessage("Fail." + ex.getMessage());

@@ -11,6 +11,34 @@
 <script type="text/javascript"
 	src="resources/js/app.js/controller/leavehistoryController.js"></script>
 
+<style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size: 20px;
+}
+
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.ng-table-header {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+</style>
+
+
 </head>
 <body>
 	<div ng-controller="leavehistoryController">
