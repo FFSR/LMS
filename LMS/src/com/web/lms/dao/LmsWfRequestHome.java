@@ -177,7 +177,6 @@ public class LmsWfRequestHome {
 	}
 	
 	
-	
 	@SuppressWarnings("unchecked")
 	public List<LmsWfRequest> findAllLeaveApplicationsGeaterThanCurrentDate() {
 		try {
