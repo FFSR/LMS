@@ -51,7 +51,7 @@
 	</bean> 
 	 -->
 
-<!-- 	
+	<!--
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -59,10 +59,11 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
- -->	
+	-->
 	
 	<!-- Local Database Connection supremet_lmsdb -->
  	
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -71,7 +72,8 @@
 		<property name="password" value="root" />
 		
 	</bean>
-	 
+	
+	
  	
 	<!-- Local Database Connection lmsdb -->	
 <!-- 	

@@ -105,14 +105,14 @@
 							    <a href="http://www.supremetechnolab.com/LMS/forgetpasswd">Forget
 								Password
 								</a> &nbsp;&nbsp;&nbsp;&nbsp; 
-							 <!--	 <a href="http://localhost:8080/LMS/forgetpasswd">Forget
+							 	<!-- <a href="http://localhost:8080/LMS/forgetpasswd">Forget
 								Password
 								</a> &nbsp;&nbsp;&nbsp;&nbsp; -->
-							<!--	<a href="http://www.supremetechnolab.com/LMS/registration">Registration</a> 
-							    &nbsp;&nbsp;&nbsp;&nbsp; -->
+								 <a href="http://www.supremetechnolab.com/LMS/registration">Registration</a> 
+							    &nbsp;&nbsp;&nbsp;&nbsp; 
 							
-							 <a href="http://localhost:8080/LMS/registration">Registration</a> 
-							&nbsp;&nbsp;&nbsp;&nbsp; 
+							<!-- <a href="http://localhost:8080/LMS/registration">Registration</a> 
+							&nbsp;&nbsp;&nbsp;&nbsp; -->
 
 						</div>
 					</div>

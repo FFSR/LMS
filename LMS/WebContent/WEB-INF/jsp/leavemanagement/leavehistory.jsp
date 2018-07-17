@@ -29,6 +29,7 @@ body label {
 	font-family:  Arial /*Poppins, sans-serif*/;
 	color: #000;
 	font-weight: bold;
+	margin-left: .5em;
 }
 
 .ng-table-header {
@@ -36,6 +37,51 @@ body label {
 	color: #000;
 	font-weight: bold;
 }
+
+.btn_tf {
+	border-radius: 0px;
+	border: thin solid #027C05;
+	color: #027C05;
+	padding: 0 30px;
+    transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	padding: 5px 20px;
+}
+
+.btn_tf:focus {
+	border-radius: 30px;
+	background: #02C800;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf:hover {
+	border-radius: 30px;
+	background: #084301;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf_red {
+	background: #ffo;
+}
+
+.link_black a {
+	color: #000;
+}
+
+
 </style>
 
 
@@ -58,11 +104,11 @@ body label {
 								<p style="font-family: Courier; color: #000; font-size: 20px;">My
 									Leave Balance</p>
 								<button type="submit"
-									class="btn btn-success waves-effect waves-light m-r-10"
+									class="btn btn_tf btn-success waves-effect waves-light m-r-10"
 									id="search" ng-click="leavehistory()">Leave Balance</button>
 
 								<button type="submit"
-									class="btn btn-success waves-effect waves-light m-r-10"
+									class="btn btn_tf btn-info"
 									id="cancel" ng-click="gomyPage()">Cancel</button>
 							</form>
 

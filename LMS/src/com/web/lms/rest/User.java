@@ -553,17 +553,25 @@ public class User {
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
 	
+	// This is used to get subordinate list to see leave balance report for all subordinates
 	@RequestMapping(value = "/subordinate/{userid}", method = RequestMethod.GET)
 	public ResponseEntity<List<LmsUser>> subordinate(@PathVariable("userid") int uID) {
 		
-	//	LmsUser lmsUser = lmsUserHome.findById(uID);		
+	LmsUser lmsUser = lmsUserHome.findById(uID);		
 		
 		List<LmsUser> listLmsUser = new ArrayList<LmsUser>();	
 		
-
 		try {
 			
-			listLmsUser = lmsUserHome.findSupervisorID(uID);			 				
+			if(lmsUser.getLmsDesignation().getId()== 4) {
+			
+			listLmsUser = lmsUserHome.findSupervisorID(uID);
+			}
+			else if(lmsUser.getLmsDesignation().getId()== 3) {
+				listLmsUser = lmsUserHome.findByDeptID(lmsUser.getLmsDepartment().getId());
+			}
+			else
+				listLmsUser = lmsUserHome.findAllUser();
 					
 			
 		} catch (Exception ex) {

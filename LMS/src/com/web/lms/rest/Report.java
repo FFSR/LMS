@@ -1,5 +1,6 @@
 package com.web.lms.rest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.web.lms.dao.LmsUserHome;
 import com.web.lms.dao.LmsWfRequestHome;
+import com.web.lms.model.LmsUser;
 import com.web.lms.model.LmsWfRequest;
 import com.web.lms.wrapper.ResponseWrapper;
 
@@ -20,6 +23,9 @@ public class Report {
 
 	@Autowired
 	private LmsWfRequestHome lmsWfRequestHome;
+	
+	@Autowired
+	private LmsUserHome lmsUserHome;
 
 	@RequestMapping(value = "report/{userID}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> generateRequest(@PathVariable("userID") Integer userID) {
@@ -48,14 +54,35 @@ public class Report {
 		}
 	}
 	
+	// used to show report of leave staus of subordinates
+	// added on 17th Jul,2018
 	@RequestMapping(value = "reportSubordinate/{userID}", method = RequestMethod.GET)
 	public ResponseEntity<ResponseWrapper> generateRequestSubordinate(@PathVariable("userID") Integer userID) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
+		
+		LmsUser lmsUser = lmsUserHome.findById(userID);
+		
+		List<LmsWfRequest> listLmsWfRequest = new ArrayList<LmsWfRequest>();	
 
 		try {
 
-			List<LmsWfRequest> listLmsWfRequest = lmsWfRequestHome.findRequestBysupervisorID(userID);
+			if(lmsUser.getLmsDesignation().getId()== 4) {
+			
+			listLmsWfRequest = lmsWfRequestHome.findRequestBysupervisorID(userID);
+			}
+			
+			else if(lmsUser.getLmsDesignation().getId()== 3) {
+				listLmsWfRequest = lmsWfRequestHome.findRequestByDeptID(lmsUser.getLmsDepartment().getId());
+			}
+			else {
+				listLmsWfRequest = lmsWfRequestHome.findRequestForAll();
+			}
+				
+		} catch (Exception ex) {
+			responseWrapper.setMessage("Fail." + ex.getMessage());
+			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		}
 
 			if (listLmsWfRequest.size() > 0) {
 				
@@ -69,10 +96,7 @@ public class Report {
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
 
-		} catch (Exception ex) {
-			responseWrapper.setMessage("Fail." + ex.getMessage());
-			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
-		}
+		
 	}
 
 	

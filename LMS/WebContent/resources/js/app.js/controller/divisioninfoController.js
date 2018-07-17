@@ -6,12 +6,13 @@ App
 			'$http',
 			'loginService',
 			'divisioninfoService',
+			'NgTableParams',
 			'$timeout',
 			'$filter',
 			'$location',
 			'url',
 
-			function($scope, $http, loginService, divisioninfoService,
+			function($scope, $http, loginService, divisioninfoService,NgTableParams,
 				$timeout, $filter,$location, url) {
 				
 				$scope.testMsg = "Testing Message";
@@ -45,11 +46,46 @@ App
 							function(d) {
 								$scope.testMsg = d.message;
 								console.log("Success.",d.message);
+								$scope.showSuccessMessage("Division is created");
 							},
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
+								$scope.showErrorMessage(e.data.message);
 							});
+				};
+				
+				$scope.divisionlistshow = function(){
+					$scope.testMessage = "Test Message";
+					divisioninfoService.divisionlistshow().then(
+							function(d) {
+								$scope.testMsg1 = "Test";
+								console.log("Success.",d.message);
+								var data = d;
+								$scope.tableParams = new NgTableParams({}, { dataset: data});
+								
+							},
+							function(errResponse) {
+								
+								console
+										.error("Error while fetching Currencies");
+							});
+				};
+				
+				$scope.deleteDivision = function(division){	
+					//console.log("HolidayRecord", holidayrecord );
+					$scope.division_id=division.id;
+					divisioninfoService.deleteDivision($scope.division_id).then(
+							function(d){
+								console.log(d.message);
+								$scope.showSuccessMessage("Deletion successful");
+							},
+							function(errResponse){
+								console.log("Failed to Update User Profile.");
+								$scope.showErrorMessage("Deletion Failed");
+							}
+						);
+					
 				};
 				
 				/* Show Success Message */

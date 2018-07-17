@@ -46,6 +46,84 @@
     .required:before { content:"** ";color: red; }
 </style>
 
+<style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size: 20px;
+}
+
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold; 
+	margin-left: .5em;
+}
+
+.ng-table-header {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.line_hight h4 {
+	font-family:  Arial;
+	color: #000;
+	line-height: 35px;
+	padding-top: 25px;
+}
+
+.btn_tf {
+	border-radius: 0px;
+	border: thin solid #027C05;
+	color: #027C05;
+	padding: 0 30px;
+    transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	padding: 5px 20px;
+}
+
+.btn_tf:focus {
+	border-radius: 30px;
+	background: #02C800;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf:hover {
+	border-radius: 30px;
+	background: #084301;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf_red {
+	background: #ffo;
+}
+
+.link_black a {
+	color: #000;
+}
+
+</style>
 
 
 </head>
@@ -65,7 +143,7 @@
 							<label >USER ID</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="userid"
-									class="form-control" placeholder="User ID">
+									class="form-control" placeholder="User ID" >
 							</div>
 						</div>
 					</div>
@@ -75,7 +153,7 @@
 							<label class="simple">User Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="username"
-									class="form-control" placeholder="User Name">
+									class="form-control" placeholder="User Name" >
 							</div>
 						</div>
 					</div>
@@ -88,7 +166,7 @@
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddleavetype" ng-required="true"
-									ng-model="leavetype"
+									ng-model="leavetype" style="background-color:#E0E6F8;"
 									ng-change="showLeaveBalance(userid,leavetype.id)"
 									ng-options="x as x.type for x in dropdownData track by x.id">
 									<option value="">Select</option>
@@ -101,7 +179,7 @@
 							<label class="simple">Leave Eligibility</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="eligibility"
-									class="form-control" placeholder="Yearly Leave Eligibility">
+									class="form-control" placeholder="Yearly Leave Eligibility" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -112,7 +190,7 @@
 							<label class="simple">Total Leave</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="false" ng-model="leaveTotal"
-									class="form-control" placeholder="Total Leave">
+									class="form-control" placeholder="Total Leave" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -123,7 +201,7 @@
 							<label class="simple">Leave Taken</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveTaken"
-									class="form-control" placeholder="Leave All ready Taken">
+									class="form-control" placeholder="Leave All ready Taken" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -135,7 +213,7 @@
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveBalance"
 									restrict-input="{type: 'digitsOnly'}" class="form-control"
-									placeholder="Leave Remaining">
+									placeholder="Leave Remaining" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -144,7 +222,7 @@
 							<label class="simple">Leave Applied</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="leaveApplied"
-									class="form-control" placeholder="Leave Remaining">
+									class="form-control" placeholder="Leave Remaining" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -155,7 +233,7 @@
 							<label class="required">From Date</label>
 							<div class="col-md-9">
 								<input type="text" id="fromDate" ng-model="fromDate"
-									class="form-control" ng-required="true" />
+									class="form-control" ng-required="true" style="background-color:#E0E6F8;"/>
 							</div>
 						</div>
 					</div>
@@ -164,7 +242,7 @@
 							<label class="required">To Date</label>
 							<div class="col-md-9">
 								<input type="text" id="toDate" ng-model="toDate"
-									class="form-control" ng-required="true" />
+									class="form-control" ng-required="true" style="background-color:#E0E6F8;"/>
 							</div>
 
 						</div>
@@ -178,7 +256,7 @@
 							</div>
 							<div class="col-md-9">
 								<input type="text" ng-model="totalDayCount" ng-change="validateBalance()" class="form-control"
-									placeholder="Total Days Count">
+									placeholder="Total Days Count" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -190,7 +268,7 @@
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddStation" ng-model="ddStation"
-									ng-required="true"
+									ng-required="true" style="background-color:#E0E6F8;"
 									ng-options="x as x.name for x in stationData track by x.name">
 									<option value="">Select</option>
 								</select>
@@ -203,7 +281,7 @@
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"
-									ng-model="ddReliever" ng-required="true"
+									ng-model="ddReliever" ng-required="true" style="background-color:#E0E6F8;"
 									ng-options="x as x.name for x in userData track by x.id">
 									<option value="">Select</option>
 								</select>
@@ -217,7 +295,7 @@
 							<label class="simple">Tasks TO DO</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="taskNeedToPerformed"
-									class="form-control" placeholder="Tasks need to be performed">
+									class="form-control" placeholder="Tasks need to be performed" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -226,7 +304,7 @@
 							<label class="required">Reason of Leave</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="reasonForLeave" ng-required="true"
-									class="form-control" placeholder="Reason For Leave">
+									class="form-control" placeholder="Reason For Leave" style="background-color:#E0E6F8;">
 							</div>
 						</div>
 					</div>
@@ -246,15 +324,15 @@
 				</div>
 				<div class="row">
 					<div class="col-sm-4">
-						<button type="submit" class="btn btn-primary" id="btnValidate"
+						<button type="submit" class="btn btn_tf btn-success btn-primary" id="btnValidate"
 							ng-click="validate()" ng-disabled="applicationForm.$invalid">Validate</button>
 					</div>
 					<div class="col-sm-4">
-						<button type="submit" class="btn btn-danger" id="submit"
+						<button type="submit" class="btn btn_tf btn-denger waves-effect waves-light" id="submit"
 							ng-click="applicationforleave()" ng-disabled="validationLock">Submit</button>
 					</div>
 					<div class="col-sm-4">
-						<input type="button" class="btn btn-info" value="Cancel"
+						<input type="button" class="btn btn_tf btn-info" value="Cancel"
 							id="Cancel" ng-click="gotoHomePage()">
 					</div>
 				</div>

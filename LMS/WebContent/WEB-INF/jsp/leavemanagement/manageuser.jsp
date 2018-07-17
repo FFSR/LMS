@@ -39,6 +39,89 @@
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+	
+	
+<style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size: 20px;
+}
+
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+	margin-left: .5em;
+}
+
+.ng-table-header {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.line_hight h4 {
+	font-family:  Arial;
+	color: #000;
+	line-height: 35px;
+	padding-top: 25px;
+}
+
+.btn_tf {
+	border-radius: 0px;
+	border: thin solid #027C05;
+	color: #027C05;
+	padding: 0 30px;
+    transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	padding: 5px 20px;
+}
+
+.btn_tf:focus {
+	border-radius: 30px;
+	background: #02C800;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf:hover {
+	border-radius: 30px;
+	background: #084301;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf_red {
+	background: #ffo;
+}
+
+.link_black a {
+	color: #000;
+}
+
+
+</style>
+	
+	
 </head>
 
 
@@ -98,7 +181,7 @@
 					<div class="form-group">
 						<div class="col-md-6"></div>
 						<div class="col-md-6">
-							<button type="submit" class="btn btn-info" id="search"
+							<button type="submit" class="btn btn_tf btn-info" id="search"
 								ng-click="manageuser()">Search</button>
 						</div>
 					</div>
@@ -141,7 +224,7 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Name</label>
+								<label class="">Name</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="user.name" class="form-control"
 										placeholder="name">
@@ -150,7 +233,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Mobile</label>
+								<label class="">Mobile</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="user.mobilePersonal"
 										class="form-control" placeholder="mobile no">
@@ -162,7 +245,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">NID</label>
+								<label class="">NID</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="user.nid" class="form-control"
 										placeholder="nid">
@@ -171,7 +254,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Passport No</label>
+								<label class="">Passport No</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="user.passport"
 										class="form-control" placeholder="passport">
@@ -183,7 +266,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="col-md-3 control-label">Joining Date</label>
+								<label class="">Joining Date</label>
 								<div class="col-md-9">
 									<input type="text"
 										ng-model="user.joiningDate| date: YYYY-MM-dd"
@@ -195,7 +278,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Telephone</label>
+								<label class="">Telephone</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="user.mobileOffice"
 										class="form-control" placeholder="Telephone">
@@ -207,7 +290,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Email</label>
+								<label class="">Email</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="user.email" class="form-control"
 										placeholder="email">
@@ -216,7 +299,7 @@
 						</div>
 						<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Supervisor</label>
+							<label class="">Supervisor</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"
@@ -233,7 +316,7 @@
 					<div class="row">
 						<div class="col-md-6">
 					       <div class="form-group">
-						     <label class="control-label col-md-3">Gender</label>
+						     <label class="">Gender</label>
 						        <div class="col-md-9">
 							      <select class="form-control" id="ddAppStatus" ng-model="gender"
 								   ng-required="true"
@@ -246,7 +329,7 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Office</label>
+								<label class="">Office</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
 										ng-model="user.lmsOfficeLocation"
@@ -262,7 +345,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Division</label>
+								<label class="">Division</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
 										ng-model="user.lmsDivision"
@@ -275,7 +358,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Designation</label>
+								<label class="">Designation</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
 										ng-model="user.lmsDesignation"
@@ -290,7 +373,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Ministry</label>
+								<label class="">Ministry</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
 										ng-model="user.lmsMinistry"
@@ -302,7 +385,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Section</label>
+								<label class="">Section</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
 										ng-model="user.lmsSection"
@@ -317,7 +400,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Nationality</label>
+								<label class="">Nationality</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus"
 										ng-model="nationality"
@@ -331,7 +414,7 @@
 						</div>						
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Status</label>
+								<label class="">Status</label>
 								<div class="col-md-9">
 									<select class="form-control" id="ddAppStatus" ng-model="status"
 										ng-change="setnewStatus(user,status.name)"
@@ -346,7 +429,7 @@
 					<div class="row">					
 						<div class="col-md-6">
 							<div >
-								<label class="control-label col-md-3">Work Flow Role</label>
+								<label class="">Work Flow Role</label>
 								<div class="well">
 									<label ng-repeat="wfrole in wfroles">
   										<input type="checkbox" checklist-model="user.wfroles" checklist-value="wfrole.id"> {{wfrole.roleName}}
@@ -358,7 +441,7 @@
 
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="control-label col-md-3">Application Role</label>
+								<label class="">Application Role</label>
 								<div class="well">
 									<label ng-repeat="approle in approles">
   										<input type="checkbox" checklist-model="user.approles" checklist-value="approle.id"> {{approle.name}}
@@ -372,12 +455,12 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<button type="submit"
-								class="btn btn-success waves-effect waves-light m-r-10"
+								class="btn btn_tf btn-success waves-effect waves-light m-r-10"
 								id="submit" ng-click="userprofile(ddlmsWftrole,ddlmsRole,user)">Update</button>
 						</div>
 						<div class="col-sm-9">
 							<button type="button"
-								class="btn btn-inverse waves-effect waves-light"
+								class="btn btn_tf btn-inverse waves-effect waves-light"
 								ng-click="gotoHomePage()">Cancel</button>
 						</div>
 					</div>

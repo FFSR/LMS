@@ -109,7 +109,7 @@ body label {
 							</div>
 							<div class="col-md-6">
 								
-								<a href="resources/manuals/UserManual.docx"><img src="resources/images/manual_icon_001.png" width="" height=""></a>
+								<a href="resources/manuals/Manual_LMS.docm"><img src="resources/images/manual_icon_001.png" width="" height=""></a>
 
 							</div>
 							<div class="col-md-12">

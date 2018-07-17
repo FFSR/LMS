@@ -18,6 +18,85 @@
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+	
+<style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size: 20px;
+}
+
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.ng-table-header {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.line_hight h4 {
+	font-family:  Arial;
+	color: #000;
+	line-height: 35px;
+	padding-top: 25px;
+}
+
+.btn_tf {
+	border-radius: 0px;
+	border: thin solid #027C05;
+	color: #027C05;
+	padding: 0 30px;
+    transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	padding: 5px 20px;
+}
+
+.btn_tf:focus {
+	border-radius: 30px;
+	background: #02C800;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf:hover {
+	border-radius: 30px;
+	background: #084301;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf_red {
+	background: #ffo;
+}
+
+.link_black a {
+	color: #000;
+}
+
+</style>
+	
 
 </head>
 <body>
@@ -51,12 +130,12 @@
 					<form role="form">
 					<div class="row">
 						<button type="submit"
-							class="btn btn-success waves-effect waves-light m-r-10"
+							class="btn btn_tf btn-success waves-effect waves-light m-r-10"
 							id="search"
 							ng-click="loadDatewiseeventlog()" ng-disabled="eventlogForm.$invalid">Search</button>
 
 						<button type="submit"
-							class="btn btn-success waves-effect waves-light m-r-10"
+							class="btn btn_tf btn-info"
 							id="cancel" ng-click="gomyPage()">Cancel</button>
 						
 					</div>

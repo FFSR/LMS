@@ -45,6 +45,7 @@ public class LmsDivisionHome {
 	public void remove(LmsDivision persistentInstance) {
 		log.debug("removing LmsDivision instance");
 		try {
+			persistentInstance = entityManager.merge(persistentInstance);
 			entityManager.remove(persistentInstance);
 			log.debug("remove successful");
 		} catch (RuntimeException re) {

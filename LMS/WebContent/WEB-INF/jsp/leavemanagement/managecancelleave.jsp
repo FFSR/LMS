@@ -23,6 +23,87 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/leaveapplicationservice.js"></script>
 	
+<style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size: 20px;
+}
+
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+	margin-left: .5em;
+}
+
+.ng-table-header {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.line_hight h4 {
+	font-family:  Arial;
+	color: #000;
+	line-height: 35px;
+	padding-top: 25px;
+}
+
+.btn_tf {
+	border-radius: 0px;
+	border: thin solid #027C05;
+	color: #027C05;
+	padding: 0 30px;
+    transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	padding: 5px 20px;
+}
+
+.btn_tf:focus {
+	border-radius: 30px;
+	background: #02C800;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf:hover {
+	border-radius: 30px;
+	background: #084301;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf_red {
+	background: #ffo;
+}
+
+.link_black a {
+	color: #000;
+}
+
+
+</style>
+	
+	
 
 </head>
 <body ng-controller="managecancelleaveController">
@@ -226,12 +307,12 @@
 						</div>
 						<div class="col-md-2"></div>
 						<div class="col-md-2">
-							<button type="submit" class="btn btn-danger" id="submit"
+							<button type="submit" class="btn btn_tf btn-danger" id="submit"
 								ng-click="showConfirmationMessage(status,'${sessionScope.userID}')"
 								ng-disabled="approvalForm.$invalid">Submit</button>
 						</div>
 						<div class="col-md-2">
-							<input type="button" class="btn btn-info" value="Cancel"
+							<input type="button" class="btn btn_tf btn-info" value="Cancel"
 								id="Cancel" ng-click="gotoHomePage()">
 						</div>
 					</div>

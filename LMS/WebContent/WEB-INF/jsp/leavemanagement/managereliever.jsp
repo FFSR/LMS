@@ -27,6 +27,89 @@
 	src="resources/js/DatePicker/jquery.datetimepicker.full.js"></script>
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
+<link rel="stylesheet"
+	href="resources/css/icons/test.css" />	
+	
+<style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size: 20px;
+}
+
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+	margin-left: .5em;
+}
+
+.ng-table-header {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold;
+}
+
+.line_hight h4 {
+	font-family:  Arial;
+	color: #000;
+	line-height: 35px;
+	padding-top: 25px;
+}
+
+.btn_tf {
+	border-radius: 0px;
+	border: thin solid #027C05;
+	color: #027C05;
+	padding: 0 30px;
+    transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	-ms-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+	padding: 5px 20px;
+}
+
+.btn_tf:focus {
+	border-radius: 30px;
+	background: #02C800;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf:hover {
+	border-radius: 30px;
+	background: #084301;
+	color: #fff;
+    transition: all 0.6s ease 0s;
+	-o-transition: all 0.6s ease 0s;
+	-ms-transition: all 0.6s ease 0s;
+	-moz-transition: all 0.6s ease 0s;
+	-webkit-transition: all 0.6s ease 0s;
+}
+
+.btn_tf_red {
+	background: #ffo;
+}
+
+.link_black a {
+	color: #000;
+}
+
+
+</style>
+	
 
 </head>
 <body>
@@ -41,7 +124,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">User Name</label>
+							<label class="">User Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="name" class="form-control"
 									placeholder="User ID">
@@ -51,7 +134,7 @@
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Department</label>
+							<label class="">Department</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="departmentname"
 									class="form-control" placeholder="User Name">
@@ -62,7 +145,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Section Name</label>
+							<label class="">Section Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="sectionname" class="form-control"
 									placeholder="User ID">
@@ -72,7 +155,7 @@
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Mobile</label>
+							<label class="">Mobile</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="mobilePersonal"
 									class="form-control" placeholder="User Name">
@@ -111,7 +194,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Reliever</label>
+							<label class="">Reliever</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddReliever"
@@ -128,7 +211,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">User Name</label>
+							<label class="">User Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="name_n" class="form-control">
 							</div>
@@ -138,7 +221,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Department Name</label>
+							<label class="">Department Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="dep_name" class="form-control">
 							</div>
@@ -146,7 +229,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">SectionName</label>
+							<label class="">SectionName</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="sec_name" class="form-control">
 							</div>
@@ -157,7 +240,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Delegation From</label>
+							<label class="">Delegation From</label>
 							<div class="col-md-9">
 								<input type="text" id="fromDate" ng-model="fromDate"
 									class="form-control" ng-required="true"/>
@@ -166,7 +249,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Delegation To</label>
+							<label class="">Delegation To</label>
 							<div class="col-md-9">
 								<input type="text" id="toDate" ng-model="toDate"
 									class="form-control" ng-required="true"/>
@@ -176,12 +259,12 @@
 				</div>
 
 				<div class="row">
-					<button type="submit" class="btn btn-primary" id="submit"
+					<button type="submit" class="btn btn_tf btn-success waves-effect waves-light m-r-10" id="submit"
 						ng-click="addReliever()" ng-disabled="releiverForm.$invalid">Add Reliever</button>
 						
 					<div class="col-sm-3">
-						<button type="submit" class="btn btn-info" id="cancel"
-						ng-click="stayMyPage()" >Cancel</button>
+						<button type="submit" class="btn btn_tf btn-info" id="cancel"
+						ng-click="stayMyPage()" >Cancel1</button>
 					</div>
 				</div>
 				

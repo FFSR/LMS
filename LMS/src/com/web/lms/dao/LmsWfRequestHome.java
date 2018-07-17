@@ -147,6 +147,37 @@ public class LmsWfRequestHome {
 		}
 	}
 	
+	public List<LmsWfRequest> findRequestByDeptID(Integer deptid) {
+
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e WHERE e.lmsUserByUserId.lmsDepartment.id=:deptid")
+					.setParameter("deptid", deptid);
+
+			List<LmsWfRequest> listLmsWfRequest = query.getResultList();
+
+			return listLmsWfRequest;
+
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+	
+	public List<LmsWfRequest> findRequestForAll() {
+
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsWfRequest e ");
+
+			List<LmsWfRequest> listLmsWfRequest = query.getResultList();
+
+			return listLmsWfRequest;
+
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+	
+	
+	
 	@SuppressWarnings("unchecked")
 	public List<LmsWfRequest> findAllLeaveApplicationsGeaterThanCurrentDate() {
 		try {

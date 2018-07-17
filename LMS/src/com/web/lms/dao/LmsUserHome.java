@@ -239,6 +239,23 @@ public class LmsUserHome {
 		}
 	
     }
+  
+  public List<LmsUser> findByDeptID(Integer deptid) {
+		
+		try {
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.lmsUser.lmsDepartment.id=:id").setParameter("id", deptid);
+		
+			List<LmsUser> lmsUser = query.getResultList();
+		
+			return lmsUser;		
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	
+  }
+  
+  
     
     
 		

@@ -83,9 +83,12 @@ public List<LmsEventLog> findeventlogDateRange(Date startdate,Date enddate) {
 		// of all leave requests which are raised within this range. For checking 'My Leave Status' this will be used.
 
 		try {
+			/*Query query = entityManager
+					.createQuery("SELECT e FROM LmsEventLog e WHERE date_format(e.eventTime,'%d/%m/%Y/%H:%i:%s') BETWEEN :startdate and :enddate")
+					.setParameter("startdate", startdate).setParameter("enddate", enddate);*/
 			Query query = entityManager
-					.createQuery("SELECT e FROM LmsEventLog e WHERE e.eventTime BETWEEN :startdate and :enddate")
-					.setParameter("startdate", startdate).setParameter("enddate", enddate);
+			.createQuery("SELECT e FROM LmsEventLog e WHERE e.eventTime BETWEEN :startdate and :enddate")
+			.setParameter("startdate", startdate).setParameter("enddate", enddate);
 
 			List<LmsEventLog> listLmsEventLog =  query.getResultList();
 
