@@ -92,6 +92,21 @@ public class LmsUserRoleMapHome {
 		}
 	}
     
+    public LmsUserRoleMap findByRoleId(Integer roleid) {
+		try {
+			Query query = entityManager
+					.createQuery("SELECT e FROM LmsUserRoleMap e WHERE e.lmsRole.id =:roleid")
+					.setParameter("roleid", roleid);
+
+			LmsUserRoleMap lmsUserRoleMap = (LmsUserRoleMap)query.getSingleResult();
+
+			return lmsUserRoleMap;
+		} 
+		catch (Exception ex) {
+			return null;
+		}
+	}
+    
 	public List<LmsUserRoleMap> findRoleByUser(LmsUser user) {		
 		try { 			
 			Query query = entityManager.createQuery("SELECT e FROM LmsUserRoleMap e WHERE e.lmsUser=:user")

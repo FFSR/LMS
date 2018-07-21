@@ -121,7 +121,7 @@ body label {
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Holiday Description</label>
+							<label class="">Holiday Description</label>
 							<div class="col-md-9">
 								<input type="text" ng-model="leaveSubject" class="form-control"
 									ng-required="true">
@@ -130,7 +130,7 @@ body label {
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Holiday Date</label>
+							<label class="">Holiday Date</label>
 							<div class="col-md-9">
 								<input type="text" id="fromDate" class="form-control" />
 							</div>
@@ -142,7 +142,7 @@ body label {
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Optional</label>
+							<label class="">Optional</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddOptional"
@@ -156,7 +156,7 @@ body label {
 
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Subject to Moon</label>
+							<label class="">Subject to Moon</label>
 							<div class="col-md-9">
 								<!-- Drop Down list from table -->
 								<select class="form-control" id="ddMoon" ng-model="ddMoon"

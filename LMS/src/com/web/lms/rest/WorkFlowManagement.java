@@ -146,7 +146,7 @@ public class WorkFlowManagement {
 			@PathVariable("WfRequestHopid") Integer WfRequestHopid, @PathVariable("hopStatus") String hopStatus, @RequestBody LmsWfRequestHop wfRequestHop) {
 
 		ResponseWrapperWorkFlowManagement responseWrapper = new ResponseWrapperWorkFlowManagement();
-		SendMail sendmail= new SendMail();
+		//SendMail sendmail= new SendMail();
 
 		try {
 
@@ -552,8 +552,11 @@ public class WorkFlowManagement {
 		}
 	}
 
+	
+	// Update lms_wf_request_hop table
 	protected void updateHopCurrentStatus(LmsWfRequest lmsWfRequest, LmsUser user) {
 
+		
 		try {
 
 			if (updateRequestStatus(lmsWfRequest, user)) {
@@ -598,6 +601,25 @@ public class WorkFlowManagement {
 							lmsWfRequestHop.setStatus(WFSTATUS.CURRENT.toString());
 
 							lmsWfRequestHopHome.merge(lmsWfRequestHop);
+							List<LmsWftRoleUserMap> listLmsWftRoleUserMap = lmsWftRoleUserMapHome.findByRoleId(lmsWfRequestHop.getWftRoleId());
+							//String  Finalemail = lmsWftRoleUserMap.getLmsUserByUserId().getEmail();
+							
+							/*if (listLmsWftRoleUserMap.size()> 1) {*/
+								String email="";
+								String Finalemail="";
+								String Oldemail="";
+							for (LmsWftRoleUserMap lmsWftRoleUserMap : listLmsWftRoleUserMap) {
+								
+								email = lmsWftRoleUserMap.getLmsUserByUserId().getEmail();
+								Oldemail =email;
+								Finalemail =   Oldemail.concat(",").concat(Finalemail);
+										
+						}	
+							Finalemail=replaceLast(",", "", Finalemail);	
+							String flag="request";	
+							// sending mail to current approver
+							SendMail sendmail= new SendMail();
+							sendmail.SendMailForApproval(Finalemail,flag);
 						}
 					}
 				}
@@ -608,7 +630,21 @@ public class WorkFlowManagement {
 
 		}
 	}
+	// Replace last occurance of a string with required value
+	public static String replaceLast(String find, String replace, String string) {
+        int lastIndex = string.lastIndexOf(find);
+        
+        if (lastIndex == -1) {
+            return string;
+        }
+        
+        String beginString = string.substring(0, lastIndex);
+        String endString = string.substring(lastIndex + find.length());
+        
+        return beginString + replace + endString;
+    }
 
+	// Update lms_wf_request table
 	protected boolean updateRequestStatus(LmsWfRequest lmsWfRequest, LmsUser user) {
 		
 		String requestStatus = "";
@@ -622,6 +658,8 @@ public class WorkFlowManagement {
 				if (lmsWfRequestHop.getStatus().contains(WFSTATUS.DONE.toString())) {
 					requestStatus = WFSTATUS.APPROVED.toString();
 					requestComplete = true;
+					
+					//sendMail()
 				} else if (lmsWfRequestHop.getStatus().contains(WFSTATUS.CURRENT.toString())) {
 					requestStatus = WFSTATUS.INPROGRESS.toString();
 					requestComplete = false;
@@ -631,6 +669,8 @@ public class WorkFlowManagement {
 				} else if (lmsWfRequestHop.getStatus().contains(WFSTATUS.REJECTED.toString())) {
 					requestStatus = WFSTATUS.REJECTED.toString();
 					requestComplete = true;
+					
+					//sendMail();
 					break;
 				}
 			}
@@ -638,14 +678,32 @@ public class WorkFlowManagement {
 			lmsWfRequest.setUpdateDate(new Date());
 			lmsWfRequest.setLmsUserByUpdateBy(user);
 			
-			if (requestStatus.equals(WFSTATUS.APPROVED.toString())
+		if (requestStatus.equals(WFSTATUS.APPROVED.toString())
 					|| requestStatus.equals(WFSTATUS.REJECTED.toString())) {
 
 				lmsWfRequest.setEndDate(new Date());
 				
 			}
-
-			lmsWfRequestHome.merge(lmsWfRequest);
+		lmsWfRequestHome.merge(lmsWfRequest);
+		
+		// Sending mail to user to notify whether leave is approved or rejected
+		SendMail sendmail= new SendMail();
+		
+		if (requestStatus.equals(WFSTATUS.APPROVED.toString())) {
+				String email = lmsWfRequest.getLmsUserByUserId().getEmail();
+				String flag="approve";
+				SendMail.SendMailForApproval(email, flag);
+				//lmsWfRequest.setEndDate(new Date());
+			}
+			else if(requestStatus.equals(WFSTATUS.REJECTED.toString())) {
+				String email = lmsWfRequest.getLmsUserByUserId().getEmail();
+				String flag="reject";
+				// sending mail to user to inform rejection
+				SendMail.SendMailForApproval(email, flag);
+				//lmsWfRequest.setEndDate(new Date());
+			}
+			
+			
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

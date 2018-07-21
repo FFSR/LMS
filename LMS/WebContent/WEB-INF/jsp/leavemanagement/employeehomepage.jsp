@@ -112,23 +112,17 @@ body label {
 								<a href="resources/manuals/Manual_LMS.docm"><img src="resources/images/manual_icon_001.png" width="" height=""></a>
 
 							</div>
-							<div class="col-md-12">
 							
-								
-
-							</div>
 						</div>
+						
+						<div class="col-md-6 line_hight">
+								<a href="resources/manuals/LeaveApprovalFlow.docx"><img src="resources/images/workflow.png" width="" height=""></a>		 
+							</div>
 						
 					</div>
 			
 			</div>
-			
-			<div class="row">
-				
-			</div>
 
-			<br>
-			<br>
 			<br>
 			<table class="table table-sm">
 				<div>

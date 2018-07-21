@@ -148,4 +148,19 @@ public class LmsWftRoleUserMapHome {
 		}
 		
 	}
+	
+	public List<LmsWftRoleUserMap> findByRoleId(Integer roleID ) {		
+		try { 			
+			Query query = entityManager.createQuery("SELECT e FROM LmsWftRoleUserMap e WHERE e.lmsWftRole.id=:roleID")
+					.setParameter("roleID", roleID);
+		
+			List<LmsWftRoleUserMap> listLmsWftRoleUserMap =  query.getResultList();
+		
+			return listLmsWftRoleUserMap;
+		}
+		catch(Exception ex) {			
+			return null;			
+		}
+	}
+	
 }

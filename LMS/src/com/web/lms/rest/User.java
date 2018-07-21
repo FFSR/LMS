@@ -102,6 +102,21 @@ public class User {
 	public ResponseEntity<ResponseWrapper> doRegistration(@RequestBody LmsUser lmsUser) {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
+        
+		 String name="";
+		 name=lmsUser.getName();// it will be used to notify admin about this user
+        
+		 LmsUserRoleMap lmsuserrolemap = new LmsUserRoleMap();
+         
+        // Find Admin user's email address. 
+        lmsuserrolemap= lmsUserRoleMapHome.findByRoleId(2);
+        
+        
+        LmsUser lmsuser = new LmsUser();
+        lmsuser= lmsUserHome.findById(lmsuserrolemap.getLmsUser().getId());
+       
+        String  flag="Request";
+        String emailid= lmsuser.getEmail();
 
 		LmsUser lmsUserValidate = null;
 
@@ -134,10 +149,17 @@ public class User {
 				responseWrapper.setMessage("Failed to create User.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
-
+            
 			responseWrapper.setMessage("Success. User has created");
+			
+			SendMail sendmail =new SendMail();
+			
+			sendmail.SendMailForRegistration(emailid, name,flag);
+			
+			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
-
+			
+			
 		} catch (Exception ex) {
 
 			responseWrapper.setMessage("Fail." + ex.getMessage());
@@ -295,6 +317,11 @@ public class User {
 		LmsUser lmsUser = userWrapper.getLmsuser();
 		LmsUser lmssupervisor;
 		
+		
+		
+		String emailid= lmsUser.getEmail();
+        String  flag="notifyuser";
+		
 		try {
 
 			lmssupervisor = lmsUserHome.findById(lmssupervisorid);
@@ -325,6 +352,12 @@ public class User {
 		}
 
 		responseWrapper.setMessage("User profile has successfully updated.");
+		// Notify user that his profile is updated by admin.
+		
+		SendMail sendmail =new SendMail();
+		sendmail.SendMailForRegistration(emailid,"",flag);
+		
+		
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 	}
 
