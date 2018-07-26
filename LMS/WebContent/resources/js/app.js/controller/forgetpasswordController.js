@@ -24,7 +24,7 @@ App
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								console.error(e.data.message);
-								$scope.showErrorMessage(d.message);
+								$scope.showErrorMessage(e.data.message);
 							});
 				}
 				

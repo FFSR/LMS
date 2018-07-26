@@ -75,6 +75,7 @@ public class User {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		LmsUser lmsUser = lmsUserHome.findByEmailID(emailid);
 		
+		if (lmsUser != null) {
 		try {
 			lmsUser.setPassword(ProtectedConfigFile.decrypt(lmsUser.getPassword()));
 		} catch (GeneralSecurityException e) {
@@ -86,11 +87,17 @@ public class User {
 		}
 		
 		
-
-		if (lmsUser != null) {
-			responseWrapper
+	//	if (lmsUser != null) {
+			/*responseWrapper
 					.setMessage("Success. UserName: " + lmsUser.getName() + " Password: " + lmsUser.getPassword());
-			httpSession.setAttribute("userName", lmsUser.getName());
+			httpSession.setAttribute("userName", lmsUser.getName());*/
+			
+			responseWrapper
+			.setMessage("Password has been sent to:" + lmsUser.getEmail());
+	        
+			SendMail sendmail= new SendMail();
+			sendmail.SendMailForPassword(emailid, lmsUser.getPassword());
+			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
 
@@ -104,6 +111,8 @@ public class User {
 		ResponseWrapper responseWrapper = new ResponseWrapper();
         
 		 String name="";
+		 String emailid="";
+		
 		 name=lmsUser.getName();// it will be used to notify admin about this user
         
 		 LmsUserRoleMap lmsuserrolemap = new LmsUserRoleMap();
@@ -112,12 +121,13 @@ public class User {
         lmsuserrolemap= lmsUserRoleMapHome.findByRoleId(2);
         
         
-        LmsUser lmsuser = new LmsUser();
-        lmsuser= lmsUserHome.findById(lmsuserrolemap.getLmsUser().getId());
+        if (lmsuserrolemap !=null) {
+        
+        	LmsUser lmsuser = new LmsUser();
+            lmsuser= lmsUserHome.findById(lmsuserrolemap.getLmsUser().getId());
        
-        String  flag="Request";
-        String emailid= lmsuser.getEmail();
-
+          emailid= lmsuser.getEmail();
+        }
 		LmsUser lmsUserValidate = null;
 
 		try {
@@ -153,7 +163,7 @@ public class User {
 			responseWrapper.setMessage("Success. User has created");
 			
 			SendMail sendmail =new SendMail();
-			
+			String flag="Request";
 			sendmail.SendMailForRegistration(emailid, name,flag);
 			
 			

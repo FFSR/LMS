@@ -42,7 +42,7 @@
 .custom {
 	font-family: Courier;
 	color: red;
-	font-size: 20px;
+	font-size: 25px;
 }
 
 
@@ -426,7 +426,7 @@ body label {
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">NID</label>
+						<label class="required">NID</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.nid" class="form-control"
 								ng-required="true" placeholder="NID">

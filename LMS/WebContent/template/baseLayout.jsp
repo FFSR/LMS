@@ -82,13 +82,17 @@ body, body td, body th {
 	color: #000;
 }
 
+
+
 #side-menu ul {
 	list-style: none;
+	
 }
 
 
 #side-menu ul li ul {
 	list-style: none;
+	
 }
 
 .ls_menu li a {
@@ -103,6 +107,8 @@ body, body td, body th {
 	-webkit-box-shadow: 0px 1px 2px #666;
 	border: thin solid #ccc;
 	display: block;
+	font-weight: bold; 
+	color: #000;
 }
 
 .ls_menu li a:hover {

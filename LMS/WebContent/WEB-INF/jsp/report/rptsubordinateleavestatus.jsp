@@ -156,7 +156,7 @@ body label {
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Employee Name</label>
+							<label class="">Employee Name</label>
 							<div class="col-md-9">
 								<input type="text" ng-disabled="true" ng-model="employeename"
 									class="form-control" placeholder="User ID">

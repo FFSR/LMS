@@ -13,7 +13,25 @@
 	src="resources/js/app.js/controller/loginController.js"></script>
 
 <style type="text/css">
+.custom {
+	font-family: Courier;
+	color: red;
+	font-size: 25px;
+}
 
+
+body {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+}
+
+
+body label {
+	font-family:  Arial /*Poppins, sans-serif*/;
+	color: #000;
+	font-weight: bold; 
+	margin-left: .5em;
+}
 
 .btn_tf {
 	border-radius: 0px;
@@ -102,17 +120,17 @@
 									class="btn btn_tf btn-denger waves-effect waves-light">Cancel</button>
 							</form>
 							<br /> 
-							    <a href="http://www.supremetechnolab.com/LMS/forgetpasswd">Forget
+							   <a href="http://www.supremetechnolab.com/LMS/forgetpasswd">Forget
 								Password
 								</a> &nbsp;&nbsp;&nbsp;&nbsp; 
-							 	<!-- <a href="http://localhost:8080/LMS/forgetpasswd">Forget
+							 <!--	 <a href="http://localhost:8080/LMS/forgetpasswd">Forget
 								Password
 								</a> &nbsp;&nbsp;&nbsp;&nbsp; -->
-								<!-- <a href="http://www.supremetechnolab.com/LMS/registration">Registration</a> 
-							    &nbsp;&nbsp;&nbsp;&nbsp; -->
+								 <a href="http://www.supremetechnolab.com/LMS/registration">Registration</a> 
+							    &nbsp;&nbsp;&nbsp;&nbsp; 
 							
-							 <a href="http://localhost:8080/LMS/registration">Registration</a> 
-							&nbsp;&nbsp;&nbsp;&nbsp; 
+						<!--	 <a href="http://localhost:8080/LMS/registration">Registration</a> 
+							&nbsp;&nbsp;&nbsp;&nbsp; -->
 
 						</div>
 					</div>
