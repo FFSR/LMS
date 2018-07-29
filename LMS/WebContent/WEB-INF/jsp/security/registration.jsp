@@ -152,7 +152,7 @@ body label {
 					<div class="form-group">
 						<label class="required">Name</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.name" ng-required="true"
+							<input type="text" ng-model="user.name" ng-required="true" style="background-color:#E0E6F8;"
 								class="form-control" placeholder="Name">
 						</div>
 					</div>
@@ -162,7 +162,7 @@ body label {
 						<label class="required">Ministry</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsMinistry" ng-required="true"
+								ng-model="user.lmsMinistry" ng-required="true" style="background-color:#E0E6F8;"
 								ng-options="x as x.name for x in ministryNames track by x.id">
 								<option value="">Select</option>
 							</select>
@@ -177,7 +177,7 @@ body label {
                       <label class="required">Division</label>
 	                     <div class="col-md-9">
 	                       <select class="form-control" id="ddAppStatus"
-	                       ng-model="user.lmsDivision" ng-required="true"
+	                       ng-model="user.lmsDivision" ng-required="true" style="background-color:#E0E6F8;"
 	                       ng-options="x as x.name for x in divisionNames track by x.id">
 	                       <option value="">Select</option>
 	                        <!-- <option value="">Hospital</option>
@@ -191,7 +191,7 @@ body label {
 						<label class="required">Office</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsOfficeLocation" ng-required="true"
+								ng-model="user.lmsOfficeLocation" ng-required="true" style="background-color:#E0E6F8;"
 								ng-options="x as x.name for x in officeNames track by x.id">
 								<option value="">Select</option>
 
@@ -208,7 +208,7 @@ body label {
 						<label class="required">Department</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsDepartment" ng-required="true"
+								ng-model="user.lmsDepartment" ng-required="true" style="background-color:#E0E6F8;"
 								ng-change="showSectionList(user.lmsDepartment.id)"
 								ng-options="x as x.name for x in departmentNames track by x.id">
 								<option value="">Select</option>
@@ -222,7 +222,7 @@ body label {
 						<label class="required">Section</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsSection" ng-required="true"
+								ng-model="user.lmsSection" ng-required="true" style="background-color:#E0E6F8;"
 								ng-options="x as x.name for x in sectionNames track by x.id">
 								<option value="">Select</option>
 							</select>
@@ -237,7 +237,7 @@ body label {
 						<label class="required">Designation</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="user.lmsDesignation" ng-required="true"
+								ng-model="user.lmsDesignation" ng-required="true" style="background-color:#E0E6F8;"
 								ng-options="x as x.name for x in designationNames track by x.id">
 								<option value="">Select</option>
 							</select>
@@ -249,7 +249,7 @@ body label {
 						<label class="control-label col-md-3">Nationality</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="nationality" ng-required="true"
+								ng-model="nationality" ng-required="true" style="background-color:#E0E6F8;"
 								ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
 								<option value="">Select</option>
 							</select>
@@ -265,7 +265,7 @@ body label {
 					<div class="form-group">
 						<label class="control-label col-md-3">Mobile</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.mobilePersonal"
+							<input type="text" ng-model="user.mobilePersonal" style="background-color:#E0E6F8;"
 								ng-required="true" class="form-control" placeholder="Mobile">
 						</div>
 					</div>
@@ -274,7 +274,7 @@ body label {
 					<div class="form-group">
 						<label class="control-label col-md-3">Telephone</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.mobileOffice"
+							<input type="text" ng-model="user.mobileOffice" style="background-color:#E0E6F8;"
 								ng-required="true" class="form-control" placeholder="Telephone">
 						</div>
 					</div>
@@ -286,7 +286,7 @@ body label {
 					<div class="form-group">
 							<label class="required">Email</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.email" class="form-control"
+							<input type="text" ng-model="user.email" class="form-control" style="background-color:#E0E6F8;"
 								ng-required="true" placeholder="Email">
 							<span class="error" ng-show="regForm.input.$error.email">
 									Not valid email!</span>
@@ -297,7 +297,7 @@ body label {
 					<div class="form-group">
 						<label class="control-label col-md-3">Fax</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.fax" class="form-control"
+							<input type="text" ng-model="user.fax" class="form-control" style="background-color:#E0E6F8;"
 								ng-required="true" placeholder="Fax">
 						</div>
 					</div>
@@ -311,7 +311,7 @@ body label {
 						<label class="required">Joining Date In Service</label>
 						<div class="col-md-9">
 							<input type="text" id="joiningDate" class="form-control"
-								ng-required="true" ng-model="joiningDate"
+								ng-required="true" ng-model="joiningDate" style="background-color:#E0E6F8;"
 								placeholder="Joining Date">
 						</div>
 					</div>
@@ -320,7 +320,7 @@ body label {
 					<div class="form-group">
 						<label class="control-label col-md-3">Gender</label>
 						<div class="col-md-9">
-							<select class="form-control" id="ddAppStatus" ng-model="gender"
+							<select class="form-control" id="ddAppStatus" ng-model="gender" style="background-color:#E0E6F8;"
 								ng-required="true"
 								ng-options="x as x.name for x in dropdownGenderNames track by x.name">
 								<option value="">Select</option>
@@ -380,7 +380,7 @@ body label {
 						<div class="col-md-9">
 							<!-- Drop Down list from table -->
 							<select class="form-control" id="ddReliever"
-								ng-model="ddReliever" ng-required="true"
+								ng-model="ddReliever" ng-required="true" style="background-color:#E0E6F8;"
 								ng-options="x as x.name for x in userData track by x.id">
 								<option value="">Select</option>
 							</select>
@@ -391,7 +391,7 @@ body label {
 					<div class="form-group">
 						<label class="control-label col-md-3">Address</label>
 						<div class="col-md-9">
-							<textarea rows="3" type="textarea" ng-model="user.address"
+							<textarea rows="3" type="textarea" ng-model="user.address" style="background-color:#E0E6F8;"
 								ng-required="true" class="form-control" placeholder="Address"></textarea>
 						</div>
 					</div>
@@ -404,7 +404,7 @@ body label {
 					<div class="form-group">
 						<label class="control-label col-md-3">Passport</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.passport" class="form-control"
+							<input type="text" ng-model="user.passport" class="form-control" style="background-color:#E0E6F8;"
 								ng-required="false" placeholder="Passport No">
 						</div>
 					</div>
@@ -414,8 +414,8 @@ body label {
 					<div class="form-group">
 							<label class="required">Password</label>
 						<div class="col-md-9">
-							<input type="password" ng-model="user.password"
-								ng-required="true" class="form-control" placeholder="Password">
+							<input type="password" ng-model="user.password" style="background-color:#E0E6F8;"
+								ng-required="true" class="form-control" placeholder="Password"> 
 						</div>
 					</div>
 				</div>
@@ -428,7 +428,7 @@ body label {
 					<div class="form-group">
 						<label class="required">NID</label>
 						<div class="col-md-9">
-							<input type="text" ng-model="user.nid" class="form-control"
+							<input type="text" ng-model="user.nid" class="form-control" style="background-color:#E0E6F8;"
 								ng-required="true" placeholder="NID">
 						</div>
 					</div>
@@ -438,7 +438,7 @@ body label {
 					<div class="form-group">
 							<label class="required">Date of Birth</label>
 						<div class="col-md-9">
-							<input type="text" id="dateofbirth" class="form-control"
+							<input type="text" id="dateofbirth" class="form-control" style="background-color:#E0E6F8;"
 								ng-required="true" ng-model="dateofbirth"
 								placeholder="Date of Birth">
 						</div>

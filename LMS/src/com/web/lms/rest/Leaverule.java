@@ -198,7 +198,7 @@ public class Leaverule {
 			
 			if(lmsLeaveBalance.getLeaveBalance() < lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider()) {
 				
-				resWrapper.setMessage("Validation 1.1: Insafficient Leave Balance for this Leave Type.");
+				resWrapper.setMessage("Validation 1.1: Insufficient Leave Balance for this Leave Type.");
 			}
 
 			// Validation 2: Maximum times limit exceed.
@@ -228,7 +228,7 @@ public class Leaverule {
 
 				if (leaveType.getMaximumAtATime() < resWrapper.getNumberOfDayConsider()) {
 				
-					resWrapper.setMessage("Validation 3.0: Maximum leaves at a time limit exceed.");
+					resWrapper.setMessage("Validation 3.0: Maximum leaves at a time limit exceed. Total Days Counted:" + resWrapper.getNumberOfDayConsider());
 					return resWrapper;
 				}
 			}
@@ -292,7 +292,7 @@ public class Leaverule {
 
 				if (lmsLeaveBalance.getLeaveTotal() < (lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider())) {
 
-					resWrapper.setMessage("Validation 7.0: Insufficient Leave Balance.");
+					resWrapper.setMessage("Validation 7.0: Insufficient Leave Balance. Total Days Considered:" + resWrapper.getNumberOfDayConsider());
 					return resWrapper;
 				}
 			}

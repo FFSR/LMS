@@ -126,13 +126,14 @@ body, body td, body th {
 }
 
 .active a {
-	background: #ff0;
+	background:#ffc;
 	border-bottom: thin solid #ccc;
 	box-shadow: 0px 1px 2px #666;
-	-webkit-box-shadow: 0px 1px 2px #666;
+	-webkit-box-shadow: 0px 1px 2px #ccc;
 	margin: 3px 0;
 	border: thin solid #ccc;
 }
+
 
 .ls_menu li:hover {
 	background: #fff;
@@ -226,9 +227,9 @@ body, body td, body th {
                     </li>
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
                     <li> <a href="employeehomepage" class="waves-effect"><i data-icon="v" class="linea-icon linea-basic fa-fw"></i><span class="hide-menu" >Home</span></a> </li>
-                    <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw text-dark" data-icon="7"></i> <span class="hide-menu text-dark"> Leave Management <span class="fa arrow"></span></span></a>
+                    <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw text-dark" data-icon="7"></i> <span class="hide-menu"> Leave Management <span class="fa arrow"></span></span></a>                  
                         <ul class="nav nav-second-level">
-                            <li> <a href="applicationforleave">Leave Application</a> </li>
+                            <li><a href="applicationforleave">Leave Application</a> </li>
                             <li role="separator" class="divider"></li>
                             <li> <a href="leavemanagementhead">Leave Approval</a></li>
                              <li> <a href="managecancelleave">Cancel Leave Approval</a></li>
