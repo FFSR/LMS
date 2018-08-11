@@ -51,8 +51,8 @@ App
 					rptleavestatusService.getdatewiseleavestatus($scope.userID,new Date($('#fromDate').val()),new Date($('#toDate').val()))
 					.then(
 							function(d){
-						var dataReportStatus = d.listLmsWfRequest;
-						$scope.tableParams = new NgTableParams({}, { dataset: dataReportStatus});
+						var dataReportStatus_new = d.listLmsWfRequest;
+						$scope.tableParams = new NgTableParams({}, { dataset: dataReportStatus_new});
 					},
 					function(errResponse){
 						

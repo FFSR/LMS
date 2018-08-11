@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -24,6 +28,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import com.web.lms.utility.ImageServlet;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import org.apache.commons.codec.binary.Base64;
 
 import com.web.lms.dao.LmsAttachmentHome;
 import com.web.lms.dao.LmsLeaveApplicationHome;
@@ -41,8 +54,14 @@ import com.web.lms.wrapper.ResponseWrapper;
 import com.web.lms.wrapper.LeaveApplicationWrapper;
 import com.web.lms.wrapper.ManageLeaveSearchWrapper;
 
+import com.web.lms.utility.displayImageServelet;
+
+
+
 @RestController
 public class Testleaveapplication {
+	private static final HttpServletRequest HttpServletRequest = null;
+	private static final HttpServletResponse HttpServletResponse = null;
 	@Autowired
 	private HttpSession httpSession;	
 	@Autowired
@@ -57,6 +76,7 @@ public class Testleaveapplication {
 	private LmsUserHome lmsUserHome;
 	@Autowired
 	private LmsWfRequestHome lmsWfRequestHome;
+	
 		
 	@RequestMapping(value = "/testleave", method = RequestMethod.POST)
 	public ResponseEntity<ResponseWrapper> doLeaveSubmission(@RequestBody LmsLeaveApplication leaveApplication) {
@@ -133,8 +153,9 @@ public class Testleaveapplication {
 		catch(Exception ex) {
 			
 			ex.printStackTrace();
-			responseWrapper.setMessage("Failed");
+			responseWrapper.setMessage("No data found");
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			//return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
 
 		List<LmsLeaveApplication> lmsLeaveApplication = new ArrayList<>();
@@ -214,12 +235,13 @@ public class Testleaveapplication {
 
 	
 	@RequestMapping(value = "/homepagegridshow/", method = RequestMethod.GET)// showing all persons who are on leave.
-	public ResponseEntity<ResponseWrapper> getlog() {
+	public ResponseEntity<ResponseWrapper> getlog() throws ServletException, IOException {
 
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 		responseWrapper.setMessage("Test Message");
 		LmsUser lmsUser = new LmsUser();
 		
+		//getPicture();
 		// used for showing leave info in homepage
 		List<LmsLeaveApplication> lmsLeaveApplication = lmsLeaveApplicationHome.findAllLeaveApplicationsGeaterThanCurrentDate();
 		
@@ -233,6 +255,8 @@ public class Testleaveapplication {
 			for(LmsLeaveApplication leaveApplication:lmsLeaveApplication) {
 				lmsUser = leaveApplication.getLmsUserByUserId();
 			}
+			
+			
 			
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 		}
@@ -264,15 +288,20 @@ public class Testleaveapplication {
 	@RequestMapping(value="/getAttachment/{applicationID}", method=RequestMethod.GET)
 	public ResponseEntity<List<LmsAttachment>> getAttachment(@PathVariable("applicationID") Integer applicationID){
 		
-		List<LmsAttachment> attachmentsList = null;
+	List<LmsAttachment> attachmentsList = null;
 		try {
 			attachmentsList = lmsAttachmentHome.findByApplicationID(applicationID);
 			httpSession.setAttribute("leaveApplicationID",applicationID);
+			
+			
+			
+		   
 			return new ResponseEntity<List<LmsAttachment>>(attachmentsList, HttpStatus.OK);
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			return new ResponseEntity<List<LmsAttachment>>(attachmentsList, HttpStatus.EXPECTATION_FAILED);
 		}
+		
 	}
 
 	// Added by Feroj on 15th June 2018
@@ -292,5 +321,18 @@ public class Testleaveapplication {
 		responseWrapper.setMessage("Fail. Data not matched.");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 	}
+	
+	public void getPicture() throws ServletException, IOException  {
+        
+		//displayImageServelet disp = new displayImageServelet();
+		
+		//HttpServletRequest reqst = new HttpServletRequest();
+		
+		
+		//disp.doGet(HttpServletRequest  , HttpServletResponse , "baby2.jpg");
+		
 
+	}
 }
+
+

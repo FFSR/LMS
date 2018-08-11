@@ -47,6 +47,8 @@ public class HomeController {
 		}*/
 	}
 	
+	
+	
 	@RequestMapping("/leaveapplication")
 	public String  leaveapplication(Model model) {
 		

@@ -15,6 +15,7 @@ App
 				$timeout, $filter,NgTableParams,$location) {
 				$scope.testMsg = "Test Message New";
 				$scope.leaveapplication = {};
+				$scope.picname="";
 				
 				$scope.homepagegridshow = function(){
 					$scope.testMessage = "Test Message";
@@ -32,7 +33,22 @@ App
 								console
 										.error("Error while fetching Currencies");
 							});
-				};	
+				};
+				
+				
+                    $scope.getMyPicture = function(userID){
+					
+					manageleaveService.getAttachment(userID).then(
+							function(d){
+								$scope.fileNames = d;
+								console.log("Attachment Data",d.filename);
+								$scope.showAttachment = true;
+							},
+							function(errResponse){
+								
+							}
+							);
+				};
 				
 				$scope.showUsername = function(userID){
 					$scope.dDName = "";
@@ -43,9 +59,10 @@ App
 					});
 				};
 				
-				$scope.getSessionUserDetails =function(name,section){
+				$scope.getSessionUserDetails =function(name,section,fax){
 					$scope.name_n = name;
 					$scope.sec_n=section;
+					$scope.picname=fax;
 					
 				};
 				

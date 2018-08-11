@@ -81,8 +81,15 @@ public class FileUploadRest {
 				// log error
 			}
 
-			if (httpSession.getAttribute("leaveApplicationID") != null)
+			
+		//	if (httpSession.getAttribute("leaveApplicationID") != null) {
+			if (httpSession.getAttribute("type") != "profile") {
 				ticketFolderName = httpSession.getAttribute("leaveApplicationID").toString();
+			}
+			else if (httpSession.getAttribute("userID") != null) {
+				//ticketFolderName = httpSession.getAttribute("userID").toString();
+				ticketFolderName = "Picture";
+		}
 			
 			//ticketFolderName = "1";
 
@@ -121,6 +128,8 @@ public class FileUploadRest {
 				if (!fileUploadPath.equalsIgnoreCase("")) {
 					// Save To DB
 					
+				//	if (httpSession.getAttribute("leaveApplicationID") != null) {
+					if (httpSession.getAttribute("type") != "profile") {
 					LmsAttachment lmsAttachment = new LmsAttachment();
 					LmsLeaveApplication lmsLeaveApplication = lmsLeaveApplicationHome.findById((Integer)httpSession.getAttribute("leaveApplicationID"));
 					
@@ -134,6 +143,20 @@ public class FileUploadRest {
 						lmsAttachmentHome.persist(lmsAttachment);
 					} catch (Exception ex) {
 						ex.printStackTrace();
+					}
+					}
+					else {
+						LmsUser lmsUser  = lmsUserHome.findById((Integer)httpSession.getAttribute("userID"));
+						lmsUser.setFax(filename);
+						
+						try {
+							// Save To DB
+							lmsUserHome.merge(lmsUser);
+							
+						} catch (Exception ex) {
+							ex.printStackTrace();
+						}
+						
 					}
 					
 					// Update Summery table

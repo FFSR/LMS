@@ -15,7 +15,8 @@
 	src="resources/js/app.js/controller/homepagegridshowController.js"></script>
 <script type="text/javascript"
 	src="resources/js/app.js/service/manageleaveService.js"></script>
-	
+<script src="angular.min.js"></script>
+<script src="app.js"></script>
 
 <style type="text/css">
 .custom {
@@ -56,22 +57,23 @@ body label {
 
 </head>
 
-<body ng-controller="homepagegridshowController">
+<body ng-controller="homepagegridshowController as hp">
 	<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 
 	<div
-		ng-init="homepagegridshow();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.lmsSection.name}')"></div>
+		ng-init="homepagegridshow();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.lmsSection.name}','${sessionScope.user.fax}')"></div>
 		<div ng-init="loadLeaveApplications('${sessionScope.userID}');"></div>
+		<div ng-init="getMyPicture('${sessionScope.userID}');"></div>
 
 	<div class="container-fluid">
 
 		<div>
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-4">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="control-label col-md-3">User Name</label>
+								<label class="control-label col-md-6">User Name</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="name_n" class="form-control">
 								</div>
@@ -79,7 +81,7 @@ body label {
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="control-label col-md-3">Section Name</label>
+								<label class="control-label col-md-6">Section Name</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="sec_n" class="form-control">
 								</div>
@@ -87,7 +89,7 @@ body label {
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="control-label col-md-3">Approval Pending Count</label>
+								<label class="control-label col-md-6">Approval Pending Count</label>
 								<div class="col-md-9">
 									<input type="text" ng-model="Aproval_Pending" class="form-control">
 								</div>
@@ -95,32 +97,29 @@ body label {
 						</div>
 					</div>
 					
-				</div>
-				
-					<div class="col-md-6">
-						<div class="row">
-							<div class="col-md-6 line_hight">
-								<h4>
-								<strong>Technical Support</strong><br>
-								Md.  Feroj Mahmood<br>
-								 Contact: 01711503404 <br>								 
-								 Web: <a href="https://ict.technosisinternational.com" target="new">technoSiS Ltd.</a></h4>
-								 
-							</div>
+				</div>			    
+					<div class="col-md-4">	
+							<div class="row">
+							
 							<div class="col-md-6">
-								
-								<a href="resources/manuals/Manual_LMS.docm"><img src="resources/images/manual_icon_001.png" width="" height=""></a>
-
+                                <img src="http://localhost:8080/LMS/displayImageServelet?filename={{picname}}" width="200" height="200">      
 							</div>
 							
-						</div>
-						
-						<div class="col-md-6 line_hight">
-								<a href="resources/manuals/LeaveApprovalFlow.docx"><img src="resources/images/workflow.png" width="" height=""></a>		 
-							</div>
-						
+							<div class="col-md-6">
+                              <a href="resources/manuals/Manual_LMS.docm"><img src="resources/images/manual_icon_001.png" width="150" height="150"></a>      
+							</div>	
+							
+						</div>	
 					</div>
-			
+					
+					<div class="col-md-4">	
+							<div class="row">
+									
+							<div class="col-md-9">
+                              <a href="resources/manuals/LeaveApprovalFlow.docx"><img src="resources/images/workflow.png" width="200" height="200"></a>	       
+							</div>
+						</div>	
+					</div>
 			</div>
 
 			<br>

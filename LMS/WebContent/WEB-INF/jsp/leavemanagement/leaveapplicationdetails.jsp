@@ -106,7 +106,7 @@ body label {
 
 	<div ng-controller="rptleavestatusController">
 
-		<div ng-init="loadrptleavestatus('${sessionScope.user.id}');"></div>
+		<!-- <div ng-init="loadrptleavestatus('${sessionScope.user.id}');"></div> -->
 
 
 		<form class="form-horizontal" name="rptleavestatusForm">
@@ -158,27 +158,27 @@ body label {
 
 							<table ng-table="tableParams" class="table" show-filter="true">
 								<tr ng-repeat="wfRequestHop in $data">
-									<td title="'Leave ID'" filter="{ id: 'text'}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
+									<td title="'Leave ID'" filter="{ id: ''}" sortable="'id'">{{wfRequestHop.lmsLeaveApplication.id}}</td>
 									<td title="'Employee name'"
-										filter="{ 'lmsUserByUserId.name': 'text'}"
+										filter="{ 'lmsUserByUserId.name': ''}"
 										sortable="'leaveapplication.lmsUserByUserId.name'">{{wfRequestHop.lmsUserByUserId.name}}</td>
 
-									<td title="'From Date'" filter="{ type: 'text'}"
+									<td title="'From Date'" filter="{ type: ''}"
 										sortable="'lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.fromDate
 										| date: YYYY-MM-dd}}</td>
 
-									<td title="'To Date'" filter="{ leaveTotal: 'text'}"
+									<td title="'To Date'" filter="{ leaveTotal: ''}"
 										sortable="'totalleave'">{{wfRequestHop.lmsLeaveApplication.toDate
 										|date: YYYY-MM-dd}}</td>
 
 									<td title="'Leave Type'"
-										filter="{ 'lmsLeaveType.type': 'text'}"
+										filter="{ 'lmsLeaveType.type': ''}"
 										sortable="'leaveapplication.lmsLeaveType.type'">{{wfRequestHop.lmsLeaveApplication.lmsLeaveType.type}}</td>
 
-									<td title="'Status'" filter="{ Remainingleave: 'text'}"
+									<td title="'Status'" filter="{ Remainingleave: ''}"
 										sortable="'remainingTotal'">{{wfRequestHop.status}}</td>
 
-									<td title="'Remarks'" filter="{ Remainingleave: 'text'}"
+									<td title="'Remarks'" filter="{ Remainingleave: ''}"
 										sortable="'remainingTotal'">{{wfRequestHop.lmsLeaveApplication.remarks}}</td>
 
 									<td title="'Action'"><button type="submit"

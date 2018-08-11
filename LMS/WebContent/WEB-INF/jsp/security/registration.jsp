@@ -31,6 +31,16 @@
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 	
+	<script src="resources/file-upload/js/dropzone/dropzone.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/controller/FIleUploadController.js"></script>
+	<script type="text/javascript"
+	src="resources/js/app.js/directives/RestrictInput.js"></script>
+<link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
+	rel="stylesheet" />
+	
 <link rel="stylesheet"
 	href="resources/css/icons/test.css" />
 
@@ -298,7 +308,7 @@ body label {
 						<label class="control-label col-md-3">Fax</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.fax" class="form-control" style="background-color:#E0E6F8;"
-								ng-required="true" placeholder="Fax">
+								 placeholder="Fax">
 						</div>
 					</div>
 				</div>
@@ -447,6 +457,20 @@ body label {
 
 
 			</div>
+			
+			<div class="row">
+					<div class="col-md-12 form-group">
+						<label class="col-md-2 control-label">Attach Image:</label>
+						<div class="col-md-10 dropzone" dropzone=""
+							id="my-awesome-dropzone">
+							<div class="dz-message" data-dz-message>
+								<span class="text-primary"> Drop Image Here to Upload <br />OR<br />
+									<button type="button" class="btn btn-info">Click Here</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
 		
 
 		<br>

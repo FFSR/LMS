@@ -228,7 +228,7 @@ public class LmsUserHome {
   public List<LmsUser> findSupervisorID(Integer userid) {
 		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.lmsUser.id=:id").setParameter("id", userid);
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.lmsUser.id=:userid").setParameter("userid", userid);
 		
 			List<LmsUser> lmsUser = query.getResultList();
 		
@@ -243,7 +243,7 @@ public class LmsUserHome {
   public List<LmsUser> findByDeptID(Integer deptid) {
 		
 		try {
-			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.lmsUser.lmsDepartment.id=:id").setParameter("id", deptid);
+			Query query = entityManager.createQuery("SELECT e FROM LmsUser e WHERE e.lmsDepartment.id=:deptid").setParameter("deptid", deptid);
 		
 			List<LmsUser> lmsUser = query.getResultList();
 		

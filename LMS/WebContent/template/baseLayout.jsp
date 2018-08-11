@@ -247,11 +247,9 @@ body, body td, body th {
                         </ul>
                     </li>
                     
-                    <li> <a href="#" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Maintainance<span class="fa arrow"></span></span></a>
+                    <li> <a href="#" class="waves-effect"><i data-icon="/" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu">Maintenance<span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="manageuser">Manage User</a></li>
-                            <li><a href="divisioninfo">Division</a></li>
-                            <li><a href="ministryinfo">Ministry</a></li>
                             <li><a href="holidaymanagement">Holiday</a></li>
                              <li><a href="eventlog">Event Log</a></li>
                             
@@ -309,7 +307,7 @@ body, body td, body th {
                 <!-- /.right-sidebar -->
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2018 &copy; Technosis </footer>
+            <footer class="footer text-center"> 2018 &copy; CCA </footer>
         </div>
         
         

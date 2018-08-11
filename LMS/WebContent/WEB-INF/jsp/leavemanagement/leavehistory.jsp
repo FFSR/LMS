@@ -36,6 +36,11 @@ body label {
 	font-family:  Arial /*Poppins, sans-serif*/;
 	color: #000;
 	font-weight: bold;
+	text-align: center;
+}
+
+.ng-table {
+    text-align: center;
 }
 
 .btn_tf {
@@ -121,25 +126,25 @@ body label {
 			<table class="table table-sm">
 				<div>
 
-					<table ng-table="tableParams" class="table" show-filter="true">
+					<table ng-table="tableParams" class="table">
 						<tr ng-repeat="lmsLeaveBalance in $data">
 
-							<td title="'Leave Type'" filter="{ type: 'text'}"
+							<td title="'Leave Type'" filter=""
 								sortable="'lmsLeaveBalance.lmsLeaveType.type'">{{lmsLeaveBalance.lmsLeaveType.type}}</td>
 
-							<td title="'Total Leave'" filter="{ leaveTotal: 'text'}"
+							<td title="'Total Leave'" filter=""
 								sortable="'lmsLeaveBalance.leaveTotal'">{{lmsLeaveBalance.leaveTotal}}</td>
 
-							<td title="'Taken Leave'" filter="{ leavetaken: 'text'}"
+							<td title="'Taken Leave'" filter=""
 								sortable="'lmsLeaveBalance.leaveTaken'">{{lmsLeaveBalance.leaveTaken}}</td>
 
-							<td title="'Remaining Leave'" filter="{ Remainingleave: 'text'}"
+							<td title="'Remaining Leave'" filter=""
 								sortable="'lmsLeaveBalance.leaveBalance'">{{lmsLeaveBalance.leaveBalance}}</td>
 								
-							<td title="'Applied Leave'" filter="{ Remainingleave: 'text'}"
+							<td title="'Applied Leave'" filter=""
 								sortable="'lmsLeaveBalance.leaveBalance'">{{lmsLeaveBalance.leaveApplied}}</td>
 
-							<td title="'Eligibility'" filter="{ eligibility: 'text'}"
+							<td title="'Eligibility'" filter=""
 								sortable="'lmsLeaveBalance.eligibility'">{{lmsLeaveBalance.eligibility}}</td>
 						</tr>
 					</table>

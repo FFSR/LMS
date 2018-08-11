@@ -8,6 +8,7 @@ function dropzone() {
     	console.log("Print From File Upload Directive: "+baseUrl+ "/");
         var config = {
         	url: baseUrl+'/upload', 
+        		//url: baseUrl+'/fileupload',
         	//url: 'http://localhost:8080/SRMS_2/upload',
         	//url: 'http://10.10.22.20:8280/SRMS_P12/upload',
 //        	url: 'http://10.10.21.20:8080/SRMS/upload',

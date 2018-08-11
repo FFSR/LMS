@@ -107,10 +107,16 @@ App
 							function(d) {
 								//$scope.testMsg = d.message;
 								//console.log("Success.",d.message);
+								
+								//$scope.userid= d.userID;
+								$scope.uploadFile();
+								
 								$scope.clearAll();
 								
 								$scope.showSuccessMessage(d.message);
 								//$window.location.reload();
+								
+								
 								location.reload();// Added by Feroj on 20-05-18
 								
 								
@@ -241,6 +247,11 @@ App
 						$scope.errorMessages = null;
 					}, 6000);
 				};
+				
+				$scope.uploadFile = function(){
+					$scope.processDropzone();
+					// $scope.restDropzone();
+				}
 				
 				
 				$scope.clearAll = function(){

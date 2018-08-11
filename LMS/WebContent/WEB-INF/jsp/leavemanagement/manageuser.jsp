@@ -41,6 +41,7 @@
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 	
 	
+	
 <style type="text/css">
 .custom {
 	font-family: Courier;

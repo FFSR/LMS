@@ -112,7 +112,10 @@ public class User {
         
 		 String name="";
 		 String emailid="";
-		
+		 int lmsuserid =0;
+		 String lmstype="";
+		 lmstype="profile";
+		 
 		 name=lmsUser.getName();// it will be used to notify admin about this user
         
 		 LmsUserRoleMap lmsuserrolemap = new LmsUserRoleMap();
@@ -153,13 +156,17 @@ public class User {
 
 			try {
 
-				int lmsuserid = lmsUserHome.persist(lmsUser);
+				 lmsuserid = lmsUserHome.persist(lmsUser);
+				
+				
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				responseWrapper.setMessage("Failed to create User.");
 				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 			}
             
+			httpSession.setAttribute("userID", lmsuserid);
+			httpSession.setAttribute("type", lmstype);
 			responseWrapper.setMessage("Success. User has created");
 			
 			SendMail sendmail =new SendMail();
@@ -549,6 +556,10 @@ public class User {
 	public ResponseEntity<ResponseWrapper> doupdateprofile(@PathVariable("userID") Integer userID,
 			@RequestBody LmsUser lmsUser) {
 
+		int lmsuserid = 0;
+		String lmstype="";
+		lmstype = "profile";
+		
 		ResponseWrapper responseWrapper = new ResponseWrapper();
 
 		try {
@@ -573,7 +584,12 @@ public class User {
 			return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
 		}
 
-		responseWrapper.setMessage("Success. User has created");
+		lmsuserid = userID;
+		
+		
+		httpSession.setAttribute("type", lmstype);
+		httpSession.setAttribute("userID", lmsuserid);
+		responseWrapper.setMessage("Success. User information is updated");
 		return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.OK);
 
 	}

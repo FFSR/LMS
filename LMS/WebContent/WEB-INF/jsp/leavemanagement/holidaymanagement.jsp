@@ -197,12 +197,12 @@ body label {
 					Holiday List
 					<table ng-table="tableParams" class="table" show-filter="true">
 						<tr ng-repeat="holidayrecord in $data">
-							<td title="'Serial No'" filter="{name: 'text'}" sortable="'name'">{{holidayrecord.id}}</td>
-							<td title="'Holiday Name'" filter="{ type: 'text'}"
-								sortable="'lmsLeaveType.fromDate'">{{holidayrecord.leaveSubject}}</td>
+							<td title="'Serial No'" filter="{Serial No: 'text'}" 
+							sortable="'holidayrecord.id'">{{holidayrecord.id}}</td>
+							<td title="'Holiday Name'" filter="{ leaveSubject: 'text'}"
+								sortable="'holidayrecord.leaveSubject'">{{holidayrecord.leaveSubject}}</td>
 							<td title="'Holiday Date'" filter="{ leaveTotal: 'text'}"
-								sortable="'lmsLeaveType.toDate'">{{holidayrecord.leaveDate|date:
-								Mon-dd}}</td>
+								sortable="'holidayrecord.leaveDate'">{{holidayrecord.leaveDate|date:Mon-dd}}</td>
 							<td title="'Action'"><button class="btn-primary"
 									ng-click="deleteHolidayRecord(holidayrecord)">Delete</button></td>
 					</table>

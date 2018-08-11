@@ -37,6 +37,18 @@
 <script type="text/javascript"
 	src="resources/js/app.js/service/managedelegationService.js"></script>
 	
+<script type="text/javascript"
+	src="resources/js/app.js/directives/RestrictInput.js"></script>
+<link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
+	rel="stylesheet" />
+<script src="resources/js/app.js/service/leavehistoryService.js"></script>
+
+<script src="resources/file-upload/js/dropzone/dropzone.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
+<script type="text/javascript"
+	src="resources/js/app.js/controller/FIleUploadController.js"></script>
+	
 <style type="text/css">
 .custom {
 	font-family: Courier;
@@ -286,10 +298,10 @@ body label {
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label class="control-label col-md-3">Fax</label>
+							<label class="control-label col-md-3">NID</label>
 							<div class="col-md-9">
-								<input type="text" ng-model="user.fax" class="form-control"
-									placeholder="Fax">
+								<input type="text" ng-model="user.nid" class="form-control"
+									ng-disabled="true" placeholder="NID">
 							</div>
 						</div>
 					</div>
@@ -341,13 +353,15 @@ body label {
 				</div>
 				<br>
 				<div class="row">
-					<br> <br>
-					<div class="col-md-6">
-						<div class="form-group">
-							<label class="control-label col-md-3">NID</label>
-							<div class="col-md-9">
-								<input type="text" ng-model="user.nid" class="form-control"
-									ng-disabled="true" placeholder="NID">
+					<br> 
+					<div class="col-md-12 form-group">
+						<label class="col-md-2 control-label">Update Image:</label>
+						<div class="col-md-10 dropzone" dropzone=""
+							id="my-awesome-dropzone">
+							<div class="dz-message" data-dz-message>
+								<span class="text-primary"> Drop Image Here to Upload <br />OR<br />
+									<button type="button" class="btn btn-info">Click Here</button>
+								</span>
 							</div>
 						</div>
 					</div>

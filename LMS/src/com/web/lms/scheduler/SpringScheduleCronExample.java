@@ -54,8 +54,8 @@ public class SpringScheduleCronExample {
 	// the 10th), but I don't care what day of the week that happens to be, I would
 	// put "10" in the day-of-month field and "?" in the day-of-week field.
 
-	//@Scheduled(cron = "0 0 12 1 1 ?")
-	@Scheduled(cron = "0 32 02 * * *")
+	@Scheduled(cron = "0 0 12 1 1 ?")
+	//@Scheduled(cron = "0 32 02 * * *")
 	public void cronYearly() {
 
 		int jobId = counter.incrementAndGet();

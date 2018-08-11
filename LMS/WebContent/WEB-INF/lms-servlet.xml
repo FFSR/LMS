@@ -40,7 +40,7 @@
 	<!-- Simple implementation of the standard JDBC DataSource interface, configuring 
 		the plain old JDBC DriverManager via bean properties -->
 		
-	<!-- LIVE Database Connection NEW -->
+	<!-- LIVE Database Connection Old -->
 	<!--
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -50,12 +50,12 @@
 		<property name="password" value="newpasswdforlmsdb" />
 	</bean> 
      -->
-     <!-- CCA database connectivity  -->
+     <!-- CCA database connectivity Live -->
      <!--
 	<bean id="dataSource"
 		 class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://123.49.38.94:7070/supremet_lmsdb" />
+		<property name="url" value="jdbc:mysql://localhost/supremet_lmsdb" />
 		<property name="username" value="lms" />
 		<property name="password" value="lms54321" />
 	</bean> 
@@ -73,7 +73,7 @@
 	-->
 	
 	<!-- Local Database Connection supremet_lmsdb -->
- 	 
+ 	  
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -120,7 +120,10 @@
 	</context:component-scan>
 	<mvc:annotation-driven></mvc:annotation-driven>
 
-	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+	 <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources> 
+	
+	<!-- <mvc:resources location="file:/C:/Cdrive/apache-tomcat-8.5.28-windows-x64/apache-tomcat-8.5.28/AttachmentRepository/" mapping="/C:/Cdrive/apache-tomcat-8.5.28-windows-x64/apache-tomcat-8.5.28/AttachmentRepository/**"></mvc:resources> --> 
+	
 	<bean id="tilesViewResolver"
 		class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
 	</bean>
@@ -132,7 +135,8 @@
 			</list>
 		</property>
 	</bean>
-
+    
+     
 
 	<!-- File Upload Configuration -->
 	<bean id="multipartResolver"
