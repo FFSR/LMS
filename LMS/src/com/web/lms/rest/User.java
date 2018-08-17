@@ -112,6 +112,7 @@ public class User {
         
 		 String name="";
 		 String emailid="";
+		 String useremailid="";
 		 int lmsuserid =0;
 		 String lmstype="";
 		 lmstype="profile";
@@ -119,6 +120,31 @@ public class User {
 		 name=lmsUser.getName();// it will be used to notify admin about this user
         
 		 LmsUserRoleMap lmsuserrolemap = new LmsUserRoleMap();
+		 
+		 // Verify email address
+		 useremailid = lmsUser.getEmail();
+		 
+		 String flag1="validate";
+		 
+		 try {
+			 SendMail sendmail =new SendMail();
+			 
+			 String info="";
+			info = sendmail.SendMailForValidation(useremailid, flag1);
+			
+			if (info.contains("Could not connect to SMTP host")) {
+				responseWrapper.setMessage("The email ID is not valid");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+		    }
+			
+			} catch (Exception ex) {
+				ex.printStackTrace();
+				responseWrapper.setMessage("The email ID is not valid");
+				return new ResponseEntity<ResponseWrapper>(responseWrapper, HttpStatus.EXPECTATION_FAILED);
+			}
+		
+		 
+		 ///
          
         // Find Admin user's email address. 
         lmsuserrolemap= lmsUserRoleMapHome.findByRoleId(2);

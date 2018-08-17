@@ -61,7 +61,7 @@ body label {
 	<div ng-init="userAuthentication('${sessionScope.user.id}')"></div>
 
 	<div
-		ng-init="homepagegridshow();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.lmsSection.name}','${sessionScope.user.fax}')"></div>
+		ng-init="homepagegridshow();getSessionUserDetails('${sessionScope.user.name}','${sessionScope.user.lmsSection.name}')"></div>
 		<div ng-init="loadLeaveApplications('${sessionScope.userID}');"></div>
 		<div ng-init="getMyPicture('${sessionScope.userID}');"></div>
 
@@ -69,7 +69,7 @@ body label {
 
 		<div>
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="form-group">
@@ -98,25 +98,14 @@ body label {
 					</div>
 					
 				</div>			    
-					<div class="col-md-4">	
+					<div class="col-md-6">	
 							<div class="row">
 							
 							<div class="col-md-6">
-                                <img src="http://localhost:8080/LMS/displayImageServelet?filename={{picname}}" width="200" height="200">      
-							</div>
-							
-							<div class="col-md-6">
-                              <a href="resources/manuals/Manual_LMS.docm"><img src="resources/images/manual_icon_001.png" width="150" height="150"></a>      
+                              <a href="resources/manuals/Manual_LMS.docm"><img src="resources/images/manual_icon_001.png" width="" height=""></a>      
 							</div>	
-							
-						</div>	
-					</div>
-					
-					<div class="col-md-4">	
-							<div class="row">
-									
-							<div class="col-md-9">
-                              <a href="resources/manuals/LeaveApprovalFlow.docx"><img src="resources/images/workflow.png" width="200" height="200"></a>	       
+							<div class="col-md-6">
+                              <a href="resources/manuals/LeaveApprovalFlow.docx"><img src="resources/images/workflow.png" width="" height=""></a>	       
 							</div>
 						</div>	
 					</div>

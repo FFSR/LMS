@@ -86,7 +86,7 @@ App
 													// $scope.testMsg =
 													// d.message;
 													// console.log("Success.",d.message);
-													$scope.uploadFile();
+													
 													
 													$scope.clearAll();
 
@@ -251,10 +251,7 @@ App
 								}, 6000);
 							};
 							
-							$scope.uploadFile = function(){
-								$scope.processDropzone();
-								// $scope.restDropzone();
-							}
+							
 
 							$scope.clearAll = function() {
 

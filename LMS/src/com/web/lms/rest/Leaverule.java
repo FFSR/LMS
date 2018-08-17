@@ -161,6 +161,9 @@ public class Leaverule {
 			// rest wrapper has initialize from this method
 			resWrapper = findHolidayRange(startDate, endDate);
 			resWrapper.setMessage("OK");
+			
+			
+			
 				
 			// 1 day added for start and end date are same
 			long numberOfDaysAppliedLong = calculateDateDifference(startDate, endDate) + 1;
@@ -191,7 +194,7 @@ public class Leaverule {
 
 				if (leaveType.getMaximumDays() < (lmsLeaveBalance.getLeaveTaken() + lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider())) {
 					
-					resWrapper.setMessage("Validation 1.0: Maximum Leave limit exceed: " +leaveType.getMaximumDays()+ "Number of days requested:" +resWrapper.getNumberOfDayConsider());
+					resWrapper.setMessage("Validation 1.0: Maximum Leave limit exceed: " + leaveType.getMaximumDays() + "''" + "Number of days requested:" +resWrapper.getNumberOfDayConsider());
 					return resWrapper;
 				}
 			}
@@ -228,7 +231,8 @@ public class Leaverule {
 
 				if (leaveType.getMaximumAtATime() < resWrapper.getNumberOfDayConsider()) {
 				
-					resWrapper.setMessage("Validation 3.0: Maximum leaves at a time limit exceed. Total Days Counted:" + resWrapper.getNumberOfDayConsider());
+					resWrapper.setMessage("Validation 3.0: Maximum leaves at a time limit exceed:" + leaveType.getMaximumAtATime() + " " + "Total Days Requested:" + resWrapper.getNumberOfDayConsider());
+					//resWrapper.setMessage("Validation 1.0: Maximum Leave limit exceed: " + leaveType.getMaximumDays() + "''" + "Number of days requested:" +resWrapper.getNumberOfDayConsider());
 					return resWrapper;
 				}
 			}
@@ -290,9 +294,10 @@ public class Leaverule {
 			if ((leaveType.getIncremental() != null && !leaveType.getIncremental().equals(""))
 					&& leaveType.getIncremental().toUpperCase().equals(DECISION.YES.toString())) {
 
-				if (lmsLeaveBalance.getLeaveTotal() < (lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider())) {
-
-					resWrapper.setMessage("Validation 7.0: Insufficient Leave Balance. Total Days Considered:" + resWrapper.getNumberOfDayConsider());
+				//if (lmsLeaveBalance.getLeaveTotal() < (lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider())) {
+                // Chamged by Feroj on 15th august,2018
+				if (lmsLeaveBalance.getLeaveBalance() < (lmsLeaveBalance.getLeaveApplied() + resWrapper.getNumberOfDayConsider())) {	
+				resWrapper.setMessage("Validation 7.0: Insufficient Leave Balance. Total Days Requested:" + resWrapper.getNumberOfDayConsider());
 					return resWrapper;
 				}
 			}
@@ -383,6 +388,64 @@ public class Leaverule {
 					}					
 				}
 			}
+			
+			// Validation 12.0: Validation for Leave Not due. Done by Feroj on 15th August,2018
+			if(leaveType.getId()== 6 || leaveType.getId()== 25) {
+				
+				LmsLeaveType leaveTypeHalfAvgSal = null;
+				leaveTypeHalfAvgSal = lmsLeaveTypeHome.findById(2);
+				
+				LmsLeaveBalance lmsLeaveBalance_n =null;
+				lmsLeaveBalance_n = findLeaveBalanceCurrent(user, leaveTypeHalfAvgSal);
+				
+				if(lmsLeaveBalance_n.getLeaveBalance() > 0 ) {
+				
+				resWrapper.setMessage("Validation 12.0: Please take leave from Earned Leave With Half Average Salary. Remaining Leave Balance:" + lmsLeaveBalance_n.getLeaveBalance());
+				return resWrapper;
+				
+				}
+				
+			}
+			
+			// Validation 13.0: Validation for Study Leave. Done by Feroj on 15th August,2018
+			
+						if(leaveType.getId()== 22 || leaveType.getId()== 26) {
+							
+							LmsLeaveType leaveTypeStudy = null;
+							leaveTypeStudy = lmsLeaveTypeHome.findById(3);
+							
+							LmsLeaveBalance lmsLeaveBalance_n =null;
+							lmsLeaveBalance_n = findLeaveBalanceCurrent(user, leaveTypeStudy);
+							
+							if(lmsLeaveBalance_n.getLeaveBalance() > 0 ) {
+							
+							resWrapper.setMessage("Validation 13.0: Please take leave from Study Leave. Remaining Leave Balance:" + lmsLeaveBalance_n.getLeaveBalance());
+							return resWrapper;
+							
+							}
+							
+						}
+						
+						// Validation 14.0: Validation for Post Retirement Leave. Done by Feroj on 15th August,2018
+						if(leaveType.getId()== 7) {
+							
+							long numberOfDaysFromBirthdate = calculateDateDifference(user.getDateofbirth(),startDate);
+							
+							long numberOfDaysJoblife = calculateDateDifference(user.getJoiningDate(),startDate);
+							
+		               // Age is less than 59 years or job life is less than 25 years
+							if(numberOfDaysFromBirthdate < 21535  && numberOfDaysJoblife < 9125){
+								resWrapper.setMessage("Validation 14.0: Your age is less than 59 years or your service life is less than 25 years, You are not eligible for this leave type. Your birth date is" + user.getDateofbirth());
+								return resWrapper;
+							}
+							
+						/*// job life is less than 25 years
+							else if(numberOfDaysJoblife < 9125 ){
+								resWrapper.setMessage("Validation 14.1: Your job life is less than 25 years, You are not eligible for this leave type.Your joining date is:" + user.getJoiningDate());
+								return resWrapper;
+							}*/
+							
+						}
 			
 
 		} catch (Exception ex) {

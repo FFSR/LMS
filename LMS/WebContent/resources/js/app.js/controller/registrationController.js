@@ -102,6 +102,9 @@ App
                     $scope.user.resigndate = c;
 					
 					$scope.user.gender= $scope.gender.name;
+					if ($scope.user.password==null){
+						$scope.showErrorMessage("Please select proper password");
+					}
 					
 					registrationService.registration($scope.user).then(
 							function(d) {
@@ -109,7 +112,6 @@ App
 								//console.log("Success.",d.message);
 								
 								//$scope.userid= d.userID;
-								$scope.uploadFile();
 								
 								$scope.clearAll();
 								
@@ -124,7 +126,8 @@ App
 							function(e) {
 								$scope.testMsg = e.data.message;								
 								//console.error(e.data.message);
-								$scope.showErrorMessage(e.message);
+								//$scope.showErrorMessage(e.message);
+								$scope.showErrorMessage(e.data.message);
 								
 							});
 				};
@@ -235,7 +238,7 @@ App
 					$timeout(function() {
 						$scope.successMessages = null;
 						$scope.errorMessages = null;
-					}, 6000);
+					}, 3000);
 				};
 
 				/* Show Error Message */
@@ -245,13 +248,8 @@ App
 					$timeout(function() {
 						$scope.successMessages = null;
 						$scope.errorMessages = null;
-					}, 6000);
+					}, 3000);
 				};
-				
-				$scope.uploadFile = function(){
-					$scope.processDropzone();
-					// $scope.restDropzone();
-				}
 				
 				
 				$scope.clearAll = function(){

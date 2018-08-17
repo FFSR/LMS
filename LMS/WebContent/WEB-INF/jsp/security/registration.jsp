@@ -31,16 +31,6 @@
 <link rel="stylesheet"
 	href="resources/css/datetimepicker/jquery.datetimepicker.css" />
 	
-	<script src="resources/file-upload/js/dropzone/dropzone.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/directives/FileUploadDirectives.js"></script>
-<script type="text/javascript"
-	src="resources/js/app.js/controller/FIleUploadController.js"></script>
-	<script type="text/javascript"
-	src="resources/js/app.js/directives/RestrictInput.js"></script>
-<link href="resources/file-upload/css/dropzone/phase2_dropzone.css"
-	rel="stylesheet" />
-	
 <link rel="stylesheet"
 	href="resources/css/icons/test.css" />
 
@@ -259,7 +249,7 @@ body label {
 						<label class="control-label col-md-3">Nationality</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus"
-								ng-model="nationality" ng-required="true" style="background-color:#E0E6F8;"
+								ng-model="nationality"  style="background-color:#E0E6F8;"
 								ng-options="x as x.name for x in dropdownNationalityNames track by x.name">
 								<option value="">Select</option>
 							</select>
@@ -276,7 +266,7 @@ body label {
 						<label class="control-label col-md-3">Mobile</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.mobilePersonal" style="background-color:#E0E6F8;"
-								ng-required="true" class="form-control" placeholder="Mobile">
+								 class="form-control" placeholder="Mobile">
 						</div>
 					</div>
 				</div>
@@ -285,7 +275,7 @@ body label {
 						<label class="control-label col-md-3">Telephone</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.mobileOffice" style="background-color:#E0E6F8;"
-								ng-required="true" class="form-control" placeholder="Telephone">
+								 class="form-control" placeholder="Telephone">
 						</div>
 					</div>
 				</div>
@@ -297,8 +287,8 @@ body label {
 							<label class="required">Email</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.email" class="form-control" style="background-color:#E0E6F8;"
-								ng-required="true" placeholder="Email">
-							<span class="error" ng-show="regForm.input.$error.email">
+								ng-model="user.email" class="form-control" id="email" required />
+								<span class="error" ng-show="myForm.input.$error.email">
 									Not valid email!</span>
 						</div>
 					</div>
@@ -328,7 +318,7 @@ body label {
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label class="control-label col-md-3">Gender</label>
+						<label class="required">Gender</label>
 						<div class="col-md-9">
 							<select class="form-control" id="ddAppStatus" ng-model="gender" style="background-color:#E0E6F8;"
 								ng-required="true"
@@ -402,7 +392,7 @@ body label {
 						<label class="control-label col-md-3">Address</label>
 						<div class="col-md-9">
 							<textarea rows="3" type="textarea" ng-model="user.address" style="background-color:#E0E6F8;"
-								ng-required="true" class="form-control" placeholder="Address"></textarea>
+								 class="form-control" placeholder="Address"></textarea>
 						</div>
 					</div>
 				</div>
@@ -415,7 +405,7 @@ body label {
 						<label class="control-label col-md-3">Passport</label>
 						<div class="col-md-9">
 							<input type="text" ng-model="user.passport" class="form-control" style="background-color:#E0E6F8;"
-								ng-required="false" placeholder="Passport No">
+								 placeholder="Passport No">
 						</div>
 					</div>
 				</div>
@@ -424,8 +414,8 @@ body label {
 					<div class="form-group">
 							<label class="required">Password</label>
 						<div class="col-md-9">
-							<input type="password" ng-model="user.password" style="background-color:#E0E6F8;"
-								ng-required="true" class="form-control" placeholder="Password"> 
+							<input type="text" name="password" ng-model="user.password" class="form-control" style="background-color:#E0E6F8;" ng-required="true" ng-pattern="/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/"
+					            placeholder="Password"><span ng-show="myform.password.$error.pattern">Ensure string has two uppercase letters, one special case, two digits,three lowercase letters and minimum length 8</span>
 						</div>
 					</div>
 				</div>
@@ -457,20 +447,6 @@ body label {
 
 
 			</div>
-			
-			<div class="row">
-					<div class="col-md-12 form-group">
-						<label class="col-md-2 control-label">Attach Image:</label>
-						<div class="col-md-10 dropzone" dropzone=""
-							id="my-awesome-dropzone">
-							<div class="dz-message" data-dz-message>
-								<span class="text-primary"> Drop Image Here to Upload <br />OR<br />
-									<button type="button" class="btn btn-info">Click Here</button>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
 		
 
 		<br>

@@ -120,13 +120,13 @@ body label {
 									class="btn btn_tf btn-denger waves-effect waves-light">Cancel</button>
 							</form>
 							<br /> 
-							 <!--  <a href="http://123.49.38.94:7070/LMS/forgetpasswd">Forget
+							<!--  <a href="http://123.49.38.94:7070/LMS/forgetpasswd">Forget
 								Password
 								</a> &nbsp;&nbsp;&nbsp;&nbsp; -->
-							 	 <a href="http://localhost:8080/LMS/forgetpasswd">Forget
+							  	 <a href="http://localhost:8080/LMS/forgetpasswd">Forget
 								Password
-								<!-- </a> &nbsp;&nbsp;&nbsp;&nbsp;
-								 <a href="http://123.49.38.94:7070/LMS/registration">Registration</a> 
+								 </a> &nbsp;&nbsp;&nbsp;&nbsp;
+								<!-- <a href="http://123.49.38.94:7070/LMS/registration">Registration</a> 
 							    &nbsp;&nbsp;&nbsp;&nbsp; -->
 							
 							 <a href="http://localhost:8080/LMS/registration">Registration</a> 
